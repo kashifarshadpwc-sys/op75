@@ -992,6 +992,186 @@
 
   /* ============ /V4 ADDITIONS ============ */
 
+  /* DAY FILTER (Overview) */
+  .day-filter-bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .day-filter-bar .df-label {
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .day-filter-btn {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    position: relative;
+    flex: 1;
+    min-width: 50px;
+  }
+  .day-filter-btn:hover { background: var(--paper-3); }
+  .day-filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .day-filter-btn.today::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .day-filter-btn.today.active::after { background: var(--accent-soft); }
+  .day-card.df-hidden { display: none; }
+  .day-grid.single-day .day-card:not(.df-hidden) { grid-column: 1 / -1; }
+  @media (max-width: 720px) {
+    .day-filter-btn { font-size: 11px; padding: 9px 8px; min-width: 0; }
+  }
+
+  /* EXERCISE LOGGER · day chips + target preview */
+  .ex-day-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .ex-day-chip {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 8px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    position: relative;
+    flex: 1;
+    min-width: 44px;
+  }
+  .ex-day-chip:hover { background: var(--paper-3); }
+  .ex-day-chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .ex-day-chip.today::after {
+    content: '';
+    position: absolute;
+    top: 3px; right: 3px;
+    width: 5px; height: 5px;
+    background: var(--accent); border-radius: 50%;
+  }
+  .target-preview {
+    background: var(--dark);
+    color: var(--dark-text);
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    border-left: 4px solid var(--accent);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: center;
+  }
+  .target-preview .tp-icon { font-size: 22px; }
+  .target-preview .tp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244,236,219,0.6);
+  }
+  .target-preview .tp-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-top: 2px;
+  }
+  .target-preview .tp-spec {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .ex-input-row .weight-unit-hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-deep);
+    font-weight: 600;
+  }
+  @media (max-width: 720px) {
+    .ex-day-chip { font-size: 10px; padding: 8px 6px; }
+    .target-preview { grid-template-columns: auto 1fr; }
+    .target-preview .tp-spec { grid-column: 1 / -1; text-align: left; padding-top: 6px; border-top: 1px dashed rgba(244,236,219,0.2); }
+  }
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .day-filter-bar .df-label {
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .day-filter-btn {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    position: relative;
+    flex: 1;
+    min-width: 50px;
+  }
+  .day-filter-btn:hover { background: var(--paper-3); }
+  .day-filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .day-filter-btn.today::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .day-filter-btn.today.active::after { background: var(--accent-soft); }
+  .day-card.df-hidden { display: none; }
+  /* When only one day is visible, span full width on desktop */
+  .day-grid.single-day .day-card:not(.df-hidden) { grid-column: 1 / -1; }
+  @media (max-width: 720px) {
+    .day-filter-btn { font-size: 11px; padding: 9px 8px; min-width: 0; }
+  }
+
   /* MACHINE GUIDE */
   .machine-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
   .machine-card { background: var(--paper); padding: 28px; scroll-margin-top: 80px; }
@@ -1204,9 +1384,21 @@
     <div class="phase-label">Goal: <strong style="color:var(--accent-deep)">−5 kg / hit 80</strong></div>
   </div>
 
-  <div class="day-grid">
+  <div class="day-filter-bar" id="dayFilterBar">
+    <div class="df-label">Show day · today's session is auto-selected</div>
+    <button class="day-filter-btn" data-day="all">All 7</button>
+    <button class="day-filter-btn" data-day="mon">Mon</button>
+    <button class="day-filter-btn" data-day="tue">Tue</button>
+    <button class="day-filter-btn" data-day="wed">Wed</button>
+    <button class="day-filter-btn" data-day="thu">Thu</button>
+    <button class="day-filter-btn" data-day="fri">Fri</button>
+    <button class="day-filter-btn" data-day="sat">Sat</button>
+    <button class="day-filter-btn" data-day="sun">Sun</button>
+  </div>
 
-    <div class="day-card">
+  <div class="day-grid" id="dayGrid">
+
+    <div class="day-card" data-day="mon">
       <div class="day-head"><div><div class="day-num">Day 01 · Mon</div><div class="day-title">Chest <span class="day-focus">+ triceps</span></div></div></div>
       <ul class="exercise-list">
         <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="chest-press">Machine chest press</a><small>warm-up: 2 light sets of 12</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 4 plates</span></li>
@@ -1219,7 +1411,7 @@
       <div class="coach-note">Rest 60–90 sec between sets. Last 2 reps should feel hard, not impossible.</div>
     </div>
 
-    <div class="day-card">
+    <div class="day-card" data-day="tue">
       <div class="day-head"><div><div class="day-num">Day 02 · Tue</div><div class="day-title">Back <span class="day-focus">+ biceps</span></div></div></div>
       <ul class="exercise-list">
         <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="lat-pulldown">Lat pulldown (wide grip)</a><small>pull to upper chest, squeeze</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 25 kg</span></li>
@@ -1232,7 +1424,7 @@
       <div class="coach-note">Pull with elbows, not hands. Imagine your hands are just hooks.</div>
     </div>
 
-    <div class="day-card">
+    <div class="day-card" data-day="wed">
       <div class="day-head"><div><div class="day-num">Day 03 · Wed</div><div class="day-title">Legs <span class="day-focus">· full</span></div></div></div>
       <ul class="exercise-list">
         <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="leg-press">Leg press</a><small>feet shoulder-width, full depth</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 40 kg</span></li>
@@ -1245,7 +1437,7 @@
       <div class="coach-note">Leg day will humble you for 48 hrs. Don't run on Thursday — walk.</div>
     </div>
 
-    <div class="day-card">
+    <div class="day-card" data-day="thu">
       <div class="day-head"><div><div class="day-num">Day 04 · Thu</div><div class="day-title">Shoulders <span class="day-focus">+ core</span></div></div></div>
       <ul class="exercise-list">
         <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="shoulder-press">Machine shoulder press</a><small>elbows slightly forward</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 3 plates</span></li>
@@ -1259,7 +1451,7 @@
       <div class="coach-note">Light dumbbells, strict form. Ego is what tears rotator cuffs.</div>
     </div>
 
-    <div class="day-card">
+    <div class="day-card" data-day="fri">
       <div class="day-head"><div><div class="day-num">Day 05 · Fri</div><div class="day-title">Arms <span class="day-focus">· bi + tri</span></div></div></div>
       <ul class="exercise-list">
         <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="barbell-curl">Barbell curl</a><small>elbows pinned to ribs</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 10 kg bar</span></li>
@@ -1273,7 +1465,7 @@
       <div class="coach-note">Arm day = pump day. Squeeze every rep. Slow on the way down.</div>
     </div>
 
-    <div class="day-card">
+    <div class="day-card" data-day="sat">
       <div class="day-head"><div><div class="day-num">Day 06 · Sat</div><div class="day-title">Full body <span class="day-focus">+ long cardio</span></div></div></div>
       <ul class="exercise-list">
         <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="goblet-squat">Goblet squat</a><small>warm everything up</small></span><span class="ex-detail"><span class="reps">3 × 12</span> · 8 kg</span></li>
@@ -1286,7 +1478,7 @@
       <div class="coach-note">The fat-burn day. Steady, conversational pace. Music helps.</div>
     </div>
 
-    <div class="day-card rest" style="grid-column: span 2;">
+    <div class="day-card rest" data-day="sun" style="grid-column: span 2;">
       <div class="day-head"><div><div class="day-num">Day 07 · Sun</div><div class="day-title">Rest. <span class="day-focus">Recover.</span></div></div><div class="day-num">No gym</div></div>
       <ul class="exercise-list">
         <li class="exercise"><span class="ex-num">·</span><span class="ex-name">Walk 30–45 min outdoors<small>after Asr or before Maghrib if it's hot</small></span><span class="ex-detail"><span class="reps">light pace</span></span></li>
@@ -1904,6 +2096,26 @@
     <span class="sub-tag">Tap, type, save · for every set</span>
   </div>
 
+  <div class="ex-day-chips" id="exDayChips">
+    <button class="ex-day-chip" data-day="mon">Mon</button>
+    <button class="ex-day-chip" data-day="tue">Tue</button>
+    <button class="ex-day-chip" data-day="wed">Wed</button>
+    <button class="ex-day-chip" data-day="thu">Thu</button>
+    <button class="ex-day-chip" data-day="fri">Fri</button>
+    <button class="ex-day-chip" data-day="sat">Sat</button>
+    <button class="ex-day-chip" data-day="sun">Sun</button>
+    <button class="ex-day-chip" data-day="all">All</button>
+  </div>
+
+  <div class="target-preview" id="targetPreview">
+    <div class="tp-icon" id="tpIcon">💪</div>
+    <div>
+      <div class="tp-label" id="tpLabel">Today's session</div>
+      <div class="tp-title" id="tpTitle">—</div>
+    </div>
+    <div class="tp-spec" id="tpSpec">—</div>
+  </div>
+
   <div class="ex-input-row">
     <div class="field">
       <label>Exercise</label>
@@ -1911,7 +2123,7 @@
     </div>
     <div class="field"><label>Sets</label><input type="number" id="exSets" min="1" max="10" value="3"></div>
     <div class="field"><label>Reps</label><input type="number" id="exReps" min="1" max="50" value="10"></div>
-    <div class="field"><label>Weight (kg)</label><input type="number" id="exWeight" min="0" max="500" step="0.5" value="0"></div>
+    <div class="field"><label>Weight <span class="weight-unit-hint" id="weightUnitHint">(kg)</span></label><input type="number" id="exWeight" min="0" max="500" step="0.5" value="0"></div>
     <button class="btn" onclick="logExercise()">Log</button>
   </div>
 
@@ -2189,16 +2401,84 @@ const WATER_GOAL_ML = 3000;
 let CURRENT_GLASS_SIZE = 250;
 
 /* ============================================================
-   DATA: EXERCISE LIST (for logger dropdown)
+   DATA: TRAINING_PLAN · per-day exercises + targets + cardio
+   These are Phase 1 starting weights — bump per phase manually
    ============================================================ */
-const EXERCISES = [
-  { day: 'Mon · Chest + Tri', items: ['Machine chest press', 'Incline dumbbell press', 'Pec deck / cable fly', 'Tricep pushdown', 'Overhead tricep extension'] },
-  { day: 'Tue · Back + Bi',   items: ['Lat pulldown', 'Seated cable row', 'One-arm dumbbell row', 'Bicep curl machine', 'Hammer curl'] },
-  { day: 'Wed · Legs',        items: ['Leg press', 'Leg extension', 'Leg curl', 'Goblet squat', 'Calf raise'] },
-  { day: 'Thu · Shoulders',   items: ['Machine shoulder press', 'Dumbbell lateral raise', 'Dumbbell front raise', 'Reverse pec deck', 'Plank', 'Hanging knee raise'] },
-  { day: 'Fri · Arms',        items: ['Barbell curl', 'Preacher curl', 'Hammer curl', 'Tricep dip', 'Tricep pushdown', 'Skullcrusher'] },
-  { day: 'Sat · Full body',   items: ['Goblet squat', 'Push-up', 'Lat pulldown', 'Dumbbell shoulder press', 'Plank'] },
-];
+const TRAINING_PLAN = {
+  mon: {
+    label: 'Chest + Triceps', icon: '🏋️',
+    exercises: [
+      { name: 'Machine chest press',       sets: 3, reps: 10, weight: 4,  unit: 'plates' },
+      { name: 'Incline dumbbell press',    sets: 3, reps: 10, weight: 6,  unit: 'kg' },
+      { name: 'Pec deck / cable fly',      sets: 3, reps: 12, weight: 4,  unit: 'plates' },
+      { name: 'Tricep pushdown',           sets: 3, reps: 12, weight: 3,  unit: 'plates' },
+      { name: 'Overhead tricep extension', sets: 3, reps: 10, weight: 5,  unit: 'kg' },
+    ],
+    cardio: { type: 'Treadmill', time: 15, incline: '4', speed: '5.5 km/h' }
+  },
+  tue: {
+    label: 'Back + Biceps', icon: '🏋️',
+    exercises: [
+      { name: 'Lat pulldown',           sets: 3, reps: 10, weight: 25, unit: 'kg' },
+      { name: 'Seated cable row',       sets: 3, reps: 10, weight: 25, unit: 'kg' },
+      { name: 'One-arm dumbbell row',   sets: 3, reps: 10, weight: 8,  unit: 'kg' },
+      { name: 'Bicep curl machine',     sets: 3, reps: 10, weight: 3,  unit: 'plates' },
+      { name: 'Hammer curl',            sets: 3, reps: 10, weight: 6,  unit: 'kg' },
+    ],
+    cardio: { type: 'Treadmill', time: 15, incline: '4', speed: '5.5 km/h' }
+  },
+  wed: {
+    label: 'Legs', icon: '🦵',
+    exercises: [
+      { name: 'Leg press',      sets: 3, reps: 10, weight: 40, unit: 'kg' },
+      { name: 'Leg extension',  sets: 3, reps: 12, weight: 3,  unit: 'plates' },
+      { name: 'Leg curl',       sets: 3, reps: 12, weight: 3,  unit: 'plates' },
+      { name: 'Goblet squat',   sets: 3, reps: 12, weight: 8,  unit: 'kg' },
+      { name: 'Calf raise',     sets: 3, reps: 15, weight: 0,  unit: 'bodyweight' },
+    ],
+    cardio: { type: 'Treadmill', time: 10, incline: '2', speed: '5.0 km/h' }
+  },
+  thu: {
+    label: 'Shoulders + Core', icon: '🏋️',
+    exercises: [
+      { name: 'Machine shoulder press', sets: 3, reps: 10, weight: 3,  unit: 'plates' },
+      { name: 'Dumbbell lateral raise', sets: 3, reps: 12, weight: 4,  unit: 'kg' },
+      { name: 'Dumbbell front raise',   sets: 3, reps: 10, weight: 4,  unit: 'kg' },
+      { name: 'Reverse pec deck',       sets: 3, reps: 12, weight: 3,  unit: 'plates' },
+      { name: 'Plank',                  sets: 3, reps: 30, weight: 0,  unit: 'sec' },
+      { name: 'Hanging knee raise',     sets: 3, reps: 12, weight: 0,  unit: 'bodyweight' },
+    ],
+    cardio: { type: 'Treadmill', time: 15, incline: '5', speed: '5.5 km/h' }
+  },
+  fri: {
+    label: 'Arms', icon: '💪',
+    exercises: [
+      { name: 'Barbell curl',      sets: 3, reps: 10, weight: 10, unit: 'kg' },
+      { name: 'Preacher curl',     sets: 3, reps: 10, weight: 3,  unit: 'plates' },
+      { name: 'Hammer curl',       sets: 3, reps: 10, weight: 6,  unit: 'kg' },
+      { name: 'Tricep dip',        sets: 3, reps: 10, weight: 0,  unit: 'bodyweight' },
+      { name: 'Tricep pushdown',   sets: 3, reps: 12, weight: 3,  unit: 'plates' },
+      { name: 'Skullcrusher',      sets: 3, reps: 10, weight: 5,  unit: 'kg' },
+    ],
+    cardio: { type: 'Treadmill', time: 15, incline: '4', speed: '5.5 km/h' }
+  },
+  sat: {
+    label: 'Full body + Long cardio', icon: '🔥',
+    exercises: [
+      { name: 'Goblet squat',           sets: 3, reps: 12, weight: 8,  unit: 'kg' },
+      { name: 'Push-up',                sets: 3, reps: 0,  weight: 0,  unit: 'max reps' },
+      { name: 'Lat pulldown',           sets: 3, reps: 10, weight: 25, unit: 'kg' },
+      { name: 'Dumbbell shoulder press', sets: 3, reps: 10, weight: 6, unit: 'kg' },
+      { name: 'Plank',                  sets: 2, reps: 45, weight: 0,  unit: 'sec' },
+    ],
+    cardio: { type: 'Treadmill', time: 35, incline: '3', speed: '5.5 km/h' }
+  },
+  sun: {
+    label: 'Rest day', icon: '😴',
+    exercises: [],
+    cardio: { type: 'Walk', time: 30, incline: '0', speed: 'outdoor pace' }
+  }
+};
 
 /* ============================================================
    DATA: MACHINE / EXERCISE GUIDE
@@ -2367,6 +2647,39 @@ const MACHINES = [
     tip: 'Seated version with back support is safer for beginners. Standing demands more core stability.'
   },
 ];
+
+/* ============================================================
+   DAY FILTER (Overview)
+   ============================================================ */
+const DAY_KEYS = ['sun','mon','tue','wed','thu','fri','sat'];
+
+function filterDay(day) {
+  const grid = document.getElementById('dayGrid');
+  const cards = grid.querySelectorAll('.day-card');
+  cards.forEach(c => {
+    if (day === 'all') c.classList.remove('df-hidden');
+    else c.classList.toggle('df-hidden', c.dataset.day !== day);
+  });
+  grid.classList.toggle('single-day', day !== 'all');
+  document.querySelectorAll('.day-filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.day === day);
+  });
+}
+
+function initDayFilter() {
+  const today = DAY_KEYS[new Date().getDay()];
+  // Mark today's button with a dot
+  const todayBtn = document.querySelector(`.day-filter-btn[data-day="${today}"]`);
+  if (todayBtn) todayBtn.classList.add('today');
+  // Wire up clicks
+  document.querySelectorAll('.day-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => filterDay(btn.dataset.day));
+  });
+  // Default to today
+  filterDay(today);
+}
+
+initDayFilter();
 
 /* ============================================================
    SAFE STORAGE WRAPPER
@@ -2964,12 +3277,108 @@ runAdaptiveCheck();
 /* ============================================================
    EXERCISE LOGGER
    ============================================================ */
-function populateExerciseSelect() {
+let currentExDay = null; // tracks the day filter for exercise logger
+
+function populateExerciseSelect(day) {
   const sel = document.getElementById('exSelect');
-  sel.innerHTML = EXERCISES.map(group => 
-    `<optgroup label="${group.day}">${group.items.map(it => `<option value="${it}">${it}</option>`).join('')}</optgroup>`
-  ).join('');
+  if (day === 'all') {
+    sel.innerHTML = Object.entries(TRAINING_PLAN).map(([dayKey, plan]) => {
+      if (!plan.exercises.length) return '';
+      const dayLabel = dayKey.charAt(0).toUpperCase() + dayKey.slice(1);
+      return `<optgroup label="${dayLabel} · ${plan.label}">${
+        plan.exercises.map(ex => `<option value="${ex.name}" data-day="${dayKey}">${ex.name}</option>`).join('')
+      }</optgroup>`;
+    }).join('');
+  } else {
+    const plan = TRAINING_PLAN[day];
+    if (!plan || !plan.exercises.length) {
+      sel.innerHTML = `<option value="">— No lifting on ${day.charAt(0).toUpperCase() + day.slice(1)} —</option>`;
+    } else {
+      sel.innerHTML = plan.exercises.map(ex =>
+        `<option value="${ex.name}" data-day="${day}">${ex.name}</option>`
+      ).join('');
+    }
+  }
+  // Trigger fill of inputs based on first option
+  fillExerciseInputs();
 }
+
+function fillExerciseInputs() {
+  const sel = document.getElementById('exSelect');
+  const name = sel.value;
+  if (!name) {
+    document.getElementById('exSets').value = 3;
+    document.getElementById('exReps').value = 10;
+    document.getElementById('exWeight').value = 0;
+    document.getElementById('weightUnitHint').textContent = '(kg)';
+    return;
+  }
+  // Find the exercise across all days (use today's day first if available)
+  const opt = sel.options[sel.selectedIndex];
+  const dayKey = opt.dataset.day || currentExDay;
+  const plan = TRAINING_PLAN[dayKey];
+  const ex = plan ? plan.exercises.find(e => e.name === name) : null;
+  if (!ex) return;
+  document.getElementById('exSets').value = ex.sets;
+  document.getElementById('exReps').value = ex.reps;
+  document.getElementById('exWeight').value = ex.weight;
+  document.getElementById('weightUnitHint').textContent = `(${ex.unit})`;
+}
+
+function fillCardioInputs(day) {
+  const plan = TRAINING_PLAN[day];
+  if (!plan) return;
+  const c = plan.cardio;
+  document.getElementById('cardioType').value = c.type === 'Walk' ? 'Walk' : 'Treadmill';
+  document.getElementById('cardioTime').value = c.time;
+  document.getElementById('cardioSpeed').value = c.speed;
+  document.getElementById('cardioIncline').value = c.incline;
+}
+
+function setExDay(day) {
+  currentExDay = day;
+  // Update chip styles
+  document.querySelectorAll('.ex-day-chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.day === day);
+  });
+  // Update target preview
+  const tp = document.getElementById('targetPreview');
+  if (day === 'all') {
+    document.getElementById('tpIcon').textContent = '📋';
+    document.getElementById('tpLabel').textContent = 'All sessions';
+    document.getElementById('tpTitle').textContent = 'Pick any exercise';
+    document.getElementById('tpSpec').textContent = 'Cross-day logging mode';
+  } else {
+    const plan = TRAINING_PLAN[day];
+    const dayName = day.charAt(0).toUpperCase() + day.slice(1);
+    const today = ['sun','mon','tue','wed','thu','fri','sat'][new Date().getDay()];
+    document.getElementById('tpIcon').textContent = plan.icon || '💪';
+    document.getElementById('tpLabel').textContent = day === today ? `Today's session · ${dayName}` : `${dayName}'s session`;
+    document.getElementById('tpTitle').textContent = plan.label;
+    if (plan.exercises.length) {
+      document.getElementById('tpSpec').textContent = `${plan.exercises.length} lifts · ${plan.cardio.time} min cardio`;
+    } else {
+      document.getElementById('tpSpec').textContent = `Rest day · ${plan.cardio.time} min walk`;
+    }
+  }
+  populateExerciseSelect(day);
+  if (day !== 'all') fillCardioInputs(day);
+}
+
+document.querySelectorAll('.ex-day-chip').forEach(chip => {
+  chip.addEventListener('click', () => setExDay(chip.dataset.day));
+});
+
+document.getElementById('exSelect').addEventListener('change', fillExerciseInputs);
+
+// Initialize: today's day, mark today's chip
+function initExerciseDay() {
+  const today = ['sun','mon','tue','wed','thu','fri','sat'][new Date().getDay()];
+  const todayChip = document.querySelector(`.ex-day-chip[data-day="${today}"]`);
+  if (todayChip) todayChip.classList.add('today');
+  setExDay(today);
+}
+initExerciseDay();
 
 function logExercise() {
   const name = document.getElementById('exSelect').value;
@@ -3078,7 +3487,7 @@ function renderExLog() {
   }).join('');
 }
 
-populateExerciseSelect();
+populateExerciseSelect(currentExDay || 'all');
 renderExLog();
 
 /* ============================================================
