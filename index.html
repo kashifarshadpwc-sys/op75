@@ -1269,7 +1269,8 @@
   .prog-table tbody td { padding: 10px 12px; border-bottom: 1px solid rgba(28,25,23,0.08); vertical-align: top; }
   .prog-table tbody td.ex-name-cell { font-weight: 600; font-size: 13px; }
   .prog-table tbody td.wk-cell { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-deep); white-space: nowrap; }
-  .prog-table tbody td.wk-cell.deload { color: var(--danger); font-weight: 600; }
+  .prog-table tbody td.wk-cell.deload { color: var(--danger); font-weight: 600; position: relative; }
+  .prog-table tbody td.wk-cell.deload::before { content: '↓ '; font-weight: 700; color: var(--danger); }
   .prog-table tbody td.wk-cell.bump { color: var(--success); font-weight: 700; }
   .prog-table tbody tr:hover { background: var(--paper-2); }
   .prog-table .wk-date { display: block; font-size: 9px; color: var(--muted); text-transform: none; letter-spacing: 0; font-weight: 400; margin-top: 3px; }
@@ -1706,7 +1707,7 @@
     <div class="phase-day-card">
       <div class="phase-day-head">
         <div><span class="pd-num">Strength · maintain Phase 2 loads · deload Week 12</span><div class="pd-title">Week-by-week <span class="pd-focus">progression</span></div></div>
-        <div class="pd-cardio">→ = maintain · italic = rep push · deload in red</div>
+        <div class="pd-cardio">→ = maintain · italic = rep push · ↓ red = deload</div>
       </div>
       <div class="prog-table-wrap">
         <table class="prog-table">
@@ -1720,7 +1721,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×<em>11</em> @ 6 plates</td><td class="wk-cell deload">3×10 @ 6 plates (deload)</td></tr>
+            <tr><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×<em>11</em> @ 6 plates</td><td class="wk-cell deload">3×10 @ 6 plates</td></tr>
             <tr><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td><td class="wk-cell deload">3×10 @ 10 kg</td></tr>
             <tr><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell deload">3×12 @ 5 plates</td></tr>
             <tr><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 30 kg</td></tr>
@@ -2712,7 +2713,11 @@ document.querySelectorAll('.sub-tab-btn').forEach(btn => {
     document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(sub).classList.add('active');
-    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    // Scroll the workout panel into view, NOT the sub-tab itself
+    // (scrolling the sub-tab inline:center shifts the whole page horizontally
+    //  for the rightmost tab — bug that hid Phase 3 content)
+    const trainingTop = document.querySelector('nav.tabs');
+    if (trainingTop) window.scrollTo({ top: trainingTop.offsetTop + 60, behavior: 'smooth' });
   });
 });
 
