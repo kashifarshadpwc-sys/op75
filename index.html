@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Operation 75 — Kashif's Training Camp</title>
+
+<!-- PWA · iOS install -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#161311">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Op 75">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5EFE3;
+    --paper-2: #EDE5D2;
+    --paper-3: #E5DBC2;
+    --ink: #161311;
+    --ink-soft: #3F3A35;
+    --muted: #7A726A;
+    --rule: #1C1917;
+    --dark: #0F0D0C;
+    --dark-text: #F4ECDB;
+    --accent: #D97706;
+    --accent-deep: #B45309;
+    --accent-soft: #FBBF24;
+    --danger: #991B1B;
+    --success: #166534;
+    --hand: #B45309;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    background-image: repeating-linear-gradient(90deg, transparent 0 39px, rgba(28,25,23,0.025) 39px 40px);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .hand { font-family: 'Caveat', cursive; color: var(--hand); font-weight: 700; }
+
+  /* HERO */
+  .hero { border-bottom: 2px solid var(--rule); padding: 28px 0 36px; position: relative; }
+  .hero-top {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+    padding-bottom: 16px; border-bottom: 1px dashed var(--ink); margin-bottom: 28px;
+  }
+  .hero-top span { white-space: nowrap; }
+  .hero h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(64px, 13vw, 168px); line-height: 0.88;
+    letter-spacing: -0.02em; text-transform: uppercase;
+  }
+  .hero h1 .num { color: var(--accent); font-style: italic; display: inline-block; transform: translateY(0.04em); }
+  .hero-sub { margin-top: 18px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: end; }
+  .hero-name { font-weight: 800; font-size: 22px; letter-spacing: -0.01em; }
+  .hero-dates { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+  .mission { font-size: 16px; color: var(--ink-soft); max-width: 460px; border-left: 3px solid var(--accent); padding-left: 16px; }
+
+  /* STAT STRIP */
+  .strip { background: var(--dark); color: var(--dark-text); border-top: 2px solid var(--rule); border-bottom: 2px solid var(--rule); }
+  .strip-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .stat { padding: 24px; border-right: 1px solid rgba(244,236,219,0.12); }
+  .stat:last-child { border-right: none; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,236,219,0.6); }
+  .stat-value { font-family: 'Anton', sans-serif; font-size: clamp(36px, 5.5vw, 64px); line-height: 1; margin-top: 8px; letter-spacing: -0.01em; }
+  .stat-value .unit { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.4em; color: rgba(244,236,219,0.6); margin-left: 6px; letter-spacing: 0; }
+  .stat-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); margin-top: 6px; }
+
+  /* TABS */
+  nav.tabs { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 2px solid var(--rule); }
+  .tabs-inner { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: none; border: none; border-right: 1px solid var(--rule);
+    padding: 18px 22px; font-family: 'Inter', sans-serif; font-size: 13px;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; color: var(--ink-soft); transition: background 0.15s, color 0.15s; white-space: nowrap;
+  }
+  .tab-btn:hover { background: var(--paper-2); color: var(--ink); }
+  .tab-btn.active { background: var(--ink); color: var(--paper); }
+  .tab-btn .num { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 10px; color: var(--accent); margin-right: 8px; }
+
+  /* PANELS */
+  .panel { display: none; padding: 56px 0; }
+  .panel.active { display: block; }
+  .panel-header {
+    margin-bottom: 40px; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 32px; align-items: end; padding-bottom: 24px; border-bottom: 1px solid var(--ink);
+  }
+  .panel-title { font-family: 'Anton', sans-serif; font-size: clamp(40px, 6vw, 72px); line-height: 0.95; letter-spacing: -0.01em; text-transform: uppercase; }
+  .panel-title .accent { color: var(--accent); }
+  .panel-intro { font-size: 15px; color: var(--ink-soft); max-width: 480px; }
+
+  /* SUB-SECTION DIVIDER */
+  .sub-divider {
+    margin: 56px 0 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .sub-divider h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+  }
+  .sub-divider h3 .accent { color: var(--accent); }
+  .sub-divider .sub-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* PHASE BANNER */
+  .phase-banner {
+    background: var(--paper-2); border: 1px solid var(--rule); border-left: 6px solid var(--accent);
+    padding: 18px 22px; margin-bottom: 32px;
+    display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
+  }
+  .phase-banner .phase-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  .phase-banner .phase-name { font-family: 'Anton', sans-serif; font-size: 28px; text-transform: uppercase; letter-spacing: 0.01em; }
+  .phase-banner .phase-dates { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-deep); }
+
+  /* DAY CARDS */
+  .day-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .day-card { background: var(--paper); padding: 28px; position: relative; min-height: 320px; }
+  .day-card.rest { background: var(--dark); color: var(--dark-text); }
+  .day-card .day-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 1px dashed currentColor; margin-bottom: 18px; }
+  .day-card .day-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+  .day-card.rest .day-num { color: rgba(244,236,219,0.55); }
+  .day-card .day-title { font-family: 'Anton', sans-serif; font-size: 28px; text-transform: uppercase; line-height: 1; }
+  .day-card .day-focus { color: var(--accent); }
+
+  .exercise-list { list-style: none; padding: 0; margin: 0; }
+  .exercise { padding: 11px 0; border-bottom: 1px solid rgba(28,25,23,0.08); display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: baseline; }
+  .exercise:last-child { border-bottom: none; }
+  .ex-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); width: 18px; }
+  .ex-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .ex-name small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .ex-detail { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-align: right; color: var(--accent-deep); white-space: nowrap; }
+  .ex-detail .reps { color: var(--ink); }
+
+  /* Link-style on exercise names */
+  .ex-link {
+    cursor: pointer; color: var(--ink); border-bottom: 1px dotted var(--accent-deep);
+    transition: color 0.15s;
+  }
+  .ex-link:hover { color: var(--accent-deep); }
+  .day-card.rest .ex-link { color: var(--dark-text); }
+
+  .day-card.rest .ex-name { color: var(--dark-text); }
+  .day-card.rest .ex-name small { color: rgba(244,236,219,0.55); }
+  .day-card.rest .ex-detail { color: var(--accent); }
+  .day-card.rest .exercise { border-bottom-color: rgba(244,236,219,0.1); }
+
+  .cardio-block { margin-top: 16px; padding-top: 14px; border-top: 2px solid currentColor; display: flex; justify-content: space-between; align-items: baseline; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .cardio-block .cardio-label { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .cardio-block .cardio-spec { color: var(--accent-deep); }
+  .day-card.rest .cardio-block .cardio-spec { color: var(--accent); }
+
+  .coach-note { margin-top: 18px; font-family: 'Caveat', cursive; font-size: 18px; color: var(--hand); font-weight: 700; line-height: 1.2; transform: rotate(-0.6deg); }
+  .day-card.rest .coach-note { color: var(--accent); }
+
+  .progression-block { margin-top: 40px; background: var(--ink); color: var(--dark-text); padding: 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .progression-block h3 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .progression-block .p-title { font-family: 'Anton', sans-serif; font-size: 28px; margin-bottom: 12px; text-transform: uppercase; }
+  .progression-block p { font-size: 13px; color: rgba(244,236,219,0.8); }
+
+  /* DIET MACROS */
+  .macro-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 40px; }
+  .macro { background: var(--paper); padding: 22px; }
+  .macro-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+  .macro-value { font-family: 'Anton', sans-serif; font-size: 42px; line-height: 1; margin-top: 8px; }
+  .macro-value .unit { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: var(--muted); margin-left: 4px; }
+  .macro-note { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+  .meal-timeline { display: grid; grid-template-columns: 140px 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .meal-time, .meal-detail { background: var(--paper); padding: 22px 24px; }
+  .meal-time { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right; }
+  .meal-time .clock { font-family: 'Anton', sans-serif; font-size: 28px; color: var(--ink); display: block; margin-bottom: 4px; }
+  .meal-time .tag { color: var(--accent-deep); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-size: 10px; }
+  .meal-detail .meal-name { font-family: 'Anton', sans-serif; font-size: 22px; text-transform: uppercase; margin-bottom: 6px; }
+  .meal-detail .meal-name .kcal { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-deep); margin-left: 12px; font-weight: 500; }
+  .meal-items { list-style: none; padding: 0; font-size: 14px; color: var(--ink-soft); }
+  .meal-items li { padding: 4px 0; display: flex; justify-content: space-between; gap: 16px; }
+  .meal-items .grams { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .meal-alt { margin-top: 10px; font-family: 'Caveat', cursive; font-size: 17px; color: var(--hand); font-weight: 600; }
+
+  /* AVOID/ALLOWED LIST */
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+  .rules-card { background: var(--paper); padding: 28px; }
+  .rules-card.bad { background: #2A1410; color: var(--dark-text); }
+  .rules-card.bad .rules-label { color: #F87171; }
+  .rules-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--success); }
+  .rules-title { font-family: 'Anton', sans-serif; font-size: 32px; text-transform: uppercase; line-height: 1; margin: 8px 0 18px; }
+  .rules-list { list-style: none; padding: 0; }
+  .rules-list li { padding: 8px 0; border-bottom: 1px dashed currentColor; font-size: 14px; display: grid; grid-template-columns: 24px 1fr; gap: 8px; align-items: baseline; }
+  .rules-list li:last-child { border-bottom: none; }
+  .rules-list .mark { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .rules-card .mark { color: var(--success); }
+  .rules-card.bad .mark { color: #F87171; }
+  .rules-list .note { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; }
+  .rules-card.bad .rules-list .note { color: rgba(244,236,219,0.55); }
+
+  /* RECIPE CARD */
+  .recipe-card { margin-top: 40px; background: var(--dark); color: var(--dark-text); padding: 36px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; }
+  .recipe-card h3 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  .recipe-card .r-title { font-family: 'Anton', sans-serif; font-size: 36px; text-transform: uppercase; line-height: 1; margin-top: 8px; }
+  .recipe-card p { font-size: 13px; color: rgba(244,236,219,0.8); margin-top: 12px; }
+  .recipe-card ol { list-style: none; padding: 0; counter-reset: step; }
+  .recipe-card ol li { counter-increment: step; padding: 10px 0 10px 36px; position: relative; border-bottom: 1px solid rgba(244,236,219,0.1); font-size: 14px; }
+  .recipe-card ol li::before { content: counter(step, decimal-leading-zero); position: absolute; left: 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); top: 12px; }
+
+  /* TRACKER CARDS */
+  .tracker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .tracker-card { background: var(--paper-2); border: 1px solid var(--rule); padding: 28px; }
+  .tracker-card h3 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; }
+  .tracker-card .t-title { font-family: 'Anton', sans-serif; font-size: 32px; text-transform: uppercase; line-height: 1; margin-bottom: 18px; }
+  .weight-input { display: flex; gap: 12px; margin-bottom: 18px; }
+  .weight-input input { flex: 1; background: var(--paper); border: 1px solid var(--rule); padding: 12px 14px; font-family: 'JetBrains Mono', monospace; font-size: 16px; color: var(--ink); }
+  .weight-input input:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .btn { background: var(--ink); color: var(--paper); border: none; padding: 12px 20px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.15s; }
+  .btn:hover { background: var(--accent-deep); }
+  .btn.btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+  .btn.btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn.btn-sm { padding: 8px 12px; font-size: 11px; }
+
+  .weight-log { list-style: none; padding: 0; max-height: 280px; overflow-y: auto; }
+  .weight-log li { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid rgba(28,25,23,0.1); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .weight-log .date { color: var(--muted); font-size: 11px; }
+  .weight-log .val { font-weight: 600; }
+  .weight-log .delta { color: var(--success); font-size: 11px; margin-left: 8px; }
+  .weight-log .delta.up { color: var(--danger); }
+  .weight-log .empty { color: var(--muted); font-style: italic; font-family: 'Inter', sans-serif; text-align: center; padding: 24px; }
+
+  .progress-bar { background: var(--paper); border: 1px solid var(--rule); height: 36px; position: relative; margin: 24px 0 8px; overflow: hidden; }
+  .progress-fill { background: var(--accent); height: 100%; width: 0; transition: width 0.6s ease; }
+  .progress-marker { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink); }
+  .progress-marker .label { position: absolute; top: -22px; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink); white-space: nowrap; }
+  .progress-scale { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(28,25,23,0.08); cursor: pointer; }
+  .checklist input[type="checkbox"] { appearance: none; width: 20px; height: 20px; border: 1.5px solid var(--ink); background: var(--paper); cursor: pointer; position: relative; flex-shrink: 0; }
+  .checklist input[type="checkbox"]:checked { background: var(--success); border-color: var(--success); }
+  .checklist input[type="checkbox"]:checked::after { content: "✓"; position: absolute; color: var(--paper); font-size: 14px; font-weight: 700; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .checklist li.done .label { text-decoration: line-through; color: var(--muted); }
+  .checklist .label { font-size: 14px; flex: 1; }
+
+  /* FOOD LOGGER */
+  .calorie-dashboard {
+    background: var(--ink); color: var(--dark-text);
+    padding: 28px; margin-bottom: 28px;
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 28px;
+    border: 1px solid var(--rule);
+  }
+  .cal-big { display: flex; flex-direction: column; }
+  .cal-big .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,236,219,0.6); }
+  .cal-big .big-num { font-family: 'Anton', sans-serif; font-size: 64px; line-height: 1; margin-top: 6px; }
+  .cal-big .big-num .of { color: var(--accent); font-size: 32px; margin-left: 4px; }
+  .cal-big .big-num .unit { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: rgba(244,236,219,0.55); margin-left: 8px; }
+  .cal-bar { height: 8px; background: rgba(244,236,219,0.15); margin-top: 12px; position: relative; }
+  .cal-bar-fill { height: 100%; background: var(--accent); transition: width 0.4s; }
+  .cal-bar-fill.over { background: var(--danger); }
+  .cal-bar-fill.warn { background: var(--accent-soft); }
+  .cal-status { font-family: 'JetBrains Mono', monospace; font-size: 11px; margin-top: 8px; color: var(--accent); }
+  .cal-status.over { color: #FCA5A5; }
+  .cal-status.warn { color: var(--accent-soft); }
+
+  .food-toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .food-cat-btn {
+    background: var(--paper-2); border: 1px solid var(--rule); padding: 8px 14px;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; color: var(--ink);
+  }
+  .food-cat-btn:hover { background: var(--paper-3); }
+  .food-cat-btn.active { background: var(--ink); color: var(--paper); }
+
+  .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .food-item {
+    background: var(--paper); border: 1px solid var(--rule); padding: 14px;
+    display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center;
+  }
+  .food-item .f-name { font-size: 14px; font-weight: 600; }
+  .food-item .f-info { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+  .food-item .f-info .protein { color: var(--success); }
+  .food-item .f-cheat { color: var(--accent-deep); font-weight: 600; }
+  .food-add-btn {
+    background: var(--accent); color: var(--paper); border: none;
+    width: 32px; height: 32px; font-size: 18px; font-weight: 700; cursor: pointer;
+    font-family: 'Inter', sans-serif; line-height: 1;
+  }
+  .food-add-btn:hover { background: var(--accent-deep); }
+
+  .food-log-day {
+    background: var(--paper-2); border: 1px solid var(--rule); padding: 22px;
+    margin-top: 28px;
+  }
+  .food-log-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px dashed var(--ink);
+    flex-wrap: wrap; gap: 8px;
+  }
+  .food-log-head .day-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .food-log-head .day-totals { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .food-log-head .day-totals .kcal { font-weight: 700; }
+  .food-log-head .day-totals .protein { color: var(--success); }
+  .food-log-head .day-totals.over .kcal { color: var(--danger); }
+  .food-log-head .day-totals.under .kcal { color: var(--accent-deep); }
+
+  .food-log-items { list-style: none; padding: 0; }
+  .food-log-items li {
+    padding: 8px 0; border-bottom: 1px solid rgba(28,25,23,0.08);
+    display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center;
+    font-size: 13px;
+  }
+  .food-log-items .li-name { font-weight: 500; }
+  .food-log-items .li-info { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .food-log-items .li-remove {
+    background: none; border: none; color: var(--danger); cursor: pointer;
+    font-size: 18px; padding: 0 4px; line-height: 1;
+  }
+  .food-log-items .li-remove:hover { color: #DC2626; }
+  .food-log-empty { padding: 18px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+
+  /* EXERCISE LOGGER */
+  .ex-logger-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .ex-input-row {
+    background: var(--paper-2); border: 1px solid var(--rule); padding: 22px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 12px; align-items: end;
+  }
+  .ex-input-row .field { display: flex; flex-direction: column; gap: 4px; }
+  .ex-input-row label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .ex-input-row select, .ex-input-row input {
+    background: var(--paper); border: 1px solid var(--rule); padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink);
+    width: 100%;
+  }
+  .ex-input-row select:focus, .ex-input-row input:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .ex-input-row .btn { padding: 11px 18px; }
+
+  .ex-log-history { margin-top: 28px; }
+  .ex-log-day {
+    background: var(--paper); border: 1px solid var(--rule); padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .ex-log-day-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px dashed var(--ink); padding-bottom: 10px; margin-bottom: 12px;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .ex-log-day-head .date {
+    font-family: 'Anton', sans-serif; font-size: 22px; text-transform: uppercase; line-height: 1;
+  }
+  .ex-log-day-head .meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .ex-log-day-items { list-style: none; padding: 0; }
+  .ex-log-day-items li {
+    padding: 8px 0; border-bottom: 1px solid rgba(28,25,23,0.07);
+    display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center;
+    font-size: 13px;
+  }
+  .ex-log-day-items li:last-child { border-bottom: none; }
+  .ex-log-day-items .name { font-weight: 600; }
+  .ex-log-day-items .detail { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-deep); white-space: nowrap; }
+  .ex-log-day-items .li-remove { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 18px; line-height: 1; padding: 0 4px; }
+
+  .cardio-input-row {
+    background: var(--paper-2); border: 1px solid var(--rule); padding: 22px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 12px; align-items: end;
+    margin-top: 14px;
+  }
+
+  /* MACHINE GUIDE */
+  .machine-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .machine-card { background: var(--paper); padding: 28px; scroll-margin-top: 80px; }
+  .machine-card .m-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .machine-card .m-name { font-family: 'Anton', sans-serif; font-size: 30px; text-transform: uppercase; line-height: 1; margin: 6px 0 6px; }
+  .machine-card .m-works { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-deep); margin-bottom: 18px; }
+  .machine-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin: 16px 0 6px; }
+  .machine-card ul { list-style: none; padding: 0; }
+  .machine-card ul li { padding: 4px 0 4px 16px; position: relative; font-size: 13px; }
+  .machine-card ul li::before { content: "—"; position: absolute; left: 0; color: var(--accent-deep); }
+  .machine-card .m-tip { margin-top: 16px; font-family: 'Caveat', cursive; font-size: 17px; color: var(--hand); font-weight: 700; line-height: 1.25; }
+
+  /* NOTES */
+  .notes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .note-card { background: var(--paper); padding: 28px; }
+  .note-card.dark { background: var(--dark); color: var(--dark-text); }
+  .note-card.dark .note-label { color: var(--accent); }
+  .note-card.danger { background: var(--danger); color: var(--paper); }
+  .note-card.danger .note-label { color: var(--paper); opacity: 0.7; }
+  .note-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-deep); }
+  .note-title { font-family: 'Anton', sans-serif; font-size: 30px; text-transform: uppercase; line-height: 1; margin: 10px 0 14px; }
+  .note-card ul { list-style: none; padding: 0; }
+  .note-card ul li { padding: 8px 0; border-bottom: 1px dashed currentColor; font-size: 14px; line-height: 1.5; }
+  .note-card ul li:last-child { border-bottom: none; }
+  .note-card.dark ul li, .note-card.danger ul li { border-bottom-color: rgba(255,255,255,0.18); }
+
+  /* FOOTER */
+  footer { border-top: 2px solid var(--rule); padding: 32px 0 48px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  footer .sig { font-family: 'Caveat', cursive; font-size: 22px; color: var(--hand); font-weight: 700; }
+
+  /* SUB-TABS (within Training) */
+  .sub-tabs-wrap { margin-bottom: 28px; }
+  .sub-tabs-list { display: flex; gap: 0; border-bottom: 2px solid var(--rule); overflow-x: auto; scrollbar-width: none; }
+  .sub-tabs-list::-webkit-scrollbar { display: none; }
+  .sub-tab-btn {
+    background: none; border: none; padding: 14px 18px;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft);
+    cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .sub-tab-btn:hover { color: var(--ink); }
+  .sub-tab-btn.active { color: var(--accent-deep); border-bottom-color: var(--accent); }
+  .sub-tab-btn .wk { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 10px; margin-left: 6px; font-weight: 500; }
+  .sub-tab-btn.active .wk { color: var(--accent); }
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; }
+
+  /* PHASE DETAIL VIEW */
+  .phase-header {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px;
+    padding: 28px; background: var(--ink); color: var(--dark-text);
+    border: 1px solid var(--rule);
+  }
+  .phase-header .ph-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+  .phase-header .ph-title { font-family: 'Anton', sans-serif; font-size: clamp(36px, 5vw, 56px); line-height: 1; margin: 8px 0 6px; text-transform: uppercase; }
+  .phase-header .ph-dates { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(244,236,219,0.75); }
+  .phase-header .ph-intro { font-size: 14px; color: rgba(244,236,219,0.85); padding-left: 20px; border-left: 2px solid var(--accent); align-self: center; }
+
+  .phase-cardio-card {
+    background: var(--paper-2); border: 1px solid var(--rule); border-top: none;
+    padding: 22px 28px; margin-bottom: 24px;
+  }
+  .phase-cardio-card .pc-title { font-family: 'Anton', sans-serif; font-size: 22px; text-transform: uppercase; margin-bottom: 14px; letter-spacing: 0.005em; }
+  .phase-cardio-table-wrap { overflow-x: auto; }
+  .phase-cardio-table { width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono', monospace; font-size: 12px; min-width: 540px; }
+  .phase-cardio-table th, .phase-cardio-table td { padding: 9px 12px; text-align: left; border-bottom: 1px solid rgba(28,25,23,0.1); }
+  .phase-cardio-table th { font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 10px; color: var(--muted); }
+  .phase-cardio-table td.spec { color: var(--accent-deep); }
+  .phase-cardio-table td.day-cell { font-weight: 700; color: var(--ink); }
+
+  .phase-day-card {
+    background: var(--paper); border: 1px solid var(--rule);
+    padding: 24px; margin-bottom: 14px;
+  }
+  .phase-day-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 12px; border-bottom: 1px dashed var(--ink); margin-bottom: 16px;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .phase-day-head .pd-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .phase-day-head .pd-title { font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; line-height: 1; }
+  .phase-day-head .pd-focus { color: var(--accent); }
+  .phase-day-head .pd-cardio { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-deep); }
+
+  .prog-table-wrap { overflow-x: auto; }
+  .prog-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 620px; }
+  .prog-table thead th {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    text-align: left; padding: 10px 12px;
+    border-bottom: 2px solid var(--ink); white-space: nowrap;
+  }
+  .prog-table thead th.ex-col { width: 30%; min-width: 180px; }
+  .prog-table tbody td { padding: 10px 12px; border-bottom: 1px solid rgba(28,25,23,0.08); vertical-align: top; }
+  .prog-table tbody td.ex-name-cell { font-weight: 600; font-size: 13px; }
+  .prog-table tbody td.wk-cell { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-deep); white-space: nowrap; }
+  .prog-table tbody td.wk-cell.deload { color: var(--danger); font-weight: 600; }
+  .prog-table tbody td.wk-cell.bump { color: var(--success); font-weight: 700; }
+  .prog-table tbody tr:hover { background: var(--paper-2); }
+  .prog-table .wk-date { display: block; font-size: 9px; color: var(--muted); text-transform: none; letter-spacing: 0; font-weight: 400; margin-top: 3px; }
+
+  .phase-notes-card {
+    background: var(--paper-2); border: 1px solid var(--rule);
+    padding: 22px 26px; margin-top: 24px;
+  }
+  .phase-notes-card.dark { background: var(--ink); color: var(--dark-text); }
+  .phase-notes-card.dark .pn-label { color: var(--accent); }
+  .phase-notes-card .pn-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-deep); }
+  .phase-notes-card .pn-title { font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; margin: 6px 0 14px; }
+  .phase-notes-card ul { list-style: none; padding: 0; }
+  .phase-notes-card ul li { padding: 6px 0 6px 16px; position: relative; font-size: 13px; line-height: 1.5; }
+  .phase-notes-card ul li::before { content: "—"; position: absolute; left: 0; color: var(--accent-deep); }
+  .phase-notes-card.dark ul li::before { color: var(--accent); }
+
+  /* RESPONSIVE */
+  @media (max-width: 880px) {
+    .hero-sub { grid-template-columns: 1fr; gap: 16px; }
+    .strip-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid rgba(244,236,219,0.12); }
+    .stat:nth-child(odd) { border-right: 1px solid rgba(244,236,219,0.12); }
+    .panel-header { grid-template-columns: 1fr; }
+    .day-grid { grid-template-columns: 1fr; }
+    .progression-block { grid-template-columns: 1fr; }
+    .macro-strip { grid-template-columns: repeat(2, 1fr); }
+    .meal-timeline { grid-template-columns: 1fr; }
+    .meal-time { text-align: left; }
+    .recipe-card { grid-template-columns: 1fr; gap: 20px; }
+    .tracker-grid { grid-template-columns: 1fr; }
+    .notes-grid { grid-template-columns: 1fr; }
+    .phase-banner { grid-template-columns: 1fr; gap: 8px; }
+    .calorie-dashboard { grid-template-columns: 1fr; gap: 18px; }
+    .ex-input-row, .cardio-input-row { grid-template-columns: 1fr 1fr; }
+    .machine-grid { grid-template-columns: 1fr; }
+    .rules-grid { grid-template-columns: 1fr; }
+    .phase-header { grid-template-columns: 1fr; gap: 16px; }
+    .phase-header .ph-intro { padding-left: 0; border-left: none; border-top: 2px solid var(--accent); padding-top: 14px; }
+  }
+  @media print { nav.tabs { display: none; } .panel { display: block !important; padding: 30px 0; page-break-before: always; } .panel:first-of-type { page-break-before: avoid; } body { background: white; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <span>Training Camp · 12 Weeks</span>
+      <span>Islamabad · PKT</span>
+      <span>Doc rev. 24.06.2026 · v2</span>
+    </div>
+    <h1>Operation<br>Seventy<span class="num">/5</span></h1>
+    <div class="hero-sub">
+      <div>
+        <div class="hero-name">Kashif Arshad — fight card</div>
+        <div class="hero-dates">25 JUN 2026 → 10 SEP 2026 · 78 days · 6 sessions/wk</div>
+      </div>
+      <div class="mission">
+        Two milestones. Five kilos by the end of July to land at <strong>80 kg</strong>. Five more by 10 September to land at <strong>75 kg</strong>, with muscle on the frame. Whole-food only, no powder. <span class="hand">Just show up.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-inner">
+      <div class="stat"><div class="stat-label">Now</div><div class="stat-value">85.0<span class="unit">kg</span></div><div class="stat-meta">Start line · 24.06.26</div></div>
+      <div class="stat"><div class="stat-label">July checkpoint</div><div class="stat-value">80.0<span class="unit">kg</span></div><div class="stat-meta">−5.0 by 31.07.26</div></div>
+      <div class="stat"><div class="stat-label">Final target</div><div class="stat-value">75.0<span class="unit">kg</span></div><div class="stat-meta">−10.0 by 10.09.26</div></div>
+      <div class="stat"><div class="stat-label">Days left</div><div class="stat-value" id="daysLeft">78<span class="unit">d</span></div><div class="stat-meta" id="phaseTag">Phase 1 of 3 — foundation</div></div>
+    </div>
+  </div>
+</section>
+
+<nav class="tabs">
+  <div class="wrap">
+    <div class="tabs-inner">
+      <button class="tab-btn active" data-tab="workout"><span class="num">01</span>Training</button>
+      <button class="tab-btn" data-tab="diet"><span class="num">02</span>Diet</button>
+      <button class="tab-btn" data-tab="tracker"><span class="num">03</span>Tracker</button>
+      <button class="tab-btn" data-tab="machines"><span class="num">04</span>Machines</button>
+      <button class="tab-btn" data-tab="notes"><span class="num">05</span>Coach's notes</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ========== WORKOUT ========== -->
+<section class="panel active" id="workout">
+  <div class="panel-header">
+    <h2 class="panel-title">Six-day<br>split. <span class="accent">No skips.</span></h2>
+    <p class="panel-intro">Monday through Saturday. Sunday is full rest. Every session is roughly 1 hour: 45 min lifting, 15 min cardio. Tap any exercise name to jump to its form guide. Switch to a phase tab for week-by-week progression.</p>
+  </div>
+
+  <div class="sub-tabs-wrap">
+    <div class="sub-tabs-list" role="tablist">
+      <button class="sub-tab-btn active" data-subtab="sub-overview">Overview</button>
+      <button class="sub-tab-btn" data-subtab="sub-phase1">Phase 1<span class="wk">Wk 1–4</span></button>
+      <button class="sub-tab-btn" data-subtab="sub-phase2">Phase 2<span class="wk">Wk 5–8</span></button>
+      <button class="sub-tab-btn" data-subtab="sub-phase3">Phase 3<span class="wk">Wk 9–12</span></button>
+    </div>
+  </div>
+
+  <div class="sub-panel active" id="sub-overview">
+
+  <div class="phase-banner">
+    <div><div class="phase-label">Active phase</div><div class="phase-name">Phase 1 — Foundation</div></div>
+    <div class="phase-dates">Weeks 1–4 · 25 Jun → 22 Jul · Form, baselines, habit</div>
+    <div class="phase-label">Goal: <strong style="color:var(--accent-deep)">−5 kg / hit 80</strong></div>
+  </div>
+
+  <div class="day-grid">
+
+    <div class="day-card">
+      <div class="day-head"><div><div class="day-num">Day 01 · Mon</div><div class="day-title">Chest <span class="day-focus">+ triceps</span></div></div></div>
+      <ul class="exercise-list">
+        <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="chest-press">Machine chest press</a><small>warm-up: 2 light sets of 12</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 4 plates</span></li>
+        <li class="exercise"><span class="ex-num">02</span><span class="ex-name"><a class="ex-link" data-machine="incline-db-press">Incline dumbbell press</a><small>controlled tempo, 2-sec down</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 6 kg</span></li>
+        <li class="exercise"><span class="ex-num">03</span><span class="ex-name"><a class="ex-link" data-machine="pec-deck">Pec deck / cable fly</a><small>full stretch at bottom</small></span><span class="ex-detail"><span class="reps">3 × 12</span> · 4 plates</span></li>
+        <li class="exercise"><span class="ex-num">04</span><span class="ex-name"><a class="ex-link" data-machine="tricep-pushdown">Tricep pushdown (cable)</a></span><span class="ex-detail"><span class="reps">3 × 12</span> · 3 plates</span></li>
+        <li class="exercise"><span class="ex-num">05</span><span class="ex-name"><a class="ex-link" data-machine="overhead-tricep">Overhead tricep extension</a><small>single dumbbell, both hands</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 5 kg</span></li>
+      </ul>
+      <div class="cardio-block"><span class="cardio-label">Cardio · finisher</span><span class="cardio-spec">Treadmill 15 min · incline 4 · 5.5 km/h</span></div>
+      <div class="coach-note">Rest 60–90 sec between sets. Last 2 reps should feel hard, not impossible.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-head"><div><div class="day-num">Day 02 · Tue</div><div class="day-title">Back <span class="day-focus">+ biceps</span></div></div></div>
+      <ul class="exercise-list">
+        <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="lat-pulldown">Lat pulldown (wide grip)</a><small>pull to upper chest, squeeze</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 25 kg</span></li>
+        <li class="exercise"><span class="ex-num">02</span><span class="ex-name"><a class="ex-link" data-machine="cable-row">Seated cable row</a><small>chest up, elbows tight</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 25 kg</span></li>
+        <li class="exercise"><span class="ex-num">03</span><span class="ex-name"><a class="ex-link" data-machine="db-row">One-arm dumbbell row</a><small>brace knee on bench</small></span><span class="ex-detail"><span class="reps">3 × 10 ea</span> · 8 kg</span></li>
+        <li class="exercise"><span class="ex-num">04</span><span class="ex-name"><a class="ex-link" data-machine="bicep-machine">Bicep curl machine</a></span><span class="ex-detail"><span class="reps">3 × 10</span> · 3 plates</span></li>
+        <li class="exercise"><span class="ex-num">05</span><span class="ex-name"><a class="ex-link" data-machine="hammer-curl">Hammer curl (dumbbells)</a><small>thumbs up, slow tempo</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 6 kg</span></li>
+      </ul>
+      <div class="cardio-block"><span class="cardio-label">Cardio · finisher</span><span class="cardio-spec">Treadmill 15 min · incline 4 · 5.5 km/h</span></div>
+      <div class="coach-note">Pull with elbows, not hands. Imagine your hands are just hooks.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-head"><div><div class="day-num">Day 03 · Wed</div><div class="day-title">Legs <span class="day-focus">· full</span></div></div></div>
+      <ul class="exercise-list">
+        <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="leg-press">Leg press</a><small>feet shoulder-width, full depth</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 40 kg</span></li>
+        <li class="exercise"><span class="ex-num">02</span><span class="ex-name"><a class="ex-link" data-machine="leg-extension">Leg extension (quads)</a><small>squeeze 1 sec at top</small></span><span class="ex-detail"><span class="reps">3 × 12</span> · 3 plates</span></li>
+        <li class="exercise"><span class="ex-num">03</span><span class="ex-name"><a class="ex-link" data-machine="leg-curl">Leg curl (hamstrings)</a></span><span class="ex-detail"><span class="reps">3 × 12</span> · 3 plates</span></li>
+        <li class="exercise"><span class="ex-num">04</span><span class="ex-name"><a class="ex-link" data-machine="goblet-squat">Goblet squat</a><small>hold dumbbell at chest</small></span><span class="ex-detail"><span class="reps">3 × 12</span> · 8 kg</span></li>
+        <li class="exercise"><span class="ex-num">05</span><span class="ex-name"><a class="ex-link" data-machine="calf-raise">Standing calf raise</a><small>full stretch, pause at top</small></span><span class="ex-detail"><span class="reps">3 × 15</span> · bodyweight</span></li>
+      </ul>
+      <div class="cardio-block"><span class="cardio-label">Cardio · light</span><span class="cardio-spec">Treadmill 10 min · incline 2 · 5 km/h walk-out</span></div>
+      <div class="coach-note">Leg day will humble you for 48 hrs. Don't run on Thursday — walk.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-head"><div><div class="day-num">Day 04 · Thu</div><div class="day-title">Shoulders <span class="day-focus">+ core</span></div></div></div>
+      <ul class="exercise-list">
+        <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="shoulder-press">Machine shoulder press</a><small>elbows slightly forward</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 3 plates</span></li>
+        <li class="exercise"><span class="ex-num">02</span><span class="ex-name"><a class="ex-link" data-machine="lateral-raise">Dumbbell lateral raise</a><small>lead with elbows, not wrists</small></span><span class="ex-detail"><span class="reps">3 × 12</span> · 4 kg</span></li>
+        <li class="exercise"><span class="ex-num">03</span><span class="ex-name"><a class="ex-link" data-machine="front-raise">Dumbbell front raise</a></span><span class="ex-detail"><span class="reps">3 × 10</span> · 4 kg</span></li>
+        <li class="exercise"><span class="ex-num">04</span><span class="ex-name"><a class="ex-link" data-machine="reverse-pec">Reverse pec deck (rear delts)</a></span><span class="ex-detail"><span class="reps">3 × 12</span> · 3 plates</span></li>
+        <li class="exercise"><span class="ex-num">05</span><span class="ex-name"><a class="ex-link" data-machine="plank">Plank</a><small>straight line, glutes tight</small></span><span class="ex-detail"><span class="reps">3 × 30 sec</span></span></li>
+        <li class="exercise"><span class="ex-num">06</span><span class="ex-name"><a class="ex-link" data-machine="knee-raise">Hanging knee raise or cable crunch</a></span><span class="ex-detail"><span class="reps">3 × 12</span></span></li>
+      </ul>
+      <div class="cardio-block"><span class="cardio-label">Cardio · finisher</span><span class="cardio-spec">Treadmill 15 min · incline 5 · 5.5 km/h</span></div>
+      <div class="coach-note">Light dumbbells, strict form. Ego is what tears rotator cuffs.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-head"><div><div class="day-num">Day 05 · Fri</div><div class="day-title">Arms <span class="day-focus">· bi + tri</span></div></div></div>
+      <ul class="exercise-list">
+        <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="barbell-curl">Barbell curl</a><small>elbows pinned to ribs</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 10 kg bar</span></li>
+        <li class="exercise"><span class="ex-num">02</span><span class="ex-name"><a class="ex-link" data-machine="preacher-curl">Preacher curl machine</a></span><span class="ex-detail"><span class="reps">3 × 10</span> · 3 plates</span></li>
+        <li class="exercise"><span class="ex-num">03</span><span class="ex-name"><a class="ex-link" data-machine="hammer-curl">Hammer curl (dumbbells)</a></span><span class="ex-detail"><span class="reps">3 × 10</span> · 6 kg</span></li>
+        <li class="exercise"><span class="ex-num">04</span><span class="ex-name"><a class="ex-link" data-machine="tricep-dip">Tricep dip machine</a><small>or bench dip — knees bent</small></span><span class="ex-detail"><span class="reps">3 × 10</span></span></li>
+        <li class="exercise"><span class="ex-num">05</span><span class="ex-name"><a class="ex-link" data-machine="tricep-pushdown">Tricep pushdown (rope)</a></span><span class="ex-detail"><span class="reps">3 × 12</span> · 3 plates</span></li>
+        <li class="exercise"><span class="ex-num">06</span><span class="ex-name"><a class="ex-link" data-machine="skullcrusher">Skullcrusher (dumbbell)</a><small>only if elbows feel good</small></span><span class="ex-detail"><span class="reps">3 × 10</span> · 5 kg</span></li>
+      </ul>
+      <div class="cardio-block"><span class="cardio-label">Cardio · finisher</span><span class="cardio-spec">Treadmill 15 min · incline 4 · 5.5 km/h</span></div>
+      <div class="coach-note">Arm day = pump day. Squeeze every rep. Slow on the way down.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-head"><div><div class="day-num">Day 06 · Sat</div><div class="day-title">Full body <span class="day-focus">+ long cardio</span></div></div></div>
+      <ul class="exercise-list">
+        <li class="exercise"><span class="ex-num">01</span><span class="ex-name"><a class="ex-link" data-machine="goblet-squat">Goblet squat</a><small>warm everything up</small></span><span class="ex-detail"><span class="reps">3 × 12</span> · 8 kg</span></li>
+        <li class="exercise"><span class="ex-num">02</span><span class="ex-name"><a class="ex-link" data-machine="pushup">Push-up</a><small>knees down if needed</small></span><span class="ex-detail"><span class="reps">3 × max</span></span></li>
+        <li class="exercise"><span class="ex-num">03</span><span class="ex-name"><a class="ex-link" data-machine="lat-pulldown">Lat pulldown</a></span><span class="ex-detail"><span class="reps">3 × 10</span> · 25 kg</span></li>
+        <li class="exercise"><span class="ex-num">04</span><span class="ex-name"><a class="ex-link" data-machine="db-shoulder-press">Dumbbell shoulder press</a></span><span class="ex-detail"><span class="reps">3 × 10</span> · 6 kg</span></li>
+        <li class="exercise"><span class="ex-num">05</span><span class="ex-name"><a class="ex-link" data-machine="plank">Plank</a></span><span class="ex-detail"><span class="reps">2 × 45 sec</span></span></li>
+      </ul>
+      <div class="cardio-block"><span class="cardio-label">Cardio · the long one</span><span class="cardio-spec">Treadmill 30–40 min · incline 3 · 5.5–6 km/h</span></div>
+      <div class="coach-note">The fat-burn day. Steady, conversational pace. Music helps.</div>
+    </div>
+
+    <div class="day-card rest" style="grid-column: span 2;">
+      <div class="day-head"><div><div class="day-num">Day 07 · Sun</div><div class="day-title">Rest. <span class="day-focus">Recover.</span></div></div><div class="day-num">No gym</div></div>
+      <ul class="exercise-list">
+        <li class="exercise"><span class="ex-num">·</span><span class="ex-name">Walk 30–45 min outdoors<small>after Asr or before Maghrib if it's hot</small></span><span class="ex-detail"><span class="reps">light pace</span></span></li>
+        <li class="exercise"><span class="ex-num">·</span><span class="ex-name">Stretching / mobility — hips, hamstrings, shoulders</span><span class="ex-detail"><span class="reps">15 min</span></span></li>
+        <li class="exercise"><span class="ex-num">·</span><span class="ex-name">Weigh-in (morning, empty stomach, after washroom)</span><span class="ex-detail"><span class="reps">log it</span></span></li>
+        <li class="exercise"><span class="ex-num">·</span><span class="ex-name">Meal prep — boil eggs, marinate chicken, portion yogurt</span><span class="ex-detail"><span class="reps">~1 hr</span></span></li>
+      </ul>
+      <div class="coach-note">Recovery <em>is</em> training. Sleep is where your muscle is built.</div>
+    </div>
+  </div>
+
+  <div class="progression-block">
+    <div><h3>Phase 1 · Weeks 1–4</h3><div class="p-title">Foundation</div><p>Lock in the schedule. Focus on form, not weight. Add 1–2 reps to your top set each week. Don't increase load until you can hit every set at the listed reps with clean form.</p></div>
+    <div><h3>Phase 2 · Weeks 5–8</h3><div class="p-title">Build</div><p>Add 2.5–5 kg to compound lifts (chest press, lat pulldown, leg press, shoulder press). Add a 4th set to your top exercise per day. Cardio bumps to 20 min on weekdays, 40 min Sat.</p></div>
+    <div><h3>Phase 3 · Weeks 9–12</h3><div class="p-title">Sharpen</div><p>Maintain strength in a deficit. Don't chase PRs — chase form quality. Increase cardio intensity (incline 6, 6 km/h). Last 2 weeks: weigh daily, lock the diet, finish the mission.</p></div>
+  </div>
+
+  </div><!-- /sub-overview -->
+
+  <div class="sub-panel" id="sub-phase1">
+    <div class="phase-header">
+      <div>
+        <div class="ph-label">Phase 01 · Foundation</div>
+        <div class="ph-title">Foundation</div>
+        <div class="ph-dates">Weeks 1–4 · 22 Jun → 19 Jul, 2026</div>
+      </div>
+      <div class="ph-intro">Form first, weight second. Your body learns the movement patterns; the gym becomes routine. Don't add load until you can hit every set cleanly. By the end of Phase 1, you'll be moving the same weights you started with — but better.</div>
+    </div>
+
+    <div class="phase-cardio-card">
+      <div class="pc-title">Cardio prescription · Phase 1</div>
+      <div class="phase-cardio-table-wrap">
+        <table class="phase-cardio-table">
+          <thead><tr><th>Day</th><th>Type</th><th>Time</th><th>Incline</th><th>Speed</th></tr></thead>
+          <tbody>
+            <tr><td class="day-cell">Mon · Chest+Tri</td><td>Finisher walk</td><td class="spec">15 min</td><td class="spec">4</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Tue · Back+Bi</td><td>Finisher walk</td><td class="spec">15 min</td><td class="spec">4</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Wed · Legs</td><td>Light walk-out</td><td class="spec">10 min</td><td class="spec">2</td><td class="spec">5.0 km/h</td></tr>
+            <tr><td class="day-cell">Thu · Shoulders</td><td>Finisher walk</td><td class="spec">15 min</td><td class="spec">5</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Fri · Arms</td><td>Finisher walk</td><td class="spec">15 min</td><td class="spec">4</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Sat · Full body</td><td>Long fat-burn</td><td class="spec">30 min</td><td class="spec">3</td><td class="spec">5.5–6 km/h</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="phase-day-card">
+      <div class="phase-day-head">
+        <div><span class="pd-num">Strength · all lifts</span><div class="pd-title">Week-by-week <span class="pd-focus">progression</span></div></div>
+        <div class="pd-cardio">↑ = load bump · → = same · reps bump in italic</div>
+      </div>
+      <div class="prog-table-wrap">
+        <table class="prog-table">
+          <thead>
+            <tr>
+              <th class="ex-col">Exercise</th>
+              <th>Wk 1<span class="wk-date">22–28 Jun</span></th>
+              <th>Wk 2<span class="wk-date">29 Jun – 5 Jul</span></th>
+              <th>Wk 3<span class="wk-date">6–12 Jul</span></th>
+              <th>Wk 4<span class="wk-date">13–19 Jul</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×<em>12</em> @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td></tr>
+            <tr><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×<em>12</em> @ 6 kg</td><td class="wk-cell bump">3×10 @ 8 kg ↑</td></tr>
+            <tr><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td></tr>
+            <tr><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
+            <tr><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
+            <tr><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">3×10 @ 40 kg</td><td class="wk-cell">3×10 @ 40 kg</td><td class="wk-cell">3×<em>12</em> @ 40 kg</td><td class="wk-cell bump">3×10 @ 45 kg ↑</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
+            <tr><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg →</td></tr>
+            <tr><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
+            <tr><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell bump">3×12 @ 5 kg ↑</td></tr>
+            <tr><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 30 sec</td><td class="wk-cell">3 × 35 sec</td><td class="wk-cell">3 × 40 sec</td><td class="wk-cell bump">3 × 45 sec ↑</td></tr>
+            <tr><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">3×10 @ 10 kg bar</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>12</em> @ 10 kg</td><td class="wk-cell bump">3×10 @ 12.5 kg ↑</td></tr>
+            <tr><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
+            <tr><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
+            <tr><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
+            <tr><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×<em>12</em> @ 6 kg</td><td class="wk-cell bump">3×10 @ 8 kg ↑</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="phase-notes-card">
+      <div class="pn-label">Phase 1 · weekly focus</div>
+      <div class="pn-title">What to do, week by week</div>
+      <ul>
+        <li><strong>Week 1 (22–28 Jun):</strong> Establish baseline. Walk into every session with the listed weights. Don't add anything. Focus 100% on form — feel where each muscle works. Log every set in the tracker.</li>
+        <li><strong>Week 2 (29 Jun – 5 Jul):</strong> Same weights as Week 1. The goal is to own these loads — every rep clean, every set complete. If anything felt sloppy in Week 1, fix it this week.</li>
+        <li><strong>Week 3 (6–12 Jul):</strong> Same weights, push for +2 reps on top exercises (so 3×12 instead of 3×10 where shown italic). This tests if your body is ready for the Week 4 bump. If you can't add reps cleanly, stay at 10.</li>
+        <li><strong>Week 4 (13–19 Jul):</strong> First load progression. Bump 2.5 kg or 1 plate on compound lifts. Reset reps to 10. If form breaks down with the new weight, drop back to Week 3 load and repeat the week.</li>
+      </ul>
+    </div>
+
+    <div class="phase-notes-card dark">
+      <div class="pn-label">Phase 1 · what to expect</div>
+      <div class="pn-title">Body + scale</div>
+      <ul>
+        <li><strong>Energy:</strong> First 7–10 days may feel low — your body is adjusting to the calorie deficit + new training stress. Push through; it normalizes.</li>
+        <li><strong>Soreness:</strong> Heaviest after legs (Wed). Plan rest, walk Thursday morning, eat protein.</li>
+        <li><strong>Scale:</strong> Expect 2–3 kg drop in the first 2 weeks (water + glycogen + early fat). Don't get excited or scared. Trust the trend, not the day.</li>
+        <li><strong>Goal:</strong> By 19 July, weigh ~82 kg. That's −3 kg in 4 weeks. Right on track for the Aug 2 milestone of 80 kg.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sub-panel" id="sub-phase2">
+    <div class="phase-header">
+      <div>
+        <div class="ph-label">Phase 02 · Build</div>
+        <div class="ph-title">Build</div>
+        <div class="ph-dates">Weeks 5–8 · 20 Jul → 16 Aug, 2026</div>
+      </div>
+      <div class="ph-intro">Volume goes up. A 4th set joins your lead exercises. Weights climb every other week. End of July (Week 6) is your first major checkpoint — you weigh in at 80 kg or close to it. Strength building in a deficit is possible if form stays tight.</div>
+    </div>
+
+    <div class="phase-cardio-card">
+      <div class="pc-title">Cardio prescription · Phase 2</div>
+      <div class="phase-cardio-table-wrap">
+        <table class="phase-cardio-table">
+          <thead><tr><th>Day</th><th>Type</th><th>Time</th><th>Incline</th><th>Speed</th></tr></thead>
+          <tbody>
+            <tr><td class="day-cell">Mon · Chest+Tri</td><td>Finisher</td><td class="spec">20 min</td><td class="spec">4–5</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Tue · Back+Bi</td><td>Finisher</td><td class="spec">20 min</td><td class="spec">4–5</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Wed · Legs</td><td>Light walk-out</td><td class="spec">12 min</td><td class="spec">3</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Thu · Shoulders</td><td>Finisher</td><td class="spec">20 min</td><td class="spec">5</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Fri · Arms</td><td>Finisher</td><td class="spec">20 min</td><td class="spec">4–5</td><td class="spec">5.5 km/h</td></tr>
+            <tr><td class="day-cell">Sat · Full body</td><td>Long fat-burn</td><td class="spec">35–40 min</td><td class="spec">4</td><td class="spec">6 km/h</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="phase-day-card">
+      <div class="phase-day-head">
+        <div><span class="pd-num">Strength · all lifts · 4 sets on leads</span><div class="pd-title">Week-by-week <span class="pd-focus">progression</span></div></div>
+        <div class="pd-cardio">↑ = load bump · → = same · reps bump in italic</div>
+      </div>
+      <div class="prog-table-wrap">
+        <table class="prog-table">
+          <thead>
+            <tr>
+              <th class="ex-col">Exercise</th>
+              <th>Wk 5<span class="wk-date">20–26 Jul</span></th>
+              <th>Wk 6<span class="wk-date">27 Jul – 2 Aug</span></th>
+              <th>Wk 7<span class="wk-date">3–9 Aug</span></th>
+              <th>Wk 8<span class="wk-date">10–16 Aug</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell bump">4×10 @ 6 plates ↑</td><td class="wk-cell">4×<em>11</em> @ 6 plates</td></tr>
+            <tr><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell bump">3×10 @ 10 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td></tr>
+            <tr><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell bump">3×12 @ 6 plates ↑</td><td class="wk-cell">3×12 @ 6 plates</td></tr>
+            <tr><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell bump">4×10 @ 30 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td></tr>
+            <tr><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell bump">4×10 @ 30 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td></tr>
+            <tr><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">4×10 @ 45 kg</td><td class="wk-cell">4×10 @ 45 kg</td><td class="wk-cell bump">4×10 @ 50 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 50 kg</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell bump">3×12 @ 10 kg ↑</td><td class="wk-cell">3×12 @ 10 kg</td><td class="wk-cell bump">3×12 @ 12 kg ↑</td><td class="wk-cell">3×12 @ 12 kg</td></tr>
+            <tr><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">4×10 @ 4 plates</td><td class="wk-cell">4×10 @ 4 plates</td><td class="wk-cell bump">4×10 @ 5 plates ↑</td><td class="wk-cell">4×<em>11</em> @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 5 kg</td><td class="wk-cell">3×12 @ 5 kg</td><td class="wk-cell bump">3×12 @ 6 kg ↑</td><td class="wk-cell">3×12 @ 6 kg</td></tr>
+            <tr><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 45 sec</td><td class="wk-cell">3 × 50 sec</td><td class="wk-cell">3 × 55 sec</td><td class="wk-cell bump">3 × 60 sec ↑</td></tr>
+            <tr><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">4×10 @ 12.5 kg</td><td class="wk-cell">4×10 @ 12.5 kg</td><td class="wk-cell bump">4×10 @ 15 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 15 kg</td></tr>
+            <tr><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 27.5 kg</td><td class="wk-cell">3×10 @ 27.5 kg</td><td class="wk-cell bump">3×10 @ 30 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 30 kg</td></tr>
+            <tr><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell bump">3×10 @ 10 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="phase-notes-card">
+      <div class="pn-label">Phase 2 · weekly focus</div>
+      <div class="pn-title">What to do, week by week</div>
+      <ul>
+        <li><strong>Week 5 (20–26 Jul):</strong> Add a 4th set to all lead exercises (chest press, lat pulldown, cable row, leg press, shoulder press, barbell curl). Expect more soreness — volume jump is real. Sat: goblet squat goes up to 10 kg.</li>
+        <li><strong>Week 6 (27 Jul – 2 Aug):</strong> JULY CHECKPOINT — Sunday 2 Aug weigh-in target is 80 kg. Same weights as Week 5. Push for cleaner reps. If you've stalled, drop 100 kcal from Meal 02 (skip almonds).</li>
+        <li><strong>Week 7 (3–9 Aug):</strong> +2.5 kg or +1 plate on compound lifts. Reset reps to 10. Goblet squat +2 kg. This is the biggest jump of Phase 2 — pay attention to form.</li>
+        <li><strong>Week 8 (10–16 Aug):</strong> Same weights as Week 7. Push for +1 rep on lead exercises (so 11s instead of 10s). Plank works up to 60 sec. Consolidate.</li>
+      </ul>
+    </div>
+
+    <div class="phase-notes-card dark">
+      <div class="pn-label">Phase 2 · what to expect</div>
+      <div class="pn-title">The middle squeeze</div>
+      <ul>
+        <li><strong>Body:</strong> Visible muscle hardness starts showing in shoulders and arms. Mirror checks become motivating.</li>
+        <li><strong>Scale:</strong> Loss rate slows to ~0.6–0.8 kg/week as your body adapts. This is normal. Don't panic-cut food.</li>
+        <li><strong>Sleep:</strong> 4-set days drain you more. Add 30 min to sleep window if possible.</li>
+        <li><strong>Goal:</strong> Aug 16 weigh-in target: ~78 kg. That's −7 kg from start. Phase 3 will close the last 3 kg.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sub-panel" id="sub-phase3">
+    <div class="phase-header">
+      <div>
+        <div class="ph-label">Phase 03 · Sharpen</div>
+        <div class="ph-title">Sharpen</div>
+        <div class="ph-dates">Weeks 9–12 · 17 Aug → 13 Sep, 2026</div>
+      </div>
+      <div class="ph-intro">Strength is maintained, not chased. In a deeper deficit, holding your Week 8 loads IS progress. Cardio intensity ramps. Week 12 is a controlled deload to finish sharp at 75 kg on September 10. The mission ends.</div>
+    </div>
+
+    <div class="phase-cardio-card">
+      <div class="pc-title">Cardio prescription · Phase 3</div>
+      <div class="phase-cardio-table-wrap">
+        <table class="phase-cardio-table">
+          <thead><tr><th>Day</th><th>Type</th><th>Time</th><th>Incline</th><th>Speed</th></tr></thead>
+          <tbody>
+            <tr><td class="day-cell">Mon · Chest+Tri</td><td>Finisher</td><td class="spec">22 min</td><td class="spec">5–6</td><td class="spec">6 km/h</td></tr>
+            <tr><td class="day-cell">Tue · Back+Bi</td><td>Finisher</td><td class="spec">22 min</td><td class="spec">5–6</td><td class="spec">6 km/h</td></tr>
+            <tr><td class="day-cell">Wed · Legs</td><td>Light walk-out</td><td class="spec">15 min</td><td class="spec">4</td><td class="spec">6 km/h</td></tr>
+            <tr><td class="day-cell">Thu · Shoulders</td><td>Finisher</td><td class="spec">22 min</td><td class="spec">6</td><td class="spec">6 km/h</td></tr>
+            <tr><td class="day-cell">Fri · Arms</td><td>Finisher</td><td class="spec">22 min</td><td class="spec">5–6</td><td class="spec">6 km/h</td></tr>
+            <tr><td class="day-cell">Sat · Full body</td><td>Long fat-burn</td><td class="spec">40 min</td><td class="spec">5</td><td class="spec">6 km/h</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="phase-day-card">
+      <div class="phase-day-head">
+        <div><span class="pd-num">Strength · maintain Phase 2 loads · deload Week 12</span><div class="pd-title">Week-by-week <span class="pd-focus">progression</span></div></div>
+        <div class="pd-cardio">→ = maintain · italic = rep push · deload in red</div>
+      </div>
+      <div class="prog-table-wrap">
+        <table class="prog-table">
+          <thead>
+            <tr>
+              <th class="ex-col">Exercise</th>
+              <th>Wk 9<span class="wk-date">17–23 Aug</span></th>
+              <th>Wk 10<span class="wk-date">24–30 Aug</span></th>
+              <th>Wk 11<span class="wk-date">31 Aug – 6 Sep</span></th>
+              <th>Wk 12<span class="wk-date">7–13 Sep</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×<em>11</em> @ 6 plates</td><td class="wk-cell deload">3×10 @ 6 plates (deload)</td></tr>
+            <tr><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td><td class="wk-cell deload">3×10 @ 10 kg</td></tr>
+            <tr><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell deload">3×12 @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 30 kg</td></tr>
+            <tr><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 30 kg</td></tr>
+            <tr><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">4×10 @ 50 kg</td><td class="wk-cell">4×10 @ 50 kg</td><td class="wk-cell">4×<em>11</em> @ 50 kg</td><td class="wk-cell deload">3×10 @ 50 kg</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
+            <tr><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
+            <tr><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell deload">3×10 @ 12 kg</td></tr>
+            <tr><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 5 plates</td></tr>
+            <tr><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell deload">3×12 @ 5 kg</td></tr>
+            <tr><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 60 sec</td><td class="wk-cell">3 × 60 sec</td><td class="wk-cell">3 × 70 sec</td><td class="wk-cell deload">3 × 45 sec</td></tr>
+            <tr><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">4×10 @ 15 kg</td><td class="wk-cell">4×10 @ 15 kg</td><td class="wk-cell">4×<em>11</em> @ 15 kg</td><td class="wk-cell deload">3×10 @ 15 kg</td></tr>
+            <tr><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 4 plates</td></tr>
+            <tr><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
+            <tr><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 30 kg</td><td class="wk-cell">3×10 @ 30 kg</td><td class="wk-cell">3×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 27.5 kg</td></tr>
+            <tr><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td><td class="wk-cell deload">3×10 @ 8 kg</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="phase-notes-card">
+      <div class="pn-label">Phase 3 · weekly focus</div>
+      <div class="pn-title">What to do, week by week</div>
+      <ul>
+        <li><strong>Week 9 (17–23 Aug):</strong> Maintain Week 8 strength loads. Don't chase PRs — preserving strength in a deficit is the goal. Cardio jumps: incline 6, 6 km/h, 22 min on weekdays.</li>
+        <li><strong>Week 10 (24–30 Aug):</strong> Same loads. Saturday cardio extends to a full 40 min. This is the volume peak.</li>
+        <li><strong>Week 11 (31 Aug – 6 Sep):</strong> Final full-load week. Try +1 rep per set on lead exercises (so 11s instead of 10s). Empty the tank Saturday. This is your last big push.</li>
+        <li><strong>Week 12 (7–13 Sep):</strong> DELOAD. Drop 4-set exercises to 3 sets. Same weight, fewer total reps. Cut some accessory loads slightly. WEIGH DAILY this week. Sep 10 = target date — be light, mobile, energized.</li>
+      </ul>
+    </div>
+
+    <div class="phase-notes-card dark">
+      <div class="pn-label">Phase 3 · what to expect</div>
+      <div class="pn-title">The finish line</div>
+      <ul>
+        <li><strong>Body:</strong> Visible definition in shoulders, chest outline, leaner midsection. Waist will feel noticeably tighter.</li>
+        <li><strong>Scale:</strong> Loss rate slows to 0.4–0.6 kg/week. The last 3 kg is the hardest. Don't get discouraged — the trend is what matters.</li>
+        <li><strong>Cravings:</strong> Will peak around Week 10. Tactical cheat MEAL (not day) helps reset. Log it. Move on.</li>
+        <li><strong>Goal:</strong> Sep 10 weigh-in target: 75 kg. Realistic landing zone: 75–77 kg. Either is a win. Either is transformation.</li>
+        <li><strong>What's next:</strong> After Sep 10, transition to maintenance — eat back ~300 kcal, keep training, hold the weight for 4 weeks before considering another cut or a lean bulk.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DIET ========== -->
+<section class="panel" id="diet">
+  <div class="panel-header">
+    <h2 class="panel-title">Whole food.<br><span class="accent">Night-shift</span> ready.</h2>
+    <p class="panel-intro">Your day starts at 4 PM and ends around 5 AM. Five eating windows fit cleanly into that. Brown bread replaces frozen parathas. Eggs anchor every meal. Chai stays — sugar limited to 1 tsp per cup.</p>
+  </div>
+
+  <div class="macro-strip">
+    <div class="macro"><div class="macro-label">Daily target</div><div class="macro-value">1,900<span class="unit">kcal</span></div><div class="macro-note">~500 kcal deficit · sustainable</div></div>
+    <div class="macro"><div class="macro-label">Protein floor</div><div class="macro-value">130<span class="unit">g</span></div><div class="macro-note">~1.5 g per kg bodyweight</div></div>
+    <div class="macro"><div class="macro-label">Water</div><div class="macro-value">3.0<span class="unit">L</span></div><div class="macro-note">+0.5 L on gym days</div></div>
+    <div class="macro"><div class="macro-label">Sleep</div><div class="macro-value">7+<span class="unit">hr</span></div><div class="macro-note">~5 AM → 12 PM, blackout curtains</div></div>
+  </div>
+
+  <div class="meal-timeline">
+    <div class="meal-time"><span class="clock">4:30 PM</span><span class="tag">Meal 01 · break-fast</span></div>
+    <div class="meal-detail">
+      <div class="meal-name">Eggs + brown bread <span class="kcal">~520 kcal · 38 g protein</span></div>
+      <ul class="meal-items">
+        <li><span>Whole eggs (scrambled, minimal oil)</span><span class="grams">3 × ~210 kcal</span></li>
+        <li><span>Egg whites (separate from 2 extra eggs)</span><span class="grams">2 × ~35 kcal</span></li>
+        <li><span>Brown / multigrain bread</span><span class="grams">2 slices · 160 kcal</span></li>
+        <li><span>Tomato + half onion (sautéed in egg)</span><span class="grams">~30 kcal</span></li>
+        <li><span>Your tea (kahwa + fiber + spices) — keep it</span><span class="grams">~30 kcal</span></li>
+      </ul>
+      <div class="meal-alt">Tip: use 1 teaspoon olive oil max. Tomato/onion adds volume + flavor.</div>
+    </div>
+
+    <div class="meal-time"><span class="clock">8:30 PM</span><span class="tag">Meal 02 · snack</span></div>
+    <div class="meal-detail">
+      <div class="meal-name">Yogurt bowl <span class="kcal">~320 kcal · 18 g protein</span></div>
+      <ul class="meal-items">
+        <li><span>Plain dahi (strained 5 min in cloth)</span><span class="grams">250 g · 170 kcal</span></li>
+        <li><span>Banana or apple (small)</span><span class="grams">~80 kcal</span></li>
+        <li><span>Almonds (raw)</span><span class="grams">10–12 · 70 kcal</span></li>
+      </ul>
+      <div class="meal-alt">Tip: straining dahi 5–10 min makes it Greek-style and pushes protein up.</div>
+    </div>
+
+    <div class="meal-time"><span class="clock">12:00 AM</span><span class="tag">Meal 03 · pre-gym</span></div>
+    <div class="meal-detail">
+      <div class="meal-name">Dinner / fuel <span class="kcal">~520 kcal · 38 g protein</span></div>
+      <ul class="meal-items">
+        <li><span>Chicken breast (air-fried) <small style="color:var(--muted)">or 4 whole eggs non-chicken days</small></span><span class="grams">150 g · 250 kcal</span></li>
+        <li><span>Brown bread</span><span class="grams">2 slices · 160 kcal</span></li>
+        <li><span>Cucumber + tomato salad (lemon, salt)</span><span class="grams">~40 kcal</span></li>
+        <li><span>One chai (½ tsp sugar)</span><span class="grams">~70 kcal</span></li>
+      </ul>
+      <div class="meal-alt">Eat by 12:30 AM. You want food settled before lifting at 2 AM.</div>
+    </div>
+
+    <div class="meal-time"><span class="clock">3:00 AM</span><span class="tag">Meal 04 · post-gym</span></div>
+    <div class="meal-detail">
+      <div class="meal-name">Recovery <span class="kcal">~390 kcal · 30 g protein</span></div>
+      <ul class="meal-items">
+        <li><span>Boiled eggs</span><span class="grams">3 · 210 kcal</span></li>
+        <li><span>Milk (full-fat, warm)</span><span class="grams">250 ml · 160 kcal</span></li>
+        <li><span>Date (khajoor)</span><span class="grams">1 · 20 kcal</span></li>
+      </ul>
+      <div class="meal-alt">Most important meal — protein within 60 min of last set.</div>
+    </div>
+
+    <div class="meal-time"><span class="clock">4:30 AM</span><span class="tag">Optional · pre-sleep</span></div>
+    <div class="meal-detail">
+      <div class="meal-name">Wind-down <span class="kcal">~150 kcal · 8 g protein</span></div>
+      <ul class="meal-items">
+        <li><span>Warm milk (only if hungry)</span><span class="grams">200 ml · 130 kcal</span></li>
+        <li><span>Cinnamon pinch</span><span class="grams">—</span></li>
+      </ul>
+      <div class="meal-alt">Skip this on days you're not hungry. Don't force-feed.</div>
+    </div>
+  </div>
+
+  <div class="sub-divider">
+    <h3>Rules of the kitchen — <span class="accent">two columns.</span></h3>
+    <span class="sub-tag">Allowed · Forbidden</span>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rules-card">
+      <div class="rules-label">Allowed · in moderation</div>
+      <div class="rules-title">Green list</div>
+      <ul class="rules-list">
+        <li><span class="mark">✓</span><span><strong>1 tsp shakar/sugar per chai</strong> — that's ~16 kcal. Two chais a day = ~30 kcal. Totally fine.<span class="note">More than 1 tsp per cup and we're sliding.</span></span></li>
+        <li><span class="mark">✓</span><span><strong>Diet soda (Pepsi/Coke Diet, Zero)</strong> — zero calories, fine for cheat meals.<span class="note">Cap at 1 can per day. Watch how you feel — some people get hungrier.</span></span></li>
+        <li><span class="mark">✓</span><span><strong>Black coffee, kahwa, green tea</strong> — unlimited.<span class="note">Caffeine helps fat oxidation. Keep daily caffeine under 400 mg.</span></span></li>
+        <li><span class="mark">✓</span><span><strong>Fresh fruit (apple, banana, mango)</strong> — 1–2 per day.<span class="note">Mango in season is fine. One small mango ≈ 135 kcal.</span></span></li>
+        <li><span class="mark">✓</span><span><strong>Nuts (almonds, walnuts)</strong> — small handful (15g) per day.<span class="note">Calorie-dense. Easy to overshoot. Pre-portion.</span></span></li>
+        <li><span class="mark">✓</span><span><strong>Lemon water, plain water, chaas</strong> — anytime, in any quantity.</span></li>
+      </ul>
+    </div>
+
+    <div class="rules-card bad">
+      <div class="rules-label">Forbidden · at all costs</div>
+      <div class="rules-title">Red list</div>
+      <ul class="rules-list">
+        <li><span class="mark">✕</span><span><strong>Regular sugary drinks</strong> — Pepsi, Coke, Sting, energy drinks, packaged juice.<span class="note">350 ml regular Pepsi = 140 kcal of empty sugar.</span></span></li>
+        <li><span class="mark">✕</span><span><strong>Frozen parathas, deep-fried street food</strong> — samosa, pakora, puri, jalebi.<span class="note">High calorie, hydrogenated oil, no real food.</span></span></li>
+        <li><span class="mark">✕</span><span><strong>White bread, white naan, white rice (daily)</strong> — switch to brown bread, brown rice.<span class="note">Brown rice once a week with chicken is fine.</span></span></li>
+        <li><span class="mark">✕</span><span><strong>Mithai &amp; desserts</strong> — gulab jamun, jalebi, ras malai, kheer, ice cream.<span class="note">Reserve for cheat day if at all. Log it.</span></span></li>
+        <li><span class="mark">✕</span><span><strong>Packaged snacks</strong> — chips, namkeen, biscuits, energy bars.<span class="note">Even "healthy" granola bars have 200+ kcal of sugar.</span></span></li>
+        <li><span class="mark">✕</span><span><strong>Late-night biryani / oily takeout</strong> — after 1 AM, before gym.<span class="note">Sits like a brick during your workout.</span></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div>
+      <h3>The one recipe you need</h3>
+      <div class="r-title">Batch chicken<br>for the week</div>
+      <p>Marinate Sunday. One breast a day, ready to slice. Works hot from the air fryer or cold from the fridge over salad.</p>
+    </div>
+    <div>
+      <ol>
+        <li><strong>Buy 7 chicken breasts</strong> (~150 g each). Trim fat.</li>
+        <li><strong>Marinate</strong>: 3 tbsp yogurt, 1 tbsp olive oil, 1 tsp ginger-garlic paste, 1 tsp red chili, 1 tsp cumin powder, ½ tsp turmeric, salt, juice of 1 lemon. Mix, coat all 7. Refrigerate.</li>
+        <li><strong>Day of</strong>: air-fry 1 breast at 200°C for 12–14 min, flipping halfway. Rest 3 min before slicing.</li>
+        <li><strong>Storage</strong>: marinated raw breasts last 3 days in fridge. Days 4–7, freeze Sunday night and thaw morning of.</li>
+        <li><strong>Variations</strong>: swap chili for paprika one day, add black pepper + lemon another. Boredom kills consistency.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRACKER ========== -->
+<section class="panel" id="tracker">
+  <div class="panel-header">
+    <h2 class="panel-title">Numbers <span class="accent">don't lie.</span></h2>
+    <p class="panel-intro">Log food, log lifts, log weight. The tracker saves everything in your browser — your data stays with you. Three sections below: today's calories, today's gym session, weekly weigh-in.</p>
+  </div>
+
+  <!-- FOOD LOGGER -->
+  <div class="sub-divider">
+    <h3>Calorie <span class="accent">calculator.</span></h3>
+    <span class="sub-tag">Today · <span id="todayDateDisplay"></span></span>
+  </div>
+
+  <div class="calorie-dashboard">
+    <div class="cal-big">
+      <div class="label">Calories today</div>
+      <div class="big-num"><span id="calToday">0</span><span class="of">/ 1,900</span><span class="unit">kcal</span></div>
+      <div class="cal-bar"><div class="cal-bar-fill" id="calBar"></div></div>
+      <div class="cal-status" id="calStatus">Start logging your first meal.</div>
+    </div>
+    <div class="cal-big">
+      <div class="label">Protein</div>
+      <div class="big-num"><span id="proToday">0</span><span class="of">/ 130</span><span class="unit">g</span></div>
+      <div class="cal-bar"><div class="cal-bar-fill" id="proBar" style="background:var(--success);"></div></div>
+      <div class="cal-status" id="proStatus" style="color:var(--success);">Hit the floor.</div>
+    </div>
+    <div class="cal-big">
+      <div class="label">Deficit / surplus</div>
+      <div class="big-num"><span id="deficitToday">0</span><span class="unit">kcal</span></div>
+      <div class="cal-status" id="deficitStatus" style="color:var(--accent);">Target deficit: 500 kcal</div>
+    </div>
+  </div>
+
+  <div class="food-toolbar">
+    <button class="food-cat-btn active" data-cat="all">All items</button>
+    <button class="food-cat-btn" data-cat="protein">Protein</button>
+    <button class="food-cat-btn" data-cat="carb">Carbs · Bread · Fruit</button>
+    <button class="food-cat-btn" data-cat="drink">Drinks · Chai</button>
+    <button class="food-cat-btn" data-cat="cheat">Cheat-day items</button>
+  </div>
+
+  <div class="food-grid" id="foodGrid"><!-- JS fills this --></div>
+
+  <div class="food-log-day">
+    <div class="food-log-head">
+      <div>
+        <div class="day-label" id="foodLogDate">Today's intake</div>
+      </div>
+      <div class="day-totals" id="foodLogTotals">
+        <span class="kcal">0 kcal</span> · <span class="protein">0 g protein</span>
+      </div>
+    </div>
+    <ul class="food-log-items" id="foodLogList">
+      <li class="food-log-empty">No food logged yet today. Tap the <strong>+</strong> on any item above.</li>
+    </ul>
+    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+      <button class="btn btn-ghost btn-sm" onclick="clearTodayFood()">Clear today</button>
+      <button class="btn btn-ghost btn-sm" onclick="toggleFoodHistory()">View past days</button>
+    </div>
+    <div id="foodHistory" style="display:none; margin-top:18px; padding-top:18px; border-top:1px dashed var(--ink);"></div>
+  </div>
+
+  <!-- EXERCISE LOGGER -->
+  <div class="sub-divider">
+    <h3>Exercise <span class="accent">log.</span></h3>
+    <span class="sub-tag">Tap, type, save · for every set</span>
+  </div>
+
+  <div class="ex-input-row">
+    <div class="field">
+      <label>Exercise</label>
+      <select id="exSelect"><!-- JS fills --></select>
+    </div>
+    <div class="field"><label>Sets</label><input type="number" id="exSets" min="1" max="10" value="3"></div>
+    <div class="field"><label>Reps</label><input type="number" id="exReps" min="1" max="50" value="10"></div>
+    <div class="field"><label>Weight (kg)</label><input type="number" id="exWeight" min="0" max="500" step="0.5" value="0"></div>
+    <button class="btn" onclick="logExercise()">Log</button>
+  </div>
+
+  <div class="cardio-input-row">
+    <div class="field"><label>Cardio</label><select id="cardioType"><option value="Treadmill">Treadmill</option><option value="Bike">Stationary bike</option><option value="Elliptical">Elliptical</option><option value="Walk">Outdoor walk</option></select></div>
+    <div class="field"><label>Time (min)</label><input type="number" id="cardioTime" min="0" max="120" value="15"></div>
+    <div class="field"><label>Speed / level</label><input type="text" id="cardioSpeed" placeholder="5.5 km/h" value="5.5 km/h"></div>
+    <div class="field"><label>Incline / resistance</label><input type="text" id="cardioIncline" placeholder="4" value="4"></div>
+    <button class="btn" onclick="logCardio()">Log cardio</button>
+  </div>
+
+  <div class="ex-log-history" id="exLogHistory"><!-- JS fills --></div>
+
+  <!-- WEIGHT + CHECKLIST -->
+  <div class="sub-divider">
+    <h3>Weekly <span class="accent">weigh-in.</span></h3>
+    <span class="sub-tag">Sunday morning · empty stomach</span>
+  </div>
+
+  <div class="tracker-grid">
+    <div class="tracker-card">
+      <h3>Weight log</h3>
+      <div class="t-title">This week's check-in</div>
+      <div class="weight-input">
+        <input type="number" id="weightInput" placeholder="Today's weight (kg)" step="0.1" min="50" max="120">
+        <button class="btn" onclick="logWeight()">Log</button>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div><div class="progress-marker" style="left: 50%;"><span class="label">80 · July</span></div></div>
+      <div class="progress-scale"><span>85 kg · start</span><span>75 kg · target</span></div>
+      <ul class="weight-log" id="weightLog"><li class="empty">No entries yet. First weigh-in: Sunday 29 June.</li></ul>
+      <button class="btn btn-ghost btn-sm" style="margin-top:14px; width:100%;" onclick="clearWeights()">Clear all entries</button>
+    </div>
+
+    <div class="tracker-card">
+      <h3>Today's checklist</h3>
+      <div class="t-title">Did you hit it?</div>
+      <ul class="checklist" id="todayList">
+        <li><input type="checkbox" id="ck1"><span class="label">Workout completed (lift + cardio)</span></li>
+        <li><input type="checkbox" id="ck2"><span class="label">Meal 1 — eggs + bread</span></li>
+        <li><input type="checkbox" id="ck3"><span class="label">Meal 2 — yogurt bowl</span></li>
+        <li><input type="checkbox" id="ck4"><span class="label">Meal 3 — chicken/eggs + bread</span></li>
+        <li><input type="checkbox" id="ck5"><span class="label">Post-gym — eggs + milk</span></li>
+        <li><input type="checkbox" id="ck6"><span class="label">3 L water</span></li>
+        <li><input type="checkbox" id="ck7"><span class="label">7+ hrs sleep last cycle</span></li>
+        <li><input type="checkbox" id="ck8"><span class="label">No frozen paratha, no late sugar</span></li>
+      </ul>
+      <button class="btn btn-ghost btn-sm" style="margin-top:18px; width:100%;" onclick="resetChecklist()">Reset for tomorrow</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MACHINES ========== -->
+<section class="panel" id="machines">
+  <div class="panel-header">
+    <h2 class="panel-title">Machine <span class="accent">guide.</span></h2>
+    <p class="panel-intro">Every machine and movement in your split, with setup, form cues, common mistakes, and a coach's tip. As a beginner, machines beat free weights — fixed paths, fewer ways to hurt yourself. Read these once. Re-read when you're unsure.</p>
+  </div>
+
+  <div class="machine-grid" id="machineGrid"><!-- JS fills this --></div>
+</section>
+
+<!-- ========== NOTES ========== -->
+<section class="panel" id="notes">
+  <div class="panel-header">
+    <h2 class="panel-title">Coach's <span class="accent">notes.</span></h2>
+    <p class="panel-intro">The plan is the easy part. The hard part is what's not in it — sleep, stress, the weeks when the scale doesn't move. Read this when motivation dips.</p>
+  </div>
+
+  <div class="notes-grid">
+    <div class="note-card">
+      <div class="note-label">Note 01</div>
+      <div class="note-title">The 75 kg target is aggressive — own it</div>
+      <ul>
+        <li>Realistically you'll lose <strong>~0.8–1 kg/week</strong> for the first 3 weeks (water + glycogen + fat), then ~0.5–0.7 kg/week as the body adapts.</li>
+        <li>Total projection: <strong>~8–10 kg in 11 weeks</strong>. You'll likely land between 75–77 kg by 10 Sep. That's a win regardless.</li>
+        <li>If you stall for 10+ days, drop 100 kcal from Meal 02 (skip the almonds) and add 5 min cardio. Don't slash food in panic.</li>
+      </ul>
+    </div>
+
+    <div class="note-card dark">
+      <div class="note-label">Note 02</div>
+      <div class="note-title">Sleep is the lift you take in bed</div>
+      <ul>
+        <li>Your shift ends ~3 AM. Get to bed by 5 AM, sleep through to 12 PM. That's 7 hours.</li>
+        <li>Blackout curtains, phone in another room, cool temperature. Daytime sleep is harder than night sleep — protect it.</li>
+        <li>If sleep falls below 6 hrs for 3 nights, drop one strength day. Tired lifting injures people.</li>
+      </ul>
+    </div>
+
+    <div class="note-card">
+      <div class="note-label">Note 03</div>
+      <div class="note-title">Form before weight. Always.</div>
+      <ul>
+        <li>If you can't do 10 clean reps, the weight is too heavy. <strong>Drop it.</strong></li>
+        <li>Last 2 reps should be the hardest, not impossible. If reps 1–8 feel like 9–10, you're going too heavy.</li>
+        <li>Ego lifting injures shoulders, knees, lower backs. Your sister can spot you — use her.</li>
+      </ul>
+    </div>
+
+    <div class="note-card dark">
+      <div class="note-label">Note 04</div>
+      <div class="note-title">Cheat days — read this</div>
+      <ul>
+        <li><strong>Cheat days are not failure.</strong> They're planned. Log every item in the tracker — KFC burger, pizza slice, beef steak, roll.</li>
+        <li>Pick <strong>one cheat meal</strong>, not a cheat day. KFC burger + diet Pepsi = ~450 kcal. 3 pizza slices = ~860 kcal. One steak meal = ~700 kcal.</li>
+        <li>Eat normally before and after. A cheat <em>meal</em> doesn't wreck the week. A cheat <em>day</em> does.</li>
+        <li>Steak dinner days: skip Meal 02 to make calorie room. Eat steak + veg + 1 small baked potato. That's roughly 700 kcal.</li>
+        <li>Do <strong>not</strong> skip the gym on cheat days — extra fuel = better workout.</li>
+      </ul>
+    </div>
+
+    <div class="note-card">
+      <div class="note-label">Note 05</div>
+      <div class="note-title">What to watch for</div>
+      <ul>
+        <li><strong>Energy crash mid-workout</strong>: eat Meal 03 closer to gym (1 hr before), add a banana.</li>
+        <li><strong>Sharp joint pain</strong> (not muscle soreness): stop that exercise. Swap for a machine version.</li>
+        <li><strong>Sleep less than 5 hrs</strong>: skip strength, do 30 min walk instead.</li>
+        <li><strong>Weekly weight up</strong>: check water intake, salt, and stool habits before panicking. Trend &gt; day.</li>
+      </ul>
+    </div>
+
+    <div class="note-card danger">
+      <div class="note-label">Hard rules · do not break</div>
+      <div class="note-title">The non-negotiables</div>
+      <ul>
+        <li>Six gym sessions a week, Mon–Sat. <strong>Saturday is non-negotiable.</strong> That's the long cardio.</li>
+        <li>No frozen parathas, no regular soda, no late-night biryani. <strong>Three substitutions = a wasted day.</strong></li>
+        <li>Weigh in Sunday morning, log it. <strong>Track the trend or lose the plan.</strong></li>
+        <li>If you injure yourself, stop. Pain &gt; pride. We rebuild.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <div>
+    <div>Operation 75 · Kashif Arshad · Training camp doc · v2</div>
+    <div>Built 24.06.2026 · Phase 1 active · Local-storage tracking enabled</div>
+  </div>
+  <div class="sig">— go to work.</div>
+</footer>
+
+<script>
+/* ============================================================
+   SERVICE WORKER · enables offline + app-like behavior
+   ============================================================ */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch((err) => {
+      // Fails silently if running from file:// — that's fine
+      console.log('SW registration skipped:', err.message);
+    });
+  });
+}
+
+/* ============================================================
+   DATA: FOOD DATABASE
+   ============================================================ */
+const FOOD_DB = [
+  // PROTEIN
+  { id: 'egg-whole',     name: 'Whole egg',           unit: '1 egg',          kcal: 78,  protein: 6,    cat: 'protein' },
+  { id: 'egg-white',     name: 'Egg white',           unit: '1 white',        kcal: 17,  protein: 3.6,  cat: 'protein' },
+  { id: 'egg-boiled',    name: 'Boiled egg',          unit: '1 egg',          kcal: 78,  protein: 6,    cat: 'protein' },
+  { id: 'chicken-150',   name: 'Chicken breast (air-fried, 150g)', unit: '1 piece', kcal: 250, protein: 45, cat: 'protein' },
+  { id: 'chicken-100',   name: 'Chicken breast (100g)', unit: '100g', kcal: 165, protein: 31, cat: 'protein' },
+  { id: 'milk-cup',      name: 'Whole milk',          unit: '250 ml cup',     kcal: 160, protein: 8,    cat: 'protein' },
+  { id: 'milk-half',     name: 'Whole milk',          unit: '125 ml',         kcal: 80,  protein: 4,    cat: 'protein' },
+  { id: 'yogurt-plain',  name: 'Plain dahi',          unit: '250 g',          kcal: 150, protein: 9,    cat: 'protein' },
+  { id: 'yogurt-strain', name: 'Strained dahi (Greek-style)', unit: '250 g', kcal: 170, protein: 16, cat: 'protein' },
+  { id: 'almonds',       name: 'Almonds (10 pieces)', unit: '10 pcs (~12g)',  kcal: 70,  protein: 2.5,  cat: 'protein' },
+
+  // CARBS + BREAD + FRUIT
+  { id: 'brown-bread',   name: 'Brown bread (1 slice)', unit: '1 slice',     kcal: 80,  protein: 3,    cat: 'carb' },
+  { id: 'multigrain',    name: 'Multigrain bread (1 slice)', unit: '1 slice', kcal: 90, protein: 4,    cat: 'carb' },
+  { id: 'banana',        name: 'Banana (medium)',     unit: '1 medium',       kcal: 105, protein: 1.3,  cat: 'carb' },
+  { id: 'apple',         name: 'Apple (small)',       unit: '1 small',        kcal: 80,  protein: 0.4,  cat: 'carb' },
+  { id: 'mango-small',   name: 'Mango (small)',       unit: '1 small',        kcal: 135, protein: 1.4,  cat: 'carb' },
+  { id: 'date',          name: 'Date (khajoor)',      unit: '1 piece',        kcal: 20,  protein: 0.2,  cat: 'carb' },
+  { id: 'tomato-onion',  name: 'Tomato + onion sauté', unit: 'small portion', kcal: 30,  protein: 1,    cat: 'carb' },
+  { id: 'cucumber-salad', name: 'Cucumber-tomato salad', unit: '1 bowl',     kcal: 30,  protein: 1,    cat: 'carb' },
+  { id: 'olive-oil-tsp', name: 'Olive oil (1 tsp)',   unit: '1 tsp',          kcal: 40,  protein: 0,    cat: 'carb' },
+  { id: 'brown-rice',    name: 'Brown rice (cooked)', unit: '1 cup',          kcal: 220, protein: 5,    cat: 'carb' },
+
+  // DRINKS / CHAI
+  { id: 'chai-sugar',    name: 'Chai with milk + 1 tsp sugar', unit: '1 cup', kcal: 70,  protein: 3,    cat: 'drink' },
+  { id: 'chai-nosug',    name: 'Chai with milk · no sugar', unit: '1 cup',    kcal: 50,  protein: 3,    cat: 'drink' },
+  { id: 'kahwa',         name: 'Kahwa / herbal tea (spices)', unit: '1 cup',  kcal: 30,  protein: 0,    cat: 'drink' },
+  { id: 'black-coffee',  name: 'Black coffee (no sugar)', unit: '1 cup',      kcal: 5,   protein: 0,    cat: 'drink' },
+  { id: 'water',         name: 'Water (250 ml)',      unit: '250 ml',         kcal: 0,   protein: 0,    cat: 'drink' },
+  { id: 'diet-soda',     name: 'Diet Pepsi/Coke (350 ml)', unit: '1 can',     kcal: 0,   protein: 0,    cat: 'drink' },
+  { id: 'lemon-water',   name: 'Lemon water',         unit: '1 glass',        kcal: 10,  protein: 0,    cat: 'drink' },
+  { id: 'shakar-tsp',    name: 'Shakar / sugar (1 tsp added)', unit: '1 tsp', kcal: 16,  protein: 0,    cat: 'drink' },
+
+  // CHEAT DAY
+  { id: 'kfc-burger',    name: 'KFC Zinger burger',   unit: '1 burger',       kcal: 450, protein: 22,   cat: 'cheat' },
+  { id: 'kfc-chicken',   name: 'KFC fried chicken (1 piece)', unit: '1 pc',  kcal: 320, protein: 22,   cat: 'cheat' },
+  { id: 'pizza-slice',   name: 'Pizza slice (medium)', unit: '1 slice',       kcal: 285, protein: 12,   cat: 'cheat' },
+  { id: 'beef-steak',    name: 'Beef steak (~200g)',  unit: '1 steak',        kcal: 450, protein: 50,   cat: 'cheat' },
+  { id: 'baked-potato',  name: 'Baked potato (medium)', unit: '1 medium',     kcal: 160, protein: 4,    cat: 'cheat' },
+  { id: 'roasted-veg',   name: 'Roasted vegetables',  unit: '1 cup',          kcal: 100, protein: 3,    cat: 'cheat' },
+  { id: 'roll-medium',   name: 'Chicken/beef roll (medium)', unit: '1 roll',  kcal: 350, protein: 18,   cat: 'cheat' },
+  { id: 'biryani-plate', name: 'Biryani (1 plate)',   unit: '1 plate',        kcal: 600, protein: 25,   cat: 'cheat' },
+  { id: 'fries-med',     name: 'French fries (medium)', unit: '1 medium',     kcal: 365, protein: 4,    cat: 'cheat' },
+  { id: 'reg-soda',      name: 'Regular Pepsi/Coke (350 ml)', unit: '1 can', kcal: 140, protein: 0,    cat: 'cheat' },
+  { id: 'icecream',      name: 'Ice cream scoop',     unit: '1 scoop',        kcal: 140, protein: 2,    cat: 'cheat' },
+];
+
+/* ============================================================
+   DATA: EXERCISE LIST (for logger dropdown)
+   ============================================================ */
+const EXERCISES = [
+  { day: 'Mon · Chest + Tri', items: ['Machine chest press', 'Incline dumbbell press', 'Pec deck / cable fly', 'Tricep pushdown', 'Overhead tricep extension'] },
+  { day: 'Tue · Back + Bi',   items: ['Lat pulldown', 'Seated cable row', 'One-arm dumbbell row', 'Bicep curl machine', 'Hammer curl'] },
+  { day: 'Wed · Legs',        items: ['Leg press', 'Leg extension', 'Leg curl', 'Goblet squat', 'Calf raise'] },
+  { day: 'Thu · Shoulders',   items: ['Machine shoulder press', 'Dumbbell lateral raise', 'Dumbbell front raise', 'Reverse pec deck', 'Plank', 'Hanging knee raise'] },
+  { day: 'Fri · Arms',        items: ['Barbell curl', 'Preacher curl', 'Hammer curl', 'Tricep dip', 'Tricep pushdown', 'Skullcrusher'] },
+  { day: 'Sat · Full body',   items: ['Goblet squat', 'Push-up', 'Lat pulldown', 'Dumbbell shoulder press', 'Plank'] },
+];
+
+/* ============================================================
+   DATA: MACHINE / EXERCISE GUIDE
+   ============================================================ */
+const MACHINES = [
+  { id: 'chest-press', name: 'Machine chest press', works: 'Chest (pectorals), front delts, triceps',
+    setup: ['Adjust the seat so the handles align with mid-chest, not your shoulders.', 'Plant your feet flat on the floor.', 'Sit tall — chest up, shoulder blades pinched back into the pad.'],
+    form: ['Press the handles forward in a smooth arc — don\'t lock elbows hard at the end.', 'Lower under control (2 seconds down) until you feel a stretch in the chest.', 'Keep wrists straight, not bent backward.'],
+    mistakes: ['Flaring elbows out 90° — keep them at 45° from your torso to protect shoulders.', 'Bouncing the weight at the bottom.', 'Using leg drive — this is upper-body only.'],
+    tip: 'If the seat doesn\'t adjust, sit on a folded towel. Handle alignment matters more than ego.'
+  },
+  { id: 'incline-db-press', name: 'Incline dumbbell press', works: 'Upper chest, front delts, triceps',
+    setup: ['Set the bench to 30–45° — not steeper, that turns it into a shoulder press.', 'Pick up dumbbells from the floor with knees driving them up to your thighs, then lie back.', 'Start with dumbbells at chest level, palms facing forward.'],
+    form: ['Press up and slightly together — the dumbbells should almost touch at the top.', 'Lower until your elbows are slightly below shoulder line (full stretch).', 'Keep core tight, lower back on the bench.'],
+    mistakes: ['Lowering only halfway — you lose the chest stretch.', 'Locking elbows hard at the top — keep a slight bend.', 'Letting wrists collapse backward.'],
+    tip: 'Start light. You\'ll feel stupid using 6 kg dumbbells. You\'ll feel smart 2 months in when you\'re pressing 12 kg with perfect form.'
+  },
+  { id: 'pec-deck', name: 'Pec deck / cable fly', works: 'Chest (inner + mid pec), front delts',
+    setup: ['Seat height: handles align with your nipple line.', 'Press your back firmly against the pad.', 'Grip the handles with arms slightly bent.'],
+    form: ['Bring the handles together in a hugging motion, not a pressing motion.', 'Squeeze chest hard for 1 second at the close point.', 'Open back to a wide stretch — feel the chest pull.'],
+    mistakes: ['Bending elbows like a press — keep them in a fixed slight bend.', 'Going too fast — fly is about the squeeze, not speed.', 'Rounding shoulders forward.'],
+    tip: 'Think \'arms closing around a tree trunk.\' Slow and squeezed beats fast and loose every time.'
+  },
+  { id: 'tricep-pushdown', name: 'Tricep pushdown (cable)', works: 'Triceps (all three heads)',
+    setup: ['Stand close to the cable column with rope or straight bar attached at top.', 'Feet shoulder-width, slight forward lean.', 'Pin your elbows to your ribs — they should not move.'],
+    form: ['Push down by extending only at the elbow — forearms move, upper arms stay still.', 'At the bottom, separate the rope ends slightly for a bigger contraction.', 'Let the weight slowly pull your hands back up to chest level.'],
+    mistakes: ['Elbows flaring out — locks the triceps out of the movement.', 'Using bodyweight to push the bar down.', 'Half-reps — go all the way down, all the way up.'],
+    tip: 'If you\'re leaning hard or jerking, the weight is too heavy. Drop a plate.'
+  },
+  { id: 'overhead-tricep', name: 'Overhead tricep extension', works: 'Long head of triceps',
+    setup: ['Hold one dumbbell with both hands, gripping the top end like a cup.', 'Stand or sit upright — head tall, core braced.', 'Lift the dumbbell straight overhead.'],
+    form: ['Lower the dumbbell behind your head by bending only at the elbows.', 'Keep your upper arms vertical — they should not flare out or move forward.', 'Extend back up under control.'],
+    mistakes: ['Letting the elbows drift forward and out — kills the tricep stretch.', 'Going too heavy and arching the lower back.', 'Banging the dumbbell on your skull (it happens — slow down).'],
+    tip: 'Done seated against a wall = better form. Use it as a safety check.'
+  },
+  { id: 'lat-pulldown', name: 'Lat pulldown', works: 'Lats (back width), biceps, rear delts',
+    setup: ['Sit, lock your knees under the pad so you don\'t fly up.', 'Grip the bar slightly wider than shoulders, palms facing forward.', 'Lean back about 15° — not more.'],
+    form: ['Pull the bar down to your upper chest, leading with elbows.', 'Squeeze shoulder blades together at the bottom.', 'Let the bar rise slowly back up, feeling the stretch in your lats.'],
+    mistakes: ['Pulling the bar behind your neck — shoulder injury territory. Stop.', 'Using biceps to yank — think \'elbows down\' not \'hands down\'.', 'Leaning so far back it becomes a row.'],
+    tip: 'Hands are hooks. Forget you have biceps. The pull comes from the elbow driving down.'
+  },
+  { id: 'cable-row', name: 'Seated cable row', works: 'Mid-back, lats, rear delts, biceps',
+    setup: ['Sit with feet braced on the platform, knees slightly bent (don\'t lock).', 'Grab the V-handle or close grip with arms extended forward.', 'Sit tall — chest up, neutral spine, not rounded.'],
+    form: ['Pull the handle to your lower ribs — elbows tight to body.', 'Squeeze shoulder blades together at the back.', 'Let arms extend forward slowly, but don\'t round your back at the front.'],
+    mistakes: ['Rocking back and forth — torso stays still, only arms move.', 'Pulling to the navel or chest — aim for the lower ribs.', 'Rounded shoulders at the bottom of the rep.'],
+    tip: 'Chest stays proud the whole time. Imagine a string pulling your sternum up.'
+  },
+  { id: 'db-row', name: 'One-arm dumbbell row', works: 'Lats, mid-back, rear delts',
+    setup: ['Place one knee and one hand on a flat bench. Other foot on the floor for stability.', 'Other hand holds the dumbbell, arm extended toward the floor.', 'Back flat, parallel to the floor.'],
+    form: ['Pull the dumbbell up to your hip, leading with your elbow.', 'Squeeze your back at the top — pause 1 second.', 'Lower slowly to a full stretch at the bottom.'],
+    mistakes: ['Twisting the torso to lift more weight — chest stays square to the floor.', 'Pulling with biceps — keep elbow tight to body, drive it back.', 'Rounding the lower back.'],
+    tip: 'If you\'re twisting your hip up, the weight is too heavy. Drop 2 kg.'
+  },
+  { id: 'bicep-machine', name: 'Bicep curl machine', works: 'Biceps',
+    setup: ['Adjust seat so your armpits sit right against the pad.', 'Grip handles with palms facing up.', 'Chest pressed against the pad, elbows on it.'],
+    form: ['Curl up by bending only at the elbow.', 'Squeeze biceps hard at the top.', 'Lower slowly — fight the weight on the way down.'],
+    mistakes: ['Lifting your butt off the seat to swing — lock yourself in place.', 'Half reps — go all the way down, all the way up.', 'Gripping too tight — forearms steal the work.'],
+    tip: 'Slow the negative (lowering phase). 3 seconds down = double the gains.'
+  },
+  { id: 'hammer-curl', name: 'Hammer curl (dumbbells)', works: 'Biceps + brachialis (outer arm)',
+    setup: ['Stand with dumbbells at your sides, palms facing your body (thumbs up).', 'Feet shoulder-width, core tight, shoulders back.', 'Elbows pinned to ribs.'],
+    form: ['Curl both dumbbells up keeping palms facing inward the entire time.', 'Stop at chest level — no need to come higher.', 'Lower slowly to full extension.'],
+    mistakes: ['Letting the elbows drift forward — they stay glued to your sides.', 'Swinging the body for momentum.', 'Going too heavy and losing form on rep 6+.'],
+    tip: 'Hammer curls build the outer arm thickness. They\'re the secret to round-looking biceps.'
+  },
+  { id: 'leg-press', name: 'Leg press', works: 'Quads, glutes, hamstrings',
+    setup: ['Lie back, feet shoulder-width on the platform, mid-foot placement.', 'Lower back pressed into the pad — no gap.', 'Hands grip the side handles.'],
+    form: ['Lower the weight by bending knees toward chest — go until thighs are at 90°.', 'Press through your heels back to almost-locked knees (don\'t fully lock).', 'Knees track over your toes — never cave inward.'],
+    mistakes: ['Lifting your butt off the pad at the bottom — instant lower back risk.', 'Locking knees hard at the top.', 'Feet too low on the platform — kills your knees.'],
+    tip: 'Start with 1 plate per side. The leg press tricks you into adding weight too fast. Knees will warn you.'
+  },
+  { id: 'leg-extension', name: 'Leg extension', works: 'Quadriceps (front of thigh)',
+    setup: ['Sit, adjust the back pad so your knees align with the machine\'s pivot point.', 'Pad rests on top of your ankles (not your shin).', 'Grip handles, sit upright.'],
+    form: ['Extend your legs straight out — squeeze quads hard at the top for 1 sec.', 'Lower slowly under control to a 90° bend.', 'Both legs working evenly.'],
+    mistakes: ['Slamming the weight down on the way back.', 'Using momentum — kick, swing, drop. Don\'t.', 'Hyper-extending at the top.'],
+    tip: 'If you have knee issues, reduce range of motion — stop just short of full extension.'
+  },
+  { id: 'leg-curl', name: 'Leg curl (hamstrings)', works: 'Hamstrings (back of thigh)',
+    setup: ['Lie face-down on the machine. Pad sits just above your ankles.', 'Grip the handles. Hips pressed into the pad.', 'Knees aligned with the pivot.'],
+    form: ['Curl heels toward your butt by bending only at the knees.', 'Squeeze hamstrings hard at the top.', 'Lower slowly, fully extending the legs.'],
+    mistakes: ['Lifting your hips off the pad to cheat.', 'Half-curling.', 'Going too heavy and using lower back.'],
+    tip: 'Hamstrings respond to slow tempo. 2 sec up, 3 sec down. Try it.'
+  },
+  { id: 'goblet-squat', name: 'Goblet squat', works: 'Quads, glutes, core',
+    setup: ['Hold a dumbbell vertically against your chest with both hands cupping the top end.', 'Stand with feet slightly wider than shoulders, toes turned out ~15°.', 'Chest up, core braced.'],
+    form: ['Sit back and down as if into a chair — knees track over toes.', 'Go until your elbows tap the inside of your knees.', 'Drive through your heels to stand back up.'],
+    mistakes: ['Knees caving inward — push them out actively.', 'Heels coming off the floor — your ankles need more mobility, reduce depth.', 'Rounded back at the bottom.'],
+    tip: 'Best squat for beginners. The dumbbell at chest level forces you into good posture.'
+  },
+  { id: 'calf-raise', name: 'Standing calf raise', works: 'Calves (gastrocnemius + soleus)',
+    setup: ['Stand on a flat floor or on a step with balls of feet on the edge.', 'Feet shoulder-width, parallel.', 'Hold a wall or dumbbell for balance.'],
+    form: ['Rise up on the balls of your feet as high as possible — squeeze 1 sec.', 'Lower slowly to a full stretch (heels below step level).', 'Full range of motion every rep.'],
+    mistakes: ['Bouncing — calves love slow tempo.', 'Half reps.', 'Locking knees too hard.'],
+    tip: 'Add a dumbbell in one hand for resistance once bodyweight feels easy. Calves are stubborn — be patient.'
+  },
+  { id: 'shoulder-press', name: 'Machine shoulder press', works: 'Front and side delts, triceps',
+    setup: ['Sit, back firm against the pad. Adjust seat so handles align with the top of your shoulders.', 'Grip the handles, palms facing forward.', 'Brace your core.'],
+    form: ['Press the handles straight up — don\'t lock elbows hard at the top.', 'Lower slowly until elbows are at ~90°.', 'Keep your chest up, head neutral.'],
+    mistakes: ['Arching the lower back to push more weight.', 'Locking out elbows hard — uses joints, not muscle.', 'Pressing with elbows flared straight out (90°) — angle them slightly forward.'],
+    tip: 'Shoulders are fragile. Start lighter than you think — 2 plates is fine for week 1.'
+  },
+  { id: 'lateral-raise', name: 'Dumbbell lateral raise', works: 'Side delts (shoulder width)',
+    setup: ['Stand, dumbbells at your sides, palms facing in.', 'Slight bend in elbows — lock it there.', 'Stand tall, core engaged.'],
+    form: ['Raise the dumbbells out to your sides until arms are parallel with the floor.', 'Lead with your elbows, not your wrists.', 'Lower slowly under control.'],
+    mistakes: ['Going too heavy — you\'ll swing and recruit traps instead of delts.', 'Raising the dumbbells above shoulder line — extra stress on rotator cuff.', 'Bending elbows too much (turns it into a row).'],
+    tip: 'Use 3–4 kg dumbbells. People look at 4 kg and laugh. Then they try strict form and stop laughing.'
+  },
+  { id: 'front-raise', name: 'Dumbbell front raise', works: 'Front delts',
+    setup: ['Stand, dumbbells in front of thighs, palms facing the body.', 'Feet shoulder-width, core tight.', 'Slight bend in elbows.'],
+    form: ['Raise the dumbbells in front of you to shoulder height.', 'Pause briefly at the top.', 'Lower slowly back to thighs.'],
+    mistakes: ['Going above shoulder height — unnecessary.', 'Swinging the weight up — strict form only.', 'Tucking shoulders up to your ears — keep them down.'],
+    tip: 'Alternate arms (one at a time) if you find both at once strains your back.'
+  },
+  { id: 'reverse-pec', name: 'Reverse pec deck (rear delts)', works: 'Rear delts, mid-back',
+    setup: ['Sit facing the machine (chest against the pad), arms extended forward to grip handles.', 'Adjust handles so they\'re at shoulder height.', 'Slight bend in elbows.'],
+    form: ['Pull the handles outward and back, leading with your elbows.', 'Squeeze shoulder blades together at the back.', 'Slow return to the start.'],
+    mistakes: ['Bending elbows during the rep — keep them fixed.', 'Going too heavy and using momentum.', 'Hunching shoulders to the ears.'],
+    tip: 'Rear delts are underdeveloped on most beginners. This fixes the rounded-shoulder look from desk work.'
+  },
+  { id: 'plank', name: 'Plank', works: 'Core (abs, obliques, lower back)',
+    setup: ['Forearms on the floor, elbows directly under shoulders.', 'Legs extended, toes tucked under, body in a straight line.', 'Look at the floor, not up.'],
+    form: ['Squeeze glutes, tighten core, neutral neck.', 'Body forms one straight line from head to heels.', 'Breathe normally — don\'t hold your breath.'],
+    mistakes: ['Hips sagging down or piking up — straight line only.', 'Holding for 5 min with bad form &lt; 30 sec with perfect form.', 'Forgetting to breathe.'],
+    tip: 'Start with 3 × 20 sec. Build to 3 × 60 sec by week 6. Quality > quantity always.'
+  },
+  { id: 'knee-raise', name: 'Hanging knee raise / cable crunch', works: 'Lower abs (knee raise), upper abs (crunch)',
+    setup: ['Knee raise: hang from a pull-up bar, arms extended, body still.', 'Cable crunch: kneel facing cable column, rope behind head, hands by ears.'],
+    form: ['Knee raise: bring knees up toward chest by contracting abs — don\'t swing.', 'Cable crunch: curl your torso down toward your knees, contracting abs.', 'Both: control the negative.'],
+    mistakes: ['Knee raise: using momentum (swinging) — defeats the purpose.', 'Cable crunch: pulling with arms instead of crunching with abs.', 'Holding breath.'],
+    tip: 'Pick whichever your gym has. Both work the abs effectively when done strict.'
+  },
+  { id: 'barbell-curl', name: 'Barbell curl', works: 'Biceps (both heads)',
+    setup: ['Stand, feet shoulder-width, holding the barbell underhand at shoulder-width grip.', 'Elbows pinned to ribs.', 'Core tight, chest up.'],
+    form: ['Curl the bar up by bending only at the elbows.', 'Pause and squeeze biceps at the top.', 'Lower slowly — fight gravity on the way down.'],
+    mistakes: ['Swinging your back and hips to throw the bar up.', 'Letting elbows drift forward at the top — they stay pinned.', 'Curl too heavy — your form goes out the window by rep 5.'],
+    tip: 'Use the smaller curl bar (the EZ bar) if your wrists hurt. Same exercise, easier on joints.'
+  },
+  { id: 'preacher-curl', name: 'Preacher curl machine', works: 'Biceps (especially short head, peak)',
+    setup: ['Sit, armpits seated against the pad — full contact.', 'Grip the bar/handles with both hands, arms extended down along the pad.', 'Chest pressed against the pad.'],
+    form: ['Curl up, squeezing biceps hard at the top.', 'Lower slowly to almost-full extension — don\'t hyperextend.', 'Strict form, no swing.'],
+    mistakes: ['Lifting butt off the seat for leverage.', 'Hyper-extending at the bottom — stops just short.', 'Rushing reps.'],
+    tip: 'Preacher curl isolates the bicep more than any other movement. Use light weight, feel the squeeze.'
+  },
+  { id: 'tricep-dip', name: 'Tricep dip machine / bench dip', works: 'Triceps, lower chest, front delts',
+    setup: ['Machine: sit, elbows back behind body on the handles.', 'Bench: place hands on the bench edge behind you, legs out front, knees bent for easier version.'],
+    form: ['Lower your body by bending elbows to ~90°.', 'Press back up to almost-locked elbows.', 'Keep elbows tucked back, not flared out.'],
+    mistakes: ['Going too deep — shoulder strain. Stop at 90°.', 'Flaring elbows out wide.', 'Shrugging shoulders to ears.'],
+    tip: 'Start with machine version (easier to load progressively). Bench dips work if no machine.'
+  },
+  { id: 'skullcrusher', name: 'Skullcrusher (dumbbell)', works: 'Triceps (long head)',
+    setup: ['Lie on a flat bench, holding 2 dumbbells extended straight up over chest, palms facing each other.', 'Or use one dumbbell held with both hands.', 'Plant feet flat on the floor.'],
+    form: ['Lower the dumbbells toward your forehead by bending only at the elbows — upper arms stay vertical.', 'Stop just before reaching forehead.', 'Extend back up by straightening the elbows.'],
+    mistakes: ['Letting upper arms drift forward — becomes a press.', 'Going too heavy and risking dropping the weight on your face.', 'Bouncing the weight at the bottom.'],
+    tip: 'Skip this if your elbows are sore. Tricep pushdown is a safer substitute.'
+  },
+  { id: 'pushup', name: 'Push-up', works: 'Chest, triceps, front delts, core',
+    setup: ['Hands shoulder-width on the floor, fingers spread.', 'Body in a straight line from head to heels — no sag, no pike.', 'Knees down version is fine for beginners.'],
+    form: ['Lower until your chest is an inch from the floor.', 'Push back up explosively.', 'Keep elbows at 45° from torso, not flared 90°.'],
+    mistakes: ['Sagging hips.', 'Half-range push-ups (going down only halfway).', 'Flared elbows — shoulder strain.'],
+    tip: 'Can\'t do full push-ups yet? Do them on your knees. Build to 3 × 10 strict, then graduate.'
+  },
+  { id: 'db-shoulder-press', name: 'Dumbbell shoulder press', works: 'Front and side delts, triceps',
+    setup: ['Seated on bench with back support — or standing if your core is strong.', 'Dumbbells at shoulder height, palms facing forward.', 'Core braced, chest up.'],
+    form: ['Press dumbbells overhead until arms are almost-straight — don\'t bang the weights together.', 'Lower slowly to shoulder level.', 'Keep wrists straight and stacked over elbows.'],
+    mistakes: ['Arching lower back when going heavy.', 'Letting elbows flare straight out — angle them slightly forward.', 'Banging dumbbells overhead.'],
+    tip: 'Seated version with back support is safer for beginners. Standing demands more core stability.'
+  },
+];
+
+/* ============================================================
+   SAFE STORAGE WRAPPER
+   ============================================================ */
+function safeGet(key) { try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { return null; } }
+function safeSet(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
+function todayKey() { return new Date().toISOString().split('T')[0]; }
+function fmtDate(iso) { return new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }); }
+function fmtDateLong(iso) { return new Date(iso).toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' }); }
+
+/* ============================================================
+   TABS + COUNTDOWN
+   ============================================================ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tab).classList.add('active');
+    window.scrollTo({ top: document.querySelector('nav.tabs').offsetTop, behavior: 'smooth' });
+  });
+});
+
+// Sub-tab handler (Overview / Phase 1 / Phase 2 / Phase 3 inside Training panel)
+document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sub = btn.dataset.subtab;
+    document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(sub).classList.add('active');
+    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  });
+});
+
+const targetDate = new Date('2026-09-10T00:00:00');
+const startDate = new Date('2026-06-24T00:00:00');
+function updateCountdown() {
+  const now = new Date();
+  const diff = Math.ceil((targetDate - now) / (1000 * 60 * 60 * 24));
+  document.getElementById('daysLeft').innerHTML = diff + '<span class="unit">d</span>';
+  const elapsed = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+  let phase = 'Phase 1 of 3 — foundation';
+  if (elapsed > 28 && elapsed <= 56) phase = 'Phase 2 of 3 — build';
+  else if (elapsed > 56) phase = 'Phase 3 of 3 — sharpen';
+  document.getElementById('phaseTag').textContent = phase;
+}
+updateCountdown();
+document.getElementById('todayDateDisplay').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'short' });
+
+/* ============================================================
+   FOOD LOGGER
+   ============================================================ */
+const KCAL_TARGET = 1900;
+const PROTEIN_TARGET = 130;
+const MAINTENANCE = 2400;
+
+let currentCat = 'all';
+
+function renderFoodGrid() {
+  const grid = document.getElementById('foodGrid');
+  const items = FOOD_DB.filter(f => currentCat === 'all' || f.cat === currentCat);
+  grid.innerHTML = items.map(f => `
+    <div class="food-item">
+      <div>
+        <div class="f-name ${f.cat==='cheat'?'f-cheat':''}">${f.name}</div>
+        <div class="f-info">${f.unit} · ${f.kcal} kcal · <span class="protein">${f.protein}g protein</span></div>
+      </div>
+      <button class="food-add-btn" onclick="addFood('${f.id}')" aria-label="Add ${f.name}">+</button>
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('.food-cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.food-cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCat = btn.dataset.cat;
+    renderFoodGrid();
+  });
+});
+
+function addFood(foodId) {
+  const food = FOOD_DB.find(f => f.id === foodId);
+  if (!food) return;
+  const key = 'op75_food_' + todayKey();
+  const log = safeGet(key) || [];
+  log.push({ ts: Date.now(), foodId, name: food.name, kcal: food.kcal, protein: food.protein, unit: food.unit });
+  safeSet(key, log);
+  renderFoodLog();
+}
+
+function removeFood(idx) {
+  const key = 'op75_food_' + todayKey();
+  const log = safeGet(key) || [];
+  log.splice(idx, 1);
+  safeSet(key, log);
+  renderFoodLog();
+}
+
+function clearTodayFood() {
+  if (!confirm("Clear today's food log?")) return;
+  safeSet('op75_food_' + todayKey(), []);
+  renderFoodLog();
+}
+
+function renderFoodLog() {
+  const key = 'op75_food_' + todayKey();
+  const log = safeGet(key) || [];
+  const totalKcal = log.reduce((s, e) => s + e.kcal, 0);
+  const totalPro = log.reduce((s, e) => s + e.protein, 0);
+
+  document.getElementById('calToday').textContent = totalKcal.toLocaleString();
+  document.getElementById('proToday').textContent = Math.round(totalPro);
+
+  const kcalPct = Math.min(100, (totalKcal / KCAL_TARGET) * 100);
+  const proPct = Math.min(100, (totalPro / PROTEIN_TARGET) * 100);
+  const calBar = document.getElementById('calBar');
+  calBar.style.width = kcalPct + '%';
+  calBar.classList.remove('over', 'warn');
+  document.getElementById('proBar').style.width = proPct + '%';
+
+  const calStatus = document.getElementById('calStatus');
+  if (totalKcal === 0) calStatus.textContent = 'Start logging your first meal.';
+  else if (totalKcal > KCAL_TARGET + 200) {
+    calStatus.textContent = `${totalKcal - KCAL_TARGET} kcal over target. Skip Meal 02 or extend cardio tomorrow.`;
+    calStatus.className = 'cal-status over';
+    calBar.classList.add('over');
+  } else if (totalKcal > KCAL_TARGET) {
+    calStatus.textContent = `Slightly over (${totalKcal - KCAL_TARGET} kcal). Still under maintenance — okay.`;
+    calStatus.className = 'cal-status warn';
+    calBar.classList.add('warn');
+  } else {
+    calStatus.textContent = `${KCAL_TARGET - totalKcal} kcal remaining to target.`;
+    calStatus.className = 'cal-status';
+  }
+
+  const proStatus = document.getElementById('proStatus');
+  if (totalPro >= PROTEIN_TARGET) {
+    proStatus.textContent = `Hit the floor (+${Math.round(totalPro - PROTEIN_TARGET)}g over).`;
+    proStatus.style.color = 'var(--success)';
+  } else {
+    proStatus.textContent = `${Math.round(PROTEIN_TARGET - totalPro)}g protein left to hit floor.`;
+    proStatus.style.color = 'var(--accent)';
+  }
+
+  const deficit = MAINTENANCE - totalKcal;
+  document.getElementById('deficitToday').textContent = (deficit >= 0 ? '−' : '+') + Math.abs(deficit).toLocaleString();
+  const dStatus = document.getElementById('deficitStatus');
+  if (totalKcal === 0) dStatus.textContent = 'Target deficit: 500 kcal';
+  else if (deficit >= 400 && deficit <= 700) { dStatus.textContent = 'In the sweet spot.'; dStatus.style.color = 'var(--success)'; }
+  else if (deficit > 700) { dStatus.textContent = 'Deficit too aggressive — eat a bit more.'; dStatus.style.color = 'var(--accent-soft)'; }
+  else if (deficit < 0) { dStatus.textContent = 'Surplus today. Cheat-day mode.'; dStatus.style.color = '#FCA5A5'; }
+  else { dStatus.textContent = 'Mild deficit. Eat your full plan.'; dStatus.style.color = 'var(--accent)'; }
+
+  const list = document.getElementById('foodLogList');
+  const totals = document.getElementById('foodLogTotals');
+  totals.innerHTML = `<span class="kcal">${totalKcal.toLocaleString()} kcal</span> · <span class="protein">${Math.round(totalPro)} g protein</span>`;
+  totals.className = 'day-totals ' + (totalKcal > KCAL_TARGET + 200 ? 'over' : totalKcal > 0 && totalKcal < KCAL_TARGET - 400 ? 'under' : '');
+
+  if (log.length === 0) {
+    list.innerHTML = '<li class="food-log-empty">No food logged yet today. Tap the <strong>+</strong> on any item above.</li>';
+  } else {
+    list.innerHTML = log.map((e, idx) => `
+      <li>
+        <span class="li-name">${e.name}</span>
+        <span class="li-info">${e.kcal} kcal · ${e.protein}g</span>
+        <button class="li-remove" onclick="removeFood(${idx})" aria-label="Remove">×</button>
+      </li>
+    `).join('');
+  }
+}
+
+function toggleFoodHistory() {
+  const box = document.getElementById('foodHistory');
+  if (box.style.display === 'none') {
+    let keys = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith('op75_food_')) keys.push(k);
+    }
+    keys.sort().reverse();
+    const today = 'op75_food_' + todayKey();
+    keys = keys.filter(k => k !== today).slice(0, 14);
+    if (keys.length === 0) {
+      box.innerHTML = '<div style="color:var(--muted); font-style:italic; text-align:center; padding:14px;">No past entries yet.</div>';
+    } else {
+      box.innerHTML = keys.map(k => {
+        const log = safeGet(k) || [];
+        const totalK = log.reduce((s, e) => s + e.kcal, 0);
+        const totalP = log.reduce((s, e) => s + e.protein, 0);
+        const date = k.replace('op75_food_', '');
+        return `<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(28,25,23,0.08); font-family:'JetBrains Mono',monospace; font-size:12px;"><span>${fmtDateLong(date)}</span><span>${totalK} kcal · ${Math.round(totalP)}g protein · ${log.length} items</span></div>`;
+      }).join('');
+    }
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+  }
+}
+
+renderFoodGrid();
+renderFoodLog();
+
+/* ============================================================
+   EXERCISE LOGGER
+   ============================================================ */
+function populateExerciseSelect() {
+  const sel = document.getElementById('exSelect');
+  sel.innerHTML = EXERCISES.map(group => 
+    `<optgroup label="${group.day}">${group.items.map(it => `<option value="${it}">${it}</option>`).join('')}</optgroup>`
+  ).join('');
+}
+
+function logExercise() {
+  const name = document.getElementById('exSelect').value;
+  const sets = parseInt(document.getElementById('exSets').value) || 0;
+  const reps = parseInt(document.getElementById('exReps').value) || 0;
+  const weight = parseFloat(document.getElementById('exWeight').value) || 0;
+  if (!name || sets < 1 || reps < 1) return;
+
+  const key = 'op75_ex_' + todayKey();
+  const log = safeGet(key) || [];
+  log.push({ ts: Date.now(), type: 'lift', name, sets, reps, weight });
+  safeSet(key, log);
+  renderExLog();
+}
+
+function logCardio() {
+  const type = document.getElementById('cardioType').value;
+  const time = parseInt(document.getElementById('cardioTime').value) || 0;
+  const speed = document.getElementById('cardioSpeed').value;
+  const incline = document.getElementById('cardioIncline').value;
+  if (time < 1) return;
+
+  const key = 'op75_ex_' + todayKey();
+  const log = safeGet(key) || [];
+  log.push({ ts: Date.now(), type: 'cardio', name: type, time, speed, incline });
+  safeSet(key, log);
+  renderExLog();
+}
+
+function removeExEntry(dayKey, idx) {
+  const log = safeGet(dayKey) || [];
+  log.splice(idx, 1);
+  safeSet(dayKey, log);
+  renderExLog();
+}
+
+function getLastExWeight(name) {
+  // Find the most recent previous entry for this exercise (not today)
+  let keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('op75_ex_') && k !== 'op75_ex_' + todayKey()) keys.push(k);
+  }
+  keys.sort().reverse();
+  for (const k of keys) {
+    const log = safeGet(k) || [];
+    const match = log.find(e => e.type === 'lift' && e.name === name);
+    if (match) return { weight: match.weight, sets: match.sets, reps: match.reps, date: k.replace('op75_ex_', '') };
+  }
+  return null;
+}
+
+function renderExLog() {
+  const box = document.getElementById('exLogHistory');
+  let keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('op75_ex_')) keys.push(k);
+  }
+  keys.sort().reverse();
+  keys = keys.slice(0, 14);
+
+  if (keys.length === 0) {
+    box.innerHTML = '<div style="background:var(--paper-2); border:1px solid var(--rule); padding:24px; text-align:center; color:var(--muted); font-style:italic;">No sessions logged yet. Use the form above after your first set.</div>';
+    return;
+  }
+
+  box.innerHTML = keys.map(k => {
+    const log = safeGet(k) || [];
+    if (log.length === 0) return '';
+    const date = k.replace('op75_ex_', '');
+    const isToday = date === todayKey();
+    const totalVol = log.filter(e => e.type === 'lift').reduce((s, e) => s + (e.sets * e.reps * e.weight), 0);
+    const cardioTotal = log.filter(e => e.type === 'cardio').reduce((s, e) => s + e.time, 0);
+
+    return `
+      <div class="ex-log-day">
+        <div class="ex-log-day-head">
+          <div class="date">${fmtDateLong(date)}${isToday ? ' <span style="color:var(--accent); font-size:14px;">· today</span>' : ''}</div>
+          <div class="meta">Volume: ${totalVol.toLocaleString()} kg · Cardio: ${cardioTotal} min</div>
+        </div>
+        <ul class="ex-log-day-items">
+          ${log.map((e, idx) => {
+            if (e.type === 'lift') {
+              const last = isToday ? getLastExWeight(e.name) : null;
+              let trend = '';
+              if (last && e.weight > last.weight) trend = ` <span style="color:var(--success); font-size:11px;">↑ from ${last.weight}kg</span>`;
+              else if (last && e.weight < last.weight) trend = ` <span style="color:var(--danger); font-size:11px;">↓ from ${last.weight}kg</span>`;
+              else if (last) trend = ` <span style="color:var(--muted); font-size:11px;">= last session</span>`;
+              return `<li>
+                <span class="name">${e.name}${trend}</span>
+                <span class="detail">${e.sets} × ${e.reps} @ ${e.weight} kg</span>
+                <button class="li-remove" onclick="removeExEntry('${k}', ${idx})" aria-label="Remove">×</button>
+              </li>`;
+            } else {
+              return `<li>
+                <span class="name">${e.name} <span style="color:var(--accent-deep); font-size:11px;">· cardio</span></span>
+                <span class="detail">${e.time} min · ${e.speed} · incline ${e.incline}</span>
+                <button class="li-remove" onclick="removeExEntry('${k}', ${idx})" aria-label="Remove">×</button>
+              </li>`;
+            }
+          }).join('')}
+        </ul>
+      </div>
+    `;
+  }).join('');
+}
+
+populateExerciseSelect();
+renderExLog();
+
+/* ============================================================
+   WEIGHT LOG
+   ============================================================ */
+const START_WEIGHT = 85.0;
+const TARGET_WEIGHT = 75.0;
+let weights = [];
+
+function loadWeights() {
+  weights = safeGet('op75_weights') || [];
+  renderWeights();
+}
+
+function logWeight() {
+  const input = document.getElementById('weightInput');
+  const val = parseFloat(input.value);
+  if (!val || val < 50 || val > 150) { input.style.borderColor = '#991B1B'; setTimeout(() => input.style.borderColor = '', 1500); return; }
+  weights.push({ date: todayKey(), weight: val });
+  safeSet('op75_weights', weights);
+  input.value = '';
+  renderWeights();
+}
+
+function clearWeights() {
+  if (!confirm('Clear all weight entries?')) return;
+  weights = [];
+  safeSet('op75_weights', []);
+  renderWeights();
+}
+
+function renderWeights() {
+  const log = document.getElementById('weightLog');
+  const fill = document.getElementById('progressFill');
+  if (weights.length === 0) { log.innerHTML = '<li class="empty">No entries yet. First weigh-in: Sunday 29 June.</li>'; fill.style.width = '0%'; return; }
+  const sorted = [...weights].sort((a, b) => b.date.localeCompare(a.date));
+  log.innerHTML = sorted.map((entry, i) => {
+    const prev = sorted[i + 1];
+    let delta = '';
+    if (prev) {
+      const d = (entry.weight - prev.weight).toFixed(1);
+      const sign = d > 0 ? '+' : '';
+      delta = `<span class="delta ${d > 0 ? 'up' : ''}">${sign}${d} kg</span>`;
+    }
+    return `<li><span class="date">${fmtDate(entry.date)}</span><span><span class="val">${entry.weight.toFixed(1)} kg</span>${delta}</span></li>`;
+  }).join('');
+  const latest = sorted[0].weight;
+  const totalRange = START_WEIGHT - TARGET_WEIGHT;
+  const lost = START_WEIGHT - latest;
+  const pct = Math.max(0, Math.min(100, (lost / totalRange) * 100));
+  fill.style.width = pct + '%';
+}
+
+loadWeights();
+
+/* ============================================================
+   CHECKLIST
+   ============================================================ */
+function loadChecklist() {
+  const k = 'op75_checklist_' + todayKey();
+  const saved = safeGet(k) || {};
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+    cb.checked = !!saved[cb.id];
+    cb.closest('li').classList.toggle('done', cb.checked);
+    cb.addEventListener('change', () => {
+      cb.closest('li').classList.toggle('done', cb.checked);
+      const state = safeGet(k) || {};
+      state[cb.id] = cb.checked;
+      safeSet(k, state);
+    });
+  });
+}
+
+function resetChecklist() {
+  if (!confirm("Reset today's checklist?")) return;
+  safeSet('op75_checklist_' + todayKey(), {});
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+    cb.checked = false;
+    cb.closest('li').classList.remove('done');
+  });
+}
+
+loadChecklist();
+
+/* ============================================================
+   MACHINE GUIDE
+   ============================================================ */
+function renderMachines() {
+  const grid = document.getElementById('machineGrid');
+  grid.innerHTML = MACHINES.map((m, i) => `
+    <div class="machine-card" id="machine-${m.id}">
+      <div class="m-num">No. ${String(i+1).padStart(2,'0')}</div>
+      <div class="m-name">${m.name}</div>
+      <div class="m-works">Works · ${m.works}</div>
+      <h4>Setup</h4>
+      <ul>${m.setup.map(s => `<li>${s}</li>`).join('')}</ul>
+      <h4>Form cues</h4>
+      <ul>${m.form.map(s => `<li>${s}</li>`).join('')}</ul>
+      <h4>Common mistakes</h4>
+      <ul>${m.mistakes.map(s => `<li>${s}</li>`).join('')}</ul>
+      <div class="m-tip">Tip: ${m.tip}</div>
+    </div>
+  `).join('');
+}
+
+renderMachines();
+
+// Click-through from workout exercise to machine guide
+document.querySelectorAll('.ex-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const id = link.dataset.machine;
+    // Switch to machines tab
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelector('[data-tab="machines"]').classList.add('active');
+    document.getElementById('machines').classList.add('active');
+    // Scroll to the specific machine
+    setTimeout(() => {
+      const target = document.getElementById('machine-' + id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.style.boxShadow = '0 0 0 3px var(--accent)';
+        setTimeout(() => target.style.boxShadow = '', 1500);
+      }
+    }, 100);
+  });
+});
+</script>
+</body>
+</html>
