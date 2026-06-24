@@ -398,6 +398,600 @@
     margin-top: 14px;
   }
 
+  /* ============ V4 ADDITIONS · MOBILE-FIRST UPGRADES ============ */
+
+  /* Lock horizontal scroll at body level */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+
+  /* MOTIVATIONAL QUOTE BANNER */
+  .quote-banner {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 16px 22px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Caveat', cursive;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .quote-banner:hover { background: #1F1B17; }
+  .quote-banner .q-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .quote-banner .q-text { flex: 1; }
+  .quote-banner .q-author {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 400;
+    margin-left: 6px;
+  }
+
+  /* IN-APP REMINDER BANNER */
+  .reminder-banner {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+    color: var(--paper);
+    padding: 18px 22px;
+    border-radius: 0;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: center;
+    border: 1px solid var(--rule);
+  }
+  .reminder-banner .r-icon {
+    font-size: 32px;
+    line-height: 1;
+  }
+  .reminder-banner .r-content { line-height: 1.3; }
+  .reminder-banner .r-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .reminder-banner .r-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-top: 3px;
+  }
+  .reminder-banner .r-sub {
+    font-size: 13px;
+    margin-top: 4px;
+    opacity: 0.92;
+  }
+  .reminder-banner .r-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+    line-height: 1.2;
+  }
+
+  /* WEEKLY PROGRESS DASHBOARD */
+  .week-dash {
+    background: var(--dark);
+    color: var(--dark-text);
+    padding: 24px;
+    margin-bottom: 28px;
+    border: 1px solid var(--rule);
+  }
+  .week-dash-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px dashed rgba(244,236,219,0.25);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .week-dash-head .wd-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .week-dash-head .wd-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(244,236,219,0.65);
+  }
+  .week-dash-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .wd-metric {
+    background: rgba(244,236,219,0.05);
+    border: 1px solid rgba(244,236,219,0.12);
+    padding: 16px;
+    text-align: center;
+  }
+  .wd-metric .wd-icon { font-size: 24px; line-height: 1; margin-bottom: 8px; }
+  .wd-metric .wd-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244,236,219,0.55);
+    margin-bottom: 6px;
+  }
+  .wd-metric .wd-val {
+    font-family: 'Anton', sans-serif;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .wd-metric .wd-val.good { color: #4ADE80; }
+  .wd-metric .wd-val.warn { color: #FBBF24; }
+  .wd-metric .wd-val.bad { color: #F87171; }
+  .wd-metric .wd-val .unit-sm {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(244,236,219,0.5);
+    font-weight: 600;
+    margin-left: 2px;
+  }
+  .wd-metric .wd-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(244,236,219,0.55);
+    margin-top: 4px;
+  }
+  .wd-past {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(244,236,219,0.25);
+  }
+  .wd-past-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244,236,219,0.55);
+    margin-bottom: 10px;
+  }
+  .wd-past-rows { display: flex; flex-direction: column; gap: 8px; }
+  .wd-past-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto;
+    gap: 12px;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(244,236,219,0.07);
+  }
+  .wd-past-row .wd-past-wk { color: rgba(244,236,219,0.75); font-weight: 600; }
+  .wd-past-row .wd-past-cell { color: var(--accent); text-align: center; min-width: 32px; }
+  .wd-past-row .wd-past-cell.good { color: #4ADE80; }
+  .wd-past-row .wd-past-cell.bad { color: #F87171; }
+
+  /* FOOD ITEM v2 — COUNTER STYLE */
+  .food-item-v2 {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+  }
+  .food-item-v2.has-count { border-color: var(--accent); background: #FCF5E8; }
+  .food-item-v2 .f-icon {
+    font-size: 24px;
+    line-height: 1;
+    width: 32px;
+    text-align: center;
+  }
+  .food-item-v2 .f-body { min-width: 0; }
+  .food-item-v2 .f-name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .food-item-v2 .f-name.cheat { color: var(--accent-deep); }
+  .food-item-v2 .f-info {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .food-item-v2 .f-info .pro { color: var(--success); }
+  .food-item-v2 .f-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .ctrl-btn {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+    border-radius: 0;
+    transition: background 0.15s;
+  }
+  .ctrl-btn:hover { background: var(--accent-deep); }
+  .ctrl-btn.minus { background: var(--paper-2); color: var(--ink); border: 1px solid var(--ink); }
+  .ctrl-btn.minus:hover { background: var(--danger); color: var(--paper); border-color: var(--danger); }
+  .ctrl-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .ctrl-btn.minus:disabled:hover { background: var(--paper-2); color: var(--ink); border-color: var(--ink); }
+  .count-badge {
+    background: var(--accent);
+    color: var(--paper);
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .count-badge.zero { background: var(--paper-2); color: var(--muted); }
+  .f-qty-edit {
+    grid-column: 2 / -1;
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .f-qty-edit input {
+    width: 80px;
+    border: 1px solid var(--rule);
+    padding: 6px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--paper);
+  }
+  .f-qty-edit button {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 7px 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .f-qty-toggle {
+    background: none;
+    border: none;
+    color: var(--accent-deep);
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 6px;
+    text-decoration: underline;
+  }
+
+  /* DONE FOR TODAY · RESET BUTTONS */
+  .day-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .btn-done {
+    background: var(--success);
+    color: var(--paper);
+    border: none;
+    padding: 14px 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .btn-done:hover { background: #14532D; }
+  .btn-reset {
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    padding: 14px 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .btn-reset:hover { background: var(--ink); color: var(--paper); }
+
+  /* WATER TRACKER */
+  .water-card {
+    background: linear-gradient(180deg, #0C2A3A 0%, #0F3D54 100%);
+    color: #E0F2FE;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .water-card .water-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+    border-bottom: 1px dashed rgba(224,242,254,0.25);
+    padding-bottom: 12px;
+  }
+  .water-card .water-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .water-card .water-title .drop { color: #38BDF8; font-size: 26px; }
+  .water-card .water-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(224,242,254,0.65);
+  }
+  .water-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .water-stat {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(56,189,248,0.2);
+    padding: 14px;
+    text-align: center;
+  }
+  .water-stat .ws-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(224,242,254,0.6);
+    margin-bottom: 6px;
+  }
+  .water-stat .ws-val {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    color: #38BDF8;
+  }
+  .water-stat .ws-val .unit-sm {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: rgba(224,242,254,0.5);
+    font-weight: 600;
+    margin-left: 3px;
+  }
+  .water-stat.done .ws-val { color: #4ADE80; }
+  .water-stat.short .ws-val { color: #FBBF24; }
+  .water-glass-bar {
+    background: rgba(255,255,255,0.08);
+    height: 18px;
+    border-radius: 9px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .water-glass-fill {
+    background: linear-gradient(90deg, #38BDF8 0%, #0EA5E9 100%);
+    height: 100%;
+    width: 0;
+    transition: width 0.5s ease;
+  }
+  .water-controls {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .water-controls .ctrl-btn-lg {
+    background: #38BDF8;
+    color: #0C2A3A;
+    border: none;
+    padding: 16px;
+    font-size: 22px;
+    font-weight: 800;
+    cursor: pointer;
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+  }
+  .water-controls .ctrl-btn-lg.minus {
+    background: rgba(255,255,255,0.1);
+    color: #E0F2FE;
+    border: 1px solid rgba(56,189,248,0.3);
+  }
+  .water-controls .ctrl-btn-lg:hover { filter: brightness(1.1); }
+  .water-controls .ctrl-btn-lg:disabled { opacity: 0.35; cursor: not-allowed; }
+  .water-count-center {
+    text-align: center;
+  }
+  .water-count-center .wc-num {
+    font-family: 'Anton', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    color: #38BDF8;
+  }
+  .water-count-center .wc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(224,242,254,0.6);
+    margin-top: 4px;
+  }
+  .glass-size-picker {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(224,242,254,0.2);
+  }
+  .glass-size-picker .gs-label {
+    width: 100%;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(224,242,254,0.55);
+    margin-bottom: 8px;
+  }
+  .gs-btn {
+    background: rgba(255,255,255,0.08);
+    color: #E0F2FE;
+    border: 1px solid rgba(56,189,248,0.25);
+    padding: 8px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .gs-btn.active { background: #38BDF8; color: #0C2A3A; border-color: #38BDF8; }
+
+  /* MISSED GYM TOGGLE */
+  .missed-gym-card {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 20px 22px;
+    margin: 24px 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+  .missed-gym-card .mg-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .missed-gym-card .mg-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .mg-btn {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 10px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .mg-btn.active {
+    background: var(--danger);
+    color: var(--paper);
+    border-color: var(--danger);
+  }
+
+  /* ADAPTIVE SUGGESTION BANNER */
+  .adaptive-banner {
+    background: #FEF3C7;
+    border: 1px solid var(--accent);
+    border-left: 6px solid var(--accent);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: center;
+  }
+  .adaptive-banner .ab-icon { font-size: 24px; }
+  .adaptive-banner .ab-body { line-height: 1.4; }
+  .adaptive-banner .ab-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+  .adaptive-banner .ab-text {
+    font-size: 13px;
+    margin-top: 3px;
+    color: var(--ink);
+  }
+  .adaptive-banner button {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 8px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+  }
+
+  /* MOBILE OVERRIDES — STRICT VERTICAL-ONLY */
+  @media (max-width: 720px) {
+    .week-dash-grid { grid-template-columns: repeat(2, 1fr); }
+    .water-stats { grid-template-columns: 1fr; gap: 8px; }
+    .water-stat { display: flex; justify-content: space-between; align-items: baseline; text-align: left; padding: 10px 14px; }
+    .water-stat .ws-label { margin-bottom: 0; }
+    .water-controls { grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .day-actions { grid-template-columns: 1fr; }
+    .reminder-banner { grid-template-columns: auto 1fr; }
+    .reminder-banner .r-time { grid-column: 1 / -1; text-align: left; }
+    .missed-gym-card { grid-template-columns: 1fr; }
+    .adaptive-banner { grid-template-columns: 1fr; }
+    .adaptive-banner button { width: 100%; padding: 12px; }
+    .food-grid { grid-template-columns: 1fr; }
+    .ex-input-row, .cardio-input-row { grid-template-columns: 1fr 1fr; }
+    .ex-input-row .btn, .cardio-input-row .btn { grid-column: 1 / -1; }
+    .prog-table-wrap, .phase-cardio-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .prog-table-wrap::after, .phase-cardio-table-wrap::after {
+      content: '← swipe →';
+      display: block;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      padding: 6px 0;
+      letter-spacing: 0.12em;
+    }
+    .panel { padding: 32px 0; }
+    .hero { padding: 20px 0 28px; }
+    .panel-header { gap: 16px; padding-bottom: 18px; margin-bottom: 28px; }
+    .sub-divider { margin: 40px 0 18px; }
+    /* Wrap iPhone notch */
+    .strip-inner, nav.tabs .wrap, header.hero .wrap, .panel .wrap { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+  }
+
+  /* ============ /V4 ADDITIONS ============ */
+
   /* MACHINE GUIDE */
   .machine-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
   .machine-card { background: var(--paper); padding: 28px; scroll-margin-top: 80px; }
@@ -1108,12 +1702,143 @@
 
 <!-- ========== TRACKER ========== -->
 <section class="panel" id="tracker">
-  <div class="panel-header">
-    <h2 class="panel-title">Numbers <span class="accent">don't lie.</span></h2>
-    <p class="panel-intro">Log food, log lifts, log weight. The tracker saves everything in your browser — your data stays with you. Three sections below: today's calories, today's gym session, weekly weigh-in.</p>
+
+  <!-- Motivational quote · rotates per session -->
+  <div class="quote-banner" id="quoteBanner" onclick="rotateQuote()">
+    <span class="q-icon">⚡</span>
+    <span class="q-text" id="quoteText">Discipline equals freedom.<span class="q-author">— Jocko Willink</span></span>
   </div>
 
-  <!-- FOOD LOGGER -->
+  <div class="panel-header">
+    <h2 class="panel-title">Numbers <span class="accent">don't lie.</span></h2>
+    <p class="panel-intro">Log food, log water, log lifts, log weight. The app saves everything locally and updates your weekly progress automatically. Tap any food <strong>+</strong>/<strong>−</strong> to adjust counts.</p>
+  </div>
+
+  <!-- Live reminder banner -->
+  <div class="reminder-banner" id="reminderBanner">
+    <div class="r-icon" id="reminderIcon">⏰</div>
+    <div class="r-content">
+      <div class="r-label" id="reminderLabel">Right now</div>
+      <div class="r-title" id="reminderTitle">Loading…</div>
+      <div class="r-sub" id="reminderSub"></div>
+    </div>
+    <div class="r-time" id="reminderTime">—</div>
+  </div>
+
+  <!-- Adaptive suggestion (hidden by default, shown when triggered) -->
+  <div class="adaptive-banner" id="adaptiveBanner" style="display:none;">
+    <div class="ab-icon">📊</div>
+    <div class="ab-body">
+      <div class="ab-label">App suggestion</div>
+      <div class="ab-text" id="adaptiveText">—</div>
+    </div>
+    <button onclick="dismissAdaptive()">Got it</button>
+  </div>
+
+  <!-- WEEKLY PROGRESS DASHBOARD -->
+  <div class="sub-divider">
+    <h3>This week <span class="accent">at a glance.</span></h3>
+    <span class="sub-tag" id="weekDashTag">Week —</span>
+  </div>
+
+  <div class="week-dash" id="weekDash">
+    <div class="week-dash-head">
+      <div class="wd-title">Hit rate</div>
+      <div class="wd-dates" id="weekDashDates">—</div>
+    </div>
+    <div class="week-dash-grid">
+      <div class="wd-metric">
+        <div class="wd-icon">🍽️</div>
+        <div class="wd-label">Diet</div>
+        <div class="wd-val" id="wdDiet">—<span class="unit-sm">/7</span></div>
+        <div class="wd-sub" id="wdDietSub">days on target</div>
+      </div>
+      <div class="wd-metric">
+        <div class="wd-icon">💧</div>
+        <div class="wd-label">Water</div>
+        <div class="wd-val" id="wdWater">—<span class="unit-sm">/7</span></div>
+        <div class="wd-sub" id="wdWaterSub">days hit goal</div>
+      </div>
+      <div class="wd-metric">
+        <div class="wd-icon">💪</div>
+        <div class="wd-label">Gym</div>
+        <div class="wd-val" id="wdGym">—<span class="unit-sm">/6</span></div>
+        <div class="wd-sub" id="wdGymSub">sessions logged</div>
+      </div>
+      <div class="wd-metric">
+        <div class="wd-icon">⚖️</div>
+        <div class="wd-label">Weight</div>
+        <div class="wd-val" id="wdWeight">—</div>
+        <div class="wd-sub" id="wdWeightSub">vs last week</div>
+      </div>
+    </div>
+    <div class="wd-past" id="wdPastBlock">
+      <div class="wd-past-title">Last 4 weeks</div>
+      <div class="wd-past-rows" id="wdPastRows">
+        <div class="wd-past-row" style="grid-template-columns:1fr; text-align:center; color:rgba(244,236,219,0.5); font-style:italic;">No history yet — keep logging</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WATER TRACKER -->
+  <div class="sub-divider">
+    <h3>Water <span class="accent">today.</span></h3>
+    <span class="sub-tag">Goal · 3,000 ml</span>
+  </div>
+
+  <div class="water-card">
+    <div class="water-head">
+      <div class="water-title"><span class="drop">💧</span> Hydration</div>
+      <div class="water-date" id="waterDate">—</div>
+    </div>
+
+    <div class="water-stats">
+      <div class="water-stat" id="waterDrunkStat">
+        <div class="ws-label">Drunk</div>
+        <div class="ws-val"><span id="waterDrunk">0</span><span class="unit-sm">ml</span></div>
+      </div>
+      <div class="water-stat" id="waterLeftStat">
+        <div class="ws-label">Remaining</div>
+        <div class="ws-val"><span id="waterLeft">3,000</span><span class="unit-sm">ml</span></div>
+      </div>
+      <div class="water-stat" id="waterPctStat">
+        <div class="ws-label">Of goal</div>
+        <div class="ws-val"><span id="waterPct">0</span><span class="unit-sm">%</span></div>
+      </div>
+    </div>
+
+    <div class="water-glass-bar">
+      <div class="water-glass-fill" id="waterFill"></div>
+    </div>
+
+    <div class="water-controls">
+      <button class="ctrl-btn-lg minus" onclick="addWater(-1)" aria-label="Remove one glass">−</button>
+      <div class="water-count-center">
+        <div class="wc-num" id="waterGlasses">0</div>
+        <div class="wc-label" id="waterGlassesLabel">glasses · 250 ml each</div>
+      </div>
+      <button class="ctrl-btn-lg" onclick="addWater(1)" aria-label="Add one glass">+</button>
+    </div>
+
+    <div class="glass-size-picker">
+      <span class="gs-label">Glass size</span>
+      <button class="gs-btn" data-size="200" onclick="setGlassSize(200)">200 ml</button>
+      <button class="gs-btn active" data-size="250" onclick="setGlassSize(250)">250 ml</button>
+      <button class="gs-btn" data-size="300" onclick="setGlassSize(300)">300 ml</button>
+      <button class="gs-btn" data-size="500" onclick="setGlassSize(500)">500 ml (bottle)</button>
+    </div>
+  </div>
+
+  <!-- MISSED GYM TOGGLE -->
+  <div class="missed-gym-card">
+    <div>
+      <div class="mg-title">Missed today's gym?</div>
+      <div class="mg-sub">Mark this and the app will adjust tomorrow's calorie target by −150 kcal to compensate.</div>
+    </div>
+    <button class="mg-btn" id="missedGymBtn" onclick="toggleMissedGym()">Tap to mark missed</button>
+  </div>
+
+  <!-- FOOD LOGGER (rebuilt with counters) -->
   <div class="sub-divider">
     <h3>Calorie <span class="accent">calculator.</span></h3>
     <span class="sub-tag">Today · <span id="todayDateDisplay"></span></span>
@@ -1122,7 +1847,7 @@
   <div class="calorie-dashboard">
     <div class="cal-big">
       <div class="label">Calories today</div>
-      <div class="big-num"><span id="calToday">0</span><span class="of">/ 1,900</span><span class="unit">kcal</span></div>
+      <div class="big-num"><span id="calToday">0</span><span class="of" id="calTargetDisplay">/ 1,900</span><span class="unit">kcal</span></div>
       <div class="cal-bar"><div class="cal-bar-fill" id="calBar"></div></div>
       <div class="cal-status" id="calStatus">Start logging your first meal.</div>
     </div>
@@ -1140,11 +1865,12 @@
   </div>
 
   <div class="food-toolbar">
-    <button class="food-cat-btn active" data-cat="all">All items</button>
-    <button class="food-cat-btn" data-cat="protein">Protein</button>
-    <button class="food-cat-btn" data-cat="carb">Carbs · Bread · Fruit</button>
-    <button class="food-cat-btn" data-cat="drink">Drinks · Chai</button>
-    <button class="food-cat-btn" data-cat="cheat">Cheat-day items</button>
+    <button class="food-cat-btn active" data-cat="all">🍽️ All</button>
+    <button class="food-cat-btn" data-cat="protein">🥚 Protein</button>
+    <button class="food-cat-btn" data-cat="carb">🍞 Carbs · Fruit</button>
+    <button class="food-cat-btn" data-cat="drink">☕ Drinks</button>
+    <button class="food-cat-btn" data-cat="supp">💊 Supplements</button>
+    <button class="food-cat-btn" data-cat="cheat">🍕 Cheat-day</button>
   </div>
 
   <div class="food-grid" id="foodGrid"><!-- JS fills this --></div>
@@ -1159,10 +1885,14 @@
       </div>
     </div>
     <ul class="food-log-items" id="foodLogList">
-      <li class="food-log-empty">No food logged yet today. Tap the <strong>+</strong> on any item above.</li>
+      <li class="food-log-empty">No food logged yet today. Tap <strong>+</strong> on any item above.</li>
     </ul>
-    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-      <button class="btn btn-ghost btn-sm" onclick="clearTodayFood()">Clear today</button>
+
+    <div class="day-actions">
+      <button class="btn-done" onclick="finalizeDay()">✓ Done for today</button>
+      <button class="btn-reset" onclick="resetDayToZero()">↺ Reset to zero</button>
+    </div>
+    <div style="margin-top:14px;">
       <button class="btn btn-ghost btn-sm" onclick="toggleFoodHistory()">View past days</button>
     </div>
     <div id="foodHistory" style="display:none; margin-top:18px; padding-top:18px; border-top:1px dashed var(--ink);"></div>
@@ -1341,56 +2071,122 @@ if ('serviceWorker' in navigator) {
 }
 
 /* ============================================================
-   DATA: FOOD DATABASE
+   DATA: FOOD DATABASE — with icons + adjustable quantities
+   adjustable: true means user can override the default qty
+   defaultQty + qtyUnit work together for scaling kcal/protein
    ============================================================ */
 const FOOD_DB = [
   // PROTEIN
-  { id: 'egg-whole',     name: 'Whole egg',           unit: '1 egg',          kcal: 78,  protein: 6,    cat: 'protein' },
-  { id: 'egg-white',     name: 'Egg white',           unit: '1 white',        kcal: 17,  protein: 3.6,  cat: 'protein' },
-  { id: 'egg-boiled',    name: 'Boiled egg',          unit: '1 egg',          kcal: 78,  protein: 6,    cat: 'protein' },
-  { id: 'chicken-150',   name: 'Chicken breast (air-fried, 150g)', unit: '1 piece', kcal: 250, protein: 45, cat: 'protein' },
-  { id: 'chicken-100',   name: 'Chicken breast (100g)', unit: '100g', kcal: 165, protein: 31, cat: 'protein' },
-  { id: 'milk-cup',      name: 'Whole milk',          unit: '250 ml cup',     kcal: 160, protein: 8,    cat: 'protein' },
-  { id: 'milk-half',     name: 'Whole milk',          unit: '125 ml',         kcal: 80,  protein: 4,    cat: 'protein' },
-  { id: 'yogurt-plain',  name: 'Plain dahi',          unit: '250 g',          kcal: 150, protein: 9,    cat: 'protein' },
-  { id: 'yogurt-strain', name: 'Strained dahi (Greek-style)', unit: '250 g', kcal: 170, protein: 16, cat: 'protein' },
-  { id: 'almonds',       name: 'Almonds (10 pieces)', unit: '10 pcs (~12g)',  kcal: 70,  protein: 2.5,  cat: 'protein' },
+  { id: 'egg-whole',     name: 'Whole egg',           icon: '🥚', unit: '1 egg',          kcal: 78,  protein: 6,    cat: 'protein' },
+  { id: 'egg-white',     name: 'Egg white',           icon: '🥚', unit: '1 white',        kcal: 17,  protein: 3.6,  cat: 'protein' },
+  { id: 'egg-boiled',    name: 'Boiled egg',          icon: '🥚', unit: '1 egg',          kcal: 78,  protein: 6,    cat: 'protein' },
+  { id: 'chicken',       name: 'Chicken breast',      icon: '🍗', unit: 'grams (cooked)', kcal: 165, protein: 31,   cat: 'protein', adjustable: true, defaultQty: 100, qtyUnit: 'g', qtyMin: 50, qtyMax: 300, qtyStep: 10 },
+  { id: 'milk',          name: 'Whole milk',          icon: '🥛', unit: 'millilitres',    kcal: 64,  protein: 3.2,  cat: 'protein', adjustable: true, defaultQty: 100, qtyUnit: 'ml', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'yogurt-plain',  name: 'Plain dahi',          icon: '🥣', unit: 'grams',          kcal: 60,  protein: 3.5,  cat: 'protein', adjustable: true, defaultQty: 100, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'yogurt-strain', name: 'Strained dahi (Greek-style)', icon: '🥣', unit: 'grams', kcal: 68,  protein: 6.5,  cat: 'protein', adjustable: true, defaultQty: 100, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'almonds',       name: 'Almonds',             icon: '🌰', unit: 'pieces',         kcal: 7,   protein: 0.25, cat: 'protein', adjustable: true, defaultQty: 10, qtyUnit: 'pcs', qtyMin: 5, qtyMax: 50, qtyStep: 5 },
 
   // CARBS + BREAD + FRUIT
-  { id: 'brown-bread',   name: 'Brown bread (1 slice)', unit: '1 slice',     kcal: 80,  protein: 3,    cat: 'carb' },
-  { id: 'multigrain',    name: 'Multigrain bread (1 slice)', unit: '1 slice', kcal: 90, protein: 4,    cat: 'carb' },
-  { id: 'banana',        name: 'Banana (medium)',     unit: '1 medium',       kcal: 105, protein: 1.3,  cat: 'carb' },
-  { id: 'apple',         name: 'Apple (small)',       unit: '1 small',        kcal: 80,  protein: 0.4,  cat: 'carb' },
-  { id: 'mango-small',   name: 'Mango (small)',       unit: '1 small',        kcal: 135, protein: 1.4,  cat: 'carb' },
-  { id: 'date',          name: 'Date (khajoor)',      unit: '1 piece',        kcal: 20,  protein: 0.2,  cat: 'carb' },
-  { id: 'tomato-onion',  name: 'Tomato + onion sauté', unit: 'small portion', kcal: 30,  protein: 1,    cat: 'carb' },
-  { id: 'cucumber-salad', name: 'Cucumber-tomato salad', unit: '1 bowl',     kcal: 30,  protein: 1,    cat: 'carb' },
-  { id: 'olive-oil-tsp', name: 'Olive oil (1 tsp)',   unit: '1 tsp',          kcal: 40,  protein: 0,    cat: 'carb' },
-  { id: 'brown-rice',    name: 'Brown rice (cooked)', unit: '1 cup',          kcal: 220, protein: 5,    cat: 'carb' },
+  { id: 'brown-bread',   name: 'Brown bread',         icon: '🍞', unit: 'slice',          kcal: 80,  protein: 3,    cat: 'carb' },
+  { id: 'multigrain',    name: 'Multigrain bread',    icon: '🍞', unit: 'slice',          kcal: 90,  protein: 4,    cat: 'carb' },
+  { id: 'banana',        name: 'Banana',              icon: '🍌', unit: '1 medium',       kcal: 105, protein: 1.3,  cat: 'carb' },
+  { id: 'apple',         name: 'Apple',               icon: '🍎', unit: '1 small',        kcal: 80,  protein: 0.4,  cat: 'carb' },
+  { id: 'mango-small',   name: 'Mango',               icon: '🥭', unit: '1 small',        kcal: 135, protein: 1.4,  cat: 'carb' },
+  { id: 'date',          name: 'Date (khajoor)',      icon: '🌴', unit: '1 piece',        kcal: 20,  protein: 0.2,  cat: 'carb' },
+  { id: 'tomato-onion',  name: 'Tomato + onion sauté', icon: '🍅', unit: 'small portion', kcal: 30,  protein: 1,    cat: 'carb' },
+  { id: 'cucumber-salad', name: 'Cucumber-tomato salad', icon: '🥗', unit: '1 bowl',     kcal: 30,  protein: 1,    cat: 'carb' },
+  { id: 'olive-oil-tsp', name: 'Olive oil',           icon: '🫒', unit: '1 tsp',          kcal: 40,  protein: 0,    cat: 'carb' },
+  { id: 'brown-rice',    name: 'Brown rice (cooked)', icon: '🍚', unit: '1 cup',          kcal: 220, protein: 5,    cat: 'carb' },
+  { id: 'potato-boiled', name: 'Boiled potato',       icon: '🥔', unit: '1 medium',       kcal: 130, protein: 3,    cat: 'carb' },
 
   // DRINKS / CHAI
-  { id: 'chai-sugar',    name: 'Chai with milk + 1 tsp sugar', unit: '1 cup', kcal: 70,  protein: 3,    cat: 'drink' },
-  { id: 'chai-nosug',    name: 'Chai with milk · no sugar', unit: '1 cup',    kcal: 50,  protein: 3,    cat: 'drink' },
-  { id: 'kahwa',         name: 'Kahwa / herbal tea (spices)', unit: '1 cup',  kcal: 30,  protein: 0,    cat: 'drink' },
-  { id: 'black-coffee',  name: 'Black coffee (no sugar)', unit: '1 cup',      kcal: 5,   protein: 0,    cat: 'drink' },
-  { id: 'water',         name: 'Water (250 ml)',      unit: '250 ml',         kcal: 0,   protein: 0,    cat: 'drink' },
-  { id: 'diet-soda',     name: 'Diet Pepsi/Coke (350 ml)', unit: '1 can',     kcal: 0,   protein: 0,    cat: 'drink' },
-  { id: 'lemon-water',   name: 'Lemon water',         unit: '1 glass',        kcal: 10,  protein: 0,    cat: 'drink' },
-  { id: 'shakar-tsp',    name: 'Shakar / sugar (1 tsp added)', unit: '1 tsp', kcal: 16,  protein: 0,    cat: 'drink' },
+  { id: 'chai-sugar',    name: 'Chai with milk + 1 tsp sugar', icon: '☕', unit: '1 cup', kcal: 70,  protein: 3,    cat: 'drink' },
+  { id: 'chai-nosug',    name: 'Chai with milk · no sugar', icon: '☕', unit: '1 cup',    kcal: 50,  protein: 3,    cat: 'drink' },
+  { id: 'kahwa',         name: 'Kahwa / herbal tea (spices)', icon: '🍵', unit: '1 cup',  kcal: 30,  protein: 0,    cat: 'drink' },
+  { id: 'black-coffee',  name: 'Black coffee (no sugar)', icon: '☕', unit: '1 cup',      kcal: 5,   protein: 0,    cat: 'drink' },
+  { id: 'diet-soda',     name: 'Diet Pepsi/Coke',     icon: '🥤', unit: '1 can (350ml)', kcal: 0,   protein: 0,    cat: 'drink' },
+  { id: 'lemon-water',   name: 'Lemon water',         icon: '🍋', unit: '1 glass',        kcal: 10,  protein: 0,    cat: 'drink' },
+  { id: 'shakar-tsp',    name: 'Shakar / sugar (added)', icon: '🍯', unit: '1 tsp',      kcal: 16,  protein: 0,    cat: 'drink' },
+
+  // SUPPLEMENTS · for when you start whey
+  { id: 'whey-scoop',    name: 'Whey protein',        icon: '💪', unit: 'grams (scoop)',  kcal: 4,   protein: 0.8,  cat: 'supp', adjustable: true, defaultQty: 30, qtyUnit: 'g', qtyMin: 15, qtyMax: 60, qtyStep: 5, note: 'When you\'re ready · ~120 kcal / 24 g protein per 30 g scoop' },
+  { id: 'whey-shake',    name: 'Whey shake (water)',  icon: '🥤', unit: '1 shake (30g scoop)', kcal: 120, protein: 24, cat: 'supp' },
+  { id: 'whey-milk',     name: 'Whey shake (milk)',   icon: '🥤', unit: '1 shake + 250ml milk', kcal: 280, protein: 32, cat: 'supp' },
+  { id: 'multivit',      name: 'Multivitamin',        icon: '💊', unit: '1 tablet',       kcal: 0,   protein: 0,    cat: 'supp' },
+  { id: 'fish-oil',      name: 'Fish oil / omega-3',  icon: '💊', unit: '1 capsule',      kcal: 10,  protein: 0,    cat: 'supp' },
+  { id: 'creatine',      name: 'Creatine monohydrate', icon: '💊', unit: '5 g',           kcal: 0,   protein: 0,    cat: 'supp' },
 
   // CHEAT DAY
-  { id: 'kfc-burger',    name: 'KFC Zinger burger',   unit: '1 burger',       kcal: 450, protein: 22,   cat: 'cheat' },
-  { id: 'kfc-chicken',   name: 'KFC fried chicken (1 piece)', unit: '1 pc',  kcal: 320, protein: 22,   cat: 'cheat' },
-  { id: 'pizza-slice',   name: 'Pizza slice (medium)', unit: '1 slice',       kcal: 285, protein: 12,   cat: 'cheat' },
-  { id: 'beef-steak',    name: 'Beef steak (~200g)',  unit: '1 steak',        kcal: 450, protein: 50,   cat: 'cheat' },
-  { id: 'baked-potato',  name: 'Baked potato (medium)', unit: '1 medium',     kcal: 160, protein: 4,    cat: 'cheat' },
-  { id: 'roasted-veg',   name: 'Roasted vegetables',  unit: '1 cup',          kcal: 100, protein: 3,    cat: 'cheat' },
-  { id: 'roll-medium',   name: 'Chicken/beef roll (medium)', unit: '1 roll',  kcal: 350, protein: 18,   cat: 'cheat' },
-  { id: 'biryani-plate', name: 'Biryani (1 plate)',   unit: '1 plate',        kcal: 600, protein: 25,   cat: 'cheat' },
-  { id: 'fries-med',     name: 'French fries (medium)', unit: '1 medium',     kcal: 365, protein: 4,    cat: 'cheat' },
-  { id: 'reg-soda',      name: 'Regular Pepsi/Coke (350 ml)', unit: '1 can', kcal: 140, protein: 0,    cat: 'cheat' },
-  { id: 'icecream',      name: 'Ice cream scoop',     unit: '1 scoop',        kcal: 140, protein: 2,    cat: 'cheat' },
+  { id: 'kfc-burger',    name: 'KFC Zinger burger',   icon: '🍔', unit: '1 burger',       kcal: 450, protein: 22,   cat: 'cheat' },
+  { id: 'kfc-chicken',   name: 'KFC fried chicken',   icon: '🍗', unit: '1 piece',        kcal: 320, protein: 22,   cat: 'cheat' },
+  { id: 'pizza-slice',   name: 'Pizza slice (medium)', icon: '🍕', unit: '1 slice',       kcal: 285, protein: 12,   cat: 'cheat' },
+  { id: 'beef-steak',    name: 'Beef steak (~200g)',  icon: '🥩', unit: '1 steak',        kcal: 450, protein: 50,   cat: 'cheat' },
+  { id: 'baked-potato',  name: 'Baked potato (medium)', icon: '🥔', unit: '1 medium',     kcal: 160, protein: 4,    cat: 'cheat' },
+  { id: 'roasted-veg',   name: 'Roasted vegetables',  icon: '🥦', unit: '1 cup',          kcal: 100, protein: 3,    cat: 'cheat' },
+  { id: 'roll-medium',   name: 'Chicken/beef roll',   icon: '🌯', unit: '1 medium roll',  kcal: 350, protein: 18,   cat: 'cheat' },
+  { id: 'biryani-plate', name: 'Biryani',             icon: '🍛', unit: '1 plate',        kcal: 600, protein: 25,   cat: 'cheat' },
+  { id: 'fries-med',     name: 'French fries',        icon: '🍟', unit: '1 medium',       kcal: 365, protein: 4,    cat: 'cheat' },
+  { id: 'reg-soda',      name: 'Regular Pepsi/Coke',  icon: '🥤', unit: '1 can (350ml)',  kcal: 140, protein: 0,    cat: 'cheat' },
+  { id: 'icecream',      name: 'Ice cream scoop',     icon: '🍨', unit: '1 scoop',        kcal: 140, protein: 2,    cat: 'cheat' },
 ];
+
+/* ============================================================
+   DATA: MOTIVATIONAL QUOTES
+   ============================================================ */
+const QUOTES = [
+  { t: 'Discipline equals freedom.', a: 'Jocko Willink' },
+  { t: 'You don\'t rise to the level of your goals. You fall to the level of your systems.', a: 'James Clear' },
+  { t: 'Either you run the day, or the day runs you.', a: 'Jim Rohn' },
+  { t: 'The body achieves what the mind believes.', a: 'Napoleon Hill' },
+  { t: 'Suffer the pain of discipline, or suffer the pain of regret.', a: 'Jim Rohn' },
+  { t: 'It\'s not the load that breaks you down. It\'s the way you carry it.', a: 'Lou Holtz' },
+  { t: 'Take care of your body. It\'s the only place you have to live.', a: 'Jim Rohn' },
+  { t: 'A year from now you will wish you had started today.', a: 'Karen Lamb' },
+  { t: 'Small daily improvements over time lead to stunning results.', a: 'Robin Sharma' },
+  { t: 'Don\'t count the days. Make the days count.', a: 'Muhammad Ali' },
+  { t: 'Success is the sum of small efforts repeated day in and day out.', a: 'Robert Collier' },
+  { t: 'The pain you feel today will be the strength you feel tomorrow.', a: 'Arnold Schwarzenegger' },
+  { t: 'You miss 100% of the lifts you don\'t do.', a: 'Anonymous' },
+  { t: 'Wealth lost, something lost. Health lost, everything lost.', a: 'Arabic proverb' },
+  { t: 'Train insane or remain the same.', a: 'Anonymous' },
+  { t: 'A man\'s health can be judged by which he takes two at a time — pills or stairs.', a: 'Joan Welsh' },
+  { t: 'Every workout counts. Every meal counts. Every set counts.', a: 'Coach' },
+  { t: 'Your only competition is who you were yesterday.', a: 'Anonymous' },
+  { t: 'Sweat is just fat crying.', a: 'Anonymous' },
+  { t: 'The hardest lift of all is lifting your butt off the couch.', a: 'Anonymous' },
+  { t: 'Whether you think you can or you think you can\'t, you\'re right.', a: 'Henry Ford' },
+  { t: 'The only bad workout is the one you didn\'t do.', a: 'Anonymous' },
+  { t: 'Energy and persistence conquer all things.', a: 'Benjamin Franklin' },
+  { t: 'Patience and consistency beat intensity and motivation every time.', a: 'Coach' },
+  { t: 'Strength does not come from the body. It comes from the will.', a: 'Mahatma Gandhi' },
+];
+
+/* ============================================================
+   DATA: TIME-BASED REMINDERS (Pakistan time)
+   ============================================================ */
+const REMINDERS = [
+  { from: 16, to: 16.5, icon: '☀️', label: 'Wake up window', title: 'Hydrate first', sub: 'One full glass of water, then your tea ritual.' },
+  { from: 16.5, to: 19, icon: '🍳', label: 'Meal 01', title: 'Eggs + brown bread', sub: '3 whole eggs, 2 whites, 2 slices bread, tomato + onion.' },
+  { from: 19, to: 20.5, icon: '💧', label: 'Hydration check', title: 'You should be at ~1 L', sub: 'Don\'t let water slip — log a glass.' },
+  { from: 20.5, to: 23, icon: '🥣', label: 'Meal 02', title: 'Yogurt bowl', sub: '250 g strained dahi + 1 fruit + 10 almonds.' },
+  { from: 23, to: 24, icon: '🍗', label: 'Pre-gym prep', title: 'Get your meal 3 ready', sub: 'Chicken breast (or 4 eggs) + bread + salad + chai.' },
+  { from: 0, to: 1.5, icon: '🍴', label: 'Meal 03', title: 'Dinner before gym', sub: 'Eat by 12:30 AM. Food settled before lifting.' },
+  { from: 1.5, to: 2, icon: '🎒', label: 'Gym window', title: 'Pack your bag', sub: 'Water bottle, towel, phone for logging sets.' },
+  { from: 2, to: 3, icon: '💪', label: 'Train', title: 'Gym time. Show up.', sub: 'Log every set in the exercise tracker.' },
+  { from: 3, to: 4, icon: '🥚', label: 'Post-workout', title: 'Recovery meal', sub: '3 boiled eggs + 250 ml milk + 1 date.' },
+  { from: 4, to: 5, icon: '😴', label: 'Wind down', title: 'Sleep — your real lift', sub: 'Blackout curtains, phone away, target 7 hrs.' },
+  { from: 5, to: 16, icon: '💤', label: 'Sleep window', title: 'Rest — body is rebuilding', sub: 'Daytime sleep is fragile. Protect it.' },
+];
+
+/* ============================================================
+   CONSTANTS · targets
+   ============================================================ */
+let KCAL_TARGET = 1900;
+const KCAL_TARGET_DEFAULT = 1900;
+const PROTEIN_TARGET = 130;
+const MAINTENANCE = 2400;
+const WATER_GOAL_ML = 3000;
+let CURRENT_GLASS_SIZE = 250;
 
 /* ============================================================
    DATA: EXERCISE LIST (for logger dropdown)
@@ -1623,26 +2419,111 @@ updateCountdown();
 document.getElementById('todayDateDisplay').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'short' });
 
 /* ============================================================
-   FOOD LOGGER
+   FOOD LOGGER v2 · counter + custom quantity model
+   Storage: op75_food_DATE = { foodId: { count: N, qty?: M } }
    ============================================================ */
-const KCAL_TARGET = 1900;
-const PROTEIN_TARGET = 130;
-const MAINTENANCE = 2400;
 
 let currentCat = 'all';
 
+function getFoodLog(dateKey) {
+  return safeGet('op75_food_' + dateKey) || {};
+}
+function setFoodLog(dateKey, log) {
+  safeSet('op75_food_' + dateKey, log);
+}
+
+function computeFoodTotals(log) {
+  let kcal = 0, protein = 0, count = 0;
+  for (const [foodId, entry] of Object.entries(log)) {
+    const food = FOOD_DB.find(f => f.id === foodId);
+    if (!food || !entry.count) continue;
+    const qty = entry.qty || food.defaultQty || 1;
+    const scale = food.adjustable ? qty / food.defaultQty : 1;
+    kcal += food.kcal * scale * entry.count;
+    protein += food.protein * scale * entry.count;
+    count += entry.count;
+  }
+  return { kcal: Math.round(kcal), protein: Math.round(protein * 10) / 10, count };
+}
+
+function adjustCount(foodId, delta) {
+  const key = todayKey();
+  const log = getFoodLog(key);
+  const food = FOOD_DB.find(f => f.id === foodId);
+  if (!log[foodId]) log[foodId] = { count: 0 };
+  if (food.adjustable && !log[foodId].qty) log[foodId].qty = food.defaultQty;
+  log[foodId].count = Math.max(0, (log[foodId].count || 0) + delta);
+  if (log[foodId].count === 0) delete log[foodId];
+  setFoodLog(key, log);
+  renderFoodGrid();
+  renderFoodLog();
+}
+
+function setCustomQty(foodId, qty) {
+  const key = todayKey();
+  const log = getFoodLog(key);
+  const food = FOOD_DB.find(f => f.id === foodId);
+  if (!food || !food.adjustable) return;
+  if (!log[foodId]) log[foodId] = { count: 1 };
+  log[foodId].qty = Math.max(food.qtyMin, Math.min(food.qtyMax, qty));
+  setFoodLog(key, log);
+  renderFoodGrid();
+  renderFoodLog();
+}
+
 function renderFoodGrid() {
   const grid = document.getElementById('foodGrid');
+  const log = getFoodLog(todayKey());
   const items = FOOD_DB.filter(f => currentCat === 'all' || f.cat === currentCat);
-  grid.innerHTML = items.map(f => `
-    <div class="food-item">
-      <div>
-        <div class="f-name ${f.cat==='cheat'?'f-cheat':''}">${f.name}</div>
-        <div class="f-info">${f.unit} · ${f.kcal} kcal · <span class="protein">${f.protein}g protein</span></div>
+  grid.innerHTML = items.map(f => {
+    const entry = log[f.id] || { count: 0 };
+    const count = entry.count || 0;
+    const qty = entry.qty || f.defaultQty || null;
+    const scale = f.adjustable && qty ? qty / f.defaultQty : 1;
+    const dispKcal = Math.round(f.kcal * scale);
+    const dispPro = Math.round(f.protein * scale * 10) / 10;
+    const qtyDisplay = f.adjustable
+      ? `${qty} ${f.qtyUnit} · ${dispKcal} kcal · <span class="pro">${dispPro}g protein</span>`
+      : `${f.unit} · ${dispKcal} kcal · <span class="pro">${dispPro}g protein</span>`;
+    const qtyEditor = f.adjustable ? `
+      <div class="f-qty-edit" id="qty-edit-${f.id}" style="display:none;">
+        <label>Quantity (${f.qtyUnit}):</label>
+        <input type="number" id="qty-input-${f.id}" value="${qty}" min="${f.qtyMin}" max="${f.qtyMax}" step="${f.qtyStep}">
+        <button onclick="applyCustomQty('${f.id}')">Set</button>
       </div>
-      <button class="food-add-btn" onclick="addFood('${f.id}')" aria-label="Add ${f.name}">+</button>
-    </div>
-  `).join('');
+    ` : '';
+    const editToggle = f.adjustable ? `<button class="f-qty-toggle" onclick="toggleQtyEdit('${f.id}')">edit qty</button>` : '';
+    return `
+      <div class="food-item-v2 ${count > 0 ? 'has-count' : ''}">
+        <div class="f-icon">${f.icon || '🍽️'}</div>
+        <div class="f-body">
+          <div class="f-name ${f.cat === 'cheat' ? 'cheat' : ''}">${f.name}</div>
+          <div class="f-info">${qtyDisplay}${editToggle}</div>
+        </div>
+        <div class="f-controls">
+          <button class="ctrl-btn minus" onclick="adjustCount('${f.id}', -1)" ${count === 0 ? 'disabled' : ''} aria-label="Subtract">−</button>
+          <span class="count-badge ${count === 0 ? 'zero' : ''}">${count}</span>
+          <button class="ctrl-btn" onclick="adjustCount('${f.id}', 1)" aria-label="Add">+</button>
+        </div>
+        ${qtyEditor}
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleQtyEdit(foodId) {
+  const el = document.getElementById('qty-edit-' + foodId);
+  if (!el) return;
+  el.style.display = el.style.display === 'none' ? 'flex' : 'none';
+}
+
+function applyCustomQty(foodId) {
+  const inp = document.getElementById('qty-input-' + foodId);
+  if (!inp) return;
+  const val = parseFloat(inp.value);
+  if (isNaN(val)) return;
+  setCustomQty(foodId, val);
+  toggleQtyEdit(foodId);
 }
 
 document.querySelectorAll('.food-cat-btn').forEach(btn => {
@@ -1654,94 +2535,101 @@ document.querySelectorAll('.food-cat-btn').forEach(btn => {
   });
 });
 
-function addFood(foodId) {
-  const food = FOOD_DB.find(f => f.id === foodId);
-  if (!food) return;
-  const key = 'op75_food_' + todayKey();
-  const log = safeGet(key) || [];
-  log.push({ ts: Date.now(), foodId, name: food.name, kcal: food.kcal, protein: food.protein, unit: food.unit });
-  safeSet(key, log);
+function resetDayToZero() {
+  if (!confirm('Reset all of today\'s food log to zero?')) return;
+  setFoodLog(todayKey(), {});
+  renderFoodGrid();
   renderFoodLog();
 }
 
-function removeFood(idx) {
-  const key = 'op75_food_' + todayKey();
-  const log = safeGet(key) || [];
-  log.splice(idx, 1);
-  safeSet(key, log);
+function finalizeDay() {
+  const log = getFoodLog(todayKey());
+  const totals = computeFoodTotals(log);
+  if (totals.count === 0) {
+    alert('Nothing logged today yet. Log some food first.');
+    return;
+  }
+  if (!confirm(`Lock in today's food log?\n\n${totals.kcal} kcal · ${totals.protein} g protein · ${totals.count} items\n\nYou can still view it in past days, but no more edits.`)) return;
+  // Mark as finalized
+  safeSet('op75_food_done_' + todayKey(), true);
+  alert('Locked in. Tomorrow starts fresh. 💪');
   renderFoodLog();
-}
-
-function clearTodayFood() {
-  if (!confirm("Clear today's food log?")) return;
-  safeSet('op75_food_' + todayKey(), []);
-  renderFoodLog();
+  runAdaptiveCheck();
 }
 
 function renderFoodLog() {
-  const key = 'op75_food_' + todayKey();
-  const log = safeGet(key) || [];
-  const totalKcal = log.reduce((s, e) => s + e.kcal, 0);
-  const totalPro = log.reduce((s, e) => s + e.protein, 0);
+  const log = getFoodLog(todayKey());
+  const totals = computeFoodTotals(log);
+  KCAL_TARGET = computeTodayKcalTarget();
 
-  document.getElementById('calToday').textContent = totalKcal.toLocaleString();
-  document.getElementById('proToday').textContent = Math.round(totalPro);
+  document.getElementById('calToday').textContent = totals.kcal.toLocaleString();
+  document.getElementById('proToday').textContent = totals.protein.toFixed(0);
+  document.getElementById('calTargetDisplay').textContent = `/ ${KCAL_TARGET.toLocaleString()}`;
 
-  const kcalPct = Math.min(100, (totalKcal / KCAL_TARGET) * 100);
-  const proPct = Math.min(100, (totalPro / PROTEIN_TARGET) * 100);
+  const kcalPct = Math.min(100, (totals.kcal / KCAL_TARGET) * 100);
+  const proPct = Math.min(100, (totals.protein / PROTEIN_TARGET) * 100);
   const calBar = document.getElementById('calBar');
   calBar.style.width = kcalPct + '%';
   calBar.classList.remove('over', 'warn');
   document.getElementById('proBar').style.width = proPct + '%';
 
   const calStatus = document.getElementById('calStatus');
-  if (totalKcal === 0) calStatus.textContent = 'Start logging your first meal.';
-  else if (totalKcal > KCAL_TARGET + 200) {
-    calStatus.textContent = `${totalKcal - KCAL_TARGET} kcal over target. Skip Meal 02 or extend cardio tomorrow.`;
+  if (totals.kcal === 0) {
+    calStatus.textContent = 'Start logging your first meal.';
+    calStatus.className = 'cal-status';
+  } else if (totals.kcal > KCAL_TARGET + 200) {
+    calStatus.textContent = `${totals.kcal - KCAL_TARGET} kcal over target. Skip Meal 02 or extend cardio tomorrow.`;
     calStatus.className = 'cal-status over';
     calBar.classList.add('over');
-  } else if (totalKcal > KCAL_TARGET) {
-    calStatus.textContent = `Slightly over (${totalKcal - KCAL_TARGET} kcal). Still under maintenance — okay.`;
+  } else if (totals.kcal > KCAL_TARGET) {
+    calStatus.textContent = `Slightly over (${totals.kcal - KCAL_TARGET} kcal). Still under maintenance — okay.`;
     calStatus.className = 'cal-status warn';
     calBar.classList.add('warn');
   } else {
-    calStatus.textContent = `${KCAL_TARGET - totalKcal} kcal remaining to target.`;
+    calStatus.textContent = `${KCAL_TARGET - totals.kcal} kcal remaining to target.`;
     calStatus.className = 'cal-status';
   }
 
   const proStatus = document.getElementById('proStatus');
-  if (totalPro >= PROTEIN_TARGET) {
-    proStatus.textContent = `Hit the floor (+${Math.round(totalPro - PROTEIN_TARGET)}g over).`;
+  if (totals.protein >= PROTEIN_TARGET) {
+    proStatus.textContent = `Hit the floor (+${Math.round(totals.protein - PROTEIN_TARGET)}g over).`;
     proStatus.style.color = 'var(--success)';
   } else {
-    proStatus.textContent = `${Math.round(PROTEIN_TARGET - totalPro)}g protein left to hit floor.`;
+    proStatus.textContent = `${Math.round(PROTEIN_TARGET - totals.protein)}g protein left to hit floor.`;
     proStatus.style.color = 'var(--accent)';
   }
 
-  const deficit = MAINTENANCE - totalKcal;
+  const deficit = MAINTENANCE - totals.kcal;
   document.getElementById('deficitToday').textContent = (deficit >= 0 ? '−' : '+') + Math.abs(deficit).toLocaleString();
   const dStatus = document.getElementById('deficitStatus');
-  if (totalKcal === 0) dStatus.textContent = 'Target deficit: 500 kcal';
+  if (totals.kcal === 0) dStatus.textContent = 'Target deficit: 500 kcal';
   else if (deficit >= 400 && deficit <= 700) { dStatus.textContent = 'In the sweet spot.'; dStatus.style.color = 'var(--success)'; }
   else if (deficit > 700) { dStatus.textContent = 'Deficit too aggressive — eat a bit more.'; dStatus.style.color = 'var(--accent-soft)'; }
   else if (deficit < 0) { dStatus.textContent = 'Surplus today. Cheat-day mode.'; dStatus.style.color = '#FCA5A5'; }
   else { dStatus.textContent = 'Mild deficit. Eat your full plan.'; dStatus.style.color = 'var(--accent)'; }
 
   const list = document.getElementById('foodLogList');
-  const totals = document.getElementById('foodLogTotals');
-  totals.innerHTML = `<span class="kcal">${totalKcal.toLocaleString()} kcal</span> · <span class="protein">${Math.round(totalPro)} g protein</span>`;
-  totals.className = 'day-totals ' + (totalKcal > KCAL_TARGET + 200 ? 'over' : totalKcal > 0 && totalKcal < KCAL_TARGET - 400 ? 'under' : '');
+  const totalsBox = document.getElementById('foodLogTotals');
+  totalsBox.innerHTML = `<span class="kcal">${totals.kcal.toLocaleString()} kcal</span> · <span class="protein">${totals.protein.toFixed(0)} g protein</span> · ${totals.count} items`;
 
-  if (log.length === 0) {
-    list.innerHTML = '<li class="food-log-empty">No food logged yet today. Tap the <strong>+</strong> on any item above.</li>';
+  const entries = Object.entries(log).filter(([_, e]) => e.count > 0);
+  if (entries.length === 0) {
+    list.innerHTML = '<li class="food-log-empty">No food logged yet today. Tap <strong>+</strong> on any item above.</li>';
   } else {
-    list.innerHTML = log.map((e, idx) => `
-      <li>
-        <span class="li-name">${e.name}</span>
-        <span class="li-info">${e.kcal} kcal · ${e.protein}g</span>
-        <button class="li-remove" onclick="removeFood(${idx})" aria-label="Remove">×</button>
-      </li>
-    `).join('');
+    list.innerHTML = entries.map(([foodId, entry]) => {
+      const food = FOOD_DB.find(f => f.id === foodId);
+      if (!food) return '';
+      const qty = entry.qty || food.defaultQty || null;
+      const scale = food.adjustable && qty ? qty / food.defaultQty : 1;
+      const ek = Math.round(food.kcal * scale * entry.count);
+      const ep = Math.round(food.protein * scale * entry.count * 10) / 10;
+      const qtyTxt = food.adjustable ? ` · ${qty} ${food.qtyUnit}` : '';
+      return `<li>
+        <span class="li-name">${food.icon || ''} ${food.name} × ${entry.count}${qtyTxt}</span>
+        <span class="li-info">${ek} kcal · ${ep}g pro</span>
+        <button class="li-remove" onclick="adjustCount('${foodId}', -${entry.count})" aria-label="Remove">×</button>
+      </li>`;
+    }).join('');
   }
 }
 
@@ -1751,7 +2639,7 @@ function toggleFoodHistory() {
     let keys = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('op75_food_')) keys.push(k);
+      if (k && k.startsWith('op75_food_') && !k.startsWith('op75_food_done_')) keys.push(k);
     }
     keys.sort().reverse();
     const today = 'op75_food_' + todayKey();
@@ -1760,11 +2648,11 @@ function toggleFoodHistory() {
       box.innerHTML = '<div style="color:var(--muted); font-style:italic; text-align:center; padding:14px;">No past entries yet.</div>';
     } else {
       box.innerHTML = keys.map(k => {
-        const log = safeGet(k) || [];
-        const totalK = log.reduce((s, e) => s + e.kcal, 0);
-        const totalP = log.reduce((s, e) => s + e.protein, 0);
+        const log = safeGet(k) || {};
+        const totals = computeFoodTotals(log);
         const date = k.replace('op75_food_', '');
-        return `<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(28,25,23,0.08); font-family:'JetBrains Mono',monospace; font-size:12px;"><span>${fmtDateLong(date)}</span><span>${totalK} kcal · ${Math.round(totalP)}g protein · ${log.length} items</span></div>`;
+        const done = safeGet('op75_food_done_' + date);
+        return `<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(28,25,23,0.08); font-family:'JetBrains Mono',monospace; font-size:12px;"><span>${fmtDateLong(date)} ${done ? '✓' : ''}</span><span>${totals.kcal} kcal · ${totals.protein.toFixed(0)}g pro · ${totals.count} items</span></div>`;
       }).join('');
     }
     box.style.display = 'block';
@@ -1773,8 +2661,305 @@ function toggleFoodHistory() {
   }
 }
 
+/* ============================================================
+   WATER TRACKER
+   ============================================================ */
+function getWaterLog(dateKey) {
+  return safeGet('op75_water_' + dateKey) || { glasses: 0, size: CURRENT_GLASS_SIZE };
+}
+function setWaterLog(dateKey, log) {
+  safeSet('op75_water_' + dateKey, log);
+}
+
+function addWater(delta) {
+  const key = todayKey();
+  const log = getWaterLog(key);
+  log.size = CURRENT_GLASS_SIZE;
+  log.glasses = Math.max(0, (log.glasses || 0) + delta);
+  setWaterLog(key, log);
+  renderWater();
+}
+
+function setGlassSize(size) {
+  CURRENT_GLASS_SIZE = size;
+  safeSet('op75_glass_size', size);
+  document.querySelectorAll('.gs-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.size) === size);
+  });
+  const log = getWaterLog(todayKey());
+  log.size = size;
+  setWaterLog(todayKey(), log);
+  renderWater();
+}
+
+function renderWater() {
+  const log = getWaterLog(todayKey());
+  CURRENT_GLASS_SIZE = log.size || 250;
+  const drunkMl = log.glasses * CURRENT_GLASS_SIZE;
+  const leftMl = Math.max(0, WATER_GOAL_ML - drunkMl);
+  const pct = Math.min(100, Math.round((drunkMl / WATER_GOAL_ML) * 100));
+  const targetGlasses = Math.ceil(WATER_GOAL_ML / CURRENT_GLASS_SIZE);
+
+  document.getElementById('waterDrunk').textContent = drunkMl.toLocaleString();
+  document.getElementById('waterLeft').textContent = leftMl.toLocaleString();
+  document.getElementById('waterPct').textContent = pct;
+  document.getElementById('waterGlasses').textContent = log.glasses;
+  document.getElementById('waterGlassesLabel').textContent = `${log.glasses} of ~${targetGlasses} · ${CURRENT_GLASS_SIZE} ml each`;
+  document.getElementById('waterFill').style.width = pct + '%';
+  document.getElementById('waterDate').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' });
+
+  document.getElementById('waterDrunkStat').classList.toggle('done', pct >= 100);
+  document.getElementById('waterLeftStat').classList.toggle('done', leftMl === 0);
+  document.getElementById('waterPctStat').classList.toggle('done', pct >= 100);
+  document.getElementById('waterPctStat').classList.toggle('short', pct < 50 && new Date().getHours() >= 22);
+
+  document.querySelectorAll('.gs-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.size) === CURRENT_GLASS_SIZE);
+  });
+}
+
+/* ============================================================
+   QUOTES
+   ============================================================ */
+function rotateQuote() {
+  const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+  document.getElementById('quoteText').innerHTML = `${q.t}<span class="q-author">— ${q.a}</span>`;
+}
+
+/* ============================================================
+   IN-APP REMINDERS
+   ============================================================ */
+function renderReminder() {
+  const now = new Date();
+  const hr = now.getHours() + now.getMinutes() / 60;
+  let r = REMINDERS.find(rem => {
+    if (rem.from <= rem.to) return hr >= rem.from && hr < rem.to;
+    return hr >= rem.from || hr < rem.to;
+  });
+  if (!r) r = { icon: '🎯', label: 'Right now', title: 'Stay on plan', sub: 'Check what\'s next on your schedule.' };
+  document.getElementById('reminderIcon').textContent = r.icon;
+  document.getElementById('reminderLabel').textContent = r.label;
+  document.getElementById('reminderTitle').textContent = r.title;
+  document.getElementById('reminderSub').textContent = r.sub;
+  document.getElementById('reminderTime').textContent = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+}
+
+/* ============================================================
+   MISSED GYM TOGGLE
+   ============================================================ */
+function toggleMissedGym() {
+  const key = 'op75_missed_' + todayKey();
+  const current = safeGet(key);
+  if (current) {
+    safeSet(key, false);
+    document.getElementById('missedGymBtn').classList.remove('active');
+    document.getElementById('missedGymBtn').textContent = 'Tap to mark missed';
+  } else {
+    if (!confirm('Mark today as missed gym? Tomorrow\'s kcal target will drop by 150 to compensate.')) return;
+    safeSet(key, true);
+    document.getElementById('missedGymBtn').classList.add('active');
+    document.getElementById('missedGymBtn').textContent = '✕ Missed — compensating tomorrow';
+  }
+  renderFoodLog();
+}
+
+function loadMissedGym() {
+  const key = 'op75_missed_' + todayKey();
+  if (safeGet(key)) {
+    document.getElementById('missedGymBtn').classList.add('active');
+    document.getElementById('missedGymBtn').textContent = '✕ Missed — compensating tomorrow';
+  }
+}
+
+function computeTodayKcalTarget() {
+  // Adjust for yesterday missed gym
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const yKey = y.toISOString().split('T')[0];
+  const missedYesterday = safeGet('op75_missed_' + yKey);
+  let target = KCAL_TARGET_DEFAULT;
+  if (missedYesterday) target -= 150;
+  return target;
+}
+
+/* ============================================================
+   WEEKLY PROGRESS DASHBOARD
+   ============================================================ */
+function getWeekStart(date) {
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = (day === 0 ? -6 : 1 - day); // Monday start
+  d.setDate(d.getDate() + diff);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+function fmtWeekRange(start) {
+  const end = new Date(start); end.setDate(end.getDate() + 6);
+  const fmt = (d) => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+  return `${fmt(start)} – ${fmt(end)}`;
+}
+function getDatesInWeek(start) {
+  const dates = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(start);
+    d.setDate(d.getDate() + i);
+    dates.push(d.toISOString().split('T')[0]);
+  }
+  return dates;
+}
+
+function computeWeekStats(weekStart) {
+  const dates = getDatesInWeek(weekStart);
+  let dietHits = 0, waterHits = 0, gymHits = 0;
+  let weightStart = null, weightEnd = null;
+  dates.forEach((dk, i) => {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const dDate = new Date(dk + 'T00:00:00');
+    if (dDate > today) return; // future days skip
+
+    const foodLog = safeGet('op75_food_' + dk) || {};
+    const ft = computeFoodTotals(foodLog);
+    if (ft.kcal >= 1500 && ft.kcal <= 2100) dietHits++;
+
+    const waterLog = safeGet('op75_water_' + dk);
+    if (waterLog && waterLog.glasses * (waterLog.size || 250) >= WATER_GOAL_ML) waterHits++;
+
+    const exLog = safeGet('op75_ex_' + dk) || [];
+    const dow = dDate.getDay();
+    // Mon (1) - Sat (6) are training days
+    if (dow >= 1 && dow <= 6 && exLog.some(e => e.type === 'lift' || e.type === 'cardio')) gymHits++;
+  });
+
+  // Weight: find most recent in this week vs previous week
+  const weights = safeGet('op75_weights') || [];
+  const inWeek = weights.filter(w => dates.includes(w.date));
+  const prevWeekStart = new Date(weekStart); prevWeekStart.setDate(prevWeekStart.getDate() - 7);
+  const prevDates = getDatesInWeek(prevWeekStart);
+  const inPrev = weights.filter(w => prevDates.includes(w.date));
+  const latestThis = inWeek.length ? inWeek[inWeek.length - 1].weight : null;
+  const latestPrev = inPrev.length ? inPrev[inPrev.length - 1].weight : null;
+  const weightDelta = (latestThis !== null && latestPrev !== null) ? (latestThis - latestPrev) : null;
+
+  return { dietHits, waterHits, gymHits, weightDelta, latestThis, latestPrev };
+}
+
+function renderWeekDash() {
+  const start = getWeekStart(new Date());
+  const stats = computeWeekStats(start);
+  document.getElementById('weekDashDates').textContent = fmtWeekRange(start);
+  document.getElementById('weekDashTag').textContent = `Week of ${fmtWeekRange(start)}`;
+
+  const setMetric = (id, val, total, goodAt, warnAt) => {
+    const el = document.getElementById(id);
+    el.innerHTML = val + (total ? `<span class="unit-sm">/${total}</span>` : '');
+    el.classList.remove('good', 'warn', 'bad');
+    if (val >= goodAt) el.classList.add('good');
+    else if (val >= warnAt) el.classList.add('warn');
+    else el.classList.add('bad');
+  };
+  setMetric('wdDiet', stats.dietHits, 7, 5, 3);
+  setMetric('wdWater', stats.waterHits, 7, 5, 3);
+  setMetric('wdGym', stats.gymHits, 6, 5, 3);
+
+  const w = document.getElementById('wdWeight');
+  const wSub = document.getElementById('wdWeightSub');
+  w.classList.remove('good', 'warn', 'bad');
+  if (stats.weightDelta !== null) {
+    const d = stats.weightDelta;
+    w.innerHTML = (d <= 0 ? '−' : '+') + Math.abs(d).toFixed(1) + '<span class="unit-sm">kg</span>';
+    if (d <= -0.5) w.classList.add('good');
+    else if (d <= 0) w.classList.add('warn');
+    else w.classList.add('bad');
+    wSub.textContent = stats.latestThis ? `Now ${stats.latestThis} kg` : 'vs last week';
+  } else if (stats.latestThis) {
+    w.innerHTML = stats.latestThis + '<span class="unit-sm">kg</span>';
+    w.classList.add('warn');
+    wSub.textContent = 'No prior week data';
+  } else {
+    w.innerHTML = '—';
+    wSub.textContent = 'Log a weight';
+  }
+
+  // Past 4 weeks
+  const pastBox = document.getElementById('wdPastRows');
+  const pastWeeks = [];
+  for (let i = 1; i <= 4; i++) {
+    const ws = new Date(start); ws.setDate(ws.getDate() - 7 * i);
+    const wstats = computeWeekStats(ws);
+    if (wstats.dietHits || wstats.waterHits || wstats.gymHits || wstats.weightDelta !== null) {
+      pastWeeks.push({ start: ws, stats: wstats });
+    }
+  }
+  if (pastWeeks.length === 0) {
+    pastBox.innerHTML = '<div class="wd-past-row" style="grid-template-columns:1fr; text-align:center; color:rgba(244,236,219,0.5); font-style:italic;">No history yet — keep logging</div>';
+  } else {
+    pastBox.innerHTML = pastWeeks.map(pw => {
+      const wd = pw.stats.weightDelta;
+      const wdStr = wd !== null ? (wd <= 0 ? '−' : '+') + Math.abs(wd).toFixed(1) : '—';
+      const wdCls = wd !== null && wd <= -0.4 ? 'good' : wd !== null && wd > 0 ? 'bad' : '';
+      return `<div class="wd-past-row">
+        <span class="wd-past-wk">${fmtWeekRange(pw.start)}</span>
+        <span class="wd-past-cell" title="Diet">🍽️ ${pw.stats.dietHits}/7</span>
+        <span class="wd-past-cell" title="Water">💧 ${pw.stats.waterHits}/7</span>
+        <span class="wd-past-cell" title="Gym">💪 ${pw.stats.gymHits}/6</span>
+        <span class="wd-past-cell ${wdCls}" title="Weight Δ">⚖️ ${wdStr}</span>
+      </div>`;
+    }).join('');
+  }
+}
+
+/* ============================================================
+   ADAPTIVE SUGGESTION
+   ============================================================ */
+function runAdaptiveCheck() {
+  // Look at last 7 days of weight + average kcal; suggest adjustment
+  const banner = document.getElementById('adaptiveBanner');
+  const text = document.getElementById('adaptiveText');
+  const weights = safeGet('op75_weights') || [];
+  if (weights.length < 2) { banner.style.display = 'none'; return; }
+
+  const sorted = [...weights].sort((a, b) => a.date.localeCompare(b.date));
+  const latest = sorted[sorted.length - 1];
+  const sevenDaysAgo = new Date(); sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  const old = sorted.find(w => new Date(w.date) >= sevenDaysAgo && w !== latest) || sorted[Math.max(0, sorted.length - 2)];
+  if (!old) { banner.style.display = 'none'; return; }
+  const delta = latest.weight - old.weight;
+  const dismissed = safeGet('op75_adaptive_dismissed_' + latest.date);
+  if (dismissed) { banner.style.display = 'none'; return; }
+
+  let msg = null;
+  if (delta > 0.3) msg = `Weight is up ${delta.toFixed(1)} kg this week. Drop 100 kcal/day (skip the almonds in Meal 02) and add 5 min cardio.`;
+  else if (delta >= -0.2 && delta <= 0.3) msg = `Weight is flat over the last week. Drop 100 kcal/day and add 5 min cardio to push past the plateau.`;
+  else if (delta < -1.2) msg = `Weight dropped ${Math.abs(delta).toFixed(1)} kg this week — that's aggressive. Add 100 kcal/day (full yogurt bowl) to preserve muscle.`;
+
+  if (msg) {
+    text.textContent = msg;
+    banner.style.display = 'grid';
+  } else {
+    banner.style.display = 'none';
+  }
+}
+function dismissAdaptive() {
+  const weights = safeGet('op75_weights') || [];
+  if (weights.length > 0) {
+    const latest = weights[weights.length - 1];
+    safeSet('op75_adaptive_dismissed_' + latest.date, true);
+  }
+  document.getElementById('adaptiveBanner').style.display = 'none';
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+rotateQuote();
+renderReminder();
+setInterval(renderReminder, 60000); // refresh every minute
+CURRENT_GLASS_SIZE = safeGet('op75_glass_size') || 250;
 renderFoodGrid();
 renderFoodLog();
+renderWater();
+renderWeekDash();
+loadMissedGym();
+runAdaptiveCheck();
 
 /* ============================================================
    EXERCISE LOGGER
