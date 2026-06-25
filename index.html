@@ -994,6 +994,243 @@
 
   /* ============ V5 ADDITIONS ============ */
 
+  /* TRAINING DAY BANNER · auto-shift indicator */
+  .td-banner {
+    background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+    color: #C7D2FE;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    border: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .td-banner .td-icon { font-size: 22px; line-height: 1; }
+  .td-banner .td-text strong {
+    color: #FBBF24;
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    display: block;
+    line-height: 1.1;
+    margin-top: 2px;
+  }
+  .td-banner .td-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(199,210,254,0.7);
+  }
+  .td-banner .td-switch {
+    background: rgba(255,255,255,0.1);
+    color: #C7D2FE;
+    border: 1px solid rgba(199,210,254,0.3);
+    padding: 8px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .td-banner .td-switch:hover { background: rgba(255,255,255,0.18); }
+  .td-banner.override { background: linear-gradient(135deg, #4C1D24 0%, #7F1D1D 100%); }
+  .td-banner.override .td-text strong { color: #FCA5A5; }
+
+  /* SLEEP TRACKER */
+  .sleep-card {
+    background: linear-gradient(180deg, #1E1B4B 0%, #312E81 100%);
+    color: #E0E7FF;
+    padding: 22px 20px;
+    border: 1px solid var(--rule);
+  }
+  .sleep-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed rgba(224,231,255,0.2);
+    margin-bottom: 16px;
+  }
+  .sleep-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .sleep-title .moon { color: #A5B4FC; }
+  .sleep-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(224,231,255,0.65);
+  }
+  .sleep-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .sleep-input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .sleep-input-field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(224,231,255,0.65);
+  }
+  .sleep-input-field input[type="time"] {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(199,210,254,0.3);
+    color: #E0E7FF;
+    padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    width: 100%;
+    color-scheme: dark;
+  }
+  .sleep-input-field input[type="time"]:focus {
+    outline: 2px solid #A5B4FC;
+    outline-offset: -2px;
+  }
+  .sleep-save-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+  .sleep-duration {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .sleep-duration .sd-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(224,231,255,0.6);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .sleep-duration.good { color: #4ADE80; }
+  .sleep-duration.warn { color: #FBBF24; }
+  .sleep-duration.bad { color: #FCA5A5; }
+  .sleep-save-btn {
+    background: #A5B4FC;
+    color: #1E1B4B;
+    border: none;
+    padding: 12px 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .sleep-save-btn:hover { background: #C7D2FE; }
+  .sleep-history {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(224,231,255,0.2);
+  }
+  .sleep-history-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(224,231,255,0.6);
+    margin-bottom: 10px;
+  }
+  .sleep-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 60px;
+  }
+  .sleep-bar {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    border-radius: 3px 3px 0 0;
+    min-height: 4px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .sleep-bar .sb-fill {
+    width: 100%;
+    background: #A5B4FC;
+    border-radius: 3px 3px 0 0;
+    transition: height 0.3s;
+  }
+  .sleep-bar.good .sb-fill { background: #4ADE80; }
+  .sleep-bar.warn .sb-fill { background: #FBBF24; }
+  .sleep-bar.bad .sb-fill { background: #FCA5A5; }
+  .sleep-bar .sb-label {
+    position: absolute;
+    bottom: -16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(224,231,255,0.55);
+  }
+  .sleep-avg {
+    text-align: center;
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(224,231,255,0.7);
+  }
+  .sleep-avg strong {
+    color: #A5B4FC;
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    margin-left: 6px;
+  }
+
+  /* YOUTUBE BUTTON in modal */
+  .yt-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FF0000;
+    color: white;
+    padding: 14px 18px;
+    margin: 18px 0 0;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .yt-btn:hover { background: #CC0000; }
+  .yt-btn .yt-icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+  .yt-btn .yt-sub {
+    font-weight: 400;
+    font-size: 11px;
+    opacity: 0.9;
+    margin-left: auto;
+  }
+
+  @media (max-width: 720px) {
+    .td-banner { grid-template-columns: 1fr; text-align: center; }
+    .td-banner .td-switch { width: 100%; }
+    .sleep-inputs { grid-template-columns: 1fr; }
+    .sleep-save-row { grid-template-columns: 1fr; }
+    .sleep-bar .sb-label { font-size: 8px; }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
   /* BOTTOM NAV BAR — sticky, always visible */
   .bottom-nav {
     position: fixed;
@@ -2325,6 +2562,58 @@
     <div class="r-time" id="reminderTime">—</div>
   </div>
 
+  <!-- Training day indicator · auto-shifts midnight-to-5AM to previous day -->
+  <div class="td-banner" id="tdBanner" style="display:none;">
+    <div class="td-icon">📅</div>
+    <div class="td-text">
+      <div class="td-label">Logging today's entries to</div>
+      <strong id="tdName">—</strong>
+    </div>
+    <button class="td-switch" id="tdSwitch" onclick="toggleTrainingDayOverride()">Switch to today</button>
+  </div>
+
+  <!-- SLEEP TRACKER (collapsible) -->
+  <div class="collapsible open" id="col-sleep">
+    <div class="collapsible-head" onclick="toggleCollapse('col-sleep')">
+      <h3 class="collapsible-title">😴 Sleep <span class="accent">tracker.</span></h3>
+      <div class="collapsible-meta">
+        <span class="summary-pill" id="sleepPill">Not logged</span>
+        <span class="chevron"></span>
+      </div>
+    </div>
+    <div class="collapsible-body">
+      <span class="sub-tag" style="display:block; margin-bottom:14px;">Log when you slept and when you woke up · target 7+ hrs</span>
+      <div class="sleep-card">
+        <div class="sleep-head">
+          <div class="sleep-title"><span class="moon">🌙</span> Last night's sleep</div>
+          <div class="sleep-date" id="sleepDate">—</div>
+        </div>
+        <div class="sleep-inputs">
+          <div class="sleep-input-field">
+            <label>Slept at</label>
+            <input type="time" id="sleepSleptAt" value="06:00">
+          </div>
+          <div class="sleep-input-field">
+            <label>Woke at</label>
+            <input type="time" id="sleepWokeAt" value="14:00">
+          </div>
+        </div>
+        <div class="sleep-save-row">
+          <div class="sleep-duration" id="sleepDuration">
+            <span class="sd-label">Duration</span>
+            <span id="sleepDurationText">—</span>
+          </div>
+          <button class="sleep-save-btn" onclick="logSleep()">Save sleep</button>
+        </div>
+        <div class="sleep-history">
+          <div class="sleep-history-title">Last 7 nights · target line at 7 hrs</div>
+          <div class="sleep-bars" id="sleepBars"></div>
+          <div class="sleep-avg">7-day average:<strong id="sleepAvg">—</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Adaptive suggestion (hidden by default, shown when triggered) -->
   <div class="adaptive-banner" id="adaptiveBanner" style="display:none;">
     <div class="ab-icon">📊</div>
@@ -3183,9 +3472,44 @@ initDayFilter();
    ============================================================ */
 function safeGet(key) { try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { return null; } }
 function safeSet(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
-function todayKey() { return new Date().toISOString().split('T')[0]; }
-function fmtDate(iso) { return new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }); }
-function fmtDateLong(iso) { return new Date(iso).toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' }); }
+
+// LOCAL date — not UTC. Pakistan is UTC+5 so UTC-based date was wrong at night.
+function todayKey() {
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
+function dateKey(d) {
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
+
+// TRAINING day · auto-shift midnight-to-5AM to previous day
+// (Kashif's night-shift schedule: gym at 2 AM is still "yesterday's training day")
+// Also supports manual override via localStorage flag.
+const TRAINING_DAY_CUTOFF_HOUR = 5; // before 5 AM = previous training day
+function getTrainingDayKey() {
+  const now = new Date();
+  const overrideRaw = safeGet('op75_td_override');
+  // If override is set for the current calendar date, use that
+  if (overrideRaw && overrideRaw.calendarDate === todayKey()) {
+    return overrideRaw.trainingDay;
+  }
+  // Default rule: hours 0-4 = yesterday's training day
+  if (now.getHours() < TRAINING_DAY_CUTOFF_HOUR) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - 1);
+    return dateKey(d);
+  }
+  return todayKey();
+}
+
+function fmtDate(iso) { return new Date(iso + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }); }
+function fmtDateLong(iso) { return new Date(iso + 'T12:00:00').toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' }); }
 
 /* ============================================================
    TABS + COUNTDOWN
@@ -3274,7 +3598,7 @@ function computeFoodTotals(log) {
 }
 
 function adjustCount(foodId, delta) {
-  const key = todayKey();
+  const key = getTrainingDayKey();
   const log = getFoodLog(key);
   const food = FOOD_DB.find(f => f.id === foodId);
   if (!log[foodId]) log[foodId] = { count: 0 };
@@ -3287,7 +3611,7 @@ function adjustCount(foodId, delta) {
 }
 
 function setCustomQty(foodId, qty) {
-  const key = todayKey();
+  const key = getTrainingDayKey();
   const log = getFoodLog(key);
   const food = FOOD_DB.find(f => f.id === foodId);
   if (!food || !food.adjustable) return;
@@ -3300,7 +3624,7 @@ function setCustomQty(foodId, qty) {
 
 function renderFoodGrid() {
   const grid = document.getElementById('foodGrid');
-  const log = getFoodLog(todayKey());
+  const log = getFoodLog(getTrainingDayKey());
   const items = FOOD_DB.filter(f => currentCat === 'all' || f.cat === currentCat);
   grid.innerHTML = items.map(f => {
     const entry = log[f.id] || { count: 0 };
@@ -3364,13 +3688,13 @@ document.querySelectorAll('.food-cat-btn').forEach(btn => {
 
 function resetDayToZero() {
   if (!confirm('Reset all of today\'s food log to zero?')) return;
-  setFoodLog(todayKey(), {});
+  setFoodLog(getTrainingDayKey(), {});
   renderFoodGrid();
   renderFoodLog();
 }
 
 function finalizeDay() {
-  const log = getFoodLog(todayKey());
+  const log = getFoodLog(getTrainingDayKey());
   const totals = computeFoodTotals(log);
   if (totals.count === 0) {
     alert('Nothing logged today yet. Log some food first.');
@@ -3378,14 +3702,14 @@ function finalizeDay() {
   }
   if (!confirm(`Lock in today's food log?\n\n${totals.kcal} kcal · ${totals.protein} g protein · ${totals.count} items\n\nYou can still view it in past days, but no more edits.`)) return;
   // Mark as finalized
-  safeSet('op75_food_done_' + todayKey(), true);
+  safeSet('op75_food_done_' + getTrainingDayKey(), true);
   alert('Locked in. Tomorrow starts fresh. 💪');
   renderFoodLog();
   runAdaptiveCheck();
 }
 
 function renderFoodLog() {
-  const log = getFoodLog(todayKey());
+  const log = getFoodLog(getTrainingDayKey());
   const totals = computeFoodTotals(log);
   KCAL_TARGET = computeTodayKcalTarget();
 
@@ -3469,7 +3793,7 @@ function toggleFoodHistory() {
       if (k && k.startsWith('op75_food_') && !k.startsWith('op75_food_done_')) keys.push(k);
     }
     keys.sort().reverse();
-    const today = 'op75_food_' + todayKey();
+    const today = 'op75_food_' + getTrainingDayKey();
     keys = keys.filter(k => k !== today).slice(0, 14);
     if (keys.length === 0) {
       box.innerHTML = '<div style="color:var(--muted); font-style:italic; text-align:center; padding:14px;">No past entries yet.</div>';
@@ -3499,7 +3823,7 @@ function setWaterLog(dateKey, log) {
 }
 
 function addWater(delta) {
-  const key = todayKey();
+  const key = getTrainingDayKey();
   const log = getWaterLog(key);
   log.size = CURRENT_GLASS_SIZE;
   log.glasses = Math.max(0, (log.glasses || 0) + delta);
@@ -3513,14 +3837,14 @@ function setGlassSize(size) {
   document.querySelectorAll('.gs-btn').forEach(b => {
     b.classList.toggle('active', parseInt(b.dataset.size) === size);
   });
-  const log = getWaterLog(todayKey());
+  const log = getWaterLog(getTrainingDayKey());
   log.size = size;
-  setWaterLog(todayKey(), log);
+  setWaterLog(getTrainingDayKey(), log);
   renderWater();
 }
 
 function renderWater() {
-  const log = getWaterLog(todayKey());
+  const log = getWaterLog(getTrainingDayKey());
   CURRENT_GLASS_SIZE = log.size || 250;
   const drunkMl = log.glasses * CURRENT_GLASS_SIZE;
   const leftMl = Math.max(0, WATER_GOAL_ML - drunkMl);
@@ -3575,7 +3899,7 @@ function renderReminder() {
    MISSED GYM TOGGLE
    ============================================================ */
 function toggleMissedGym() {
-  const key = 'op75_missed_' + todayKey();
+  const key = 'op75_missed_' + getTrainingDayKey();
   const current = safeGet(key);
   if (current) {
     safeSet(key, false);
@@ -3591,7 +3915,7 @@ function toggleMissedGym() {
 }
 
 function loadMissedGym() {
-  const key = 'op75_missed_' + todayKey();
+  const key = 'op75_missed_' + getTrainingDayKey();
   if (safeGet(key)) {
     document.getElementById('missedGymBtn').classList.add('active');
     document.getElementById('missedGymBtn').textContent = '✕ Missed — compensating tomorrow';
@@ -3900,7 +4224,7 @@ function logExercise() {
   const weight = parseFloat(document.getElementById('exWeight').value) || 0;
   if (!name || sets < 1 || reps < 1) return;
 
-  const key = 'op75_ex_' + todayKey();
+  const key = 'op75_ex_' + getTrainingDayKey();
   const log = safeGet(key) || [];
   log.push({ ts: Date.now(), type: 'lift', name, sets, reps, weight });
   safeSet(key, log);
@@ -3914,7 +4238,7 @@ function logCardio() {
   const incline = document.getElementById('cardioIncline').value;
   if (time < 1) return;
 
-  const key = 'op75_ex_' + todayKey();
+  const key = 'op75_ex_' + getTrainingDayKey();
   const log = safeGet(key) || [];
   log.push({ ts: Date.now(), type: 'cardio', name: type, time, speed, incline });
   safeSet(key, log);
@@ -3933,7 +4257,7 @@ function getLastExWeight(name) {
   let keys = [];
   for (let i = 0; i < localStorage.length; i++) {
     const k = localStorage.key(i);
-    if (k && k.startsWith('op75_ex_') && k !== 'op75_ex_' + todayKey()) keys.push(k);
+    if (k && k.startsWith('op75_ex_') && k !== 'op75_ex_' + getTrainingDayKey()) keys.push(k);
   }
   keys.sort().reverse();
   for (const k of keys) {
@@ -3963,7 +4287,7 @@ function renderExLog() {
     const log = safeGet(k) || [];
     if (log.length === 0) return '';
     const date = k.replace('op75_ex_', '');
-    const isToday = date === todayKey();
+    const isToday = date === getTrainingDayKey();
     const totalVol = log.filter(e => e.type === 'lift').reduce((s, e) => s + (e.sets * e.reps * e.weight), 0);
     const cardioTotal = log.filter(e => e.type === 'cardio').reduce((s, e) => s + e.time, 0);
 
@@ -4060,7 +4384,7 @@ loadWeights();
    CHECKLIST
    ============================================================ */
 function loadChecklist() {
-  const k = 'op75_checklist_' + todayKey();
+  const k = 'op75_checklist_' + getTrainingDayKey();
   const saved = safeGet(k) || {};
   document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
     cb.checked = !!saved[cb.id];
@@ -4076,7 +4400,7 @@ function loadChecklist() {
 
 function resetChecklist() {
   if (!confirm("Reset today's checklist?")) return;
-  safeSet('op75_checklist_' + todayKey(), {});
+  safeSet('op75_checklist_' + getTrainingDayKey(), {});
   document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
     cb.closest('li').classList.remove('done');
@@ -4652,7 +4976,190 @@ loadCollapseStates();
 renderDailyQuote();
 renderEngagement();
 renderWaterStatus();
+renderSleep();
+renderTrainingDayBanner();
 updateSummaryPills();
+
+/* ============================================================
+   TRAINING DAY OVERRIDE · manual flip when auto-rule isn't enough
+   ============================================================ */
+function renderTrainingDayBanner() {
+  const cal = todayKey();
+  const td = getTrainingDayKey();
+  const banner = document.getElementById('tdBanner');
+  const switchBtn = document.getElementById('tdSwitch');
+  const override = safeGet('op75_td_override');
+  const isOverridden = override && override.calendarDate === cal;
+
+  if (td !== cal || isOverridden) {
+    banner.style.display = 'grid';
+    document.getElementById('tdName').textContent = fmtDateLong(td) + ' · ' + getDayName(td);
+    banner.classList.toggle('override', isOverridden);
+    if (isOverridden) {
+      // Show button to clear the override and go back to auto
+      switchBtn.textContent = 'Use auto (today)';
+    } else {
+      // Auto-shifted; allow manual flip to actual calendar day
+      switchBtn.textContent = 'Log to today instead';
+    }
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+function getDayName(isoDate) {
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const d = new Date(isoDate + 'T12:00:00');
+  return days[d.getDay()];
+}
+
+function toggleTrainingDayOverride() {
+  const cal = todayKey();
+  const override = safeGet('op75_td_override');
+  const isOverridden = override && override.calendarDate === cal;
+
+  if (isOverridden) {
+    // Clear override → go back to auto behavior
+    localStorage.removeItem('op75_td_override');
+  } else {
+    // Set override to the OPPOSITE of what auto would pick
+    const td = getTrainingDayKey();
+    const newTarget = td === cal ? yesterdayKey() : cal;
+    safeSet('op75_td_override', { calendarDate: cal, trainingDay: newTarget });
+  }
+  // Refresh all the UI elements that depend on training day
+  renderTrainingDayBanner();
+  renderFoodGrid();
+  renderFoodLog();
+  renderWater();
+  renderWaterStatus();
+  loadMissedGym();
+  loadChecklist();
+  renderExLog();
+  updateSummaryPills();
+}
+
+function yesterdayKey() {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return dateKey(d);
+}
+
+/* ============================================================
+   SLEEP TRACKER
+   Stored under the calendar date of the WAKE-UP morning.
+   Handles overnight (slept 23:00, woke 07:00) and same-day (slept 06:00, woke 14:00)
+   ============================================================ */
+function sleepDurationMin(sleptAt, wokeAt) {
+  const [sh, sm] = sleptAt.split(':').map(Number);
+  const [wh, wm] = wokeAt.split(':').map(Number);
+  let sleepStart = sh * 60 + sm;
+  let wokeTime = wh * 60 + wm;
+  if (wokeTime <= sleepStart) wokeTime += 24 * 60;
+  return wokeTime - sleepStart;
+}
+function fmtDuration(minutes) {
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return `${h}h ${m.toString().padStart(2, '0')}m`;
+}
+function sleepQuality(minutes) {
+  if (minutes >= 420) return 'good';   // 7+ hrs
+  if (minutes >= 300) return 'warn';   // 5-7 hrs
+  return 'bad';                         // <5 hrs
+}
+
+function logSleep() {
+  const sleptAt = document.getElementById('sleepSleptAt').value;
+  const wokeAt = document.getElementById('sleepWokeAt').value;
+  if (!sleptAt || !wokeAt) return;
+  const dur = sleepDurationMin(sleptAt, wokeAt);
+  const key = 'op75_sleep_' + todayKey(); // sleep keyed to wake-up date
+  safeSet(key, { sleptAt, wokeAt, durationMin: dur });
+  renderSleep();
+}
+
+function renderSleep() {
+  const key = 'op75_sleep_' + todayKey();
+  const sleep = safeGet(key);
+  document.getElementById('sleepDate').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' });
+
+  if (sleep) {
+    document.getElementById('sleepSleptAt').value = sleep.sleptAt;
+    document.getElementById('sleepWokeAt').value = sleep.wokeAt;
+    const txt = document.getElementById('sleepDurationText');
+    const wrap = document.getElementById('sleepDuration');
+    txt.textContent = fmtDuration(sleep.durationMin);
+    wrap.className = 'sleep-duration ' + sleepQuality(sleep.durationMin);
+    document.getElementById('sleepPill').textContent = fmtDuration(sleep.durationMin);
+    const sp = document.getElementById('sleepPill');
+    sp.className = 'summary-pill ' + (sleepQuality(sleep.durationMin) === 'good' ? 'done' : sleepQuality(sleep.durationMin) === 'warn' ? 'warn' : '');
+  } else {
+    document.getElementById('sleepDurationText').textContent = '—';
+    document.getElementById('sleepPill').textContent = 'Not logged';
+    document.getElementById('sleepPill').className = 'summary-pill warn';
+  }
+
+  // Auto-compute on input change
+  const updateLive = () => {
+    const sa = document.getElementById('sleepSleptAt').value;
+    const wa = document.getElementById('sleepWokeAt').value;
+    if (sa && wa) {
+      const d = sleepDurationMin(sa, wa);
+      const txt = document.getElementById('sleepDurationText');
+      const wrap = document.getElementById('sleepDuration');
+      txt.textContent = fmtDuration(d);
+      wrap.className = 'sleep-duration ' + sleepQuality(d);
+    }
+  };
+  document.getElementById('sleepSleptAt').oninput = updateLive;
+  document.getElementById('sleepWokeAt').oninput = updateLive;
+  updateLive();
+
+  // Render last 7 days as bars
+  const bars = document.getElementById('sleepBars');
+  const today = new Date();
+  let total = 0, count = 0;
+  const html = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    const dk = dateKey(d);
+    const s = safeGet('op75_sleep_' + dk);
+    const label = d.toLocaleDateString('en-GB', { weekday: 'narrow' });
+    if (s) {
+      const pct = Math.min(100, (s.durationMin / 600) * 100); // 10h max scale
+      total += s.durationMin; count++;
+      html.push(`<div class="sleep-bar ${sleepQuality(s.durationMin)}"><div class="sb-fill" style="height:${pct}%"></div><span class="sb-label">${label}</span></div>`);
+    } else {
+      html.push(`<div class="sleep-bar"><div class="sb-fill" style="height:0%"></div><span class="sb-label">${label}</span></div>`);
+    }
+  }
+  bars.innerHTML = html.join('');
+  document.getElementById('sleepAvg').textContent = count > 0 ? fmtDuration(Math.round(total / count)) : '—';
+}
+
+/* ============================================================
+   YOUTUBE BUTTON in modal · update openMachineModal
+   ============================================================ */
+const _origOpenModal = openMachineModal;
+openMachineModal = function(machineId) {
+  _origOpenModal(machineId);
+  // Append YouTube search link
+  const m = MACHINES.find(x => x.id === machineId);
+  if (!m) return;
+  const q = encodeURIComponent(m.name + ' proper form tutorial');
+  const url = `https://www.youtube.com/results?search_query=${q}`;
+  const inner = document.querySelector('.modal-inner');
+  if (inner && !inner.querySelector('.yt-btn')) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.className = 'yt-btn';
+    link.innerHTML = `<span class="yt-icon">▶</span> Watch tutorials on YouTube <span class="yt-sub">opens search</span>`;
+    inner.appendChild(link);
+  }
+};
 </script>
 </body>
 </html>
