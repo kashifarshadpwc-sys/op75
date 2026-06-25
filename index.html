@@ -994,6 +994,26 @@
 
   /* ============ V5 ADDITIONS ============ */
 
+  /* MEAL CHECK-IN BANNER · visible callout above the list */
+  .meal-checkin-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 100%);
+    border: 1px solid var(--accent);
+    border-left: 4px solid var(--accent);
+    margin-bottom: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .meal-checkin-banner .mcb-icon { font-size: 20px; line-height: 1; }
+  .meal-checkin-banner strong { color: var(--accent-deep); }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
   /* MEAL CHECK-IN LIST · time-based tap-to-log */
   .meal-presets-strip {
     background: var(--paper);
@@ -4387,11 +4407,11 @@
     </div>
 
     <div class="mb-meal-chips" id="mbMealChips">
-      <button class="mb-chip active" data-meal="breakfast">🍳<span>Breakfast</span><em>~450 kcal</em></button>
-      <button class="mb-chip" data-meal="lunch">🥣<span>Lunch</span><em>~350 kcal</em></button>
-      <button class="mb-chip" data-meal="dinner">🍗<span>Dinner</span><em>~600 kcal</em></button>
-      <button class="mb-chip" data-meal="postwo">💪<span>Post-WO</span><em>~400 kcal</em></button>
-      <button class="mb-chip" data-meal="custom">⚙️<span>Custom</span><em>set kcal</em></button>
+      <button class="mb-chip active" data-meal="breakfast" onclick="setMbMeal('breakfast')">🍳<span>Breakfast</span><em>~450 kcal</em></button>
+      <button class="mb-chip" data-meal="lunch" onclick="setMbMeal('lunch')">🥣<span>Lunch</span><em>~350 kcal</em></button>
+      <button class="mb-chip" data-meal="dinner" onclick="setMbMeal('dinner')">🍗<span>Dinner</span><em>~600 kcal</em></button>
+      <button class="mb-chip" data-meal="postwo" onclick="setMbMeal('postwo')">💪<span>Post-WO</span><em>~400 kcal</em></button>
+      <button class="mb-chip" data-meal="custom" onclick="setMbMeal('custom')">⚙️<span>Custom</span><em>set kcal</em></button>
     </div>
 
     <div class="mb-controls">
@@ -4904,8 +4924,14 @@
     <button class="food-cat-btn" data-cat="cheat">🍕 Cheat-day</button>
   </div>
 
-  <!-- MEAL CHECK-INS · time-based, tap to auto-log -->
-  <div class="meal-presets-strip" id="mealPresets"><!-- JS fills as checklist --></div>
+  <!-- MEAL CHECK-INS · tick a meal to auto-log all its calories at once -->
+  <div class="meal-checkin-banner">
+    <span class="mcb-icon">📋</span>
+    <span><strong>Meal check-ins below.</strong> Tap any meal you've eaten · all its calories get logged automatically. Pulled from your Diet plan.</span>
+  </div>
+  <div class="meal-presets-strip" id="mealPresets">
+    <div style="padding:20px; text-align:center; color:var(--muted); font-style:italic;">Loading your meal plan… If this stays, app cache is out of date — nuke cache and reinstall.</div>
+  </div>
 
   <div class="food-grid" id="foodGrid"><!-- JS fills this --></div>
 
@@ -8708,19 +8734,36 @@ const MB_MEAL_PROFILES = {
 let _mbActiveMeal = 'breakfast';
 
 function setMbMeal(mealKey) {
-  _mbActiveMeal = mealKey;
-  const profile = MB_MEAL_PROFILES[mealKey];
-  if (!profile) return;
-  document.querySelectorAll('.mb-chip').forEach(c => c.classList.toggle('active', c.dataset.meal === mealKey));
-  // Auto-set the kcal target + style
-  const tgt = document.getElementById('mbTarget');
-  const sty = document.getElementById('mbStyle');
-  if (tgt) tgt.value = profile.kcal;
-  if (sty) sty.value = profile.defaultStyle;
+  try {
+    _mbActiveMeal = mealKey;
+    // Always update visual state of chips, even if profile data is missing
+    document.querySelectorAll('.mb-chip').forEach(c => {
+      c.classList.toggle('active', c.dataset.meal === mealKey);
+    });
+    // Safety check: MB_MEAL_PROFILES might be undefined if cache is stale
+    if (typeof MB_MEAL_PROFILES === 'undefined') {
+      const out = document.getElementById('mbResult');
+      if (out) { out.classList.add('empty'); out.innerHTML = '<div style="color:var(--danger); padding:10px;">App cache is out of date · please nuke cache and reinstall (see instructions in Goal tab).</div>'; }
+      return;
+    }
+    const profile = MB_MEAL_PROFILES[mealKey];
+    if (!profile) return;
+    const tgt = document.getElementById('mbTarget');
+    const sty = document.getElementById('mbStyle');
+    if (tgt) tgt.value = profile.kcal;
+    if (sty) sty.value = profile.defaultStyle;
+  } catch (err) {
+    const out = document.getElementById('mbResult');
+    if (out) out.innerHTML = '<div style="color:var(--danger); padding:10px;">Error: ' + err.message + ' · refresh the app.</div>';
+    console.error('setMbMeal error:', err);
+  }
 }
 
-// Wire chip clicks
+// Inline onclick handlers in HTML are now the primary path (more cache-resilient).
+// The line below is a defensive fallback in case inline handlers fail.
 document.querySelectorAll('.mb-chip').forEach(chip => {
+  if (chip.dataset.wired) return;
+  chip.dataset.wired = '1';
   chip.addEventListener('click', () => setMbMeal(chip.dataset.meal));
 });
 
