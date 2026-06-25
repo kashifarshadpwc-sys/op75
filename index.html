@@ -994,6 +994,322 @@
 
   /* ============ V5 ADDITIONS ============ */
 
+  /* MEAL CHECK-IN LIST · time-based tap-to-log */
+  .meal-presets-strip {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+  .meal-checkin-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: var(--dark);
+    color: var(--dark-text);
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .meal-checkin-head .mc-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .meal-checkin-head .mc-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(244,236,219,0.65);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .meal-checkin-head .mc-summary {
+    background: var(--accent);
+    color: var(--dark);
+    padding: 6px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .meal-checkin-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .meal-checkin-row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+  }
+  .meal-checkin-row:last-child { border-bottom: none; }
+  .meal-checkin-row.done { background: rgba(22,101,52,0.08); }
+  .meal-checkin-row .mc-checkbox {
+    width: 36px;
+    height: 36px;
+    background: var(--paper);
+    border: 2px solid var(--rule);
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    border-radius: 4px;
+  }
+  .meal-checkin-row .mc-checkbox:hover {
+    border-color: var(--accent);
+    background: var(--paper-2);
+  }
+  .meal-checkin-row.done .mc-checkbox {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+  }
+  .meal-checkin-row .mc-info { min-width: 0; }
+  .meal-checkin-row .mc-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .meal-checkin-row.done .mc-name { color: var(--ink-soft); text-decoration: line-through; text-decoration-color: rgba(28,25,23,0.3); }
+  .meal-checkin-row .mc-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-deep);
+    margin-top: 3px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .meal-checkin-row .mc-items {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .meal-checkin-row .mc-item {
+    white-space: nowrap;
+  }
+  .meal-checkin-row .mc-totals {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .meal-checkin-row .mc-kcal {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    line-height: 1;
+  }
+  .meal-checkin-row .mc-kcal small {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-left: 3px;
+  }
+  .meal-checkin-row .mc-protein {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .meal-checkin-row.done .mc-kcal { color: var(--success); }
+
+  @media (max-width: 720px) {
+    .meal-checkin-row { grid-template-columns: 40px 1fr auto; gap: 10px; padding: 12px; }
+    .meal-checkin-row .mc-checkbox { width: 32px; height: 32px; font-size: 18px; }
+    .meal-checkin-row .mc-name { font-size: 14px; }
+    .meal-checkin-row .mc-items { font-size: 9px; }
+    .meal-checkin-row .mc-kcal { font-size: 17px; }
+    .meal-checkin-head .mc-title { font-size: 14px; }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
+  .mb-meal-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .mb-add-to-log {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 12px 16px;
+    margin-top: 14px;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .mb-add-to-log:hover { background: var(--accent-deep); }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
+  /* MEAL BUILDER · meal-time chip strip */
+  .mb-meal-chips {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .mb-chip {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 10px 4px;
+    cursor: pointer;
+    color: var(--ink);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .mb-chip:hover { background: var(--paper-3); transform: translateY(-1px); }
+  .mb-chip:active { transform: translateY(0); }
+  .mb-chip span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .mb-chip em {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.06em;
+  }
+  .mb-chip.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .mb-chip.active em { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .mb-meal-chips { grid-template-columns: repeat(3, 1fr); }
+    .mb-chip { font-size: 16px; padding: 8px 4px; }
+    .mb-chip span { font-size: 10px; }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
+  /* MEASUREMENT TREND CARD (Progress · read-only) */
+  .measure-trend-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .mt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--ink);
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .mt-edit-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .mt-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .mt-tile {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 12px 14px;
+  }
+  .mt-tile .mt-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .mt-tile .mt-val {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    line-height: 1;
+  }
+  .mt-tile .mt-val .unit-sm {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-left: 3px;
+  }
+  .mt-tile .mt-delta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    margin-top: 4px;
+    color: var(--muted);
+  }
+  .mt-tile .mt-delta.good { color: var(--success); }
+  .mt-tile .mt-delta.bad { color: var(--danger); }
+  .mt-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 24px 12px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 13px;
+  }
+  .mt-history-list {
+    border-top: 1px dashed var(--ink);
+    padding-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .mt-history-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+  }
+  .mt-history-row:last-child { border-bottom: none; }
+  .mt-history-row .mt-row-date { color: var(--muted); }
+
+  @media (max-width: 720px) {
+    .mt-summary { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
   /* MEASUREMENTS TREND CARD · Progress tab read-only display */
   .measure-trend-card {
     background: var(--paper);
@@ -4063,16 +4379,25 @@
     <div class="macro"><div class="macro-label">Sleep</div><div class="macro-value">7+<span class="unit">hr</span></div><div class="macro-note">~5 AM → 12 PM, blackout curtains</div></div>
   </div>
 
-  <!-- PAKISTANI MEAL BUILDER · target kcal + preference → suggested combo -->
+  <!-- PAKISTANI MEAL BUILDER · meal-time + style → suggested combo -->
   <div class="meal-builder-card">
     <div class="mb-header">
       <div class="mb-title">🧮 Pakistani meal builder</div>
-      <div class="mb-sub">Pick a kcal target + a style. App builds a meal from your food database that hits it. Cuts decision fatigue at meal time.</div>
+      <div class="mb-sub">Pick which meal you're planning. App builds a combo from your food database that fits the kcal target. Tap "Build" again for a different combo.</div>
     </div>
+
+    <div class="mb-meal-chips" id="mbMealChips">
+      <button class="mb-chip active" data-meal="breakfast">🍳<span>Breakfast</span><em>~450 kcal</em></button>
+      <button class="mb-chip" data-meal="lunch">🥣<span>Lunch</span><em>~350 kcal</em></button>
+      <button class="mb-chip" data-meal="dinner">🍗<span>Dinner</span><em>~600 kcal</em></button>
+      <button class="mb-chip" data-meal="postwo">💪<span>Post-WO</span><em>~400 kcal</em></button>
+      <button class="mb-chip" data-meal="custom">⚙️<span>Custom</span><em>set kcal</em></button>
+    </div>
+
     <div class="mb-controls">
       <div class="mb-field">
         <label>Target calories</label>
-        <input type="number" id="mbTarget" min="200" max="1200" step="50" value="600">
+        <input type="number" id="mbTarget" min="150" max="1200" step="25" value="450">
       </div>
       <div class="mb-field">
         <label>Style</label>
@@ -4082,11 +4407,12 @@
           <option value="veg">Vegetarian</option>
           <option value="light">Light (low fat)</option>
           <option value="hearty">Hearty</option>
+          <option value="eggs">Eggs-based</option>
         </select>
       </div>
-      <button class="mb-generate" onclick="generateMeal()">Build meal →</button>
+      <button class="mb-generate" onclick="generateMeal()">Build →</button>
     </div>
-    <div class="mb-result" id="mbResult"><!-- JS fills --></div>
+    <div class="mb-result empty" id="mbResult">Pick a meal time + style, then tap Build.</div>
   </div>
 
   <div class="meal-timeline">
@@ -4578,9 +4904,8 @@
     <button class="food-cat-btn" data-cat="cheat">🍕 Cheat-day</button>
   </div>
 
-  <!-- MEAL PRESETS · one-tap to add the whole meal -->
-  <div class="sub-tag" style="margin: 18px 0 10px; font-size:10px;">⚡ QUICK ADD · ONE TAP TO LOG A WHOLE MEAL</div>
-  <div class="meal-presets-strip" id="mealPresets"><!-- JS fills --></div>
+  <!-- MEAL CHECK-INS · time-based, tap to auto-log -->
+  <div class="meal-presets-strip" id="mealPresets"><!-- JS fills as checklist --></div>
 
   <div class="food-grid" id="foodGrid"><!-- JS fills this --></div>
 
@@ -4679,14 +5004,14 @@
   <!-- WEIGHT + CHECKLIST (collapsible) -->
   <div class="collapsible open" id="col-weight">
     <div class="collapsible-head" onclick="toggleCollapse('col-weight')">
-      <h3 class="collapsible-title">⚖️ Sunday <span class="accent">weigh-in.</span></h3>
+      <h3 class="collapsible-title">⚖️ Sunday <span class="accent">weekly entry.</span></h3>
       <div class="collapsible-meta">
         <span class="summary-pill" id="weightPill">No log yet</span>
         <span class="chevron"></span>
       </div>
     </div>
     <div class="collapsible-body">
-      <span class="sub-tag" style="display:block; margin-bottom:14px;">Sunday morning · empty stomach · weight + tape measurements together</span>
+      <span class="sub-tag" style="display:block; margin-bottom:14px;">Sunday morning · empty stomach · weigh-in + tape measurements as one weekly entry</span>
 
   <div class="tracker-grid">
     <div class="tracker-card">
@@ -7028,40 +7353,83 @@ function renderMealPresets() {
   const wrap = document.getElementById('mealPresets');
   if (!wrap) return;
   const log = getFoodLog(getTrainingDayKey());
-  wrap.innerHTML = MEAL_PRESETS.map(preset => {
+
+  let totalChecked = 0;
+  let totalKcalChecked = 0;
+
+  const rowsHtml = MEAL_PRESETS.map(preset => {
     const t = computePresetTotals(preset);
-    // Detect if all items in this preset already meet/exceed the counts in today's log
-    const allAdded = preset.items.every(it => {
+    // Check if logged (all items present at or above preset count)
+    const isLogged = preset.items.every(it => {
       const entry = log[it.foodId];
       return entry && entry.count >= it.count;
     });
-    return `<div class="meal-preset-card ${allAdded ? 'added' : ''}">
-      <div class="mp-icon">${preset.icon}</div>
-      <div class="mp-body">
-        <div class="mp-name">${preset.name}</div>
-        <div class="mp-time">${preset.time}</div>
-        <div class="mp-totals">${t.kcal} kcal · ${t.protein}g protein · ${preset.items.length} items</div>
+    if (isLogged) { totalChecked++; totalKcalChecked += t.kcal; }
+    const itemsList = preset.items.map(it => {
+      const f = FOOD_DB.find(x => x.id === it.foodId);
+      if (!f) return '';
+      const qty = it.qty ? `${it.qty}g` : (it.count > 1 ? `${it.count}×` : '');
+      return `<span class="mc-item">${f.icon} ${qty} ${f.name}</span>`;
+    }).join('');
+    return `<li class="meal-checkin-row ${isLogged ? 'done' : ''}">
+      <button class="mc-checkbox" onclick="toggleMealCheckin('${preset.id}')" aria-label="Toggle ${preset.name}">${isLogged ? '✓' : ''}</button>
+      <div class="mc-info">
+        <div class="mc-name">${preset.icon} ${preset.name}</div>
+        <div class="mc-time">${preset.time}</div>
+        <div class="mc-items">${itemsList}</div>
       </div>
-      <button class="mp-add" onclick="addMealPreset('${preset.id}')">${allAdded ? '✓ Added' : '+ Add'}</button>
-    </div>`;
+      <div class="mc-totals">
+        <div class="mc-kcal">${t.kcal}<small>kcal</small></div>
+        <div class="mc-protein">${t.protein}g P</div>
+      </div>
+    </li>`;
   }).join('');
+
+  wrap.innerHTML = `
+    <div class="meal-checkin-head">
+      <div>
+        <div class="mc-title">📋 Today's meals · check when eaten</div>
+        <div class="mc-sub">Tick a meal to auto-log all its calories. Untick to remove. From your diet plan.</div>
+      </div>
+      <div class="mc-summary">${totalChecked}/${MEAL_PRESETS.length} · ${totalKcalChecked} kcal</div>
+    </div>
+    <ul class="meal-checkin-list">${rowsHtml}</ul>
+  `;
 }
 
-function addMealPreset(presetId) {
+function toggleMealCheckin(presetId) {
   const preset = MEAL_PRESETS.find(p => p.id === presetId);
   if (!preset) return;
   const key = getTrainingDayKey();
   const log = getFoodLog(key);
-  preset.items.forEach(it => {
-    if (!log[it.foodId]) log[it.foodId] = { count: 0 };
-    log[it.foodId].count = (log[it.foodId].count || 0) + it.count;
-    if (it.qty) log[it.foodId].qty = it.qty;
+  const isLogged = preset.items.every(it => {
+    const entry = log[it.foodId];
+    return entry && entry.count >= it.count;
   });
+  if (isLogged) {
+    // Untick · subtract preset counts
+    preset.items.forEach(it => {
+      if (log[it.foodId]) {
+        log[it.foodId].count = Math.max(0, log[it.foodId].count - it.count);
+        if (log[it.foodId].count === 0) delete log[it.foodId];
+      }
+    });
+  } else {
+    // Tick · add preset counts
+    preset.items.forEach(it => {
+      if (!log[it.foodId]) log[it.foodId] = { count: 0 };
+      log[it.foodId].count = (log[it.foodId].count || 0) + it.count;
+      if (it.qty) log[it.foodId].qty = it.qty;
+    });
+  }
   setFoodLog(key, log);
   renderFoodGrid();
   renderFoodLog();
   renderMealPresets();
 }
+
+// Keep addMealPreset as alias for backwards compat (any old onclick="addMealPreset(...)")
+function addMealPreset(presetId) { toggleMealCheckin(presetId); }
 
 /* ============================================================
    COLLAPSE ALL
@@ -8319,86 +8687,138 @@ function renderHeatmap() {
 /* ============================================================
    PAKISTANI MEAL BUILDER
    ============================================================ */
-const MB_PROFILES = {
+const MB_STYLE_PROFILES = {
   chicken: { picks: ['chicken-karahi','chicken-qorma','chicken','egg-whole'], carbPool: ['roti-multigrain','roti-wheat','rice-brown-pk','brown-bread'], sidePool: ['cucumber-salad','mixed-veg','palak'] },
   beef:    { picks: ['beef-curry','mutton-curry'], carbPool: ['roti-multigrain','roti-wheat','naan'], sidePool: ['cucumber-salad','mixed-veg'] },
-  veg:     { picks: ['daal','channa-chaat','egg-whole','yogurt-strain','paneer-grilled'], carbPool: ['roti-multigrain','rice-brown-pk','brown-bread'], sidePool: ['palak','bhindi','mixed-veg','aloo-sabzi'] },
+  veg:     { picks: ['daal','channa-chaat','egg-whole','yogurt-strain'], carbPool: ['roti-multigrain','rice-brown-pk','brown-bread'], sidePool: ['palak','bhindi','mixed-veg','aloo-sabzi'] },
   light:   { picks: ['chicken','egg-white','egg-boiled','fish-curry','daal'], carbPool: ['multigrain','brown-bread','roti-multigrain'], sidePool: ['cucumber-salad','palak','mixed-veg'] },
-  hearty:  { picks: ['chicken-karahi','beef-curry','mutton-curry','chicken-qorma'], carbPool: ['naan','paratha-multigrain','rice-white'], sidePool: ['daal','aloo-sabzi','mixed-veg'] }
+  hearty:  { picks: ['chicken-karahi','beef-curry','mutton-curry','chicken-qorma'], carbPool: ['naan','paratha-multigrain','rice-white'], sidePool: ['daal','aloo-sabzi','mixed-veg'] },
+  eggs:    { picks: ['egg-whole','egg-boiled','egg-white'], carbPool: ['brown-bread','multigrain','roti-multigrain'], sidePool: ['tomato-onion','cucumber-salad','mixed-veg'] }
 };
 
-function generateMeal() {
-  const target = parseInt(document.getElementById('mbTarget').value) || 600;
-  const style = document.getElementById('mbStyle').value;
-  const profile = MB_PROFILES[style];
+// Meal-time profiles: default kcal target + recommended style + portion ratio
+const MB_MEAL_PROFILES = {
+  breakfast: { kcal: 450, defaultStyle: 'eggs',    name: 'Breakfast (4:30 PM)',    mainPct: 0.55, carbPct: 0.30, sidePct: 0.15 },
+  lunch:     { kcal: 350, defaultStyle: 'light',   name: 'Lunch (8:30 PM)',        mainPct: 0.45, carbPct: 0.40, sidePct: 0.15 },
+  dinner:    { kcal: 600, defaultStyle: 'chicken', name: 'Dinner (12:00 AM)',      mainPct: 0.55, carbPct: 0.35, sidePct: 0.10 },
+  postwo:    { kcal: 400, defaultStyle: 'eggs',    name: 'Post-workout (3:00 AM)', mainPct: 0.65, carbPct: 0.25, sidePct: 0.10 },
+  custom:    { kcal: 500, defaultStyle: 'chicken', name: 'Custom meal',            mainPct: 0.50, carbPct: 0.40, sidePct: 0.10 }
+};
+
+let _mbActiveMeal = 'breakfast';
+
+function setMbMeal(mealKey) {
+  _mbActiveMeal = mealKey;
+  const profile = MB_MEAL_PROFILES[mealKey];
   if (!profile) return;
+  document.querySelectorAll('.mb-chip').forEach(c => c.classList.toggle('active', c.dataset.meal === mealKey));
+  // Auto-set the kcal target + style
+  const tgt = document.getElementById('mbTarget');
+  const sty = document.getElementById('mbStyle');
+  if (tgt) tgt.value = profile.kcal;
+  if (sty) sty.value = profile.defaultStyle;
+}
 
-  const out = document.getElementById('mbResult');
-  // Find available items
-  const pickFrom = arr => {
-    const valid = arr.map(id => FOOD_DB.find(f => f.id === id)).filter(Boolean);
-    return valid[Math.floor(Math.random() * valid.length)];
-  };
+// Wire chip clicks
+document.querySelectorAll('.mb-chip').forEach(chip => {
+  chip.addEventListener('click', () => setMbMeal(chip.dataset.meal));
+});
 
-  // Pick main protein
-  const main = pickFrom(profile.picks);
-  if (!main) { out.innerHTML = '<div class="mb-result empty">No matching items.</div>'; return; }
-  // Target roughly: 50% from main, 40% from carb, 10% from side
-  const mainKcal = target * 0.5;
-  const carbKcal = target * 0.4;
+function generateMeal() {
+  try {
+    const target = parseInt(document.getElementById('mbTarget').value) || 500;
+    const style = document.getElementById('mbStyle').value;
+    const mealProfile = MB_MEAL_PROFILES[_mbActiveMeal] || MB_MEAL_PROFILES.custom;
+    const styleProfile = MB_STYLE_PROFILES[style];
+    const out = document.getElementById('mbResult');
+    if (!out) { console.error('mbResult element missing'); return; }
+    if (!styleProfile) { out.innerHTML = 'Style not found.'; return; }
 
-  // Compute main portion needed
-  const mainBase = main.kcal;
-  const mainScale = main.adjustable ? Math.max(0.4, Math.min(2.5, mainKcal / mainBase)) : 1;
-  const mainCount = main.adjustable ? 1 : Math.max(1, Math.round(mainKcal / mainBase));
-  const mainQty = main.adjustable ? Math.round(main.defaultQty * mainScale / 5) * 5 : null;
-  const mainKcalActual = Math.round(main.kcal * (main.adjustable ? (mainQty / main.defaultQty) : 1) * mainCount);
+    const pickFrom = arr => {
+      const valid = arr.map(id => FOOD_DB.find(f => f.id === id)).filter(Boolean);
+      if (valid.length === 0) return null;
+      return valid[Math.floor(Math.random() * valid.length)];
+    };
 
-  // Carb
-  const carb = pickFrom(profile.carbPool);
-  const carbBase = carb ? carb.kcal : 0;
-  const carbScale = carb && carb.adjustable ? Math.max(0.4, Math.min(2.0, carbKcal / carbBase)) : 1;
-  const carbCount = carb && !carb.adjustable ? Math.max(1, Math.round(carbKcal / carbBase)) : 1;
-  const carbQty = carb && carb.adjustable ? Math.round(carb.defaultQty * carbScale / 5) * 5 : null;
-  const carbKcalActual = carb ? Math.round(carb.kcal * (carb.adjustable ? (carbQty / carb.defaultQty) : 1) * carbCount) : 0;
+    const computeItem = (food, kcalTarget) => {
+      if (!food) return null;
+      if (food.adjustable && food.defaultQty) {
+        const scale = Math.max(0.4, Math.min(2.5, kcalTarget / food.kcal));
+        const qty = Math.max(10, Math.round(food.defaultQty * scale / 5) * 5);
+        const actualKcal = Math.round(food.kcal * (qty / food.defaultQty));
+        const actualP = +(food.protein * (qty / food.defaultQty)).toFixed(1);
+        return { food, count: 1, qty, kcal: actualKcal, protein: actualP };
+      } else {
+        const count = Math.max(1, Math.round(kcalTarget / food.kcal));
+        return { food, count, qty: null, kcal: food.kcal * count, protein: +(food.protein * count).toFixed(1) };
+      }
+    };
 
-  // Side (small, optional)
-  const side = pickFrom(profile.sidePool);
-  const sideKcal = side ? (target - mainKcalActual - carbKcalActual) : 0;
-  const sideBase = side ? side.kcal : 0;
-  const sideScale = side && side.adjustable && sideKcal > 0 ? Math.max(0.3, Math.min(1.5, sideKcal / sideBase)) : 1;
-  const sideQty = side && side.adjustable ? Math.round(side.defaultQty * sideScale / 5) * 5 : null;
-  const sideKcalActual = side && sideKcal > 30 ? Math.round(side.kcal * (side.adjustable ? (sideQty / side.defaultQty) : 1)) : 0;
+    const mainItem = computeItem(pickFrom(styleProfile.picks), target * mealProfile.mainPct);
+    if (!mainItem) {
+      out.classList.add('empty');
+      out.innerHTML = '<div style="text-align:center; color:var(--muted);">Couldn\'t find matching items for this style. Try a different style.</div>';
+      return;
+    }
+    const carbItem = computeItem(pickFrom(styleProfile.carbPool), target * mealProfile.carbPct);
+    const sideItem = computeItem(pickFrom(styleProfile.sidePool), target * mealProfile.sidePct);
 
-  const totalK = mainKcalActual + carbKcalActual + sideKcalActual;
-  const items = [
-    { food: main, count: mainCount, qty: mainQty, kcal: mainKcalActual },
-    { food: carb, count: carbCount, qty: carbQty, kcal: carbKcalActual }
-  ];
-  if (side && sideKcalActual > 30) items.push({ food: side, count: 1, qty: sideQty, kcal: sideKcalActual });
+    const items = [mainItem];
+    if (carbItem) items.push(carbItem);
+    if (sideItem && sideItem.kcal > 25) items.push(sideItem);
 
-  // Compute total protein
-  let totalP = 0;
-  items.forEach(it => {
-    const scale = it.food.adjustable && it.qty ? it.qty / it.food.defaultQty : 1;
-    totalP += (it.food.protein || 0) * scale * it.count;
+    const totalK = items.reduce((s, it) => s + it.kcal, 0);
+    const totalP = Math.round(items.reduce((s, it) => s + it.protein, 0));
+
+    const portionText = it => {
+      if (it.qty !== null) return `${it.qty} g`;
+      if (it.count > 1) return `${it.count} × ${it.food.unit}`;
+      return it.food.unit;
+    };
+
+    out.classList.remove('empty');
+    out.innerHTML = `
+      <div class="mb-meal-title">${mainItem.food.name} combo</div>
+      <div class="mb-meal-meta">${mealProfile.name}</div>
+      <div class="mb-meal-totals">${totalK} kcal · ${totalP}g protein · target ${target}</div>
+      <ul class="mb-meal-items">
+        ${items.map(it => `<li><span class="item-name">${it.food.icon} ${it.food.name}</span><span class="item-portion">${portionText(it)} · ${it.kcal} kcal</span></li>`).join('')}
+      </ul>
+      <button class="mb-add-to-log" onclick="addMealBuilderToLog()">+ Add this meal to today's food log</button>
+    `;
+    // Cache for the add-to-log handler
+    _mbLastBuiltMeal = items;
+  } catch (err) {
+    const out = document.getElementById('mbResult');
+    if (out) out.innerHTML = '<div style="color:var(--danger); padding:12px;">Error building meal: ' + err.message + ' · refresh the app and try again.</div>';
+    console.error('Meal builder error:', err);
+  }
+}
+
+let _mbLastBuiltMeal = null;
+function addMealBuilderToLog() {
+  if (!_mbLastBuiltMeal || _mbLastBuiltMeal.length === 0) return;
+  const key = getTrainingDayKey();
+  const log = getFoodLog(key);
+  _mbLastBuiltMeal.forEach(it => {
+    if (!log[it.food.id]) log[it.food.id] = { count: 0 };
+    log[it.food.id].count = (log[it.food.id].count || 0) + it.count;
+    if (it.qty !== null) log[it.food.id].qty = it.qty;
   });
-  totalP = Math.round(totalP);
-
-  const portionText = it => {
-    if (it.food.adjustable && it.qty) return `${it.qty} g`;
-    if (it.count > 1) return `${it.count} × ${it.food.unit}`;
-    return it.food.unit;
-  };
-
-  out.classList.remove('empty');
-  out.innerHTML = `
-    <div class="mb-meal-title">${main.name} combo</div>
-    <div class="mb-meal-totals">${totalK} kcal · ${totalP}g protein · target ${target}</div>
-    <ul class="mb-meal-items">
-      ${items.map(it => `<li><span class="item-name">${it.food.icon} ${it.food.name}</span><span class="item-portion">${portionText(it)} · ${it.kcal} kcal</span></li>`).join('')}
-    </ul>
-  `;
+  setFoodLog(key, log);
+  renderFoodGrid();
+  renderFoodLog();
+  // Visual confirmation
+  const out = document.getElementById('mbResult');
+  const btn = out ? out.querySelector('.mb-add-to-log') : null;
+  if (btn) {
+    btn.textContent = '✓ Added to today\'s food log';
+    btn.style.background = 'var(--success)';
+    setTimeout(() => {
+      btn.textContent = '+ Add this meal to today\'s food log';
+      btn.style.background = '';
+    }, 2500);
+  }
 }
 
 /* ============================================================
@@ -8521,8 +8941,63 @@ function skipAdaptivePlan() {
 
 // Render insights when Progress tab is opened
 document.querySelectorAll('.bn-btn[data-tab="progress"], .tab-btn[data-tab="progress"]').forEach(b => {
-  b.addEventListener('click', () => setTimeout(renderInsights, 50));
+  b.addEventListener('click', () => setTimeout(() => { renderInsights(); renderMeasurementTrend(); }, 50));
 });
+
+/* ============================================================
+   MEASUREMENT TREND CARD · read-only view in Progress
+   ============================================================ */
+function renderMeasurementTrend() {
+  const summary = document.getElementById('mtSummary');
+  const histList = document.getElementById('mtHistoryList');
+  if (!summary) return;
+
+  const all = getAllMeasurements();
+  if (all.length === 0) {
+    summary.innerHTML = '<div class="mt-empty">No measurements logged yet. Add your first set on Sunday in the Tracker tab → Sunday weigh-in.</div>';
+    if (histList) histList.innerHTML = '';
+    return;
+  }
+  const latest = all[all.length - 1];
+  const first = all[0];
+
+  const tiles = MEASURE_FIELDS.filter(f => latest[f.key] !== undefined).map(f => {
+    const cur = latest[f.key];
+    const start = first[f.key];
+    let deltaHtml = '';
+    if (start !== undefined && all.length > 1) {
+      const delta = +(cur - start).toFixed(1);
+      const slimming = ['waist', 'hips', 'thighs', 'neck'].includes(f.key);
+      const cls = delta === 0 ? '' : slimming ? (delta < 0 ? 'good' : 'bad') : (delta > 0 ? 'good' : 'bad');
+      const sign = delta > 0 ? '+' : '';
+      deltaHtml = `<div class="mt-delta ${cls}">${sign}${delta} cm vs start</div>`;
+    }
+    return `<div class="mt-tile">
+      <div class="mt-label">${f.label}</div>
+      <div class="mt-val">${cur}<span class="unit-sm">cm</span></div>
+      ${deltaHtml}
+    </div>`;
+  });
+
+  summary.innerHTML = tiles.join('');
+
+  // History list — show last 8 entries
+  if (histList) {
+    const recent = all.slice(-8).reverse();
+    histList.innerHTML = `<div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Recent entries</div>` +
+      recent.map(m => {
+        const parts = MEASURE_FIELDS.filter(f => m[f.key] !== undefined).map(f => `${f.label[0]}:${m[f.key]}`).join(' · ');
+        return `<div class="mt-history-row"><span class="mt-row-date">${fmtDate(m.date)}</span><span>${parts}</span></div>`;
+      }).join('');
+  }
+}
+
+// Hook into measurement save to refresh both views
+const _origLoadMeasurements = loadMeasurements;
+loadMeasurements = function() { _origLoadMeasurements.apply(this, arguments); renderMeasurementTrend(); };
+
+// Initial render
+setTimeout(renderMeasurementTrend, 100);
 
 // Initial renders
 setTimeout(() => { renderInsights(); renderSundayAdaptive(); }, 100);
