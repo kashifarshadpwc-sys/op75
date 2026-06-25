@@ -994,6 +994,487 @@
 
   /* ============ V5 ADDITIONS ============ */
 
+  /* BULK-LOG WORKOUT BUTTON */
+  .bulk-log-btn {
+    background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+    color: white;
+    border: none;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    transition: transform 0.1s;
+  }
+  .bulk-log-btn:hover { transform: translateY(-1px); }
+  .bulk-log-btn:active { transform: translateY(0); }
+  .bulk-log-btn:disabled {
+    background: var(--paper-3);
+    color: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+  }
+  .bulk-log-btn .bl-icon { font-size: 26px; line-height: 1; }
+  .bulk-log-btn .bl-body { min-width: 0; }
+  .bulk-log-btn .bl-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 1;
+    display: block;
+  }
+  .bulk-log-btn .bl-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.85;
+    margin-top: 4px;
+    display: block;
+  }
+  .bulk-log-btn .bl-arrow {
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+  }
+  .bulk-log-btn.done {
+    background: linear-gradient(135deg, #166534 0%, #14532D 100%);
+  }
+
+  /* CURRENT PHASE BANNER (Training Overview) */
+  .current-phase-banner {
+    background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
+    color: var(--dark-text);
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--accent);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+  .current-phase-banner .cpb-num {
+    font-family: 'Anton', sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .current-phase-banner .cpb-body { min-width: 0; }
+  .current-phase-banner .cpb-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(244,236,219,0.55);
+  }
+  .current-phase-banner .cpb-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 4px;
+  }
+  .current-phase-banner .cpb-week {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(244,236,219,0.7);
+    margin-top: 4px;
+  }
+  .current-phase-banner .cpb-jump {
+    background: var(--accent);
+    color: var(--dark);
+    border: none;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .current-phase-banner .cpb-jump:hover { background: var(--accent-soft); }
+
+  /* PHOTO DATE PICKER + FILTERS */
+  .photo-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .photo-date-input {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    width: 100%;
+  }
+  .photo-filter-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .photo-filter-btn {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 8px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    flex: 1;
+    min-width: 60px;
+  }
+  .photo-filter-btn:hover { background: var(--paper-3); }
+  .photo-filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* EXPORT / IMPORT */
+  .data-mgmt-card {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 20px;
+    margin-top: 24px;
+  }
+  .data-mgmt-card h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .data-mgmt-card .dm-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .data-mgmt-card .dm-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .data-mgmt-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .data-mgmt-actions button {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .data-mgmt-actions button:hover { background: var(--accent-deep); }
+  .data-mgmt-actions .dm-import { background: var(--paper); color: var(--ink); border: 1px solid var(--ink); }
+  .data-mgmt-actions .dm-import:hover { background: var(--paper-3); }
+
+  /* THEME PICKER */
+  .theme-picker {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .theme-option {
+    border: 2px solid var(--rule);
+    padding: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.15s, transform 0.1s;
+  }
+  .theme-option:hover { transform: translateY(-2px); }
+  .theme-option.active { border-color: var(--accent); }
+  .theme-option .to-swatch {
+    height: 50px;
+    margin-bottom: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .theme-option.theme-camp .to-swatch > div:nth-child(1) { background: #F5EFE3; }
+  .theme-option.theme-camp .to-swatch > div:nth-child(2) { background: #161311; }
+  .theme-option.theme-camp .to-swatch > div:nth-child(3) { background: #D97706; }
+  .theme-option.theme-steel .to-swatch > div:nth-child(1) { background: #0A0A0A; }
+  .theme-option.theme-steel .to-swatch > div:nth-child(2) { background: #1F1F1F; }
+  .theme-option.theme-steel .to-swatch > div:nth-child(3) { background: #22C55E; }
+  .theme-option.theme-light .to-swatch > div:nth-child(1) { background: #FFFFFF; }
+  .theme-option.theme-light .to-swatch > div:nth-child(2) { background: #1F2937; }
+  .theme-option.theme-light .to-swatch > div:nth-child(3) { background: #3B82F6; }
+  .theme-option .to-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .theme-option .to-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+  }
+
+  /* THEME · DARK STEEL */
+  body.theme-steel {
+    --paper: #0A0A0A;
+    --paper-2: #1A1A1A;
+    --paper-3: #262626;
+    --ink: #F5F5F5;
+    --ink-soft: #D4D4D4;
+    --muted: #737373;
+    --rule: #404040;
+    --dark: #1F1F1F;
+    --dark-text: #F5F5F5;
+    --accent: #22C55E;
+    --accent-deep: #16A34A;
+    --accent-soft: #4ADE80;
+    --hand: #22C55E;
+  }
+  body.theme-steel .reminder-banner,
+  body.theme-steel .water-card,
+  body.theme-steel .sleep-card,
+  body.theme-steel .progress-hero,
+  body.theme-steel .daily-kpi-card,
+  body.theme-steel .modal-header,
+  body.theme-steel .current-phase-banner,
+  body.theme-steel .bottom-nav {
+    background: linear-gradient(135deg, #1F1F1F 0%, #2A2A2A 100%);
+  }
+  body.theme-steel .meal-preset-card.added,
+  body.theme-steel .engagement-card.hot {
+    background: linear-gradient(135deg, #14532D 0%, #166534 100%);
+    color: #F5F5F5;
+  }
+
+  /* THEME · MINIMAL LIGHT */
+  body.theme-light {
+    --paper: #FFFFFF;
+    --paper-2: #F9FAFB;
+    --paper-3: #F3F4F6;
+    --ink: #111827;
+    --ink-soft: #374151;
+    --muted: #6B7280;
+    --rule: #E5E7EB;
+    --dark: #1F2937;
+    --dark-text: #F9FAFB;
+    --accent: #3B82F6;
+    --accent-deep: #2563EB;
+    --accent-soft: #60A5FA;
+    --hand: #3B82F6;
+  }
+
+  @media (max-width: 720px) {
+    .photo-controls { grid-template-columns: 1fr; }
+    .data-mgmt-actions { grid-template-columns: 1fr; }
+    .theme-picker { grid-template-columns: 1fr; }
+    .current-phase-banner { grid-template-columns: auto 1fr; }
+    .current-phase-banner .cpb-jump { grid-column: 1 / -1; width: 100%; }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
+  /* DAILY KPI DASHBOARD · top of Tracker */
+  .daily-kpi-card {
+    background: linear-gradient(135deg, #0F0D0C 0%, #1C1917 100%);
+    color: var(--dark-text);
+    padding: 22px 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+  }
+  .daily-kpi-card .dk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed rgba(244,236,219,0.2);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .daily-kpi-card .dk-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .daily-kpi-card .dk-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(244,236,219,0.65);
+  }
+  .dk-time-bar-wrap {
+    margin-bottom: 18px;
+  }
+  .dk-time-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244,236,219,0.55);
+    margin-bottom: 6px;
+  }
+  .dk-time-label .dk-elapsed { color: var(--accent); font-weight: 700; }
+  .dk-time-bar {
+    height: 12px;
+    background: rgba(244,236,219,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .dk-time-bar .dk-time-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 0%, #F59E0B 100%);
+    transition: width 0.3s;
+  }
+  .dk-time-bar .dk-time-now {
+    position: absolute;
+    top: -3px;
+    width: 2px;
+    height: 18px;
+    background: white;
+    box-shadow: 0 0 6px rgba(255,255,255,0.5);
+  }
+  .dk-time-bounds {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(244,236,219,0.45);
+    margin-top: 4px;
+  }
+  .dk-metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .dk-metric {
+    background: rgba(244,236,219,0.04);
+    padding: 10px 12px;
+    border: 1px solid rgba(244,236,219,0.08);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+  .dk-metric.done { background: rgba(22,101,52,0.25); border-color: rgba(74,222,128,0.4); }
+  .dk-metric .dk-icon { font-size: 20px; line-height: 1; }
+  .dk-metric .dk-body { min-width: 0; }
+  .dk-metric .dk-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(244,236,219,0.55);
+  }
+  .dk-metric .dk-value {
+    font-family: 'Anton', sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 3px;
+  }
+  .dk-metric .dk-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .dk-metric.done .dk-status { color: #4ADE80; }
+
+  /* MACRO BREAKDOWN */
+  .macro-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .macro-tile {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 14px 10px;
+    text-align: center;
+    position: relative;
+  }
+  .macro-tile.protein { border-top: 3px solid #DC2626; }
+  .macro-tile.carbs   { border-top: 3px solid #D97706; }
+  .macro-tile.fats    { border-top: 3px solid #6366F1; }
+  .macro-tile .mt-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .macro-tile .mt-val {
+    font-family: 'Anton', sans-serif;
+    font-size: 26px;
+    line-height: 1;
+  }
+  .macro-tile .mt-unit {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .macro-tile .mt-bar {
+    height: 4px;
+    background: rgba(28,25,23,0.1);
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .macro-tile.protein .mt-bar .mt-fill { background: #DC2626; }
+  .macro-tile.carbs   .mt-bar .mt-fill { background: #D97706; }
+  .macro-tile.fats    .mt-bar .mt-fill { background: #6366F1; }
+  .macro-tile .mt-fill { height: 100%; transition: width 0.3s; }
+  .macro-tile.over .mt-val { color: var(--danger); }
+
+  /* SECTION COMPLETION CHECKMARK */
+  .section-check-btn {
+    background: none;
+    border: 1.5px solid var(--rule);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: transparent;
+    transition: all 0.15s;
+  }
+  .section-check-btn:hover { border-color: var(--success); }
+  .section-check-btn.done {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+  }
+
+  @media (max-width: 720px) {
+    .macro-grid { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+    .macro-tile { padding: 10px 6px; }
+    .macro-tile .mt-val { font-size: 22px; }
+    .dk-metric-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
   /* DATE PICKER · top of Tracker · log to any of last 7 days */
   .date-picker-wrap {
     background: var(--paper-2);
@@ -2475,6 +2956,17 @@
 
   <div class="sub-panel active" id="sub-overview">
 
+  <!-- AUTO-DETECTED CURRENT PHASE · updates based on today's date -->
+  <div class="current-phase-banner" id="currentPhaseBanner">
+    <div class="cpb-num" id="cpbNum">1</div>
+    <div class="cpb-body">
+      <div class="cpb-label">Current phase · today</div>
+      <div class="cpb-title" id="cpbTitle">Phase 1 · Foundation</div>
+      <div class="cpb-week" id="cpbWeek">Week 1 of 12 · 25 Jun → 22 Jul</div>
+    </div>
+    <button class="cpb-jump" id="cpbJump" onclick="jumpToCurrentPhase()">Open phase →</button>
+  </div>
+
   <div class="phase-banner">
     <div><div class="phase-label">Active phase</div><div class="phase-name">Phase 1 — Foundation</div></div>
     <div class="phase-dates">Weeks 1–4 · 25 Jun → 22 Jul · Form, baselines, habit</div>
@@ -3053,6 +3545,62 @@
     <div class="date-picker" id="datePicker"><!-- JS fills --></div>
   </div>
 
+  <!-- DAILY KPI DASHBOARD · time + per-metric progress -->
+  <div class="daily-kpi-card" id="dailyKpi">
+    <div class="dk-header">
+      <div class="dk-title">Today's <span style="color:var(--accent);">progress.</span></div>
+      <div class="dk-date" id="dkDate">—</div>
+    </div>
+    <div class="dk-time-bar-wrap">
+      <div class="dk-time-label">
+        <span>⏱ Training day · <span class="dk-elapsed" id="dkElapsed">0h elapsed</span></span>
+        <span id="dkRemaining">16h remaining</span>
+      </div>
+      <div class="dk-time-bar">
+        <div class="dk-time-fill" id="dkTimeFill" style="width:0%"></div>
+        <div class="dk-time-now" id="dkTimeNow" style="left:0%"></div>
+      </div>
+      <div class="dk-time-bounds">
+        <span>2:00 PM start</span>
+        <span>6:00 AM end</span>
+      </div>
+    </div>
+    <div class="dk-metric-grid">
+      <div class="dk-metric" id="dkWater">
+        <div class="dk-icon">💧</div>
+        <div class="dk-body">
+          <div class="dk-label">Water</div>
+          <div class="dk-value" id="dkWaterVal">0 / 3,000 ml</div>
+        </div>
+        <div class="dk-status" id="dkWaterStat">0%</div>
+      </div>
+      <div class="dk-metric" id="dkFood">
+        <div class="dk-icon">🍽️</div>
+        <div class="dk-body">
+          <div class="dk-label">Calories</div>
+          <div class="dk-value" id="dkFoodVal">0 / 1,900 kcal</div>
+        </div>
+        <div class="dk-status" id="dkFoodStat">0%</div>
+      </div>
+      <div class="dk-metric" id="dkGym">
+        <div class="dk-icon">💪</div>
+        <div class="dk-body">
+          <div class="dk-label">Gym</div>
+          <div class="dk-value" id="dkGymVal">0 sets</div>
+        </div>
+        <div class="dk-status" id="dkGymStat">—</div>
+      </div>
+      <div class="dk-metric" id="dkSleep">
+        <div class="dk-icon">😴</div>
+        <div class="dk-body">
+          <div class="dk-label">Sleep</div>
+          <div class="dk-value" id="dkSleepVal">Not logged</div>
+        </div>
+        <div class="dk-status" id="dkSleepStat">—</div>
+      </div>
+    </div>
+  </div>
+
   <!-- COLLAPSE ALL TOGGLE -->
   <div class="collapse-all-row">
     <button class="collapse-all-btn all-open" id="collapseAllBtn" onclick="toggleAllCollapsibles()">
@@ -3292,6 +3840,28 @@
     </div>
   </div>
 
+  <!-- MACRO BREAKDOWN -->
+  <div class="macro-grid" id="macroBreakdown">
+    <div class="macro-tile protein">
+      <div class="mt-label">Protein</div>
+      <div class="mt-val" id="macroProtein">0</div>
+      <div class="mt-unit">g · target 130</div>
+      <div class="mt-bar"><div class="mt-fill" id="macroProteinBar" style="width:0%"></div></div>
+    </div>
+    <div class="macro-tile carbs">
+      <div class="mt-label">Carbs</div>
+      <div class="mt-val" id="macroCarbs">0</div>
+      <div class="mt-unit">g · target 200</div>
+      <div class="mt-bar"><div class="mt-fill" id="macroCarbsBar" style="width:0%"></div></div>
+    </div>
+    <div class="macro-tile fats">
+      <div class="mt-label">Fats</div>
+      <div class="mt-val" id="macroFats">0</div>
+      <div class="mt-unit">g · target 60</div>
+      <div class="mt-bar"><div class="mt-fill" id="macroFatsBar" style="width:0%"></div></div>
+    </div>
+  </div>
+
   <div class="food-toolbar">
     <button class="food-cat-btn active" data-cat="all">🍽️ All</button>
     <button class="food-cat-btn" data-cat="protein">🥚 Protein</button>
@@ -3355,6 +3925,16 @@
     <button class="ex-day-chip" data-day="sun">Sun</button>
     <button class="ex-day-chip" data-day="all">All</button>
   </div>
+
+  <!-- BULK-LOG TODAY'S WORKOUT · one tap = all lifts + cardio -->
+  <button class="bulk-log-btn" id="bulkLogBtn" onclick="bulkLogWorkout()">
+    <span class="bl-icon">⚡</span>
+    <div class="bl-body">
+      <span class="bl-title">Log today's full workout</span>
+      <span class="bl-sub" id="bulkLogSub">Adds all lifts + cardio at default targets</span>
+    </div>
+    <span class="bl-arrow">→</span>
+  </button>
 
   <div class="target-preview" id="targetPreview">
     <div class="tp-icon" id="tpIcon">💪</div>
@@ -3484,10 +4064,56 @@
     <div class="photos-head">
       <div class="m-title">📷 Progress photos</div>
     </div>
-    <input type="file" accept="image/*" capture="environment" id="photoInput" style="display:none">
-    <button class="photo-capture-btn" onclick="document.getElementById('photoInput').click()">📷 Add photo · today</button>
+    <div class="photo-controls">
+      <input type="date" class="photo-date-input" id="photoDateInput">
+      <input type="file" accept="image/*" id="photoInput" style="display:none">
+      <button class="photo-capture-btn" style="margin-bottom:0;" onclick="document.getElementById('photoInput').click()">📷 Add photo</button>
+    </div>
+    <div class="photo-filter-row">
+      <button class="photo-filter-btn active" data-filter="all" onclick="setPhotoFilter('all')">All</button>
+      <button class="photo-filter-btn" data-filter="week" onclick="setPhotoFilter('week')">This week</button>
+      <button class="photo-filter-btn" data-filter="month" onclick="setPhotoFilter('month')">This month</button>
+      <button class="photo-filter-btn" data-filter="weekly" onclick="setPhotoFilter('weekly')">Weekly</button>
+      <button class="photo-filter-btn" data-filter="monthly" onclick="setPhotoFilter('monthly')">Monthly</button>
+    </div>
     <div class="photo-grid" id="photoGrid">
       <div class="photo-empty">No photos yet. Take one a week — front, side, back. The mirror lies, the photos don't.</div>
+    </div>
+  </div>
+
+  <!-- DATA EXPORT / IMPORT -->
+  <div class="data-mgmt-card">
+    <h3>Backup & sharing</h3>
+    <div class="dm-title">Export your data</div>
+    <p class="dm-desc">Save everything — food logs, weights, exercise, sleep, measurements, photos — as a single JSON file. Share it with Claude after Sep 10 for a full performance review and Phase 4 plan. Also use it to restore data on a new phone.</p>
+    <div class="data-mgmt-actions">
+      <button onclick="exportAllData()">💾 Export JSON</button>
+      <input type="file" accept=".json,application/json" id="importInput" style="display:none">
+      <button class="dm-import" onclick="document.getElementById('importInput').click()">📥 Import JSON</button>
+    </div>
+  </div>
+
+  <!-- THEME PICKER -->
+  <div class="data-mgmt-card">
+    <h3>Appearance</h3>
+    <div class="dm-title">Pick your theme</div>
+    <p class="dm-desc">Three looks · same data and features under the hood. Default is Training Camp.</p>
+    <div class="theme-picker" id="themePicker">
+      <div class="theme-option theme-camp active" data-theme="camp" onclick="setTheme('camp')">
+        <div class="to-swatch"><div></div><div></div><div></div></div>
+        <div class="to-name">Training Camp</div>
+        <div class="to-sub">Cream · Marigold</div>
+      </div>
+      <div class="theme-option theme-steel" data-theme="steel" onclick="setTheme('steel')">
+        <div class="to-swatch"><div></div><div></div><div></div></div>
+        <div class="to-name">Dark Steel</div>
+        <div class="to-sub">Black · Gym green</div>
+      </div>
+      <div class="theme-option theme-light" data-theme="light" onclick="setTheme('light')">
+        <div class="to-swatch"><div></div><div></div><div></div></div>
+        <div class="to-name">Minimal Light</div>
+        <div class="to-sub">White · Clean blue</div>
+      </div>
     </div>
   </div>
 
@@ -3667,6 +4293,42 @@ const FOOD_DB = [
   // CARBS + BREAD + FRUIT
   { id: 'brown-bread',   name: 'Brown bread',         icon: '🍞', unit: 'slice',          kcal: 80,  protein: 3,    cat: 'carb' },
   { id: 'multigrain',    name: 'Multigrain bread',    icon: '🍞', unit: 'slice',          kcal: 90,  protein: 4,    cat: 'carb' },
+
+  // PAKISTANI STAPLES · roti, paratha, naan, rice (adjustable in grams)
+  { id: 'roti-wheat',          name: 'Roti (wheat)',          icon: '🫓', unit: 'grams', kcal: 120, protein: 4,   cat: 'carb', adjustable: true, defaultQty: 50,  qtyUnit: 'g', qtyMin: 30, qtyMax: 150, qtyStep: 10 },
+  { id: 'roti-multigrain',     name: 'Multigrain roti',       icon: '🫓', unit: 'grams', kcal: 115, protein: 4.5, cat: 'carb', adjustable: true, defaultQty: 50,  qtyUnit: 'g', qtyMin: 30, qtyMax: 150, qtyStep: 10 },
+  { id: 'paratha-home',        name: 'Paratha (wheat, ghee)', icon: '🫓', unit: 'grams', kcal: 250, protein: 5,   cat: 'carb', adjustable: true, defaultQty: 70,  qtyUnit: 'g', qtyMin: 40, qtyMax: 180, qtyStep: 10 },
+  { id: 'paratha-multigrain',  name: 'Multigrain paratha',    icon: '🫓', unit: 'grams', kcal: 220, protein: 6,   cat: 'carb', adjustable: true, defaultQty: 70,  qtyUnit: 'g', qtyMin: 40, qtyMax: 180, qtyStep: 10 },
+  { id: 'naan',                name: 'Naan',                  icon: '🫓', unit: 'grams', kcal: 260, protein: 8,   cat: 'carb', adjustable: true, defaultQty: 90,  qtyUnit: 'g', qtyMin: 50, qtyMax: 200, qtyStep: 10 },
+  { id: 'rice-white',          name: 'White rice (cooked)',   icon: '🍚', unit: 'grams', kcal: 195, protein: 4,   cat: 'carb', adjustable: true, defaultQty: 150, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'rice-brown-pk',       name: 'Brown rice (cooked)',   icon: '🍚', unit: 'grams', kcal: 165, protein: 4,   cat: 'carb', adjustable: true, defaultQty: 150, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+
+  // PAKISTANI MAIN DISHES
+  { id: 'daal',                name: 'Daal (lentil curry)',   icon: '🥘', unit: 'grams', kcal: 150, protein: 10,  cat: 'protein', adjustable: true, defaultQty: 150, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'chicken-karahi',      name: 'Chicken karahi',        icon: '🍗', unit: 'grams', kcal: 280, protein: 24,  cat: 'protein', adjustable: true, defaultQty: 200, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'chicken-qorma',       name: 'Chicken qorma',         icon: '🍗', unit: 'grams', kcal: 310, protein: 22,  cat: 'protein', adjustable: true, defaultQty: 200, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'beef-curry',          name: 'Beef curry / nihari',   icon: '🥘', unit: 'grams', kcal: 350, protein: 25,  cat: 'protein', adjustable: true, defaultQty: 200, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'mutton-curry',        name: 'Mutton curry',          icon: '🥘', unit: 'grams', kcal: 380, protein: 24,  cat: 'protein', adjustable: true, defaultQty: 200, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'fish-curry',          name: 'Fish curry',            icon: '🐟', unit: 'grams', kcal: 240, protein: 22,  cat: 'protein', adjustable: true, defaultQty: 200, qtyUnit: 'g', qtyMin: 50, qtyMax: 500, qtyStep: 25 },
+  { id: 'channa-chaat',        name: 'Channa chaat',          icon: '🥗', unit: 'grams', kcal: 200, protein: 9,   cat: 'protein', adjustable: true, defaultQty: 150, qtyUnit: 'g', qtyMin: 50, qtyMax: 400, qtyStep: 25 },
+
+  // PAKISTANI VEG SIDES
+  { id: 'aloo-sabzi',          name: 'Aloo sabzi',            icon: '🥔', unit: 'grams', kcal: 140, protein: 3,   cat: 'carb', adjustable: true, defaultQty: 150, qtyUnit: 'g', qtyMin: 50, qtyMax: 400, qtyStep: 25 },
+  { id: 'mixed-veg',           name: 'Mixed vegetable curry', icon: '🥦', unit: 'grams', kcal: 110, protein: 4,   cat: 'carb', adjustable: true, defaultQty: 150, qtyUnit: 'g', qtyMin: 50, qtyMax: 400, qtyStep: 25 },
+  { id: 'palak',               name: 'Palak (spinach curry)', icon: '🥬', unit: 'grams', kcal: 90,  protein: 5,   cat: 'carb', adjustable: true, defaultQty: 150, qtyUnit: 'g', qtyMin: 50, qtyMax: 400, qtyStep: 25 },
+  { id: 'bhindi',              name: 'Bhindi (okra) curry',   icon: '🌶️', unit: 'grams', kcal: 100, protein: 3,   cat: 'carb', adjustable: true, defaultQty: 150, qtyUnit: 'g', qtyMin: 50, qtyMax: 400, qtyStep: 25 },
+
+  // PAKISTANI CHEAT-DAY ITEMS
+  { id: 'samosa',        name: 'Samosa',              icon: '🥟', unit: '1 piece',        kcal: 250, protein: 4,    cat: 'cheat' },
+  { id: 'pakora',        name: 'Pakora',              icon: '🥟', unit: '1 piece (~30g)', kcal: 100, protein: 2,    cat: 'cheat' },
+  { id: 'jalebi',        name: 'Jalebi',              icon: '🥨', unit: '1 piece',        kcal: 150, protein: 1,    cat: 'cheat' },
+  { id: 'gulab-jamun',   name: 'Gulab jamun',         icon: '🍡', unit: '1 piece',        kcal: 150, protein: 1,    cat: 'cheat' },
+  { id: 'halwa',         name: 'Halwa',               icon: '🍮', unit: 'small (~50g)',   kcal: 220, protein: 3,    cat: 'cheat' },
+  { id: 'ras-malai',     name: 'Ras malai',           icon: '🍮', unit: '1 piece',        kcal: 200, protein: 5,    cat: 'cheat' },
+  { id: 'lassi-sweet',   name: 'Sweet lassi',         icon: '🥛', unit: '1 glass (250ml)', kcal: 200, protein: 5,    cat: 'drink' },
+  { id: 'lassi-salt',    name: 'Salted lassi',        icon: '🥛', unit: '1 glass (250ml)', kcal: 100, protein: 5,    cat: 'drink' },
+  { id: 'kheer',         name: 'Kheer',               icon: '🍮', unit: 'bowl (~150g)',   kcal: 280, protein: 6,    cat: 'cheat' },
+
   { id: 'banana',        name: 'Banana',              icon: '🍌', unit: '1 medium',       kcal: 105, protein: 1.3,  cat: 'carb' },
   { id: 'apple',         name: 'Apple',               icon: '🍎', unit: '1 small',        kcal: 80,  protein: 0.4,  cat: 'carb' },
   { id: 'mango-small',   name: 'Mango',               icon: '🥭', unit: '1 small',        kcal: 135, protein: 1.4,  cat: 'carb' },
@@ -4068,10 +4730,12 @@ function dateKey(d) {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-// TRAINING day · auto-shift midnight-to-5AM to previous day
-// (Kashif's night-shift schedule: gym at 2 AM is still "yesterday's training day")
-// Also supports manual override via date picker (op75_active_date).
-const TRAINING_DAY_CUTOFF_HOUR = 5;
+// TRAINING day · Kashif's schedule: 2 PM today → 6 AM tomorrow = "today's training day"
+// So entries logged between midnight and 6 AM count as PREVIOUS day's training session,
+// and entries from 2 PM onward count as that calendar day.
+// Edge case: 6 AM–2 PM = sleep window, default to previous training day.
+const TRAINING_DAY_CUTOFF_HOUR = 14; // 2 PM = new training day starts
+const TRAINING_DAY_END_HOUR = 6;     // 6 AM = previous training day still active
 function getTrainingDayKey() {
   const cal = todayKey();
   // Manual override from date picker (only valid for the current calendar day)
@@ -4079,7 +4743,9 @@ function getTrainingDayKey() {
   if (override && override.setOn === cal && override.date) {
     return override.date;
   }
-  // Default: auto-shift if before 5 AM
+  // Default rule:
+  //  hours 0–13 = previous calendar day's training day
+  //  hours 14–23 = today's training day
   const now = new Date();
   if (now.getHours() < TRAINING_DAY_CUTOFF_HOUR) {
     const d = new Date(now);
@@ -4087,6 +4753,38 @@ function getTrainingDayKey() {
     return dateKey(d);
   }
   return cal;
+}
+
+function getDefaultTrainingDay() {
+  const now = new Date();
+  if (now.getHours() < TRAINING_DAY_CUTOFF_HOUR) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - 1);
+    return dateKey(d);
+  }
+  return todayKey();
+}
+
+// Hours elapsed / remaining in the current training day (2 PM today → 6 AM tomorrow = 16 hrs)
+function getTrainingDayProgress() {
+  const now = new Date();
+  const hr = now.getHours() + now.getMinutes() / 60;
+  // Training day runs from 14:00 (2 PM) to 30:00 (6 AM next day) = 16 hours total
+  let elapsedHrs;
+  if (hr >= TRAINING_DAY_CUTOFF_HOUR) {
+    // Currently in the active part: 14:00 onward today
+    elapsedHrs = hr - TRAINING_DAY_CUTOFF_HOUR;
+  } else if (hr < TRAINING_DAY_END_HOUR) {
+    // Past midnight, still in previous training day
+    elapsedHrs = (24 - TRAINING_DAY_CUTOFF_HOUR) + hr;
+  } else {
+    // 6 AM – 2 PM is sleep/transition window
+    // We're in the gap after previous training day ended, before new one starts
+    elapsedHrs = 16; // training day over
+  }
+  const totalHrs = 16;
+  const remainingHrs = Math.max(0, totalHrs - elapsedHrs);
+  return { elapsedHrs, remainingHrs, totalHrs, pct: Math.min(100, (elapsedHrs / totalHrs) * 100) };
 }
 
 function setActiveDate(targetDate) {
@@ -5385,6 +6083,8 @@ function openMachineModal(machineId) {
   if (!m) return;
   const svgKey = MACHINE_TO_SVG[machineId] || 'plank';
   const svg = SVG_DIAGRAMS[svgKey] || '';
+  const ytQ = encodeURIComponent(m.name + ' proper form tutorial');
+  const ytUrl = `https://www.youtube.com/results?search_query=${ytQ}`;
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <div class="mh-label">Machine guide</div>
@@ -5393,6 +6093,9 @@ function openMachineModal(machineId) {
     </div>
     <div class="modal-svg-wrap">${svg}</div>
     <div class="modal-inner">
+      <a href="${ytUrl}" target="_blank" rel="noopener noreferrer" class="yt-btn" style="margin-top:0; margin-bottom:18px;">
+        <span class="yt-icon">▶</span> Watch tutorials on YouTube <span class="yt-sub">opens search</span>
+      </a>
       <div class="modal-section">
         <h4>Setup</h4>
         <ul>${m.setup.map(s => `<li>${s}</li>`).join('')}</ul>
@@ -6275,27 +6978,569 @@ function renderSleep() {
 }
 
 /* ============================================================
-   YOUTUBE BUTTON in modal · update openMachineModal
+   YOUTUBE BUTTON · now baked into openMachineModal directly
+   (was previously a wrapper — too fragile)
    ============================================================ */
-const _origOpenModal = openMachineModal;
-openMachineModal = function(machineId) {
-  _origOpenModal(machineId);
-  // Append YouTube search link
-  const m = MACHINES.find(x => x.id === machineId);
-  if (!m) return;
-  const q = encodeURIComponent(m.name + ' proper form tutorial');
-  const url = `https://www.youtube.com/results?search_query=${q}`;
-  const inner = document.querySelector('.modal-inner');
-  if (inner && !inner.querySelector('.yt-btn')) {
-    const link = document.createElement('a');
-    link.href = url;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.className = 'yt-btn';
-    link.innerHTML = `<span class="yt-icon">▶</span> Watch tutorials on YouTube <span class="yt-sub">opens search</span>`;
-    inner.appendChild(link);
+
+/* ============================================================
+   DAILY KPI DASHBOARD · time bar + per-metric progress
+   ============================================================ */
+function renderDailyKPI() {
+  const cardEl = document.getElementById('dailyKpi');
+  if (!cardEl) return;
+  const dk = getTrainingDayKey();
+
+  // Date header
+  document.getElementById('dkDate').textContent = fmtDateLong(dk);
+
+  // Time bar
+  const prog = getTrainingDayProgress();
+  const elapsedH = Math.floor(prog.elapsedHrs);
+  const elapsedM = Math.round((prog.elapsedHrs - elapsedH) * 60);
+  const remainingH = Math.floor(prog.remainingHrs);
+  const remainingM = Math.round((prog.remainingHrs - remainingH) * 60);
+  document.getElementById('dkElapsed').textContent = `${elapsedH}h ${elapsedM}m elapsed`;
+  document.getElementById('dkRemaining').textContent = `${remainingH}h ${remainingM}m left`;
+  document.getElementById('dkTimeFill').style.width = prog.pct + '%';
+  document.getElementById('dkTimeNow').style.left = `calc(${prog.pct}% - 1px)`;
+
+  // Water
+  const w = getWaterLog(dk);
+  const drunk = (w.glasses || 0) * (w.size || 250);
+  const wPct = Math.min(100, Math.round((drunk / WATER_GOAL_ML) * 100));
+  document.getElementById('dkWaterVal').textContent = `${drunk.toLocaleString()} / 3,000 ml`;
+  document.getElementById('dkWaterStat').textContent = wPct + '%';
+  document.getElementById('dkWater').classList.toggle('done', drunk >= WATER_GOAL_ML);
+
+  // Food
+  const food = computeFoodTotals(getFoodLog(dk));
+  const target = computeTodayKcalTarget(dk);
+  const fPct = Math.min(100, Math.round((food.kcal / target) * 100));
+  document.getElementById('dkFoodVal').textContent = `${food.kcal} / ${target.toLocaleString()} kcal`;
+  document.getElementById('dkFoodStat').textContent = fPct + '%';
+  document.getElementById('dkFood').classList.toggle('done', food.kcal >= target * 0.9 && food.kcal <= target * 1.1);
+
+  // Gym
+  const ex = safeGet('op75_ex_' + dk) || [];
+  const lifts = ex.filter(e => e.type === 'lift').length;
+  const cardio = ex.filter(e => e.type === 'cardio').length;
+  document.getElementById('dkGymVal').textContent = `${lifts} lifts · ${cardio} cardio`;
+  const gymDone = lifts >= 3; // 3+ lifts = session complete
+  document.getElementById('dkGymStat').textContent = gymDone ? '✓ Done' : (lifts > 0 ? 'In progress' : 'Not started');
+  document.getElementById('dkGym').classList.toggle('done', gymDone);
+
+  // Sleep
+  const sleep = safeGet('op75_sleep_' + dk);
+  if (sleep) {
+    const h = Math.floor(sleep.durationMin / 60);
+    const m = sleep.durationMin % 60;
+    document.getElementById('dkSleepVal').textContent = `${h}h ${m.toString().padStart(2,'0')}m`;
+    const ok = sleep.durationMin >= 420;
+    document.getElementById('dkSleepStat').textContent = ok ? '✓ Good' : sleep.durationMin >= 300 ? 'OK' : 'Low';
+    document.getElementById('dkSleep').classList.toggle('done', ok);
+  } else {
+    document.getElementById('dkSleepVal').textContent = 'Not logged';
+    document.getElementById('dkSleepStat').textContent = '—';
+    document.getElementById('dkSleep').classList.remove('done');
   }
-};
+}
+
+/* ============================================================
+   MACRO BREAKDOWN · estimates carbs+fats from kcal/protein + category
+   ============================================================ */
+const MACRO_TARGETS = { protein: 130, carbs: 200, fats: 60 };
+
+function estimateMacros(food, scale = 1) {
+  // If explicit carbs/fats provided, use them
+  if (food.carbs !== undefined && food.fats !== undefined) {
+    return {
+      protein: (food.protein || 0) * scale,
+      carbs: food.carbs * scale,
+      fats: food.fats * scale
+    };
+  }
+  const proteinG = (food.protein || 0) * scale;
+  const totalKcal = (food.kcal || 0) * scale;
+  const proteinKcal = proteinG * 4;
+  const remainingKcal = Math.max(0, totalKcal - proteinKcal);
+  // Category-based split of remaining kcal between carbs + fats
+  let carbRatio, fatRatio;
+  switch (food.cat) {
+    case 'protein': carbRatio = 0.15; fatRatio = 0.85; break; // mostly fat after protein
+    case 'carb':    carbRatio = 0.85; fatRatio = 0.15; break; // mostly carbs
+    case 'drink':   carbRatio = 0.55; fatRatio = 0.45; break; // milk/lassi balanced
+    case 'cheat':   carbRatio = 0.55; fatRatio = 0.45; break; // sugar + fat mix
+    case 'supp':    carbRatio = 0.30; fatRatio = 0.70; break;
+    default:        carbRatio = 0.50; fatRatio = 0.50; break;
+  }
+  return {
+    protein: proteinG,
+    carbs: (remainingKcal * carbRatio) / 4,
+    fats: (remainingKcal * fatRatio) / 9
+  };
+}
+
+function computeMacroTotals(log) {
+  let p = 0, c = 0, f = 0;
+  Object.entries(log).forEach(([fid, entry]) => {
+    const food = FOOD_DB.find(x => x.id === fid);
+    if (!food || !entry.count) return;
+    const qty = entry.qty || food.defaultQty || null;
+    const scale = food.adjustable && qty ? qty / food.defaultQty : 1;
+    const m = estimateMacros(food, scale);
+    p += m.protein * entry.count;
+    c += m.carbs * entry.count;
+    f += m.fats * entry.count;
+  });
+  return { protein: Math.round(p), carbs: Math.round(c), fats: Math.round(f) };
+}
+
+function renderMacroBreakdown() {
+  const wrap = document.getElementById('macroBreakdown');
+  if (!wrap) return;
+  const log = getFoodLog(getTrainingDayKey());
+  const m = computeMacroTotals(log);
+  const setTile = (key, value, target) => {
+    document.getElementById('macro' + key).textContent = value;
+    const pct = Math.min(150, (value / target) * 100);
+    document.getElementById('macro' + key + 'Bar').style.width = Math.min(100, pct) + '%';
+    const tile = document.getElementById('macro' + key).closest('.macro-tile');
+    if (tile) tile.classList.toggle('over', value > target * 1.15);
+  };
+  setTile('Protein', m.protein, MACRO_TARGETS.protein);
+  setTile('Carbs', m.carbs, MACRO_TARGETS.carbs);
+  setTile('Fats', m.fats, MACRO_TARGETS.fats);
+}
+
+/* ============================================================
+   HOOK · refresh KPI + macros on data updates
+   ============================================================ */
+const _origRenderFoodLogV8 = renderFoodLog;
+renderFoodLog = function() { _origRenderFoodLogV8.apply(this, arguments); renderMacroBreakdown(); renderDailyKPI(); };
+const _origRenderWaterV8 = renderWater;
+renderWater = function() { _origRenderWaterV8.apply(this, arguments); renderDailyKPI(); };
+const _origRenderExLogV8 = renderExLog;
+renderExLog = function() { _origRenderExLogV8.apply(this, arguments); renderDailyKPI(); };
+const _origRenderSleepV8 = renderSleep;
+renderSleep = function() { _origRenderSleepV8.apply(this, arguments); renderDailyKPI(); };
+
+/* ============================================================
+   AUTO-REFRESH KPI time bar every minute
+   ============================================================ */
+setInterval(renderDailyKPI, 60000);
+
+// Initial render after init has finished
+setTimeout(() => { renderDailyKPI(); renderMacroBreakdown(); }, 0);
+
+/* ============================================================
+   BULK-LOG TODAY'S WORKOUT · one tap = all lifts + cardio
+   ============================================================ */
+function bulkLogWorkout() {
+  const day = currentExDay || ['sun','mon','tue','wed','thu','fri','sat'][new Date().getDay()];
+  if (day === 'all') { alert('Pick a specific day first.'); return; }
+  const plan = TRAINING_PLAN[day];
+  if (!plan || !plan.exercises.length) { alert('No workout planned for this day.'); return; }
+
+  const key = 'op75_ex_' + getTrainingDayKey();
+  const log = safeGet(key) || [];
+
+  // Avoid duplicates: only add an exercise if not already logged today
+  const existingNames = new Set(log.filter(e => e.type === 'lift').map(e => e.name));
+  let added = 0;
+  plan.exercises.forEach(ex => {
+    if (existingNames.has(ex.name)) return;
+    log.push({
+      type: 'lift',
+      name: ex.name,
+      sets: ex.sets,
+      reps: ex.reps,
+      weight: ex.weight,
+      unit: ex.unit,
+      ts: Date.now()
+    });
+    added++;
+  });
+  // Cardio
+  const hasCardio = log.some(e => e.type === 'cardio');
+  if (!hasCardio && plan.cardio) {
+    log.push({
+      type: 'cardio',
+      cardioType: plan.cardio.type,
+      time: plan.cardio.time,
+      speed: plan.cardio.speed,
+      incline: plan.cardio.incline,
+      ts: Date.now()
+    });
+    added++;
+  }
+  safeSet(key, log);
+  renderExLog();
+  renderDailyKPI();
+
+  const btn = document.getElementById('bulkLogBtn');
+  if (btn) {
+    btn.classList.add('done');
+    document.getElementById('bulkLogSub').textContent = added > 0 ? `✓ ${added} entries added — adjust weights/reps as needed below` : 'Already logged for today';
+    setTimeout(() => {
+      btn.classList.remove('done');
+      document.getElementById('bulkLogSub').textContent = 'Adds all lifts + cardio at default targets';
+    }, 4000);
+  }
+}
+
+/* ============================================================
+   CURRENT PHASE AUTO-DETECT · based on today's date
+   ============================================================ */
+const PHASE_BOUNDARIES = [
+  { num: 1, name: 'Foundation',   weekStart: 1,  weekEnd: 4,  startDate: '2026-06-25', endDate: '2026-07-22', subtab: 'sub-phase1' },
+  { num: 2, name: 'Intensity',    weekStart: 5,  weekEnd: 8,  startDate: '2026-07-23', endDate: '2026-08-19', subtab: 'sub-phase2' },
+  { num: 3, name: 'Peak + Lean',  weekStart: 9,  weekEnd: 12, startDate: '2026-08-20', endDate: '2026-09-10', subtab: 'sub-phase3' }
+];
+
+function getCurrentPhase() {
+  const today = new Date();
+  const programStart = new Date('2026-06-25T00:00:00');
+  const daysIn = Math.floor((today - programStart) / (1000 * 60 * 60 * 24));
+  const weekIn = Math.max(1, Math.floor(daysIn / 7) + 1);
+  for (const p of PHASE_BOUNDARIES) {
+    if (weekIn >= p.weekStart && weekIn <= p.weekEnd) {
+      return { ...p, currentWeek: weekIn };
+    }
+  }
+  // Past end of program
+  if (weekIn > 12) return { ...PHASE_BOUNDARIES[2], currentWeek: 12 };
+  return { ...PHASE_BOUNDARIES[0], currentWeek: 1 };
+}
+
+function renderCurrentPhaseBanner() {
+  const phase = getCurrentPhase();
+  const banner = document.getElementById('currentPhaseBanner');
+  if (!banner) return;
+  document.getElementById('cpbNum').textContent = phase.num;
+  document.getElementById('cpbTitle').textContent = `Phase ${phase.num} · ${phase.name}`;
+  document.getElementById('cpbWeek').textContent = `Week ${phase.currentWeek} of 12 · ${fmtDateLong(phase.startDate)} → ${fmtDateLong(phase.endDate)}`;
+}
+
+function jumpToCurrentPhase() {
+  const phase = getCurrentPhase();
+  document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+  const btn = document.querySelector(`.sub-tab-btn[data-subtab="${phase.subtab}"]`);
+  if (btn) btn.classList.add('active');
+  const panel = document.getElementById(phase.subtab);
+  if (panel) panel.classList.add('active');
+  const trainingTop = document.querySelector('nav.tabs');
+  if (trainingTop) window.scrollTo({ top: trainingTop.offsetTop + 60, behavior: 'smooth' });
+}
+
+/* ============================================================
+   PHASE TABLE · click any exercise row → open modal
+   ============================================================ */
+function findMachineByName(name) {
+  if (!name) return null;
+  // Strip day prefix like "Mon · "
+  const cleaned = name.replace(/^[A-Z][a-z]+\s·\s/, '').trim().toLowerCase();
+  return MACHINES.find(m => m.name.toLowerCase() === cleaned);
+}
+
+function wirePhaseTableClicks() {
+  document.querySelectorAll('.prog-table tbody tr').forEach(tr => {
+    if (tr.dataset.wired) return;
+    tr.dataset.wired = '1';
+    tr.style.cursor = 'pointer';
+    tr.addEventListener('click', (e) => {
+      const cell = tr.querySelector('.ex-name-cell');
+      if (!cell) return;
+      const m = findMachineByName(cell.textContent);
+      if (m) openMachineModal(m.id);
+    });
+  });
+}
+
+/* ============================================================
+   PHOTO SYSTEM · IndexedDB-backed (resilient against localStorage eviction)
+   ============================================================ */
+const PHOTO_DB_NAME = 'op75_photos_db';
+const PHOTO_STORE = 'photos';
+let _photoDB = null;
+
+function openPhotoDB() {
+  return new Promise((resolve, reject) => {
+    if (_photoDB) return resolve(_photoDB);
+    const req = indexedDB.open(PHOTO_DB_NAME, 1);
+    req.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains(PHOTO_STORE)) {
+        const store = db.createObjectStore(PHOTO_STORE, { keyPath: 'id', autoIncrement: true });
+        store.createIndex('date', 'date');
+      }
+    };
+    req.onsuccess = (e) => { _photoDB = e.target.result; resolve(_photoDB); };
+    req.onerror = (e) => reject(e.target.error);
+  });
+}
+
+async function savePhotoIDB(record) {
+  const db = await openPhotoDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(PHOTO_STORE, 'readwrite');
+    tx.objectStore(PHOTO_STORE).add(record);
+    tx.oncomplete = () => resolve();
+    tx.onerror = (e) => reject(e.target.error);
+  });
+}
+
+async function loadAllPhotosIDB() {
+  try {
+    const db = await openPhotoDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(PHOTO_STORE, 'readonly');
+      const req = tx.objectStore(PHOTO_STORE).getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = (e) => reject(e.target.error);
+    });
+  } catch (err) {
+    console.warn('IDB unavailable, falling back to localStorage', err);
+    return safeGet('op75_photos') || [];
+  }
+}
+
+async function deletePhotoIDB(id) {
+  const db = await openPhotoDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(PHOTO_STORE, 'readwrite');
+    tx.objectStore(PHOTO_STORE).delete(id);
+    tx.oncomplete = () => resolve();
+    tx.onerror = (e) => reject(e.target.error);
+  });
+}
+
+// Migrate legacy localStorage photos to IndexedDB once
+async function migrateLocalStoragePhotos() {
+  const legacy = safeGet('op75_photos');
+  if (!legacy || !legacy.length) return;
+  const migrated = safeGet('op75_photos_migrated');
+  if (migrated) return;
+  for (const p of legacy) {
+    try { await savePhotoIDB({ date: p.date, dataUrl: p.dataUrl, ts: p.ts || Date.now() }); } catch(e) {}
+  }
+  safeSet('op75_photos_migrated', true);
+  // Keep legacy as backup; don't delete
+}
+
+// Re-wire the file input handler for the new flow (date picker + gallery)
+function setPhotoDateDefault() {
+  const inp = document.getElementById('photoDateInput');
+  if (inp && !inp.value) inp.value = todayKey();
+}
+
+async function handlePhotoCapture(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const dataUrl = await compressImage(file, 800, 0.7);
+    const dateInp = document.getElementById('photoDateInput');
+    const photoDate = (dateInp && dateInp.value) ? dateInp.value : todayKey();
+    await savePhotoIDB({ date: photoDate, dataUrl, ts: Date.now() });
+    e.target.value = '';
+    renderPhotos();
+  } catch (err) {
+    alert('Photo save failed: ' + err.message);
+  }
+}
+
+let _photoFilter = 'all';
+function setPhotoFilter(f) {
+  _photoFilter = f;
+  document.querySelectorAll('.photo-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+  renderPhotos();
+}
+
+async function renderPhotos() {
+  const grid = document.getElementById('photoGrid');
+  if (!grid) return;
+  let photos = await loadAllPhotosIDB();
+  photos = photos.slice().sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.ts - a.ts));
+
+  // Apply filter
+  const today = new Date();
+  if (_photoFilter === 'week') {
+    const cutoff = new Date(today); cutoff.setDate(today.getDate() - 7);
+    photos = photos.filter(p => new Date(p.date + 'T12:00:00') >= cutoff);
+  } else if (_photoFilter === 'month') {
+    const cutoff = new Date(today); cutoff.setMonth(today.getMonth() - 1);
+    photos = photos.filter(p => new Date(p.date + 'T12:00:00') >= cutoff);
+  } else if (_photoFilter === 'weekly') {
+    // Group: one photo per week (newest each)
+    const buckets = {};
+    photos.forEach(p => {
+      const d = new Date(p.date + 'T12:00:00');
+      const ws = new Date(d); ws.setDate(d.getDate() - d.getDay() + 1); // Monday
+      const key = dateKey(ws);
+      if (!buckets[key]) buckets[key] = p;
+    });
+    photos = Object.values(buckets).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  } else if (_photoFilter === 'monthly') {
+    const buckets = {};
+    photos.forEach(p => {
+      const key = (p.date || '').slice(0, 7);
+      if (!buckets[key]) buckets[key] = p;
+    });
+    photos = Object.values(buckets).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  }
+
+  if (photos.length === 0) {
+    grid.innerHTML = '<div class="photo-empty">No photos in this filter. Add some via the button above.</div>';
+    return;
+  }
+  grid.innerHTML = photos.map(p => `
+    <div class="photo-item" onclick="openPhotoView(${p.id})">
+      <img src="${p.dataUrl}" alt="${fmtDateLong(p.date)}">
+      <button class="photo-remove" onclick="event.stopPropagation(); removePhotoById(${p.id})" aria-label="Remove">×</button>
+      <div class="photo-date">${fmtDateLong(p.date)}</div>
+    </div>
+  `).join('');
+}
+
+async function removePhotoById(id) {
+  if (!confirm('Delete this photo?')) return;
+  try {
+    await deletePhotoIDB(id);
+    renderPhotos();
+  } catch (err) { alert('Delete failed: ' + err.message); }
+}
+
+async function openPhotoView(id) {
+  const photos = await loadAllPhotosIDB();
+  const p = photos.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header">
+      <div class="mh-label">Progress photo</div>
+      <div class="mh-title">${fmtDateLong(p.date)}</div>
+    </div>
+    <div style="background:#000; padding:0;">
+      <img src="${p.dataUrl}" style="width:100%; display:block;">
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ============================================================
+   EXPORT / IMPORT all data as JSON
+   ============================================================ */
+async function exportAllData() {
+  const dump = {
+    version: 'op75-v12',
+    exportedAt: new Date().toISOString(),
+    user: 'Kashif Arshad',
+    localStorage: {},
+    photos: []
+  };
+  // Dump all op75_* localStorage keys
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('op75_')) {
+      try { dump.localStorage[k] = JSON.parse(localStorage.getItem(k)); }
+      catch { dump.localStorage[k] = localStorage.getItem(k); }
+    }
+  }
+  // Photos from IndexedDB
+  try { dump.photos = await loadAllPhotosIDB(); } catch(e) {}
+
+  const blob = new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `op75-backup-${todayKey()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+async function importAllData(file) {
+  try {
+    const text = await file.text();
+    const dump = JSON.parse(text);
+    if (!dump.localStorage) { alert('Invalid backup file.'); return; }
+    if (!confirm('This will REPLACE all your current data. Continue?')) return;
+    // Clear current op75_ keys
+    const toRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith('op75_')) toRemove.push(k);
+    }
+    toRemove.forEach(k => localStorage.removeItem(k));
+    // Restore
+    Object.entries(dump.localStorage).forEach(([k, v]) => {
+      localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v));
+    });
+    // Photos
+    if (dump.photos && dump.photos.length) {
+      const db = await openPhotoDB();
+      const tx = db.transaction(PHOTO_STORE, 'readwrite');
+      const store = tx.objectStore(PHOTO_STORE);
+      // Clear existing
+      await new Promise(res => { store.clear().onsuccess = res; });
+      // Add restored
+      dump.photos.forEach(p => {
+        try { store.add({ date: p.date, dataUrl: p.dataUrl, ts: p.ts || Date.now() }); } catch(e) {}
+      });
+    }
+    alert('Import complete. Reloading…');
+    setTimeout(() => location.reload(), 500);
+  } catch (err) {
+    alert('Import failed: ' + err.message);
+  }
+}
+
+document.getElementById('importInput')?.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) importAllData(file);
+});
+
+/* ============================================================
+   THEME PICKER
+   ============================================================ */
+function setTheme(theme) {
+  document.body.classList.remove('theme-camp', 'theme-steel', 'theme-light');
+  if (theme !== 'camp') document.body.classList.add('theme-' + theme);
+  safeSet('op75_theme', theme);
+  document.querySelectorAll('.theme-option').forEach(el => {
+    el.classList.toggle('active', el.dataset.theme === theme);
+  });
+}
+function loadTheme() {
+  const saved = safeGet('op75_theme') || 'camp';
+  setTheme(saved);
+}
+
+/* ============================================================
+   INIT — Round 2 final wiring
+   ============================================================ */
+renderCurrentPhaseBanner();
+loadTheme();
+migrateLocalStoragePhotos().then(() => renderPhotos());
+setPhotoDateDefault();
+
+// Re-bind photo input (replaces the old one from Round 1)
+const _photoInput = document.getElementById('photoInput');
+if (_photoInput) {
+  // Remove any existing listeners by cloning
+  const clone = _photoInput.cloneNode(true);
+  _photoInput.parentNode.replaceChild(clone, _photoInput);
+  clone.addEventListener('change', handlePhotoCapture);
+}
+
+// Wire phase table clicks (after DOM is ready)
+setTimeout(wirePhaseTableClicks, 100);
+
+// Re-wire sub-tab clicks to also wire phase table clicks for that phase
+document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => setTimeout(wirePhaseTableClicks, 50));
+});
 </script>
 </body>
 </html>
