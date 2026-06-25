@@ -994,6 +994,540 @@
 
   /* ============ V5 ADDITIONS ============ */
 
+  /* MEASUREMENTS TREND CARD · Progress tab read-only display */
+  .measure-trend-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .mt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--ink);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .mt-edit-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-deep);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .mt-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .mt-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 13px;
+  }
+  .mt-tile {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 12px 14px;
+    border-left: 3px solid var(--accent);
+  }
+  .mt-tile .mt-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .mt-tile .mt-value {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    line-height: 1.1;
+    margin-top: 4px;
+  }
+  .mt-tile .mt-value .mt-unit {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-left: 3px;
+  }
+  .mt-tile .mt-delta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    margin-top: 3px;
+    color: var(--muted);
+  }
+  .mt-tile .mt-delta.good { color: var(--success); }
+  .mt-tile .mt-delta.bad { color: var(--danger); }
+  .mt-tile.shrink { border-left-color: var(--success); }
+  .mt-tile.grow { border-left-color: var(--accent); }
+
+  .mt-history-list {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--ink);
+  }
+  .mt-history-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .mt-history-row:last-child { border-bottom: none; }
+  .mt-history-row .mhr-date { color: var(--muted); font-size: 11px; }
+  .mt-history-row .mhr-values { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .mt-summary { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
+  /* GOAL PANEL · contains hero, stats, mission rules, theme, export */
+  #goal .goal-hero {
+    background: var(--ink);
+    color: var(--dark-text);
+    padding: 32px 28px;
+    border-bottom: 4px solid var(--accent);
+    margin-bottom: 0;
+  }
+  #goal .gh-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244,236,219,0.5);
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  #goal .gh-headline {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(54px, 11vw, 100px);
+    line-height: 0.85;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+    letter-spacing: -0.01em;
+  }
+  #goal .gh-headline .num { color: var(--accent); }
+  #goal .gh-sub {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    padding-top: 22px;
+    border-top: 1px dashed rgba(244,236,219,0.2);
+  }
+  #goal .gh-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  #goal .gh-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(244,236,219,0.65);
+    margin-top: 4px;
+  }
+  #goal .gh-mission {
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(244,236,219,0.9);
+  }
+  #goal .gh-mission strong { color: var(--accent); }
+  #goal .gh-mission .hand {
+    font-family: 'Caveat', cursive;
+    color: var(--accent);
+    font-size: 22px;
+    font-weight: 700;
+    margin-left: 4px;
+  }
+  #goal .goal-strip {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 36px;
+  }
+  #goal .goal-strip .stat {
+    padding: 22px 18px;
+    border-right: 1px solid var(--rule);
+  }
+  #goal .goal-strip .stat:last-child { border-right: none; }
+  #goal .goal-strip .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  #goal .goal-strip .stat-value {
+    font-family: 'Anton', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+  }
+  #goal .goal-strip .stat-value .unit {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-left: 4px;
+  }
+  #goal .goal-strip .stat-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  #goal .goal-section {
+    margin-bottom: 32px;
+  }
+  #goal .goal-h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  #goal .goal-intro {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+
+  @media (max-width: 720px) {
+    #goal .gh-sub { grid-template-columns: 1fr; gap: 18px; }
+    #goal .goal-hero { padding: 24px 18px; }
+    #goal .goal-strip { grid-template-columns: 1fr 1fr; }
+    #goal .goal-strip .stat:nth-child(2) { border-right: none; }
+    #goal .goal-strip .stat:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    #goal .goal-strip .stat-value { font-size: 28px; }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
+  /* INSIGHTS PANEL */
+  .insights-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .insights-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--ink);
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .insight-tile {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .insight-tile .it-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .insight-tile .it-value {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .insight-tile .it-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .insight-tile.good { border-left-color: var(--success); }
+  .insight-tile.warn { border-left-color: var(--danger); }
+  .ins-heatmap-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .insights-heatmap {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+    margin-bottom: 10px;
+  }
+  .ins-heat-cell {
+    aspect-ratio: 1;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    position: relative;
+    cursor: default;
+  }
+  .ins-heat-cell.day-0 { background: #F5EFE3; }
+  .ins-heat-cell.day-1 { background: #FEF3C7; }
+  .ins-heat-cell.day-2 { background: #FBBF24; }
+  .ins-heat-cell.day-3 { background: #D97706; }
+  .ins-heat-cell.day-4 { background: #7F1D1D; }
+  .ins-heat-cell.future { opacity: 0.25; }
+  .ins-heatmap-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .ins-legend-bar {
+    display: flex;
+    gap: 2px;
+  }
+  .ins-legend-bar > div {
+    width: 14px;
+    height: 12px;
+    border: 1px solid var(--rule);
+  }
+
+  /* MEAL BUILDER */
+  .meal-builder-card {
+    background: linear-gradient(135deg, #FCF5E8 0%, #FEF3C7 100%);
+    border: 1px solid var(--accent);
+    border-left: 4px solid var(--accent);
+    padding: 24px;
+    margin: 28px 0;
+  }
+  .mb-header {
+    margin-bottom: 18px;
+  }
+  .mb-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .mb-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .mb-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 12px;
+    align-items: end;
+    margin-bottom: 16px;
+  }
+  .mb-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .mb-field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .mb-field input, .mb-field select {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--ink);
+    width: 100%;
+  }
+  .mb-generate {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 12px 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .mb-generate:hover { background: var(--accent-deep); }
+  .mb-result {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 18px;
+    min-height: 80px;
+  }
+  .mb-result.empty {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .mb-meal-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .mb-meal-totals {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-deep);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--ink);
+  }
+  .mb-meal-items {
+    list-style: none;
+    padding: 0;
+  }
+  .mb-meal-items li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(28,25,23,0.06);
+  }
+  .mb-meal-items li:last-child { border-bottom: none; }
+  .mb-meal-items .item-name { color: var(--ink); }
+  .mb-meal-items .item-portion { color: var(--ink-soft); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+  /* SUNDAY ADAPTIVE CARD */
+  .sunday-adapt-card {
+    background: linear-gradient(135deg, #1E3A8A 0%, #312E81 100%);
+    color: white;
+    padding: 0;
+    margin: 0 0 24px;
+    border-left: 4px solid #60A5FA;
+  }
+  .sa-header {
+    background: rgba(0,0,0,0.2);
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: center;
+  }
+  .sa-icon { font-size: 28px; line-height: 1; }
+  .sa-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #93C5FD;
+  }
+  .sa-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 3px;
+  }
+  .sa-week {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    text-align: right;
+  }
+  .sa-body { padding: 18px 20px; }
+  .sa-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+  }
+  .sa-row strong {
+    color: #FBBF24;
+    font-family: 'Anton', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .sa-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    margin: 12px 0;
+  }
+  .sa-rationale {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.2);
+    border-left: 3px solid #FBBF24;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: #FEF3C7;
+    line-height: 1.3;
+  }
+  .sa-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+  .sa-actions button {
+    background: rgba(0,0,0,0.3);
+    color: white;
+    border: none;
+    padding: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .sa-actions .sa-apply { background: #166534; }
+  .sa-actions .sa-apply:hover { background: #15803D; }
+  .sa-actions .sa-skip:hover { background: rgba(0,0,0,0.5); }
+
+  @media (max-width: 720px) {
+    .mb-controls { grid-template-columns: 1fr; }
+    .mb-generate { width: 100%; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .sa-header { grid-template-columns: auto 1fr; }
+    .sa-week { grid-column: 1 / -1; text-align: left; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.15); }
+    .insights-heatmap { grid-template-columns: repeat(8, 1fr); }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
   /* BULK-LOG WORKOUT BUTTON */
   .bulk-log-btn {
     background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
@@ -2260,19 +2794,49 @@
   }
   .modal-close {
     position: absolute;
-    top: 10px; right: 10px;
-    width: 36px; height: 36px;
-    background: var(--ink);
-    color: var(--paper);
-    border: none;
-    font-size: 22px;
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    color: white;
+    border: 2px solid white;
+    font-size: 24px;
     font-weight: 700;
     cursor: pointer;
-    z-index: 5;
+    z-index: 10;
     line-height: 1;
     border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .modal-close:hover { background: var(--accent-deep); }
+  .modal-close:hover { background: var(--accent-deep); transform: scale(1.05); }
+  .modal-close:active { transform: scale(0.95); }
+  .modal-header { padding-right: 70px; }
+
+  /* PHASE TABLE ROWS · tappable hint */
+  .prog-table tbody tr {
+    transition: background 0.12s;
+  }
+  .prog-table tbody tr:hover {
+    background: var(--paper-2);
+  }
+  .prog-table tbody tr:active {
+    background: var(--paper-3);
+  }
+  .prog-table tbody tr td.ex-name-cell::after {
+    content: ' 👁';
+    font-size: 11px;
+    opacity: 0.35;
+    margin-left: 4px;
+  }
+  .prog-table tbody tr:hover td.ex-name-cell::after {
+    opacity: 1;
+    color: var(--accent-deep);
+  }
   .modal-inner { padding: 28px 24px; }
   .modal-header {
     background: var(--dark);
@@ -2893,59 +3457,163 @@
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-top">
-      <span>Training Camp · 12 Weeks</span>
-      <span>Islamabad · PKT</span>
-      <span>Doc rev. 24.06.2026 · v2</span>
-    </div>
-    <h1>Operation<br>Seventy<span class="num">/5</span></h1>
-    <div class="hero-sub">
-      <div>
-        <div class="hero-name">Kashif Arshad — fight card</div>
-        <div class="hero-dates">25 JUN 2026 → 10 SEP 2026 · 78 days · 6 sessions/wk</div>
-      </div>
-      <div class="mission">
-        Two milestones. Five kilos by the end of July to land at <strong>80 kg</strong>. Five more by 10 September to land at <strong>75 kg</strong>, with muscle on the frame. Whole-food only, no powder. <span class="hand">Just show up.</span>
-      </div>
-    </div>
-  </div>
-</header>
-
-<section class="strip">
-  <div class="wrap">
-    <div class="strip-inner">
-      <div class="stat"><div class="stat-label">Now</div><div class="stat-value">85.0<span class="unit">kg</span></div><div class="stat-meta">Start line · 24.06.26</div></div>
-      <div class="stat"><div class="stat-label">July checkpoint</div><div class="stat-value">80.0<span class="unit">kg</span></div><div class="stat-meta">−5.0 by 31.07.26</div></div>
-      <div class="stat"><div class="stat-label">Final target</div><div class="stat-value">75.0<span class="unit">kg</span></div><div class="stat-meta">−10.0 by 10.09.26</div></div>
-      <div class="stat"><div class="stat-label">Days left</div><div class="stat-value" id="daysLeft">78<span class="unit">d</span></div><div class="stat-meta" id="phaseTag">Phase 1 of 3 — foundation</div></div>
-    </div>
-  </div>
-</section>
-
 <nav class="tabs">
   <div class="wrap">
     <div class="tabs-inner">
-      <button class="tab-btn active" data-tab="workout"><span class="num">01</span>Training</button>
-      <button class="tab-btn" data-tab="diet"><span class="num">02</span>Diet</button>
-      <button class="tab-btn" data-tab="tracker"><span class="num">03</span>Tracker</button>
-      <button class="tab-btn" data-tab="progress"><span class="num">04</span>Progress</button>
-      <button class="tab-btn" data-tab="notes"><span class="num">05</span>Coach's notes</button>
+      <button class="tab-btn" data-tab="goal"><span class="num">01</span>Goal</button>
+      <button class="tab-btn active" data-tab="workout"><span class="num">02</span>Training</button>
+      <button class="tab-btn" data-tab="diet"><span class="num">03</span>Diet</button>
+      <button class="tab-btn" data-tab="tracker"><span class="num">04</span>Tracker</button>
+      <button class="tab-btn" data-tab="progress"><span class="num">05</span>Progress</button>
     </div>
   </div>
 </nav>
 
 <main class="wrap">
 
-<!-- ========== WORKOUT ========== -->
-<section class="panel active" id="workout">
-  <div class="panel-header">
-    <h2 class="panel-title">Six-day<br>split. <span class="accent">No skips.</span></h2>
-    <p class="panel-intro">Monday through Saturday. Sunday is full rest. Every session is roughly 1 hour: 45 min lifting, 15 min cardio. Tap any exercise name to jump to its form guide. Switch to a phase tab for week-by-week progression.</p>
+<!-- ========== GOAL ========== -->
+<section class="panel" id="goal">
+
+  <!-- HERO (moved from above-tabs) -->
+  <div class="goal-hero">
+    <div class="gh-top">
+      <span>Training Camp · 12 Weeks</span>
+      <span>Islamabad · PKT</span>
+      <span>v7 · 25.06.2026</span>
+    </div>
+    <h1 class="gh-headline">Operation<br>Seventy<span class="num">/5</span></h1>
+    <div class="gh-sub">
+      <div>
+        <div class="gh-name">Kashif Arshad — fight card</div>
+        <div class="gh-dates">25 JUN 2026 → 10 SEP 2026 · 78 days · 6 sessions/wk</div>
+      </div>
+      <div class="gh-mission">
+        Two milestones. Five kilos by the end of July to land at <strong>80 kg</strong>. Five more by 10 September to land at <strong>75 kg</strong>, with muscle on the frame. Whole-food only, no powder. <span class="hand">Just show up.</span>
+      </div>
+    </div>
   </div>
 
-  <div class="sub-tabs-wrap">
+  <!-- STAT STRIP (moved from above-tabs) -->
+  <div class="goal-strip">
+    <div class="stat"><div class="stat-label">Now</div><div class="stat-value">85.0<span class="unit">kg</span></div><div class="stat-meta">Start line · 25.06.26</div></div>
+    <div class="stat"><div class="stat-label">July checkpoint</div><div class="stat-value">80.0<span class="unit">kg</span></div><div class="stat-meta">−5.0 by 31.07.26</div></div>
+    <div class="stat"><div class="stat-label">Final target</div><div class="stat-value">75.0<span class="unit">kg</span></div><div class="stat-meta">−10.0 by 10.09.26</div></div>
+    <div class="stat"><div class="stat-label">Days left</div><div class="stat-value" id="daysLeft">78<span class="unit">d</span></div><div class="stat-meta" id="phaseTag">Phase 1 of 3 — foundation</div></div>
+  </div>
+
+  <!-- MISSION RULES (moved from old Notes) -->
+  <div class="goal-section">
+    <h3 class="goal-h3">📖 Mission rules</h3>
+    <p class="goal-intro">The plan is the easy part. The hard part is what's not in it — sleep, stress, the weeks when the scale doesn't move. Read this when motivation dips.</p>
+    <div class="notes-grid">
+    <div class="note-card">
+      <div class="note-label">Note 01</div>
+      <div class="note-title">The 75 kg target is aggressive — own it</div>
+      <ul>
+        <li>Realistically you'll lose <strong>~0.8–1 kg/week</strong> for the first 3 weeks (water + glycogen + fat), then ~0.5–0.7 kg/week as the body adapts.</li>
+        <li>Total projection: <strong>~8–10 kg in 11 weeks</strong>. You'll likely land between 75–77 kg by 10 Sep. That's a win regardless.</li>
+        <li>If you stall for 10+ days, drop 100 kcal from Meal 02 (skip the almonds) and add 5 min cardio. Don't slash food in panic.</li>
+      </ul>
+    </div>
+
+    <div class="note-card dark">
+      <div class="note-label">Note 02</div>
+      <div class="note-title">Sleep is the lift you take in bed</div>
+      <ul>
+        <li>Your shift ends ~3 AM. Get to bed by 5 AM, sleep through to 12 PM. That's 7 hours.</li>
+        <li>Blackout curtains, phone in another room, cool temperature. Daytime sleep is harder than night sleep — protect it.</li>
+        <li>If sleep falls below 6 hrs for 3 nights, drop one strength day. Tired lifting injures people.</li>
+      </ul>
+    </div>
+
+    <div class="note-card">
+      <div class="note-label">Note 03</div>
+      <div class="note-title">Form before weight. Always.</div>
+      <ul>
+        <li>If you can't do 10 clean reps, the weight is too heavy. <strong>Drop it.</strong></li>
+        <li>Last 2 reps should be the hardest, not impossible. If reps 1–8 feel like 9–10, you're going too heavy.</li>
+        <li>Ego lifting injures shoulders, knees, lower backs. Your sister can spot you — use her.</li>
+      </ul>
+    </div>
+
+    <div class="note-card dark">
+      <div class="note-label">Note 04</div>
+      <div class="note-title">Cheat days — read this</div>
+      <ul>
+        <li><strong>Cheat days are not failure.</strong> They're planned. Log every item in the tracker — KFC burger, pizza slice, beef steak, roll.</li>
+        <li>Pick <strong>one cheat meal</strong>, not a cheat day. KFC burger + diet Pepsi = ~450 kcal. 3 pizza slices = ~860 kcal. One steak meal = ~700 kcal.</li>
+        <li>Eat normally before and after. A cheat <em>meal</em> doesn't wreck the week. A cheat <em>day</em> does.</li>
+        <li>Steak dinner days: skip Meal 02 to make calorie room. Eat steak + veg + 1 small baked potato. That's roughly 700 kcal.</li>
+        <li>Do <strong>not</strong> skip the gym on cheat days — extra fuel = better workout.</li>
+      </ul>
+    </div>
+
+    <div class="note-card">
+      <div class="note-label">Note 05</div>
+      <div class="note-title">What to watch for</div>
+      <ul>
+        <li><strong>Energy crash mid-workout</strong>: eat Meal 03 closer to gym (1 hr before), add a banana.</li>
+        <li><strong>Sharp joint pain</strong> (not muscle soreness): stop that exercise. Swap for a machine version.</li>
+        <li><strong>Sleep less than 5 hrs</strong>: skip strength, do 30 min walk instead.</li>
+        <li><strong>Weekly weight up</strong>: check water intake, salt, and stool habits before panicking. Trend &gt; day.</li>
+      </ul>
+    </div>
+
+    <div class="note-card danger">
+      <div class="note-label">Hard rules · do not break</div>
+      <div class="note-title">The non-negotiables</div>
+      <ul>
+        <li>Six gym sessions a week, Mon–Sat. <strong>Saturday is non-negotiable.</strong> That's the long cardio.</li>
+        <li>No frozen parathas, no regular soda, no late-night biryani. <strong>Three substitutions = a wasted day.</strong></li>
+        <li>Weigh in Sunday morning, log it. <strong>Track the trend or lose the plan.</strong></li>
+        <li>If you injure yourself, stop. Pain &gt; pride. We rebuild.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+
+  <!-- THEME PICKER (moved from Progress) -->
+  <div class="data-mgmt-card">
+    <h3>Appearance</h3>
+    <div class="dm-title">Pick your theme</div>
+    <p class="dm-desc">Three looks · same data and features under the hood. Default is Training Camp.</p>
+    <div class="theme-picker" id="themePicker">
+      <div class="theme-option theme-camp active" data-theme="camp" onclick="setTheme('camp')">
+        <div class="to-swatch"><div></div><div></div><div></div></div>
+        <div class="to-name">Training Camp</div>
+        <div class="to-sub">Cream · Marigold</div>
+      </div>
+      <div class="theme-option theme-steel" data-theme="steel" onclick="setTheme('steel')">
+        <div class="to-swatch"><div></div><div></div><div></div></div>
+        <div class="to-name">Dark Steel</div>
+        <div class="to-sub">Black · Gym green</div>
+      </div>
+      <div class="theme-option theme-light" data-theme="light" onclick="setTheme('light')">
+        <div class="to-swatch"><div></div><div></div><div></div></div>
+        <div class="to-name">Minimal Light</div>
+        <div class="to-sub">White · Clean blue</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA EXPORT / IMPORT (moved from Progress) -->
+  <div class="data-mgmt-card">
+    <h3>Backup & sharing</h3>
+    <div class="dm-title">Export your data</div>
+    <p class="dm-desc">Save everything — food logs, weights, exercise, sleep, measurements — as a single JSON file. Share it with Claude after Sep 10 for a full performance review and Phase 4 plan. Also use it to restore data on a new phone.</p>
+    <div class="data-mgmt-actions">
+      <button onclick="exportAllData()">💾 Export JSON</button>
+      <input type="file" accept=".json,application/json" id="importInput" style="display:none">
+      <button class="dm-import" onclick="document.getElementById('importInput').click()">📥 Import JSON</button>
+    </div>
+  </div>
+
+</section>
+
+
+
+<!-- ========== WORKOUT ========== -->
+<section class="panel active" id="workout"><div class="sub-tabs-wrap">
     <div class="sub-tabs-list" role="tablist">
       <button class="sub-tab-btn active" data-subtab="sub-overview">Overview</button>
       <button class="sub-tab-btn" data-subtab="sub-phase1">Phase 1<span class="wk">Wk 1–4</span></button>
@@ -3388,17 +4056,37 @@
 </section>
 
 <!-- ========== DIET ========== -->
-<section class="panel" id="diet">
-  <div class="panel-header">
-    <h2 class="panel-title">Whole food.<br><span class="accent">Night-shift</span> ready.</h2>
-    <p class="panel-intro">Your day starts at 4 PM and ends around 5 AM. Five eating windows fit cleanly into that. Brown bread replaces frozen parathas. Eggs anchor every meal. Chai stays — sugar limited to 1 tsp per cup.</p>
-  </div>
-
-  <div class="macro-strip">
+<section class="panel" id="diet"><div class="macro-strip">
     <div class="macro"><div class="macro-label">Daily target</div><div class="macro-value">1,900<span class="unit">kcal</span></div><div class="macro-note">~500 kcal deficit · sustainable</div></div>
     <div class="macro"><div class="macro-label">Protein floor</div><div class="macro-value">130<span class="unit">g</span></div><div class="macro-note">~1.5 g per kg bodyweight</div></div>
     <div class="macro"><div class="macro-label">Water</div><div class="macro-value">3.0<span class="unit">L</span></div><div class="macro-note">+0.5 L on gym days</div></div>
     <div class="macro"><div class="macro-label">Sleep</div><div class="macro-value">7+<span class="unit">hr</span></div><div class="macro-note">~5 AM → 12 PM, blackout curtains</div></div>
+  </div>
+
+  <!-- PAKISTANI MEAL BUILDER · target kcal + preference → suggested combo -->
+  <div class="meal-builder-card">
+    <div class="mb-header">
+      <div class="mb-title">🧮 Pakistani meal builder</div>
+      <div class="mb-sub">Pick a kcal target + a style. App builds a meal from your food database that hits it. Cuts decision fatigue at meal time.</div>
+    </div>
+    <div class="mb-controls">
+      <div class="mb-field">
+        <label>Target calories</label>
+        <input type="number" id="mbTarget" min="200" max="1200" step="50" value="600">
+      </div>
+      <div class="mb-field">
+        <label>Style</label>
+        <select id="mbStyle">
+          <option value="chicken">Chicken-based</option>
+          <option value="beef">Beef / mutton</option>
+          <option value="veg">Vegetarian</option>
+          <option value="light">Light (low fat)</option>
+          <option value="hearty">Hearty</option>
+        </select>
+      </div>
+      <button class="mb-generate" onclick="generateMeal()">Build meal →</button>
+    </div>
+    <div class="mb-result" id="mbResult"><!-- JS fills --></div>
   </div>
 
   <div class="meal-timeline">
@@ -3518,11 +4206,6 @@
   <div class="quote-banner" id="quoteBanner" onclick="rotateQuote()">
     <span class="q-icon">⚡</span>
     <span class="q-text" id="quoteText">Discipline equals freedom.<span class="q-author">— Jocko Willink</span></span>
-  </div>
-
-  <div class="panel-header">
-    <h2 class="panel-title">Numbers <span class="accent">don't lie.</span></h2>
-    <p class="panel-intro">Log food, log water, log lifts, log weight. The app saves everything locally and updates your weekly progress automatically. Tap any food <strong>+</strong>/<strong>−</strong> to adjust counts.</p>
   </div>
 
   <!-- Live reminder banner -->
@@ -3659,6 +4342,30 @@
       <div class="ab-text" id="adaptiveText">—</div>
     </div>
     <button onclick="dismissAdaptive()">Got it</button>
+  </div>
+
+  <!-- SUNDAY ADAPTIVE SCHEDULE · auto-adjusts next week based on weigh-in -->
+  <div class="sunday-adapt-card" id="sundayAdaptCard" style="display:none;">
+    <div class="sa-header">
+      <div class="sa-icon">📈</div>
+      <div>
+        <div class="sa-label">Sunday review</div>
+        <div class="sa-title" id="saTitle">Week recap</div>
+      </div>
+      <span class="sa-week" id="saWeek">—</span>
+    </div>
+    <div class="sa-body">
+      <div class="sa-row"><span>This week's weight change:</span> <strong id="saWeightChange">—</strong></div>
+      <div class="sa-row"><span>Verdict:</span> <strong id="saVerdict">—</strong></div>
+      <div class="sa-divider"></div>
+      <div class="sa-row"><span>Next week · calorie target:</span> <strong id="saNewKcal">—</strong></div>
+      <div class="sa-row"><span>Next week · cardio:</span> <strong id="saNewCardio">—</strong></div>
+      <div class="sa-rationale" id="saRationale">—</div>
+    </div>
+    <div class="sa-actions">
+      <button class="sa-apply" onclick="applyAdaptivePlan()">✓ Apply for next week</button>
+      <button class="sa-skip" onclick="skipAdaptivePlan()">Keep current</button>
+    </div>
   </div>
 
   <!-- ENGAGEMENT — streak + best metrics -->
@@ -3972,14 +4679,14 @@
   <!-- WEIGHT + CHECKLIST (collapsible) -->
   <div class="collapsible open" id="col-weight">
     <div class="collapsible-head" onclick="toggleCollapse('col-weight')">
-      <h3 class="collapsible-title">⚖️ Weekly <span class="accent">weigh-in.</span></h3>
+      <h3 class="collapsible-title">⚖️ Sunday <span class="accent">weigh-in.</span></h3>
       <div class="collapsible-meta">
         <span class="summary-pill" id="weightPill">No log yet</span>
         <span class="chevron"></span>
       </div>
     </div>
     <div class="collapsible-body">
-      <span class="sub-tag" style="display:block; margin-bottom:14px;">Sunday morning · empty stomach</span>
+      <span class="sub-tag" style="display:block; margin-bottom:14px;">Sunday morning · empty stomach · weight + tape measurements together</span>
 
   <div class="tracker-grid">
     <div class="tracker-card">
@@ -4009,111 +4716,6 @@
         <li><input type="checkbox" id="ck8"><span class="label">No frozen paratha, no late sugar</span></li>
       </ul>
       <button class="btn btn-ghost btn-sm" style="margin-top:18px; width:100%;" onclick="resetChecklist()">Reset for tomorrow</button>
-    </div>
-  </div>
-    </div>
-  </div>
-  <!-- /col-weight -->
-
-</section>
-
-<!-- ========== PROGRESS ========== -->
-<section class="panel" id="progress">
-  <div class="panel-header">
-    <h2 class="panel-title">Your <span class="accent">transformation.</span></h2>
-    <p class="panel-intro">Where you are versus where you started. Weight trend, body measurements, weekly photos. Watch the line move and trust the process — the scale is one signal, not the whole story.</p>
-  </div>
-
-  <!-- HERO METRICS -->
-  <div class="progress-hero">
-    <h2>Day <span class="accent" id="phDayCount">—</span> of 78</h2>
-    <div class="ph-sub" id="phDates">25 Jun → 10 Sep · Operation 75</div>
-    <div class="progress-stats">
-      <div class="progress-stat">
-        <div class="ps-label">Kilos lost</div>
-        <div class="ps-val" id="phKgLost">—<span class="unit-sm">kg</span></div>
-        <div class="ps-sub" id="phKgLostSub">vs start (85 kg)</div>
-      </div>
-      <div class="progress-stat">
-        <div class="ps-label">% to goal</div>
-        <div class="ps-val" id="phPctGoal">—<span class="unit-sm">%</span></div>
-        <div class="ps-sub">75 kg = mission</div>
-      </div>
-      <div class="progress-stat">
-        <div class="ps-label">Projected finish</div>
-        <div class="ps-val" id="phProjected">—<span class="unit-sm">kg</span></div>
-        <div class="ps-sub" id="phProjectedSub">at current pace</div>
-      </div>
-      <div class="progress-stat">
-        <div class="ps-label">Current streak</div>
-        <div class="ps-val" id="phStreak">—<span class="unit-sm">d</span></div>
-        <div class="ps-sub">logging days</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- WEIGHT CHART -->
-  <div class="weight-chart-card">
-    <h3>Weight trend</h3>
-    <div class="wc-title">85 → 75 kg in 12 weeks</div>
-    <div id="weightChart"><div class="wc-empty">Log weights weekly on the Tracker tab. They'll plot here.</div></div>
-  </div>
-
-  <!-- PHOTOS -->
-  <div class="photos-card">
-    <div class="photos-head">
-      <div class="m-title">📷 Progress photos</div>
-    </div>
-    <div class="photo-controls">
-      <input type="date" class="photo-date-input" id="photoDateInput">
-      <input type="file" accept="image/*" id="photoInput" style="display:none">
-      <button class="photo-capture-btn" style="margin-bottom:0;" onclick="document.getElementById('photoInput').click()">📷 Add photo</button>
-    </div>
-    <div class="photo-filter-row">
-      <button class="photo-filter-btn active" data-filter="all" onclick="setPhotoFilter('all')">All</button>
-      <button class="photo-filter-btn" data-filter="week" onclick="setPhotoFilter('week')">This week</button>
-      <button class="photo-filter-btn" data-filter="month" onclick="setPhotoFilter('month')">This month</button>
-      <button class="photo-filter-btn" data-filter="weekly" onclick="setPhotoFilter('weekly')">Weekly</button>
-      <button class="photo-filter-btn" data-filter="monthly" onclick="setPhotoFilter('monthly')">Monthly</button>
-    </div>
-    <div class="photo-grid" id="photoGrid">
-      <div class="photo-empty">No photos yet. Take one a week — front, side, back. The mirror lies, the photos don't.</div>
-    </div>
-  </div>
-
-  <!-- DATA EXPORT / IMPORT -->
-  <div class="data-mgmt-card">
-    <h3>Backup & sharing</h3>
-    <div class="dm-title">Export your data</div>
-    <p class="dm-desc">Save everything — food logs, weights, exercise, sleep, measurements, photos — as a single JSON file. Share it with Claude after Sep 10 for a full performance review and Phase 4 plan. Also use it to restore data on a new phone.</p>
-    <div class="data-mgmt-actions">
-      <button onclick="exportAllData()">💾 Export JSON</button>
-      <input type="file" accept=".json,application/json" id="importInput" style="display:none">
-      <button class="dm-import" onclick="document.getElementById('importInput').click()">📥 Import JSON</button>
-    </div>
-  </div>
-
-  <!-- THEME PICKER -->
-  <div class="data-mgmt-card">
-    <h3>Appearance</h3>
-    <div class="dm-title">Pick your theme</div>
-    <p class="dm-desc">Three looks · same data and features under the hood. Default is Training Camp.</p>
-    <div class="theme-picker" id="themePicker">
-      <div class="theme-option theme-camp active" data-theme="camp" onclick="setTheme('camp')">
-        <div class="to-swatch"><div></div><div></div><div></div></div>
-        <div class="to-name">Training Camp</div>
-        <div class="to-sub">Cream · Marigold</div>
-      </div>
-      <div class="theme-option theme-steel" data-theme="steel" onclick="setTheme('steel')">
-        <div class="to-swatch"><div></div><div></div><div></div></div>
-        <div class="to-name">Dark Steel</div>
-        <div class="to-sub">Black · Gym green</div>
-      </div>
-      <div class="theme-option theme-light" data-theme="light" onclick="setTheme('light')">
-        <div class="to-swatch"><div></div><div></div><div></div></div>
-        <div class="to-name">Minimal Light</div>
-        <div class="to-sub">White · Clean blue</div>
-      </div>
     </div>
   </div>
 
@@ -4158,81 +4760,89 @@
     <button class="measure-save" onclick="saveMeasurements()">Save measurements · today</button>
     <div class="measure-history" id="measureHistory"></div>
   </div>
-</section>
-
-<!-- ========== NOTES ========== -->
-<section class="panel" id="notes">
-  <div class="panel-header">
-    <h2 class="panel-title">Coach's <span class="accent">notes.</span></h2>
-    <p class="panel-intro">The plan is the easy part. The hard part is what's not in it — sleep, stress, the weeks when the scale doesn't move. Read this when motivation dips.</p>
-  </div>
-
-  <div class="notes-grid">
-    <div class="note-card">
-      <div class="note-label">Note 01</div>
-      <div class="note-title">The 75 kg target is aggressive — own it</div>
-      <ul>
-        <li>Realistically you'll lose <strong>~0.8–1 kg/week</strong> for the first 3 weeks (water + glycogen + fat), then ~0.5–0.7 kg/week as the body adapts.</li>
-        <li>Total projection: <strong>~8–10 kg in 11 weeks</strong>. You'll likely land between 75–77 kg by 10 Sep. That's a win regardless.</li>
-        <li>If you stall for 10+ days, drop 100 kcal from Meal 02 (skip the almonds) and add 5 min cardio. Don't slash food in panic.</li>
-      </ul>
-    </div>
-
-    <div class="note-card dark">
-      <div class="note-label">Note 02</div>
-      <div class="note-title">Sleep is the lift you take in bed</div>
-      <ul>
-        <li>Your shift ends ~3 AM. Get to bed by 5 AM, sleep through to 12 PM. That's 7 hours.</li>
-        <li>Blackout curtains, phone in another room, cool temperature. Daytime sleep is harder than night sleep — protect it.</li>
-        <li>If sleep falls below 6 hrs for 3 nights, drop one strength day. Tired lifting injures people.</li>
-      </ul>
-    </div>
-
-    <div class="note-card">
-      <div class="note-label">Note 03</div>
-      <div class="note-title">Form before weight. Always.</div>
-      <ul>
-        <li>If you can't do 10 clean reps, the weight is too heavy. <strong>Drop it.</strong></li>
-        <li>Last 2 reps should be the hardest, not impossible. If reps 1–8 feel like 9–10, you're going too heavy.</li>
-        <li>Ego lifting injures shoulders, knees, lower backs. Your sister can spot you — use her.</li>
-      </ul>
-    </div>
-
-    <div class="note-card dark">
-      <div class="note-label">Note 04</div>
-      <div class="note-title">Cheat days — read this</div>
-      <ul>
-        <li><strong>Cheat days are not failure.</strong> They're planned. Log every item in the tracker — KFC burger, pizza slice, beef steak, roll.</li>
-        <li>Pick <strong>one cheat meal</strong>, not a cheat day. KFC burger + diet Pepsi = ~450 kcal. 3 pizza slices = ~860 kcal. One steak meal = ~700 kcal.</li>
-        <li>Eat normally before and after. A cheat <em>meal</em> doesn't wreck the week. A cheat <em>day</em> does.</li>
-        <li>Steak dinner days: skip Meal 02 to make calorie room. Eat steak + veg + 1 small baked potato. That's roughly 700 kcal.</li>
-        <li>Do <strong>not</strong> skip the gym on cheat days — extra fuel = better workout.</li>
-      </ul>
-    </div>
-
-    <div class="note-card">
-      <div class="note-label">Note 05</div>
-      <div class="note-title">What to watch for</div>
-      <ul>
-        <li><strong>Energy crash mid-workout</strong>: eat Meal 03 closer to gym (1 hr before), add a banana.</li>
-        <li><strong>Sharp joint pain</strong> (not muscle soreness): stop that exercise. Swap for a machine version.</li>
-        <li><strong>Sleep less than 5 hrs</strong>: skip strength, do 30 min walk instead.</li>
-        <li><strong>Weekly weight up</strong>: check water intake, salt, and stool habits before panicking. Trend &gt; day.</li>
-      </ul>
-    </div>
-
-    <div class="note-card danger">
-      <div class="note-label">Hard rules · do not break</div>
-      <div class="note-title">The non-negotiables</div>
-      <ul>
-        <li>Six gym sessions a week, Mon–Sat. <strong>Saturday is non-negotiable.</strong> That's the long cardio.</li>
-        <li>No frozen parathas, no regular soda, no late-night biryani. <strong>Three substitutions = a wasted day.</strong></li>
-        <li>Weigh in Sunday morning, log it. <strong>Track the trend or lose the plan.</strong></li>
-        <li>If you injure yourself, stop. Pain &gt; pride. We rebuild.</li>
-      </ul>
     </div>
   </div>
+  <!-- /col-weight -->
+
 </section>
+
+<!-- ========== PROGRESS ========== -->
+<section class="panel" id="progress"><!-- HERO METRICS -->
+  <div class="progress-hero">
+    <h2>Day <span class="accent" id="phDayCount">—</span> of 78</h2>
+    <div class="ph-sub" id="phDates">25 Jun → 10 Sep · Operation 75</div>
+    <div class="progress-stats">
+      <div class="progress-stat">
+        <div class="ps-label">Kilos lost</div>
+        <div class="ps-val" id="phKgLost">—<span class="unit-sm">kg</span></div>
+        <div class="ps-sub" id="phKgLostSub">vs start (85 kg)</div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">% to goal</div>
+        <div class="ps-val" id="phPctGoal">—<span class="unit-sm">%</span></div>
+        <div class="ps-sub">75 kg = mission</div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">Projected finish</div>
+        <div class="ps-val" id="phProjected">—<span class="unit-sm">kg</span></div>
+        <div class="ps-sub" id="phProjectedSub">at current pace</div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">Current streak</div>
+        <div class="ps-val" id="phStreak">—<span class="unit-sm">d</span></div>
+        <div class="ps-sub">logging days</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEIGHT CHART -->
+  <div class="weight-chart-card">
+    <h3>Weight trend</h3>
+    <div class="wc-title">85 → 75 kg in 12 weeks</div>
+    <div id="weightChart"><div class="wc-empty">Log weights weekly on the Tracker tab. They'll plot here.</div></div>
+  </div>
+
+  <!-- INSIGHTS · pattern analysis from your logs -->
+  <div class="insights-card">
+    <div class="insights-head">
+      <div class="m-title">🔍 Insights</div>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.14em;">Patterns from your logs</span>
+    </div>
+    <div class="insights-grid" id="insightsGrid">
+      <!-- JS fills -->
+    </div>
+    <div class="insights-heatmap-wrap">
+      <div class="ins-heatmap-title">Logging consistency · last 8 weeks</div>
+      <div class="insights-heatmap" id="insightsHeatmap"><!-- JS fills --></div>
+      <div class="ins-heatmap-legend">
+        <span>Fewer logs</span>
+        <div class="ins-legend-bar">
+          <div style="background:#F5EFE3;"></div>
+          <div style="background:#FEF3C7;"></div>
+          <div style="background:#FBBF24;"></div>
+          <div style="background:#D97706;"></div>
+          <div style="background:#7F1D1D;"></div>
+        </div>
+        <span>More logs</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MEASUREMENTS TREND (read-only) · entry is in Tracker > Weekly weigh-in -->
+  <div class="measure-trend-card">
+    <div class="mt-header">
+      <div class="m-title">📏 Measurements trend</div>
+      <span class="mt-edit-link">Enter new in Tracker → Sunday weigh-in</span>
+    </div>
+    <div class="mt-summary" id="mtSummary">
+      <div class="mt-empty">No measurements logged yet. Add your first set on Sunday in the Tracker tab.</div>
+    </div>
+    <div class="mt-history-list" id="mtHistoryList"></div>
+  </div>
+</section>
+
+
 
 </main>
 
@@ -4246,11 +4856,11 @@
 
 <!-- BOTTOM NAV · always visible, thumb-reach -->
 <nav class="bottom-nav" aria-label="Main navigation">
+  <button class="bn-btn" data-tab="goal"><span class="bn-icon">🎯</span><span>Goal</span></button>
   <button class="bn-btn active" data-tab="workout"><span class="bn-icon">💪</span><span>Training</span></button>
   <button class="bn-btn" data-tab="diet"><span class="bn-icon">🍽️</span><span>Diet</span></button>
   <button class="bn-btn" data-tab="tracker"><span class="bn-icon">📊</span><span>Tracker</span></button>
   <button class="bn-btn" data-tab="progress"><span class="bn-icon">📈</span><span>Progress</span></button>
-  <button class="bn-btn" data-tab="notes"><span class="bn-icon">📝</span><span>Notes</span></button>
 </nav>
 
 <!-- MODAL · for machine info pop-ups -->
@@ -4902,10 +5512,10 @@ document.querySelectorAll('.sub-tab-btn').forEach(btn => {
     btn.classList.add('active');
     document.getElementById(sub).classList.add('active');
     // Scroll the workout panel into view, NOT the sub-tab itself
-    // (scrolling the sub-tab inline:center shifts the whole page horizontally
-    //  for the rightmost tab — bug that hid Phase 3 content)
     const trainingTop = document.querySelector('nav.tabs');
     if (trainingTop) window.scrollTo({ top: trainingTop.offsetTop + 60, behavior: 'smooth' });
+    // Re-wire phase table clicks for the now-active panel
+    setTimeout(wirePhaseTableClicks, 30);
   });
 });
 
@@ -7239,8 +7849,47 @@ function jumpToCurrentPhase() {
 function findMachineByName(name) {
   if (!name) return null;
   // Strip day prefix like "Mon · "
-  const cleaned = name.replace(/^[A-Z][a-z]+\s·\s/, '').trim().toLowerCase();
-  return MACHINES.find(m => m.name.toLowerCase() === cleaned);
+  let cleaned = name.replace(/^[A-Z][a-z]+\s·\s/, '').trim().toLowerCase();
+  // Exact match first
+  let m = MACHINES.find(x => x.name.toLowerCase() === cleaned);
+  if (m) return m;
+  // Phase tables use abbreviated names — map common shortcuts
+  const SHORTCUTS = {
+    'incline db press': 'incline dumbbell press',
+    'db shoulder press': 'dumbbell shoulder press',
+    'db row': 'one-arm dumbbell row',
+    'pec deck': 'pec deck / cable fly',
+    'cable row': 'seated cable row',
+    'bicep machine': 'bicep curl machine',
+    'shoulder press': 'machine shoulder press',
+    'overhead tricep': 'overhead tricep extension',
+    'one-arm row': 'one-arm dumbbell row',
+    'db lateral raise': 'dumbbell lateral raise',
+    'db front raise': 'dumbbell front raise',
+    'lateral raise': 'dumbbell lateral raise',
+    'front raise': 'dumbbell front raise',
+    'knee raise': 'hanging knee raise',
+    'hanging knee raise': 'hanging knee raise',
+    'reverse pec': 'reverse pec deck',
+    'pushup': 'push-up',
+    'push up': 'push-up',
+    'tricep dip': 'tricep dip',
+    'calf raise': 'calf raise',
+    'hammer curl': 'hammer curl'
+  };
+  if (SHORTCUTS[cleaned]) {
+    m = MACHINES.find(x => x.name.toLowerCase() === SHORTCUTS[cleaned]);
+    if (m) return m;
+  }
+  // Fuzzy fallback: partial match (each word of cleaned must appear in machine name)
+  const words = cleaned.split(/\s+/).filter(w => w.length > 2);
+  m = MACHINES.find(x => {
+    const machineName = x.name.toLowerCase();
+    return words.every(w => machineName.includes(w));
+  });
+  if (m) return m;
+  // Last resort: any machine where cleaned is a substring
+  return MACHINES.find(x => x.name.toLowerCase().includes(cleaned) || cleaned.includes(x.name.toLowerCase()));
 }
 
 function wirePhaseTableClicks() {
@@ -7541,6 +8190,407 @@ setTimeout(wirePhaseTableClicks, 100);
 document.querySelectorAll('.sub-tab-btn').forEach(btn => {
   btn.addEventListener('click', () => setTimeout(wirePhaseTableClicks, 50));
 });
+
+/* ============================================================
+   INSIGHTS · pattern analysis from logs
+   ============================================================ */
+function renderInsights() {
+  const grid = document.getElementById('insightsGrid');
+  if (!grid) return;
+
+  // Gather last 30 days of data
+  const today = new Date();
+  const stats = {
+    foodTargetDays: 0,
+    waterGoalDays: 0,
+    proteinTargetDays: 0,
+    totalLoggedDays: 0,
+    byWeekday: { 0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[] }, // hits per weekday
+  };
+
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    const dk = dateKey(d);
+    const food = safeGet('op75_food_' + dk) || {};
+    const water = safeGet('op75_water_' + dk);
+    const totals = computeFoodTotals(food);
+    const drunk = water ? (water.glasses || 0) * (water.size || 250) : 0;
+    const hasAnything = Object.values(food).some(e => e.count > 0) || drunk > 0;
+
+    if (hasAnything) stats.totalLoggedDays++;
+    let score = 0;
+    if (totals.kcal >= 1700 && totals.kcal <= 2100) { stats.foodTargetDays++; score++; }
+    if (drunk >= WATER_GOAL_ML) { stats.waterGoalDays++; score++; }
+    if (totals.protein >= 120) { stats.proteinTargetDays++; score++; }
+    stats.byWeekday[d.getDay()].push(score);
+  }
+
+  // Find best/worst weekday by average score
+  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const dayAvg = Object.entries(stats.byWeekday).map(([day, arr]) => ({
+    day: dayNames[day],
+    avg: arr.length ? arr.reduce((a,b) => a+b, 0) / arr.length : 0,
+    n: arr.length
+  })).filter(x => x.n > 0).sort((a, b) => b.avg - a.avg);
+
+  const best = dayAvg[0];
+  const worst = dayAvg[dayAvg.length - 1];
+
+  const tiles = [];
+  if (best && best.n >= 2) {
+    tiles.push(`<div class="insight-tile good">
+      <div class="it-label">Strongest day</div>
+      <div class="it-value">${best.day}</div>
+      <div class="it-sub">Highest hit rate on your goals</div>
+    </div>`);
+  }
+  if (worst && worst.n >= 2 && worst.day !== best?.day) {
+    tiles.push(`<div class="insight-tile warn">
+      <div class="it-label">Watch out for</div>
+      <div class="it-value">${worst.day}</div>
+      <div class="it-sub">Lowest hit rate — what's different?</div>
+    </div>`);
+  }
+  if (stats.totalLoggedDays > 0) {
+    const proteinPct = Math.round((stats.proteinTargetDays / stats.totalLoggedDays) * 100);
+    tiles.push(`<div class="insight-tile ${proteinPct >= 70 ? 'good' : proteinPct < 40 ? 'warn' : ''}">
+      <div class="it-label">Protein target hit-rate</div>
+      <div class="it-value">${proteinPct}%</div>
+      <div class="it-sub">${stats.proteinTargetDays} of ${stats.totalLoggedDays} logged days ≥ 120g</div>
+    </div>`);
+    const waterPct = Math.round((stats.waterGoalDays / stats.totalLoggedDays) * 100);
+    tiles.push(`<div class="insight-tile ${waterPct >= 70 ? 'good' : waterPct < 40 ? 'warn' : ''}">
+      <div class="it-label">Water goal hit-rate</div>
+      <div class="it-value">${waterPct}%</div>
+      <div class="it-sub">${stats.waterGoalDays} of ${stats.totalLoggedDays} days at 3 L+</div>
+    </div>`);
+  }
+  // Sleep correlation
+  const sleepData = [];
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    const dk = dateKey(d);
+    const s = safeGet('op75_sleep_' + dk);
+    if (s) sleepData.push(s.durationMin);
+  }
+  if (sleepData.length >= 5) {
+    const avgMin = Math.round(sleepData.reduce((a,b)=>a+b,0) / sleepData.length);
+    const h = Math.floor(avgMin / 60);
+    const m = avgMin % 60;
+    tiles.push(`<div class="insight-tile ${avgMin >= 420 ? 'good' : avgMin < 360 ? 'warn' : ''}">
+      <div class="it-label">Avg sleep · last 30d</div>
+      <div class="it-value">${h}h ${m.toString().padStart(2,'0')}m</div>
+      <div class="it-sub">${sleepData.length} nights logged · target 7h+</div>
+    </div>`);
+  }
+
+  if (tiles.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:30px; color:var(--muted); font-style:italic;">Log a few more days and patterns will appear here.</div>';
+  } else {
+    grid.innerHTML = tiles.join('');
+  }
+
+  // Heatmap · last 8 weeks = 56 days
+  renderHeatmap();
+}
+
+function renderHeatmap() {
+  const wrap = document.getElementById('insightsHeatmap');
+  if (!wrap) return;
+  const today = new Date();
+  const cells = [];
+  // Show 56 days = 8 columns of 7 rows (but we'll fill 8x7 = 56)
+  for (let i = 55; i >= 0; i--) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    const dk = dateKey(d);
+    const food = safeGet('op75_food_' + dk) || {};
+    const water = safeGet('op75_water_' + dk);
+    const ex = safeGet('op75_ex_' + dk) || [];
+    let score = 0;
+    if (Object.values(food).some(e => e.count > 0)) score++;
+    if (water && (water.glasses || 0) * (water.size || 250) >= 2000) score++;
+    if (ex.length > 0) score++;
+    if (safeGet('op75_sleep_' + dk)) score++;
+    cells.push({ date: dk, score, day: d.getDate() });
+  }
+  wrap.innerHTML = cells.map(c => `<div class="ins-heat-cell day-${c.score}" title="${c.date} · ${c.score}/4 metrics logged"></div>`).join('');
+}
+
+/* ============================================================
+   PAKISTANI MEAL BUILDER
+   ============================================================ */
+const MB_PROFILES = {
+  chicken: { picks: ['chicken-karahi','chicken-qorma','chicken','egg-whole'], carbPool: ['roti-multigrain','roti-wheat','rice-brown-pk','brown-bread'], sidePool: ['cucumber-salad','mixed-veg','palak'] },
+  beef:    { picks: ['beef-curry','mutton-curry'], carbPool: ['roti-multigrain','roti-wheat','naan'], sidePool: ['cucumber-salad','mixed-veg'] },
+  veg:     { picks: ['daal','channa-chaat','egg-whole','yogurt-strain','paneer-grilled'], carbPool: ['roti-multigrain','rice-brown-pk','brown-bread'], sidePool: ['palak','bhindi','mixed-veg','aloo-sabzi'] },
+  light:   { picks: ['chicken','egg-white','egg-boiled','fish-curry','daal'], carbPool: ['multigrain','brown-bread','roti-multigrain'], sidePool: ['cucumber-salad','palak','mixed-veg'] },
+  hearty:  { picks: ['chicken-karahi','beef-curry','mutton-curry','chicken-qorma'], carbPool: ['naan','paratha-multigrain','rice-white'], sidePool: ['daal','aloo-sabzi','mixed-veg'] }
+};
+
+function generateMeal() {
+  const target = parseInt(document.getElementById('mbTarget').value) || 600;
+  const style = document.getElementById('mbStyle').value;
+  const profile = MB_PROFILES[style];
+  if (!profile) return;
+
+  const out = document.getElementById('mbResult');
+  // Find available items
+  const pickFrom = arr => {
+    const valid = arr.map(id => FOOD_DB.find(f => f.id === id)).filter(Boolean);
+    return valid[Math.floor(Math.random() * valid.length)];
+  };
+
+  // Pick main protein
+  const main = pickFrom(profile.picks);
+  if (!main) { out.innerHTML = '<div class="mb-result empty">No matching items.</div>'; return; }
+  // Target roughly: 50% from main, 40% from carb, 10% from side
+  const mainKcal = target * 0.5;
+  const carbKcal = target * 0.4;
+
+  // Compute main portion needed
+  const mainBase = main.kcal;
+  const mainScale = main.adjustable ? Math.max(0.4, Math.min(2.5, mainKcal / mainBase)) : 1;
+  const mainCount = main.adjustable ? 1 : Math.max(1, Math.round(mainKcal / mainBase));
+  const mainQty = main.adjustable ? Math.round(main.defaultQty * mainScale / 5) * 5 : null;
+  const mainKcalActual = Math.round(main.kcal * (main.adjustable ? (mainQty / main.defaultQty) : 1) * mainCount);
+
+  // Carb
+  const carb = pickFrom(profile.carbPool);
+  const carbBase = carb ? carb.kcal : 0;
+  const carbScale = carb && carb.adjustable ? Math.max(0.4, Math.min(2.0, carbKcal / carbBase)) : 1;
+  const carbCount = carb && !carb.adjustable ? Math.max(1, Math.round(carbKcal / carbBase)) : 1;
+  const carbQty = carb && carb.adjustable ? Math.round(carb.defaultQty * carbScale / 5) * 5 : null;
+  const carbKcalActual = carb ? Math.round(carb.kcal * (carb.adjustable ? (carbQty / carb.defaultQty) : 1) * carbCount) : 0;
+
+  // Side (small, optional)
+  const side = pickFrom(profile.sidePool);
+  const sideKcal = side ? (target - mainKcalActual - carbKcalActual) : 0;
+  const sideBase = side ? side.kcal : 0;
+  const sideScale = side && side.adjustable && sideKcal > 0 ? Math.max(0.3, Math.min(1.5, sideKcal / sideBase)) : 1;
+  const sideQty = side && side.adjustable ? Math.round(side.defaultQty * sideScale / 5) * 5 : null;
+  const sideKcalActual = side && sideKcal > 30 ? Math.round(side.kcal * (side.adjustable ? (sideQty / side.defaultQty) : 1)) : 0;
+
+  const totalK = mainKcalActual + carbKcalActual + sideKcalActual;
+  const items = [
+    { food: main, count: mainCount, qty: mainQty, kcal: mainKcalActual },
+    { food: carb, count: carbCount, qty: carbQty, kcal: carbKcalActual }
+  ];
+  if (side && sideKcalActual > 30) items.push({ food: side, count: 1, qty: sideQty, kcal: sideKcalActual });
+
+  // Compute total protein
+  let totalP = 0;
+  items.forEach(it => {
+    const scale = it.food.adjustable && it.qty ? it.qty / it.food.defaultQty : 1;
+    totalP += (it.food.protein || 0) * scale * it.count;
+  });
+  totalP = Math.round(totalP);
+
+  const portionText = it => {
+    if (it.food.adjustable && it.qty) return `${it.qty} g`;
+    if (it.count > 1) return `${it.count} × ${it.food.unit}`;
+    return it.food.unit;
+  };
+
+  out.classList.remove('empty');
+  out.innerHTML = `
+    <div class="mb-meal-title">${main.name} combo</div>
+    <div class="mb-meal-totals">${totalK} kcal · ${totalP}g protein · target ${target}</div>
+    <ul class="mb-meal-items">
+      ${items.map(it => `<li><span class="item-name">${it.food.icon} ${it.food.name}</span><span class="item-portion">${portionText(it)} · ${it.kcal} kcal</span></li>`).join('')}
+    </ul>
+  `;
+}
+
+/* ============================================================
+   SUNDAY ADAPTIVE SCHEDULE
+   ============================================================ */
+function getWeekWeightChange() {
+  const weights = (safeGet('op75_weights') || []).slice().sort((a,b) => a.date.localeCompare(b.date));
+  if (weights.length < 2) return null;
+  const latest = weights[weights.length - 1];
+  // Find one ~7 days before
+  const latestDate = new Date(latest.date + 'T00:00:00');
+  const targetDate = new Date(latestDate); targetDate.setDate(latestDate.getDate() - 7);
+  // Find closest earlier weight to targetDate
+  let prev = null;
+  for (let i = weights.length - 2; i >= 0; i--) {
+    const wDate = new Date(weights[i].date + 'T00:00:00');
+    if (wDate <= targetDate || (i === 0)) { prev = weights[i]; break; }
+  }
+  if (!prev) prev = weights[0];
+  return {
+    change: +(latest.weight - prev.weight).toFixed(1),
+    from: prev,
+    to: latest
+  };
+}
+
+function computeAdaptivePlan() {
+  const change = getWeekWeightChange();
+  if (!change) return null;
+  const currentKcal = 1900;
+  const currentCardio = 15;
+  let newKcal, newCardio, verdict, rationale;
+
+  if (change.change <= -1.0) {
+    // Lost too fast
+    newKcal = currentKcal + 100;
+    newCardio = currentCardio;
+    verdict = 'Lost fast — protect muscle';
+    rationale = `Dropped ${Math.abs(change.change)} kg this week. Good progress but eat +100 kcal more so you don't lose muscle along with fat.`;
+  } else if (change.change <= -0.5) {
+    // Healthy loss
+    newKcal = currentKcal;
+    newCardio = currentCardio;
+    verdict = 'On target';
+    rationale = `Lost ${Math.abs(change.change)} kg — exactly the sustainable rate. Hold this plan steady.`;
+  } else if (change.change < 0) {
+    // Slow loss
+    newKcal = currentKcal - 100;
+    newCardio = currentCardio + 5;
+    verdict = 'Slow progress · tighten';
+    rationale = `Only ${Math.abs(change.change)} kg this week. Cut 100 kcal, add 5 min to each cardio session.`;
+  } else if (change.change === 0) {
+    // Stalled
+    newKcal = currentKcal - 150;
+    newCardio = currentCardio + 5;
+    verdict = 'Stalled · time to adjust';
+    rationale = `Flat this week. Cut 150 kcal, add 5 min cardio. Audit food log for hidden calories (oil, ghee, snacks).`;
+  } else {
+    // Gained
+    newKcal = currentKcal - 200;
+    newCardio = currentCardio + 10;
+    verdict = 'Up — diagnose';
+    rationale = `Gained ${change.change} kg this week. Cut 200 kcal, add 10 min cardio. Check: hidden calories? sleep below 6h? gym sessions missed? Salt/water bloat?`;
+  }
+  return { change: change.change, newKcal, newCardio, verdict, rationale, currentKcal, currentCardio };
+}
+
+function renderSundayAdaptive() {
+  const card = document.getElementById('sundayAdaptCard');
+  if (!card) return;
+  const today = new Date();
+  const isSunday = today.getDay() === 0;
+  const plan = computeAdaptivePlan();
+  const weights = safeGet('op75_weights') || [];
+  const hasWeighedThisSunday = weights.some(w => {
+    const wd = new Date(w.date + 'T12:00:00');
+    return wd.getDay() === 0 && Math.abs(today - wd) < 24 * 3600 * 1000;
+  });
+
+  // Check if already dismissed/applied this week
+  const wkKey = 'op75_adaptive_dismissed_' + getWeekStartKey();
+  const dismissed = safeGet(wkKey);
+
+  if (isSunday && hasWeighedThisSunday && plan && !dismissed) {
+    card.style.display = 'block';
+    document.getElementById('saTitle').textContent = 'Week recap + next-week plan';
+    document.getElementById('saWeek').textContent = 'Sunday review';
+    const changeStr = plan.change > 0 ? `+${plan.change} kg` : `${plan.change} kg`;
+    document.getElementById('saWeightChange').textContent = changeStr;
+    document.getElementById('saVerdict').textContent = plan.verdict;
+    document.getElementById('saNewKcal').textContent = `${plan.newKcal} kcal ${plan.newKcal !== plan.currentKcal ? `(was ${plan.currentKcal})` : '(unchanged)'}`;
+    document.getElementById('saNewCardio').textContent = `${plan.newCardio} min ${plan.newCardio !== plan.currentCardio ? `(was ${plan.currentCardio})` : '(unchanged)'}`;
+    document.getElementById('saRationale').textContent = plan.rationale;
+  } else {
+    card.style.display = 'none';
+  }
+}
+
+function getWeekStartKey() {
+  const d = new Date();
+  const dow = d.getDay();
+  const sunday = new Date(d); sunday.setDate(d.getDate() - dow);
+  return dateKey(sunday);
+}
+
+function applyAdaptivePlan() {
+  const plan = computeAdaptivePlan();
+  if (!plan) return;
+  // Store the new targets
+  safeSet('op75_adaptive_active', { kcal: plan.newKcal, cardio: plan.newCardio, setOn: todayKey() });
+  safeSet('op75_adaptive_dismissed_' + getWeekStartKey(), 'applied');
+  alert(`Plan applied: ${plan.newKcal} kcal/day, ${plan.newCardio} min cardio for the next 7 days.`);
+  renderSundayAdaptive();
+}
+
+function skipAdaptivePlan() {
+  safeSet('op75_adaptive_dismissed_' + getWeekStartKey(), 'skipped');
+  renderSundayAdaptive();
+}
+
+// Render insights when Progress tab is opened
+document.querySelectorAll('.bn-btn[data-tab="progress"], .tab-btn[data-tab="progress"]').forEach(b => {
+  b.addEventListener('click', () => setTimeout(renderInsights, 50));
+});
+
+// Initial renders
+setTimeout(() => { renderInsights(); renderSundayAdaptive(); }, 100);
+
+/* ============================================================
+   MEASUREMENT TREND · Progress tab read-only display
+   ============================================================ */
+function renderMeasurementTrend() {
+  const summary = document.getElementById('mtSummary');
+  const history = document.getElementById('mtHistoryList');
+  if (!summary) return;
+
+  const all = getAllMeasurements();
+  if (all.length === 0) {
+    summary.innerHTML = '<div class="mt-empty">No measurements logged yet. Add your first set on Sunday in the Tracker tab.</div>';
+    if (history) history.innerHTML = '';
+    return;
+  }
+
+  const latest = all[all.length - 1];
+  const first = all[0];
+
+  const tiles = MEASURE_FIELDS.map(f => {
+    if (latest[f.key] === undefined) return '';
+    const startVal = first[f.key];
+    const currentVal = latest[f.key];
+    let deltaHtml = '';
+    let tileClass = 'mt-tile';
+    if (startVal !== undefined && all.length > 1) {
+      const d = (currentVal - startVal).toFixed(1);
+      const sign = d > 0 ? '+' : '';
+      const slimming = ['waist','hips','thighs','neck'].includes(f.key);
+      const cls = slimming ? (d < 0 ? 'good' : d > 0 ? 'bad' : '') : (d > 0 ? 'good' : d < 0 ? 'bad' : '');
+      if (d < 0) tileClass += ' shrink';
+      else if (d > 0) tileClass += ' grow';
+      deltaHtml = `<div class="mt-delta ${cls}">${sign}${d} cm vs start</div>`;
+    } else {
+      deltaHtml = '<div class="mt-delta">starting baseline</div>';
+    }
+    return `<div class="${tileClass}">
+      <div class="mt-label">${f.label}</div>
+      <div class="mt-value">${currentVal}<span class="mt-unit">cm</span></div>
+      ${deltaHtml}
+    </div>`;
+  }).filter(Boolean).join('');
+
+  summary.innerHTML = tiles || '<div class="mt-empty">No measurements logged yet.</div>';
+
+  // History list
+  if (history && all.length > 0) {
+    const rows = all.slice().reverse().map(m => {
+      const vals = MEASURE_FIELDS.filter(f => m[f.key] !== undefined).map(f => `${f.label[0]}:${m[f.key]}`).join(' · ');
+      return `<div class="mt-history-row"><span class="mhr-date">${fmtDate(m.date)}</span><span class="mhr-values">${vals}</span></div>`;
+    }).join('');
+    history.innerHTML = `<div style="font-family:JetBrains Mono,monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">All entries</div>${rows}`;
+  }
+}
+
+// Hook measurement trend into Progress tab render
+const _origRenderProgressC = renderProgressTab;
+renderProgressTab = function() { _origRenderProgressC.apply(this, arguments); renderMeasurementTrend(); };
+
+// Also re-render trend when measurements are saved
+const _origSaveMeasurementsC = saveMeasurements;
+saveMeasurements = function() { _origSaveMeasurementsC.apply(this, arguments); renderMeasurementTrend(); };
+
+// Initial render
+setTimeout(renderMeasurementTrend, 150);
 </script>
 </body>
 </html>
