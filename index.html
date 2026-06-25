@@ -992,6 +992,383 @@
 
   /* ============ /V4 ADDITIONS ============ */
 
+  /* ============ V5 ADDITIONS ============ */
+
+  /* BOTTOM NAV BAR — sticky, always visible */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--dark);
+    border-top: 2px solid var(--accent);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .bn-btn {
+    background: none;
+    border: none;
+    border-right: 1px solid rgba(244,236,219,0.1);
+    color: rgba(244,236,219,0.55);
+    padding: 10px 4px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .bn-btn:last-child { border-right: none; }
+  .bn-btn .bn-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+  .bn-btn:hover { color: var(--paper); }
+  .bn-btn.active { color: var(--accent); background: rgba(217,119,6,0.1); }
+  .bn-btn.active .bn-icon { transform: scale(1.1); }
+  /* Body gets bottom padding to clear the nav */
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+
+  /* MODAL SYSTEM */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,13,12,0.85);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    max-width: 580px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 0;
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 36px; height: 36px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 5;
+    line-height: 1;
+    border-radius: 50%;
+  }
+  .modal-close:hover { background: var(--accent-deep); }
+  .modal-inner { padding: 28px 24px; }
+  .modal-header {
+    background: var(--dark);
+    color: var(--dark-text);
+    padding: 22px 24px;
+  }
+  .modal-header .mh-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .modal-header .mh-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-top: 6px;
+    padding-right: 50px;
+  }
+  .modal-header .mh-works {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(244,236,219,0.7);
+    margin-top: 6px;
+  }
+  .modal-svg-wrap {
+    background: var(--paper-2);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .modal-svg-wrap svg {
+    max-width: 100%;
+    height: auto;
+  }
+  .modal-section h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 18px 0 8px;
+  }
+  .modal-section ul { list-style: none; padding: 0; }
+  .modal-section ul li {
+    padding: 5px 0 5px 18px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .modal-section ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent-deep);
+  }
+  .modal-tip {
+    margin-top: 18px;
+    padding: 14px 16px;
+    background: var(--paper-2);
+    border-left: 4px solid var(--accent);
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--hand);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  /* COLLAPSIBLE SECTIONS */
+  .collapsible {
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0;
+  }
+  .collapsible-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 24px;
+  }
+  .collapsible-head:hover .collapsible-title { color: var(--accent-deep); }
+  .collapsible-head .collapsible-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(22px, 4vw, 30px);
+    line-height: 1;
+    text-transform: uppercase;
+    transition: color 0.15s;
+  }
+  .collapsible-head .collapsible-title .accent { color: var(--accent); }
+  .collapsible-head .collapsible-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .collapsible-head .chevron {
+    width: 14px;
+    height: 14px;
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+    margin-bottom: 4px;
+    margin-left: 4px;
+  }
+  .collapsible.open .chevron { transform: rotate(-135deg); margin-top: 4px; margin-bottom: 0; }
+  .collapsible-body {
+    display: none;
+    padding: 16px 0 32px;
+  }
+  .collapsible.open .collapsible-body { display: block; }
+  .collapsible-head .summary-pill {
+    background: var(--paper-2);
+    padding: 6px 10px;
+    border: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink);
+  }
+  .collapsible-head .summary-pill.done { background: var(--success); color: var(--paper); border-color: var(--success); }
+  .collapsible-head .summary-pill.warn { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+
+  /* STREAK + ENGAGEMENT CARDS */
+  .engagement-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .engagement-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+  .engagement-card.hot { background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 100%); border-color: var(--accent); }
+  .engagement-card .ec-icon { font-size: 30px; line-height: 1; }
+  .engagement-card .ec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .engagement-card .ec-val {
+    font-family: 'Anton', sans-serif;
+    font-size: 26px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .engagement-card .ec-val .unit-sm {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-left: 3px;
+  }
+  .engagement-card .ec-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* WATER · BOTTLE MODE + ZONES */
+  .water-zones {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(224,242,254,0.2);
+  }
+  .water-zone {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(56,189,248,0.15);
+    padding: 10px;
+    text-align: center;
+  }
+  .water-zone .wz-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(224,242,254,0.55);
+    margin-bottom: 4px;
+  }
+  .water-zone .wz-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #E0F2FE;
+  }
+  .water-zone.active { background: rgba(56,189,248,0.2); border-color: #38BDF8; }
+  .water-zone.active .wz-val { color: #38BDF8; }
+  .water-zone.active .wz-label { color: #38BDF8; }
+  .gs-btn.bottle {
+    background: linear-gradient(135deg, rgba(56,189,248,0.15) 0%, rgba(14,165,233,0.25) 100%);
+    border-color: #38BDF8;
+  }
+  .gs-btn.bottle.active {
+    background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%);
+    color: #0C2A3A;
+  }
+  .water-status-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-align: center;
+    margin: 12px 0;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px dashed rgba(224,242,254,0.2);
+    color: #E0F2FE;
+    line-height: 1.4;
+  }
+  .water-status-text.below { color: #FCA5A5; border-color: rgba(248,113,113,0.3); }
+  .water-status-text.target { color: #4ADE80; border-color: rgba(74,222,128,0.3); }
+  .water-status-text.over { color: #FBBF24; border-color: rgba(251,191,36,0.3); }
+
+  /* PHASE DAY FILTER (inside Phase 1/2/3 tables) */
+  .phase-day-filter {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    padding: 10px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .phase-day-filter .pdf-label {
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .phase-day-btn {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 7px 11px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    flex: 1;
+    min-width: 42px;
+  }
+  .phase-day-btn:hover { background: var(--paper-3); }
+  .phase-day-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .prog-table tr.pdf-hidden { display: none; }
+
+  /* DAILY QUOTE — date stamp */
+  .quote-banner .q-date {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* MOBILE OVERRIDES */
+  @media (max-width: 720px) {
+    .engagement-row { grid-template-columns: 1fr; }
+    .modal { max-height: 95vh; }
+    .modal-inner { padding: 20px 18px; }
+    .modal-header { padding: 18px 20px; }
+    .water-zones { grid-template-columns: 1fr; gap: 6px; }
+    .water-zone { display: flex; justify-content: space-between; padding: 8px 12px; }
+    .water-zone .wz-label { margin-bottom: 0; }
+    .collapsible-head { padding: 14px 0; }
+    .collapsible-head .collapsible-meta { gap: 8px; }
+    .phase-day-btn { font-size: 10px; padding: 6px 4px; }
+    .bn-btn { font-size: 8px; }
+    .bn-btn .bn-icon { font-size: 20px; }
+  }
+
+  /* ============ /V5 ADDITIONS ============ */
+
   /* DAY FILTER (Overview) */
   .day-filter-bar {
     display: flex;
@@ -1531,6 +1908,16 @@
         <div><span class="pd-num">Strength · all lifts</span><div class="pd-title">Week-by-week <span class="pd-focus">progression</span></div></div>
         <div class="pd-cardio">↑ = load bump · → = same · reps bump in italic</div>
       </div>
+      <div class="phase-day-filter">
+        <span class="pdf-label">Filter by training day</span>
+        <button class="phase-day-btn active" data-day="all">All days</button>
+        <button class="phase-day-btn" data-day="mon">Mon</button>
+        <button class="phase-day-btn" data-day="tue">Tue</button>
+        <button class="phase-day-btn" data-day="wed">Wed</button>
+        <button class="phase-day-btn" data-day="thu">Thu</button>
+        <button class="phase-day-btn" data-day="fri">Fri</button>
+        <button class="phase-day-btn" data-day="sat">Sat</button>
+      </div>
       <div class="prog-table-wrap">
         <table class="prog-table">
           <thead>
@@ -1543,24 +1930,24 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×<em>12</em> @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td></tr>
-            <tr><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×<em>12</em> @ 6 kg</td><td class="wk-cell bump">3×10 @ 8 kg ↑</td></tr>
-            <tr><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td></tr>
-            <tr><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
-            <tr><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
-            <tr><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">3×10 @ 40 kg</td><td class="wk-cell">3×10 @ 40 kg</td><td class="wk-cell">3×<em>12</em> @ 40 kg</td><td class="wk-cell bump">3×10 @ 45 kg ↑</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
-            <tr><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg →</td></tr>
-            <tr><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
-            <tr><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell bump">3×12 @ 5 kg ↑</td></tr>
-            <tr><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 30 sec</td><td class="wk-cell">3 × 35 sec</td><td class="wk-cell">3 × 40 sec</td><td class="wk-cell bump">3 × 45 sec ↑</td></tr>
-            <tr><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">3×10 @ 10 kg bar</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>12</em> @ 10 kg</td><td class="wk-cell bump">3×10 @ 12.5 kg ↑</td></tr>
-            <tr><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
-            <tr><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
-            <tr><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
-            <tr><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×<em>12</em> @ 6 kg</td><td class="wk-cell bump">3×10 @ 8 kg ↑</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×<em>12</em> @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×<em>12</em> @ 6 kg</td><td class="wk-cell bump">3×10 @ 8 kg ↑</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">3×10 @ 40 kg</td><td class="wk-cell">3×10 @ 40 kg</td><td class="wk-cell">3×<em>12</em> @ 40 kg</td><td class="wk-cell bump">3×10 @ 45 kg ↑</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg</td><td class="wk-cell">3×12 @ 8 kg →</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell">3×12 @ 4 kg</td><td class="wk-cell bump">3×12 @ 5 kg ↑</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 30 sec</td><td class="wk-cell">3 × 35 sec</td><td class="wk-cell">3 × 40 sec</td><td class="wk-cell bump">3 × 45 sec ↑</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">3×10 @ 10 kg bar</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>12</em> @ 10 kg</td><td class="wk-cell bump">3×10 @ 12.5 kg ↑</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×10 @ 3 plates</td><td class="wk-cell">3×<em>12</em> @ 3 plates</td><td class="wk-cell bump">3×10 @ 4 plates ↑</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell">3×12 @ 3 plates</td><td class="wk-cell bump">3×12 @ 4 plates ↑</td></tr>
+            <tr data-day="sat"><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×10 @ 25 kg</td><td class="wk-cell">3×<em>12</em> @ 25 kg</td><td class="wk-cell bump">3×10 @ 27.5 kg ↑</td></tr>
+            <tr data-day="sat"><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×10 @ 6 kg</td><td class="wk-cell">3×<em>12</em> @ 6 kg</td><td class="wk-cell bump">3×10 @ 8 kg ↑</td></tr>
           </tbody>
         </table>
       </div>
@@ -1620,6 +2007,16 @@
         <div><span class="pd-num">Strength · all lifts · 4 sets on leads</span><div class="pd-title">Week-by-week <span class="pd-focus">progression</span></div></div>
         <div class="pd-cardio">↑ = load bump · → = same · reps bump in italic</div>
       </div>
+      <div class="phase-day-filter">
+        <span class="pdf-label">Filter by training day</span>
+        <button class="phase-day-btn active" data-day="all">All days</button>
+        <button class="phase-day-btn" data-day="mon">Mon</button>
+        <button class="phase-day-btn" data-day="tue">Tue</button>
+        <button class="phase-day-btn" data-day="wed">Wed</button>
+        <button class="phase-day-btn" data-day="thu">Thu</button>
+        <button class="phase-day-btn" data-day="fri">Fri</button>
+        <button class="phase-day-btn" data-day="sat">Sat</button>
+      </div>
       <div class="prog-table-wrap">
         <table class="prog-table">
           <thead>
@@ -1632,24 +2029,24 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell bump">4×10 @ 6 plates ↑</td><td class="wk-cell">4×<em>11</em> @ 6 plates</td></tr>
-            <tr><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell bump">3×10 @ 10 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td></tr>
-            <tr><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell bump">3×12 @ 6 plates ↑</td><td class="wk-cell">3×12 @ 6 plates</td></tr>
-            <tr><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell bump">4×10 @ 30 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td></tr>
-            <tr><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell bump">4×10 @ 30 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td></tr>
-            <tr><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">4×10 @ 45 kg</td><td class="wk-cell">4×10 @ 45 kg</td><td class="wk-cell bump">4×10 @ 50 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 50 kg</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell bump">3×12 @ 10 kg ↑</td><td class="wk-cell">3×12 @ 10 kg</td><td class="wk-cell bump">3×12 @ 12 kg ↑</td><td class="wk-cell">3×12 @ 12 kg</td></tr>
-            <tr><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">4×10 @ 4 plates</td><td class="wk-cell">4×10 @ 4 plates</td><td class="wk-cell bump">4×10 @ 5 plates ↑</td><td class="wk-cell">4×<em>11</em> @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 5 kg</td><td class="wk-cell">3×12 @ 5 kg</td><td class="wk-cell bump">3×12 @ 6 kg ↑</td><td class="wk-cell">3×12 @ 6 kg</td></tr>
-            <tr><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 45 sec</td><td class="wk-cell">3 × 50 sec</td><td class="wk-cell">3 × 55 sec</td><td class="wk-cell bump">3 × 60 sec ↑</td></tr>
-            <tr><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">4×10 @ 12.5 kg</td><td class="wk-cell">4×10 @ 12.5 kg</td><td class="wk-cell bump">4×10 @ 15 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 15 kg</td></tr>
-            <tr><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 27.5 kg</td><td class="wk-cell">3×10 @ 27.5 kg</td><td class="wk-cell bump">3×10 @ 30 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 30 kg</td></tr>
-            <tr><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell bump">3×10 @ 10 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell bump">4×10 @ 6 plates ↑</td><td class="wk-cell">4×<em>11</em> @ 6 plates</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell bump">3×10 @ 10 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell bump">3×12 @ 6 plates ↑</td><td class="wk-cell">3×12 @ 6 plates</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell bump">4×10 @ 30 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell">4×10 @ 27.5 kg</td><td class="wk-cell bump">4×10 @ 30 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">4×10 @ 45 kg</td><td class="wk-cell">4×10 @ 45 kg</td><td class="wk-cell bump">4×10 @ 50 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 50 kg</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell bump">3×12 @ 10 kg ↑</td><td class="wk-cell">3×12 @ 10 kg</td><td class="wk-cell bump">3×12 @ 12 kg ↑</td><td class="wk-cell">3×12 @ 12 kg</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">4×10 @ 4 plates</td><td class="wk-cell">4×10 @ 4 plates</td><td class="wk-cell bump">4×10 @ 5 plates ↑</td><td class="wk-cell">4×<em>11</em> @ 5 plates</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 5 kg</td><td class="wk-cell">3×12 @ 5 kg</td><td class="wk-cell bump">3×12 @ 6 kg ↑</td><td class="wk-cell">3×12 @ 6 kg</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 45 sec</td><td class="wk-cell">3 × 50 sec</td><td class="wk-cell">3 × 55 sec</td><td class="wk-cell bump">3 × 60 sec ↑</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">4×10 @ 12.5 kg</td><td class="wk-cell">4×10 @ 12.5 kg</td><td class="wk-cell bump">4×10 @ 15 kg ↑</td><td class="wk-cell">4×<em>11</em> @ 15 kg</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell">3×10 @ 4 plates</td><td class="wk-cell bump">3×10 @ 5 plates ↑</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell">3×12 @ 4 plates</td><td class="wk-cell bump">3×12 @ 5 plates ↑</td><td class="wk-cell">3×12 @ 5 plates</td></tr>
+            <tr data-day="sat"><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 27.5 kg</td><td class="wk-cell">3×10 @ 27.5 kg</td><td class="wk-cell bump">3×10 @ 30 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 30 kg</td></tr>
+            <tr data-day="sat"><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell">3×10 @ 8 kg</td><td class="wk-cell bump">3×10 @ 10 kg ↑</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td></tr>
           </tbody>
         </table>
       </div>
@@ -1709,6 +2106,16 @@
         <div><span class="pd-num">Strength · maintain Phase 2 loads · deload Week 12</span><div class="pd-title">Week-by-week <span class="pd-focus">progression</span></div></div>
         <div class="pd-cardio">→ = maintain · italic = rep push · ↓ red = deload</div>
       </div>
+      <div class="phase-day-filter">
+        <span class="pdf-label">Filter by training day</span>
+        <button class="phase-day-btn active" data-day="all">All days</button>
+        <button class="phase-day-btn" data-day="mon">Mon</button>
+        <button class="phase-day-btn" data-day="tue">Tue</button>
+        <button class="phase-day-btn" data-day="wed">Wed</button>
+        <button class="phase-day-btn" data-day="thu">Thu</button>
+        <button class="phase-day-btn" data-day="fri">Fri</button>
+        <button class="phase-day-btn" data-day="sat">Sat</button>
+      </div>
       <div class="prog-table-wrap">
         <table class="prog-table">
           <thead>
@@ -1721,24 +2128,24 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×<em>11</em> @ 6 plates</td><td class="wk-cell deload">3×10 @ 6 plates</td></tr>
-            <tr><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td><td class="wk-cell deload">3×10 @ 10 kg</td></tr>
-            <tr><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell deload">3×12 @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 30 kg</td></tr>
-            <tr><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 30 kg</td></tr>
-            <tr><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">4×10 @ 50 kg</td><td class="wk-cell">4×10 @ 50 kg</td><td class="wk-cell">4×<em>11</em> @ 50 kg</td><td class="wk-cell deload">3×10 @ 50 kg</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
-            <tr><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
-            <tr><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell deload">3×10 @ 12 kg</td></tr>
-            <tr><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 5 plates</td></tr>
-            <tr><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell deload">3×12 @ 5 kg</td></tr>
-            <tr><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 60 sec</td><td class="wk-cell">3 × 60 sec</td><td class="wk-cell">3 × 70 sec</td><td class="wk-cell deload">3 × 45 sec</td></tr>
-            <tr><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">4×10 @ 15 kg</td><td class="wk-cell">4×10 @ 15 kg</td><td class="wk-cell">4×<em>11</em> @ 15 kg</td><td class="wk-cell deload">3×10 @ 15 kg</td></tr>
-            <tr><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 4 plates</td></tr>
-            <tr><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
-            <tr><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 30 kg</td><td class="wk-cell">3×10 @ 30 kg</td><td class="wk-cell">3×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 27.5 kg</td></tr>
-            <tr><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td><td class="wk-cell deload">3×10 @ 8 kg</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Machine chest press</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×10 @ 6 plates</td><td class="wk-cell">4×<em>11</em> @ 6 plates</td><td class="wk-cell deload">3×10 @ 6 plates</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Incline DB press</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td><td class="wk-cell deload">3×10 @ 10 kg</td></tr>
+            <tr data-day="mon"><td class="ex-name-cell">Mon · Pec deck</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell">3×12 @ 6 plates</td><td class="wk-cell deload">3×12 @ 5 plates</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Lat pulldown</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 30 kg</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Cable row</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×10 @ 30 kg</td><td class="wk-cell">4×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 30 kg</td></tr>
+            <tr data-day="tue"><td class="ex-name-cell">Tue · Bicep machine</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 5 plates</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg press</td><td class="wk-cell">4×10 @ 50 kg</td><td class="wk-cell">4×10 @ 50 kg</td><td class="wk-cell">4×<em>11</em> @ 50 kg</td><td class="wk-cell deload">3×10 @ 50 kg</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg extension</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Leg curl</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
+            <tr data-day="wed"><td class="ex-name-cell">Wed · Goblet squat</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell">3×12 @ 12 kg</td><td class="wk-cell deload">3×10 @ 12 kg</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Shoulder press</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×10 @ 5 plates</td><td class="wk-cell">4×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 5 plates</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Lateral raise</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell">3×12 @ 6 kg</td><td class="wk-cell deload">3×12 @ 5 kg</td></tr>
+            <tr data-day="thu"><td class="ex-name-cell">Thu · Plank</td><td class="wk-cell">3 × 60 sec</td><td class="wk-cell">3 × 60 sec</td><td class="wk-cell">3 × 70 sec</td><td class="wk-cell deload">3 × 45 sec</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Barbell curl</td><td class="wk-cell">4×10 @ 15 kg</td><td class="wk-cell">4×10 @ 15 kg</td><td class="wk-cell">4×<em>11</em> @ 15 kg</td><td class="wk-cell deload">3×10 @ 15 kg</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Preacher curl</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×10 @ 5 plates</td><td class="wk-cell">3×<em>11</em> @ 5 plates</td><td class="wk-cell deload">3×10 @ 4 plates</td></tr>
+            <tr data-day="fri"><td class="ex-name-cell">Fri · Tricep pushdown</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell">3×12 @ 5 plates</td><td class="wk-cell deload">3×12 @ 4 plates</td></tr>
+            <tr data-day="sat"><td class="ex-name-cell">Sat · Lat pulldown</td><td class="wk-cell">3×10 @ 30 kg</td><td class="wk-cell">3×10 @ 30 kg</td><td class="wk-cell">3×<em>11</em> @ 30 kg</td><td class="wk-cell deload">3×10 @ 27.5 kg</td></tr>
+            <tr data-day="sat"><td class="ex-name-cell">Sat · DB shoulder press</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×10 @ 10 kg</td><td class="wk-cell">3×<em>11</em> @ 10 kg</td><td class="wk-cell deload">3×10 @ 8 kg</td></tr>
           </tbody>
         </table>
       </div>
@@ -1928,97 +2335,141 @@
     <button onclick="dismissAdaptive()">Got it</button>
   </div>
 
-  <!-- WEEKLY PROGRESS DASHBOARD -->
-  <div class="sub-divider">
-    <h3>This week <span class="accent">at a glance.</span></h3>
-    <span class="sub-tag" id="weekDashTag">Week —</span>
-  </div>
-
-  <div class="week-dash" id="weekDash">
-    <div class="week-dash-head">
-      <div class="wd-title">Hit rate</div>
-      <div class="wd-dates" id="weekDashDates">—</div>
-    </div>
-    <div class="week-dash-grid">
-      <div class="wd-metric">
-        <div class="wd-icon">🍽️</div>
-        <div class="wd-label">Diet</div>
-        <div class="wd-val" id="wdDiet">—<span class="unit-sm">/7</span></div>
-        <div class="wd-sub" id="wdDietSub">days on target</div>
-      </div>
-      <div class="wd-metric">
-        <div class="wd-icon">💧</div>
-        <div class="wd-label">Water</div>
-        <div class="wd-val" id="wdWater">—<span class="unit-sm">/7</span></div>
-        <div class="wd-sub" id="wdWaterSub">days hit goal</div>
-      </div>
-      <div class="wd-metric">
-        <div class="wd-icon">💪</div>
-        <div class="wd-label">Gym</div>
-        <div class="wd-val" id="wdGym">—<span class="unit-sm">/6</span></div>
-        <div class="wd-sub" id="wdGymSub">sessions logged</div>
-      </div>
-      <div class="wd-metric">
-        <div class="wd-icon">⚖️</div>
-        <div class="wd-label">Weight</div>
-        <div class="wd-val" id="wdWeight">—</div>
-        <div class="wd-sub" id="wdWeightSub">vs last week</div>
+  <!-- ENGAGEMENT — streak + best metrics -->
+  <div class="engagement-row">
+    <div class="engagement-card hot">
+      <div class="ec-icon">🔥</div>
+      <div>
+        <div class="ec-label">Current streak</div>
+        <div class="ec-val"><span id="streakDays">0</span><span class="unit-sm">days</span></div>
+        <div class="ec-sub" id="streakSub">Log food today to start</div>
       </div>
     </div>
-    <div class="wd-past" id="wdPastBlock">
-      <div class="wd-past-title">Last 4 weeks</div>
-      <div class="wd-past-rows" id="wdPastRows">
-        <div class="wd-past-row" style="grid-template-columns:1fr; text-align:center; color:rgba(244,236,219,0.5); font-style:italic;">No history yet — keep logging</div>
+    <div class="engagement-card">
+      <div class="ec-icon">🏆</div>
+      <div>
+        <div class="ec-label">Best week</div>
+        <div class="ec-val" id="bestWeekVal">—</div>
+        <div class="ec-sub" id="bestWeekSub">Keep logging to set a record</div>
       </div>
     </div>
   </div>
 
-  <!-- WATER TRACKER -->
-  <div class="sub-divider">
-    <h3>Water <span class="accent">today.</span></h3>
-    <span class="sub-tag">Goal · 3,000 ml</span>
+  <!-- WEEKLY PROGRESS DASHBOARD (collapsible) -->
+  <div class="collapsible open" id="col-week">
+    <div class="collapsible-head" onclick="toggleCollapse('col-week')">
+      <h3 class="collapsible-title">📈 This week <span class="accent">at a glance.</span></h3>
+      <div class="collapsible-meta">
+        <span class="summary-pill" id="weekPill">—</span>
+        <span class="chevron"></span>
+      </div>
+    </div>
+    <div class="collapsible-body">
+      <span class="sub-tag" id="weekDashTag" style="display:block; margin-bottom:14px;">Week —</span>
+
+      <div class="week-dash" id="weekDash">
+        <div class="week-dash-head">
+          <div class="wd-title">Hit rate</div>
+          <div class="wd-dates" id="weekDashDates">—</div>
+        </div>
+        <div class="week-dash-grid">
+          <div class="wd-metric">
+            <div class="wd-icon">🍽️</div>
+            <div class="wd-label">Diet</div>
+            <div class="wd-val" id="wdDiet">—<span class="unit-sm">/7</span></div>
+            <div class="wd-sub" id="wdDietSub">days on target</div>
+          </div>
+          <div class="wd-metric">
+            <div class="wd-icon">💧</div>
+            <div class="wd-label">Water</div>
+            <div class="wd-val" id="wdWater">—<span class="unit-sm">/7</span></div>
+            <div class="wd-sub" id="wdWaterSub">days hit goal</div>
+          </div>
+          <div class="wd-metric">
+            <div class="wd-icon">💪</div>
+            <div class="wd-label">Gym</div>
+            <div class="wd-val" id="wdGym">—<span class="unit-sm">/6</span></div>
+            <div class="wd-sub" id="wdGymSub">sessions logged</div>
+          </div>
+          <div class="wd-metric">
+            <div class="wd-icon">⚖️</div>
+            <div class="wd-label">Weight</div>
+            <div class="wd-val" id="wdWeight">—</div>
+            <div class="wd-sub" id="wdWeightSub">vs last week</div>
+          </div>
+        </div>
+        <div class="wd-past" id="wdPastBlock">
+          <div class="wd-past-title">Last 4 weeks</div>
+          <div class="wd-past-rows" id="wdPastRows">
+            <div class="wd-past-row" style="grid-template-columns:1fr; text-align:center; color:rgba(244,236,219,0.5); font-style:italic;">No history yet — keep logging</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="water-card">
-    <div class="water-head">
-      <div class="water-title"><span class="drop">💧</span> Hydration</div>
-      <div class="water-date" id="waterDate">—</div>
-    </div>
-
-    <div class="water-stats">
-      <div class="water-stat" id="waterDrunkStat">
-        <div class="ws-label">Drunk</div>
-        <div class="ws-val"><span id="waterDrunk">0</span><span class="unit-sm">ml</span></div>
-      </div>
-      <div class="water-stat" id="waterLeftStat">
-        <div class="ws-label">Remaining</div>
-        <div class="ws-val"><span id="waterLeft">3,000</span><span class="unit-sm">ml</span></div>
-      </div>
-      <div class="water-stat" id="waterPctStat">
-        <div class="ws-label">Of goal</div>
-        <div class="ws-val"><span id="waterPct">0</span><span class="unit-sm">%</span></div>
+  <!-- WATER (collapsible) -->
+  <div class="collapsible open" id="col-water">
+    <div class="collapsible-head" onclick="toggleCollapse('col-water')">
+      <h3 class="collapsible-title">💧 Water <span class="accent">today.</span></h3>
+      <div class="collapsible-meta">
+        <span class="summary-pill" id="waterPill">0 / 3,000 ml</span>
+        <span class="chevron"></span>
       </div>
     </div>
+    <div class="collapsible-body">
+      <div class="water-card">
+        <div class="water-head">
+          <div class="water-title"><span class="drop">💧</span> Hydration</div>
+          <div class="water-date" id="waterDate">—</div>
+        </div>
 
-    <div class="water-glass-bar">
-      <div class="water-glass-fill" id="waterFill"></div>
-    </div>
+        <div class="water-stats">
+          <div class="water-stat" id="waterDrunkStat">
+            <div class="ws-label">Drunk</div>
+            <div class="ws-val"><span id="waterDrunk">0</span><span class="unit-sm">ml</span></div>
+          </div>
+          <div class="water-stat" id="waterLeftStat">
+            <div class="ws-label">Remaining</div>
+            <div class="ws-val"><span id="waterLeft">3,000</span><span class="unit-sm">ml</span></div>
+          </div>
+          <div class="water-stat" id="waterPctStat">
+            <div class="ws-label">Of target</div>
+            <div class="ws-val"><span id="waterPct">0</span><span class="unit-sm">%</span></div>
+          </div>
+        </div>
 
-    <div class="water-controls">
-      <button class="ctrl-btn-lg minus" onclick="addWater(-1)" aria-label="Remove one glass">−</button>
-      <div class="water-count-center">
-        <div class="wc-num" id="waterGlasses">0</div>
-        <div class="wc-label" id="waterGlassesLabel">glasses · 250 ml each</div>
+        <div class="water-glass-bar">
+          <div class="water-glass-fill" id="waterFill"></div>
+        </div>
+
+        <div class="water-status-text" id="waterStatusText">Start drinking — first glass of the day.</div>
+
+        <div class="water-zones">
+          <div class="water-zone" id="zoneMin"><div class="wz-label">Minimum</div><div class="wz-val">2,000 ml</div></div>
+          <div class="water-zone" id="zoneTarget"><div class="wz-label">Target</div><div class="wz-val">3,000 ml</div></div>
+          <div class="water-zone" id="zoneMax"><div class="wz-label">Max safe</div><div class="wz-val">4,500 ml</div></div>
+        </div>
+
+        <div class="water-controls">
+          <button class="ctrl-btn-lg minus" onclick="addWater(-1)" aria-label="Remove">−</button>
+          <div class="water-count-center">
+            <div class="wc-num" id="waterGlasses">0</div>
+            <div class="wc-label" id="waterGlassesLabel">glasses · 250 ml each</div>
+          </div>
+          <button class="ctrl-btn-lg" onclick="addWater(1)" aria-label="Add">+</button>
+        </div>
+
+        <div class="glass-size-picker">
+          <span class="gs-label">Container size · pick yours</span>
+          <button class="gs-btn" data-size="200" onclick="setGlassSize(200)">200 ml</button>
+          <button class="gs-btn active" data-size="250" onclick="setGlassSize(250)">250 ml</button>
+          <button class="gs-btn" data-size="300" onclick="setGlassSize(300)">300 ml</button>
+          <button class="gs-btn" data-size="500" onclick="setGlassSize(500)">500 ml</button>
+          <button class="gs-btn bottle" data-size="1000" onclick="setGlassSize(1000)">1 L bottle</button>
+          <button class="gs-btn bottle" data-size="4000" onclick="setGlassSize(4000)">4 L jug 🍶</button>
+        </div>
       </div>
-      <button class="ctrl-btn-lg" onclick="addWater(1)" aria-label="Add one glass">+</button>
-    </div>
-
-    <div class="glass-size-picker">
-      <span class="gs-label">Glass size</span>
-      <button class="gs-btn" data-size="200" onclick="setGlassSize(200)">200 ml</button>
-      <button class="gs-btn active" data-size="250" onclick="setGlassSize(250)">250 ml</button>
-      <button class="gs-btn" data-size="300" onclick="setGlassSize(300)">300 ml</button>
-      <button class="gs-btn" data-size="500" onclick="setGlassSize(500)">500 ml (bottle)</button>
     </div>
   </div>
 
@@ -2031,11 +2482,17 @@
     <button class="mg-btn" id="missedGymBtn" onclick="toggleMissedGym()">Tap to mark missed</button>
   </div>
 
-  <!-- FOOD LOGGER (rebuilt with counters) -->
-  <div class="sub-divider">
-    <h3>Calorie <span class="accent">calculator.</span></h3>
-    <span class="sub-tag">Today · <span id="todayDateDisplay"></span></span>
-  </div>
+  <!-- FOOD LOGGER (collapsible) -->
+  <div class="collapsible open" id="col-food">
+    <div class="collapsible-head" onclick="toggleCollapse('col-food')">
+      <h3 class="collapsible-title">🍽️ Calorie <span class="accent">calculator.</span></h3>
+      <div class="collapsible-meta">
+        <span class="summary-pill" id="foodPill">0 kcal</span>
+        <span class="chevron"></span>
+      </div>
+    </div>
+    <div class="collapsible-body">
+      <span class="sub-tag" style="display:block; margin-bottom:14px;">Today · <span id="todayDateDisplay"></span></span>
 
   <div class="calorie-dashboard">
     <div class="cal-big">
@@ -2090,12 +2547,21 @@
     </div>
     <div id="foodHistory" style="display:none; margin-top:18px; padding-top:18px; border-top:1px dashed var(--ink);"></div>
   </div>
-
-  <!-- EXERCISE LOGGER -->
-  <div class="sub-divider">
-    <h3>Exercise <span class="accent">log.</span></h3>
-    <span class="sub-tag">Tap, type, save · for every set</span>
+    </div>
   </div>
+  <!-- /col-food -->
+
+  <!-- EXERCISE LOGGER (collapsible) -->
+  <div class="collapsible open" id="col-ex">
+    <div class="collapsible-head" onclick="toggleCollapse('col-ex')">
+      <h3 class="collapsible-title">💪 Exercise <span class="accent">log.</span></h3>
+      <div class="collapsible-meta">
+        <span class="summary-pill" id="exPill">0 sets today</span>
+        <span class="chevron"></span>
+      </div>
+    </div>
+    <div class="collapsible-body">
+      <span class="sub-tag" style="display:block; margin-bottom:14px;">Tap, type, save · for every set</span>
 
   <div class="ex-day-chips" id="exDayChips">
     <button class="ex-day-chip" data-day="mon">Mon</button>
@@ -2137,12 +2603,21 @@
   </div>
 
   <div class="ex-log-history" id="exLogHistory"><!-- JS fills --></div>
-
-  <!-- WEIGHT + CHECKLIST -->
-  <div class="sub-divider">
-    <h3>Weekly <span class="accent">weigh-in.</span></h3>
-    <span class="sub-tag">Sunday morning · empty stomach</span>
+    </div>
   </div>
+  <!-- /col-ex -->
+
+  <!-- WEIGHT + CHECKLIST (collapsible) -->
+  <div class="collapsible open" id="col-weight">
+    <div class="collapsible-head" onclick="toggleCollapse('col-weight')">
+      <h3 class="collapsible-title">⚖️ Weekly <span class="accent">weigh-in.</span></h3>
+      <div class="collapsible-meta">
+        <span class="summary-pill" id="weightPill">No log yet</span>
+        <span class="chevron"></span>
+      </div>
+    </div>
+    <div class="collapsible-body">
+      <span class="sub-tag" style="display:block; margin-bottom:14px;">Sunday morning · empty stomach</span>
 
   <div class="tracker-grid">
     <div class="tracker-card">
@@ -2174,6 +2649,10 @@
       <button class="btn btn-ghost btn-sm" style="margin-top:18px; width:100%;" onclick="resetChecklist()">Reset for tomorrow</button>
     </div>
   </div>
+    </div>
+  </div>
+  <!-- /col-weight -->
+
 </section>
 
 <!-- ========== MACHINES ========== -->
@@ -2264,11 +2743,28 @@
 
 <footer class="wrap">
   <div>
-    <div>Operation 75 · Kashif Arshad · Training camp doc · v2</div>
+    <div>Operation 75 · Kashif Arshad · Training camp doc · v5</div>
     <div>Built 24.06.2026 · Phase 1 active · Local-storage tracking enabled</div>
   </div>
   <div class="sig">— go to work.</div>
 </footer>
+
+<!-- BOTTOM NAV · always visible, thumb-reach -->
+<nav class="bottom-nav" aria-label="Main navigation">
+  <button class="bn-btn active" data-tab="workout"><span class="bn-icon">💪</span><span>Training</span></button>
+  <button class="bn-btn" data-tab="diet"><span class="bn-icon">🍽️</span><span>Diet</span></button>
+  <button class="bn-btn" data-tab="tracker"><span class="bn-icon">📊</span><span>Tracker</span></button>
+  <button class="bn-btn" data-tab="machines"><span class="bn-icon">🏋️</span><span>Machines</span></button>
+  <button class="bn-btn" data-tab="notes"><span class="bn-icon">📝</span><span>Notes</span></button>
+</nav>
+
+<!-- MODAL · for machine info pop-ups -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
 
 <script>
 /* ============================================================
@@ -2697,13 +3193,26 @@ function fmtDateLong(iso) { return new Date(iso).toLocaleDateString('en-GB', { w
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const tab = btn.dataset.tab;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(tab).classList.add('active');
+    activateTab(tab);
     window.scrollTo({ top: document.querySelector('nav.tabs').offsetTop, behavior: 'smooth' });
   });
 });
+
+// Bottom nav syncs with top tabs
+document.querySelectorAll('.bn-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    activateTab(tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+function activateTab(tab) {
+  document.querySelectorAll('.tab-btn, .bn-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tab === tab);
+  });
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === tab));
+}
 
 // Sub-tab handler (Overview / Phase 1 / Phase 2 / Phase 3 inside Training panel)
 document.querySelectorAll('.sub-tab-btn').forEach(btn => {
@@ -3268,7 +3777,6 @@ function dismissAdaptive() {
 /* ============================================================
    INIT
    ============================================================ */
-rotateQuote();
 renderReminder();
 setInterval(renderReminder, 60000); // refresh every minute
 CURRENT_GLASS_SIZE = safeGet('op75_glass_size') || 250;
@@ -3600,27 +4108,551 @@ function renderMachines() {
 
 renderMachines();
 
-// Click-through from workout exercise to machine guide
+/* ============================================================
+   SVG DIAGRAMS · 8 movement archetypes mapped to exercises
+   ============================================================ */
+const SVG_DIAGRAMS = {
+  // 1. Seated press (pushing forward / chest press)
+  'seated-press': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <!-- bench -->
+    <rect x="40" y="120" width="60" height="8" fill="#7A726A" stroke="none"/>
+    <rect x="80" y="60" width="6" height="68" fill="#7A726A" stroke="none"/>
+    <!-- person -->
+    <circle cx="68" cy="58" r="10"/>
+    <line x1="68" y1="68" x2="68" y2="105"/> <!-- torso -->
+    <line x1="68" y1="105" x2="60" y2="135"/> <!-- thigh -->
+    <line x1="60" y1="135" x2="62" y2="160"/> <!-- shin -->
+    <line x1="68" y1="105" x2="78" y2="135"/>
+    <line x1="78" y1="135" x2="80" y2="160"/>
+    <!-- arms pressing forward -->
+    <line x1="68" y1="80" x2="120" y2="80" stroke="#D97706" stroke-width="3"/>
+    <line x1="68" y1="88" x2="120" y2="88" stroke="#D97706" stroke-width="3"/>
+    <circle cx="125" cy="80" r="5" fill="#D97706" stroke="none"/>
+    <circle cx="125" cy="88" r="5" fill="#D97706" stroke="none"/>
+    <!-- motion arrow -->
+    <path d="M 150 84 L 195 84" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M 188 78 L 195 84 L 188 90" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="120" y="170" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">PRESS FORWARD</text>
+  </svg>`,
+
+  // 2. Seated row (pulling toward body)
+  'seated-row': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <rect x="40" y="120" width="60" height="8" fill="#7A726A" stroke="none"/>
+    <circle cx="68" cy="58" r="10"/>
+    <line x1="68" y1="68" x2="68" y2="105"/>
+    <line x1="68" y1="105" x2="120" y2="125"/> <!-- legs forward -->
+    <line x1="120" y1="125" x2="160" y2="125"/>
+    <!-- arms pulling back -->
+    <line x1="68" y1="82" x2="120" y2="90" stroke="#D97706" stroke-width="3"/>
+    <line x1="120" y1="90" x2="170" y2="100" stroke="#D97706" stroke-width="3" stroke-dasharray="2,2" opacity="0.4"/>
+    <circle cx="120" cy="90" r="5" fill="#D97706" stroke="none"/>
+    <!-- cable to handle -->
+    <line x1="125" y1="90" x2="200" y2="95" stroke="#7A726A" stroke-width="1"/>
+    <rect x="200" y="88" width="14" height="14" fill="#1C1917" stroke="none"/>
+    <!-- motion arrow -->
+    <path d="M 170 60 L 110 80" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M 117 73 L 110 80 L 117 87" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="100" y="170" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">PULL TO LOWER RIBS</text>
+  </svg>`,
+
+  // 3. Lat pulldown (pulling down from above)
+  'lat-pulldown': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <rect x="100" y="130" width="60" height="8" fill="#7A726A" stroke="none"/>
+    <line x1="130" y1="10" x2="130" y2="60" stroke="#7A726A"/> <!-- cable -->
+    <rect x="100" y="60" width="60" height="6" fill="#1C1917" stroke="none"/> <!-- bar -->
+    <!-- person seated -->
+    <circle cx="130" cy="85" r="10"/>
+    <line x1="130" y1="95" x2="130" y2="125"/>
+    <line x1="130" y1="125" x2="115" y2="155"/>
+    <line x1="130" y1="125" x2="145" y2="155"/>
+    <!-- arms up to bar -->
+    <line x1="130" y1="98" x2="108" y2="65" stroke="#D97706" stroke-width="3"/>
+    <line x1="130" y1="98" x2="152" y2="65" stroke="#D97706" stroke-width="3"/>
+    <!-- motion arrow -->
+    <path d="M 180 70 L 180 115" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M 174 108 L 180 115 L 186 108" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="80" y="172" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">PULL TO UPPER CHEST</text>
+  </svg>`,
+
+  // 4. Standing curl (arms bending up)
+  'standing-curl': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <circle cx="120" cy="40" r="10"/>
+    <line x1="120" y1="50" x2="120" y2="115"/> <!-- torso -->
+    <line x1="120" y1="115" x2="108" y2="165"/>
+    <line x1="120" y1="115" x2="132" y2="165"/>
+    <!-- arms straight down (start) -->
+    <line x1="120" y1="62" x2="95" y2="115" stroke="#1C1917" stroke-width="2" opacity="0.3"/>
+    <line x1="120" y1="62" x2="145" y2="115" stroke="#1C1917" stroke-width="2" opacity="0.3"/>
+    <circle cx="95" cy="115" r="4" fill="#1C1917" opacity="0.3" stroke="none"/>
+    <circle cx="145" cy="115" r="4" fill="#1C1917" opacity="0.3" stroke="none"/>
+    <!-- arms curled (active) -->
+    <line x1="120" y1="62" x2="100" y2="90" stroke="#D97706" stroke-width="3"/>
+    <line x1="100" y1="90" x2="115" y2="55" stroke="#D97706" stroke-width="3"/>
+    <line x1="120" y1="62" x2="140" y2="90" stroke="#D97706" stroke-width="3"/>
+    <line x1="140" y1="90" x2="125" y2="55" stroke="#D97706" stroke-width="3"/>
+    <!-- weights -->
+    <rect x="108" y="50" width="14" height="8" fill="#D97706" stroke="none"/>
+    <rect x="118" y="50" width="14" height="8" fill="#D97706" stroke="none"/>
+    <!-- motion arrow -->
+    <path d="M 170 130 Q 185 90 170 60" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3" fill="none"/>
+    <path d="M 164 67 L 170 60 L 178 65" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="80" y="178" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">CURL UP · ELBOWS FIXED</text>
+  </svg>`,
+
+  // 5. Tricep pushdown (arms straightening down)
+  'tricep-pushdown': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <line x1="180" y1="10" x2="180" y2="55" stroke="#7A726A"/>
+    <rect x="175" y="55" width="10" height="14" fill="#1C1917" stroke="none"/>
+    <line x1="180" y1="69" x2="180" y2="80" stroke="#7A726A"/>
+    <rect x="170" y="80" width="20" height="6" fill="#1C1917" stroke="none"/>
+    <!-- person -->
+    <circle cx="120" cy="40" r="10"/>
+    <line x1="120" y1="50" x2="120" y2="115"/>
+    <line x1="120" y1="115" x2="108" y2="165"/>
+    <line x1="120" y1="115" x2="132" y2="165"/>
+    <!-- arms pushing down -->
+    <line x1="120" y1="62" x2="170" y2="83" stroke="#D97706" stroke-width="3"/>
+    <line x1="170" y1="83" x2="175" y2="120" stroke="#D97706" stroke-width="3"/>
+    <!-- motion arrow -->
+    <path d="M 60 60 L 60 120" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M 54 113 L 60 120 L 66 113" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="60" y="170" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">PUSH STRAIGHT DOWN</text>
+  </svg>`,
+
+  // 6. Lying leg press
+  'leg-press': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <!-- seat back -->
+    <rect x="20" y="80" width="60" height="10" fill="#7A726A" stroke="none"/>
+    <rect x="20" y="50" width="10" height="40" fill="#7A726A" stroke="none"/>
+    <!-- platform -->
+    <line x1="180" y1="40" x2="180" y2="120" stroke="#1C1917" stroke-width="4"/>
+    <rect x="180" y="40" width="40" height="80" fill="#7A726A" stroke="none" opacity="0.4"/>
+    <!-- person lying -->
+    <circle cx="60" cy="70" r="9"/>
+    <line x1="69" y1="73" x2="120" y2="83"/> <!-- torso -->
+    <!-- legs bent / pushing -->
+    <line x1="120" y1="83" x2="160" y2="60" stroke="#D97706" stroke-width="3"/>
+    <line x1="160" y1="60" x2="175" y2="78" stroke="#D97706" stroke-width="3"/>
+    <line x1="120" y1="83" x2="160" y2="100" stroke="#D97706" stroke-width="3"/>
+    <line x1="160" y1="100" x2="175" y2="82" stroke="#D97706" stroke-width="3"/>
+    <!-- motion -->
+    <path d="M 195 145 L 205 145" stroke="#D97706" stroke-width="2"/>
+    <path d="M 195 145 L 200 140" stroke="#D97706" stroke-width="2"/>
+    <path d="M 195 145 L 200 150" stroke="#D97706" stroke-width="2"/>
+    <text x="55" y="172" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">PUSH THROUGH HEELS</text>
+  </svg>`,
+
+  // 7. Seated leg extension/curl
+  'seated-leg': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <!-- seat -->
+    <rect x="60" y="90" width="50" height="8" fill="#7A726A" stroke="none"/>
+    <rect x="60" y="50" width="8" height="50" fill="#7A726A" stroke="none"/>
+    <!-- person -->
+    <circle cx="80" cy="65" r="9"/>
+    <line x1="80" y1="74" x2="100" y2="90"/>
+    <!-- leg extending -->
+    <line x1="105" y1="93" x2="160" y2="93" stroke="#D97706" stroke-width="3"/>
+    <circle cx="160" cy="93" r="6" fill="#D97706" stroke="none"/>
+    <!-- starting position dashed -->
+    <line x1="105" y1="93" x2="130" y2="135" stroke="#1C1917" stroke-width="2" opacity="0.3" stroke-dasharray="3,3"/>
+    <!-- arc arrow -->
+    <path d="M 130 135 Q 160 115 160 93" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3" fill="none"/>
+    <path d="M 154 99 L 160 93 L 166 99" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="60" y="170" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">EXTEND / SQUEEZE TOP</text>
+  </svg>`,
+
+  // 8. Squat / goblet squat
+  'squat': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <!-- standing (left) -->
+    <circle cx="80" cy="30" r="9"/>
+    <line x1="80" y1="39" x2="80" y2="90" stroke="#1C1917" opacity="0.3"/>
+    <line x1="80" y1="90" x2="72" y2="160" stroke="#1C1917" opacity="0.3"/>
+    <line x1="80" y1="90" x2="88" y2="160" stroke="#1C1917" opacity="0.3"/>
+    <!-- squatting (right) -->
+    <circle cx="170" cy="55" r="9"/>
+    <line x1="170" y1="64" x2="170" y2="100" stroke="#D97706" stroke-width="3"/>
+    <line x1="170" y1="100" x2="155" y2="115"/>
+    <line x1="155" y1="115" x2="155" y2="160"/>
+    <line x1="170" y1="100" x2="185" y2="115"/>
+    <line x1="185" y1="115" x2="185" y2="160"/>
+    <!-- dumbbell at chest -->
+    <rect x="160" y="68" width="20" height="14" fill="#D97706" stroke="none"/>
+    <!-- arrow between -->
+    <path d="M 105 80 L 145 80" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M 138 74 L 145 80 L 138 86" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="50" y="172" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">SIT BACK · KNEES OVER TOES</text>
+  </svg>`,
+
+  // 9. Lateral raise
+  'lateral-raise': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <circle cx="120" cy="45" r="10"/>
+    <line x1="120" y1="55" x2="120" y2="120"/>
+    <line x1="120" y1="120" x2="108" y2="165"/>
+    <line x1="120" y1="120" x2="132" y2="165"/>
+    <!-- arms raised to side (active) -->
+    <line x1="120" y1="67" x2="80" y2="67" stroke="#D97706" stroke-width="3"/>
+    <line x1="120" y1="67" x2="160" y2="67" stroke="#D97706" stroke-width="3"/>
+    <rect x="68" y="62" width="12" height="10" fill="#D97706" stroke="none"/>
+    <rect x="160" y="62" width="12" height="10" fill="#D97706" stroke="none"/>
+    <!-- starting (sides) dashed -->
+    <line x1="120" y1="67" x2="105" y2="115" stroke="#1C1917" stroke-width="2" opacity="0.3"/>
+    <line x1="120" y1="67" x2="135" y2="115" stroke="#1C1917" stroke-width="2" opacity="0.3"/>
+    <!-- motion arc -->
+    <path d="M 90 110 Q 75 90 78 70" stroke="#D97706" stroke-width="1.5" stroke-dasharray="2,2" fill="none"/>
+    <text x="55" y="178" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">LEAD WITH ELBOWS</text>
+  </svg>`,
+
+  // 10. Plank / push-up
+  'plank': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <!-- floor -->
+    <line x1="20" y1="140" x2="220" y2="140" stroke="#7A726A"/>
+    <!-- body horizontal -->
+    <circle cx="55" cy="90" r="9"/>
+    <line x1="64" y1="92" x2="180" y2="100" stroke="#D97706" stroke-width="3"/>
+    <!-- forearms down -->
+    <line x1="60" y1="100" x2="60" y2="140" stroke="#D97706" stroke-width="3"/>
+    <line x1="65" y1="100" x2="80" y2="140" stroke="#D97706" stroke-width="3"/>
+    <!-- legs -->
+    <line x1="180" y1="100" x2="200" y2="140"/>
+    <line x1="178" y1="103" x2="195" y2="140"/>
+    <!-- alignment line -->
+    <line x1="64" y1="85" x2="195" y2="95" stroke="#D97706" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+    <text x="55" y="168" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">STRAIGHT LINE · GLUTES TIGHT</text>
+  </svg>`,
+
+  // 11. Hanging (knee raise)
+  'hanging': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <!-- bar -->
+    <line x1="60" y1="20" x2="180" y2="20" stroke="#1C1917" stroke-width="4"/>
+    <!-- hands -->
+    <line x1="100" y1="20" x2="100" y2="30" stroke="#1C1917" stroke-width="3"/>
+    <line x1="140" y1="20" x2="140" y2="30" stroke="#1C1917" stroke-width="3"/>
+    <!-- arms -->
+    <line x1="100" y1="30" x2="115" y2="60"/>
+    <line x1="140" y1="30" x2="125" y2="60"/>
+    <!-- body hanging -->
+    <circle cx="120" cy="68" r="9"/>
+    <line x1="120" y1="77" x2="120" y2="120" stroke="#D97706" stroke-width="3"/>
+    <!-- knees up -->
+    <line x1="120" y1="120" x2="155" y2="100" stroke="#D97706" stroke-width="3"/>
+    <line x1="155" y1="100" x2="170" y2="125" stroke="#D97706" stroke-width="3"/>
+    <line x1="120" y1="120" x2="155" y2="130" stroke="#D97706" stroke-width="3"/>
+    <line x1="155" y1="130" x2="170" y2="150" stroke="#D97706" stroke-width="3"/>
+    <!-- motion -->
+    <path d="M 60 130 Q 80 105 90 95" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3" fill="none"/>
+    <path d="M 87 102 L 90 95 L 95 100" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="60" y="172" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">KNEES TO CHEST · NO SWING</text>
+  </svg>`,
+
+  // 12. Overhead extension
+  'overhead': `<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" stroke="#1C1917" fill="none" stroke-width="2" stroke-linecap="round">
+    <circle cx="120" cy="65" r="10"/>
+    <line x1="120" y1="75" x2="120" y2="135"/>
+    <line x1="120" y1="135" x2="108" y2="170"/>
+    <line x1="120" y1="135" x2="132" y2="170"/>
+    <!-- arms up, bent at elbow behind head -->
+    <line x1="120" y1="80" x2="105" y2="30" stroke="#D97706" stroke-width="3"/>
+    <line x1="120" y1="80" x2="135" y2="30" stroke="#D97706" stroke-width="3"/>
+    <line x1="105" y1="30" x2="120" y2="50" stroke="#D97706" stroke-width="3"/>
+    <line x1="135" y1="30" x2="120" y2="50" stroke="#D97706" stroke-width="3"/>
+    <!-- dumbbell -->
+    <rect x="112" y="44" width="16" height="10" fill="#D97706" stroke="none"/>
+    <!-- motion -->
+    <path d="M 170 80 L 170 30" stroke="#D97706" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M 164 36 L 170 30 L 176 36" stroke="#D97706" stroke-width="2" fill="none"/>
+    <text x="55" y="178" font-family="monospace" font-size="9" fill="#7A726A" stroke="none">EXTEND OVERHEAD · ELBOWS FIXED</text>
+  </svg>`
+};
+
+// Map each machine ID to a diagram archetype
+const MACHINE_TO_SVG = {
+  'chest-press': 'seated-press',
+  'incline-db-press': 'seated-press',
+  'pec-deck': 'lateral-raise',
+  'tricep-pushdown': 'tricep-pushdown',
+  'overhead-tricep': 'overhead',
+  'lat-pulldown': 'lat-pulldown',
+  'cable-row': 'seated-row',
+  'db-row': 'seated-row',
+  'bicep-machine': 'standing-curl',
+  'hammer-curl': 'standing-curl',
+  'leg-press': 'leg-press',
+  'leg-extension': 'seated-leg',
+  'leg-curl': 'seated-leg',
+  'goblet-squat': 'squat',
+  'calf-raise': 'squat',
+  'shoulder-press': 'seated-press',
+  'lateral-raise': 'lateral-raise',
+  'front-raise': 'lateral-raise',
+  'reverse-pec': 'lateral-raise',
+  'plank': 'plank',
+  'knee-raise': 'hanging',
+  'barbell-curl': 'standing-curl',
+  'preacher-curl': 'standing-curl',
+  'tricep-dip': 'tricep-pushdown',
+  'skullcrusher': 'overhead',
+  'pushup': 'plank',
+  'db-shoulder-press': 'seated-press'
+};
+
+/* ============================================================
+   MODAL · for machine info popups
+   ============================================================ */
+function openMachineModal(machineId) {
+  const m = MACHINES.find(x => x.id === machineId);
+  if (!m) return;
+  const svgKey = MACHINE_TO_SVG[machineId] || 'plank';
+  const svg = SVG_DIAGRAMS[svgKey] || '';
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header">
+      <div class="mh-label">Machine guide</div>
+      <div class="mh-title">${m.name}</div>
+      <div class="mh-works">Works · ${m.works}</div>
+    </div>
+    <div class="modal-svg-wrap">${svg}</div>
+    <div class="modal-inner">
+      <div class="modal-section">
+        <h4>Setup</h4>
+        <ul>${m.setup.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+      <div class="modal-section">
+        <h4>Form cues</h4>
+        <ul>${m.form.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+      <div class="modal-section">
+        <h4>Common mistakes</h4>
+        <ul>${m.mistakes.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+      <div class="modal-tip">Tip: ${m.tip}</div>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal on ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Wire exercise links in Overview to open modal instead of switching tabs
 document.querySelectorAll('.ex-link').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const id = link.dataset.machine;
-    // Switch to machines tab
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.querySelector('[data-tab="machines"]').classList.add('active');
-    document.getElementById('machines').classList.add('active');
-    // Scroll to the specific machine
-    setTimeout(() => {
-      const target = document.getElementById('machine-' + id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        target.style.boxShadow = '0 0 0 3px var(--accent)';
-        setTimeout(() => target.style.boxShadow = '', 1500);
-      }
-    }, 100);
+    openMachineModal(id);
   });
 });
+
+/* ============================================================
+   COLLAPSIBLES
+   ============================================================ */
+function toggleCollapse(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('open');
+  safeSet('op75_collapse_' + id, el.classList.contains('open'));
+}
+function loadCollapseStates() {
+  ['col-week', 'col-water', 'col-food', 'col-ex', 'col-weight'].forEach(id => {
+    const saved = safeGet('op75_collapse_' + id);
+    if (saved === false) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('open');
+    }
+  });
+}
+
+/* ============================================================
+   PHASE TABLE DAY FILTERS
+   ============================================================ */
+document.querySelectorAll('.phase-day-filter').forEach(filter => {
+  filter.querySelectorAll('.phase-day-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const day = btn.dataset.day;
+      filter.querySelectorAll('.phase-day-btn').forEach(b => b.classList.toggle('active', b === btn));
+      // Find the next prog-table after this filter
+      const wrap = filter.nextElementSibling;
+      const table = wrap ? wrap.querySelector('.prog-table') : null;
+      if (!table) return;
+      table.querySelectorAll('tbody tr').forEach(tr => {
+        if (day === 'all') tr.classList.remove('pdf-hidden');
+        else tr.classList.toggle('pdf-hidden', tr.dataset.day !== day);
+      });
+    });
+  });
+});
+
+/* ============================================================
+   STREAK + BEST WEEK · engagement
+   ============================================================ */
+function computeStreak() {
+  // Streak = consecutive days where food was logged OR water hit minimum
+  let streak = 0;
+  const today = new Date();
+  for (let i = 0; i < 60; i++) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    const dk = d.toISOString().split('T')[0];
+    const food = safeGet('op75_food_' + dk) || {};
+    const water = safeGet('op75_water_' + dk);
+    const hasFoodLog = Object.values(food).some(e => e.count > 0);
+    const hasWater = water && water.glasses * (water.size || 250) >= 2000;
+    if (hasFoodLog || hasWater) streak++;
+    else if (i > 0) break; // skip today if nothing yet, but break on past zero
+  }
+  // If today empty but yesterday counted, that's still a streak (don't break today)
+  return streak;
+}
+
+function renderEngagement() {
+  const streak = computeStreak();
+  const el = document.getElementById('streakDays');
+  el.textContent = streak;
+  const sub = document.getElementById('streakSub');
+  if (streak === 0) sub.textContent = 'Log food today to start';
+  else if (streak < 7) sub.textContent = `Build to 7 — you've got this`;
+  else if (streak < 30) sub.textContent = `🔥 ${streak} days strong`;
+  else sub.textContent = `🔥🔥 Legend mode`;
+
+  // Best week: find the week with highest combined hit-rate
+  const start = getWeekStart(new Date());
+  let best = { score: -1, dates: '', dietHits: 0, gymHits: 0 };
+  for (let i = 0; i < 12; i++) {
+    const ws = new Date(start); ws.setDate(ws.getDate() - 7 * i);
+    const s = computeWeekStats(ws);
+    const score = s.dietHits + s.waterHits + s.gymHits;
+    if (score > best.score) best = { score, dates: fmtWeekRange(ws), dietHits: s.dietHits, waterHits: s.waterHits, gymHits: s.gymHits };
+  }
+  const bv = document.getElementById('bestWeekVal');
+  const bs = document.getElementById('bestWeekSub');
+  if (best.score <= 0) {
+    bv.innerHTML = '—';
+    bs.textContent = 'Keep logging to set a record';
+  } else {
+    bv.innerHTML = `${best.score}<span class="unit-sm">/ 20</span>`;
+    bs.textContent = best.dates;
+  }
+}
+
+/* ============================================================
+   DAILY QUOTE · seeded by date, not per-load
+   ============================================================ */
+function renderDailyQuote() {
+  const today = todayKey();
+  const seed = today.split('-').reduce((a, b) => a + parseInt(b), 0);
+  const q = QUOTES[seed % QUOTES.length];
+  document.getElementById('quoteText').innerHTML = `${q.t}<span class="q-author">— ${q.a}</span>`;
+}
+function rotateQuote() {
+  // Allow manual rotation
+  const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+  document.getElementById('quoteText').innerHTML = `${q.t}<span class="q-author">— ${q.a}</span>`;
+}
+
+/* ============================================================
+   SUMMARY PILLS · update on each render
+   ============================================================ */
+function updateSummaryPills() {
+  // Food pill
+  const food = computeFoodTotals(getFoodLog(todayKey()));
+  const fp = document.getElementById('foodPill');
+  if (fp) {
+    fp.textContent = `${food.kcal} kcal`;
+    fp.className = 'summary-pill';
+    if (food.kcal === 0) fp.classList.add('warn');
+    else if (food.kcal > KCAL_TARGET - 100 && food.kcal < KCAL_TARGET + 100) fp.classList.add('done');
+    else if (food.kcal > KCAL_TARGET + 200) fp.classList.add('warn');
+  }
+  // Water pill
+  const w = getWaterLog(todayKey());
+  const drunk = (w.glasses || 0) * (w.size || 250);
+  const wp = document.getElementById('waterPill');
+  if (wp) {
+    wp.textContent = `${drunk.toLocaleString()} / 3,000 ml`;
+    wp.className = 'summary-pill';
+    if (drunk >= WATER_GOAL_ML) wp.classList.add('done');
+    else if (drunk >= 2000) wp.classList.add('warn');
+  }
+  // Exercise pill
+  const ex = safeGet('op75_ex_' + todayKey()) || [];
+  const ep = document.getElementById('exPill');
+  if (ep) {
+    const sets = ex.filter(e => e.type === 'lift').length;
+    const cardio = ex.filter(e => e.type === 'cardio').length;
+    ep.textContent = sets > 0 || cardio > 0 ? `${sets} lifts · ${cardio} cardio` : '0 sets today';
+    ep.className = 'summary-pill';
+    if (sets > 0) ep.classList.add('done');
+  }
+  // Weight pill
+  const weights = safeGet('op75_weights') || [];
+  const wgp = document.getElementById('weightPill');
+  if (wgp) {
+    if (weights.length === 0) {
+      wgp.textContent = 'No log yet';
+      wgp.className = 'summary-pill warn';
+    } else {
+      const latest = weights[weights.length - 1];
+      wgp.textContent = `${latest.weight} kg · ${fmtDate(latest.date)}`;
+      wgp.className = 'summary-pill done';
+    }
+  }
+  // Week pill
+  const stats = computeWeekStats(getWeekStart(new Date()));
+  const wkPill = document.getElementById('weekPill');
+  if (wkPill) {
+    const total = stats.dietHits + stats.waterHits + stats.gymHits;
+    wkPill.textContent = `${total}/20 hits`;
+    wkPill.className = 'summary-pill';
+    if (total >= 15) wkPill.classList.add('done');
+    else if (total >= 8) wkPill.classList.add('warn');
+  }
+}
+
+// Hook pill updates into renderFoodLog, renderWater, etc.
+const _origRenderFoodLog = renderFoodLog;
+renderFoodLog = function() { _origRenderFoodLog.apply(this, arguments); updateSummaryPills(); };
+const _origRenderWater = renderWater;
+renderWater = function() { _origRenderWater.apply(this, arguments); updateSummaryPills(); renderWaterStatus(); };
+const _origRenderExLog = renderExLog;
+renderExLog = function() { _origRenderExLog.apply(this, arguments); updateSummaryPills(); };
+const _origRenderWeights = renderWeights;
+renderWeights = function() { _origRenderWeights.apply(this, arguments); updateSummaryPills(); };
+
+/* ============================================================
+   WATER · zones + status text
+   ============================================================ */
+function renderWaterStatus() {
+  const w = getWaterLog(todayKey());
+  const drunk = (w.glasses || 0) * (w.size || 250);
+  const st = document.getElementById('waterStatusText');
+  if (!st) return;
+  let txt = '', cls = '';
+  if (drunk === 0) txt = 'Start drinking — first glass of the day.';
+  else if (drunk < 2000) { txt = `Below minimum · ${2000 - drunk} ml to safe floor.`; cls = 'below'; }
+  else if (drunk < 3000) { txt = `Past minimum · ${3000 - drunk} ml to target.`; cls = ''; }
+  else if (drunk < 4500) { txt = `Target hit · sip ${4500 - drunk} ml more for max benefit.`; cls = 'target'; }
+  else { txt = `${drunk - 4500} ml over max safe · slow down, sip slowly.`; cls = 'over'; }
+  st.textContent = txt;
+  st.className = 'water-status-text ' + cls;
+  // Active zone highlight
+  document.getElementById('zoneMin')?.classList.toggle('active', drunk >= 2000 && drunk < 3000);
+  document.getElementById('zoneTarget')?.classList.toggle('active', drunk >= 3000 && drunk < 4500);
+  document.getElementById('zoneMax')?.classList.toggle('active', drunk >= 4500);
+}
+
+/* ============================================================
+   FINAL INIT
+   ============================================================ */
+loadCollapseStates();
+renderDailyQuote();
+renderEngagement();
+renderWaterStatus();
+updateSummaryPills();
 </script>
 </body>
 </html>
