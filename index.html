@@ -994,6 +994,488 @@
 
   /* ============ V5 ADDITIONS ============ */
 
+  /* DATE PICKER · top of Tracker · log to any of last 7 days */
+  .date-picker-wrap {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 12px;
+    margin-bottom: 18px;
+  }
+  .date-picker-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .date-picker-label .dp-active {
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .date-picker-label .dp-active.is-past { color: var(--accent-deep); }
+  .date-picker {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .date-picker::-webkit-scrollbar { display: none; }
+  .dp-chip {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 8px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--ink);
+    text-align: center;
+    flex: 0 0 auto;
+    min-width: 56px;
+    line-height: 1.2;
+    position: relative;
+  }
+  .dp-chip:hover { background: var(--paper-3); }
+  .dp-chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .dp-chip.today::after {
+    content: '';
+    position: absolute;
+    top: 3px; right: 3px;
+    width: 5px; height: 5px;
+    background: var(--accent); border-radius: 50%;
+  }
+  .dp-chip.has-data {
+    border-color: var(--accent);
+  }
+  .dp-chip .dp-wk {
+    display: block;
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+  .dp-chip.active .dp-wk { color: rgba(245,239,227,0.65); }
+  .dp-chip .dp-day {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* COLLAPSE ALL TOGGLE */
+  .collapse-all-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+  .collapse-all-btn {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    padding: 8px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .collapse-all-btn:hover { background: var(--paper-2); }
+  .collapse-all-btn .ca-chevron {
+    width: 10px; height: 10px;
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+  }
+  .collapse-all-btn.all-open .ca-chevron { transform: rotate(-135deg); }
+
+  /* MEAL PRESETS · quick-add */
+  .meal-presets-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .meal-preset-card {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .meal-preset-card:hover { background: var(--paper-3); border-color: var(--accent); }
+  .meal-preset-card .mp-icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+  .meal-preset-card .mp-body { min-width: 0; }
+  .meal-preset-card .mp-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 17px;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  .meal-preset-card .mp-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-deep);
+    margin-top: 4px;
+  }
+  .meal-preset-card .mp-totals {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .meal-preset-card .mp-add {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .meal-preset-card .mp-add:hover { background: var(--accent-deep); }
+  .meal-preset-card.added { background: linear-gradient(135deg, #FCF5E8 0%, #FEF3C7 100%); border-color: var(--accent); }
+  .meal-preset-card.added .mp-add { background: var(--success); }
+
+  /* PROGRESS TAB */
+  .progress-hero {
+    background: linear-gradient(135deg, #0F0D0C 0%, #1C1917 100%);
+    color: var(--dark-text);
+    padding: 28px;
+    border: 1px solid var(--rule);
+    margin-bottom: 32px;
+  }
+  .progress-hero h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(36px, 6vw, 56px);
+    text-transform: uppercase;
+    line-height: 0.95;
+    margin-bottom: 8px;
+  }
+  .progress-hero h2 .accent { color: var(--accent); }
+  .progress-hero .ph-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(244,236,219,0.7);
+    margin-bottom: 24px;
+  }
+  .progress-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .progress-stat {
+    background: rgba(244,236,219,0.04);
+    border: 1px solid rgba(244,236,219,0.1);
+    padding: 16px;
+  }
+  .progress-stat .ps-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244,236,219,0.55);
+  }
+  .progress-stat .ps-val {
+    font-family: 'Anton', sans-serif;
+    font-size: 32px;
+    line-height: 1;
+    margin-top: 8px;
+  }
+  .progress-stat .ps-val.good { color: #4ADE80; }
+  .progress-stat .ps-val.warn { color: var(--accent-soft); }
+  .progress-stat .ps-val .unit-sm {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(244,236,219,0.55);
+    font-weight: 600;
+    margin-left: 4px;
+  }
+  .progress-stat .ps-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(244,236,219,0.55);
+    margin-top: 6px;
+  }
+
+  /* WEIGHT CHART */
+  .weight-chart-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .weight-chart-card h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .weight-chart-card .wc-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .weight-chart-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .wc-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* MEASUREMENTS */
+  .measure-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .measure-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--ink);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .measure-head .m-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .measure-head .m-link {
+    background: none;
+    border: none;
+    color: var(--accent-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .measure-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .measure-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .measure-field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .measure-field input {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--ink);
+    width: 100%;
+  }
+  .measure-field input:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .measure-field .delta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .measure-field .delta.good { color: var(--success); }
+  .measure-field .delta.bad { color: var(--danger); }
+  .measure-save {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 12px 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+  }
+  .measure-save:hover { background: var(--accent-deep); }
+  .measure-history {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .measure-history-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(28,25,23,0.08);
+    gap: 12px;
+  }
+  .measure-history .date { color: var(--muted); font-size: 11px; }
+
+  /* PHOTOS */
+  .photos-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .photos-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--ink);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .photo-capture-btn {
+    background: var(--accent);
+    color: var(--paper);
+    border: none;
+    padding: 14px 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .photo-capture-btn:hover { background: var(--accent-deep); }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  .photo-item {
+    aspect-ratio: 3/4;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .photo-item .photo-date {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 4px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-align: center;
+  }
+  .photo-item .photo-remove {
+    position: absolute;
+    top: 4px; right: 4px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    width: 24px; height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1;
+    border-radius: 50%;
+  }
+  .photo-empty {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 13px;
+    grid-column: 1 / -1;
+  }
+
+  /* MEASUREMENT MODAL CONTENT */
+  .measure-guide-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(28,25,23,0.15);
+    align-items: start;
+  }
+  .measure-guide-row:last-child { border-bottom: none; }
+  .measure-guide-row .mgr-icon {
+    font-size: 38px;
+    line-height: 1;
+    text-align: center;
+  }
+  .measure-guide-row strong {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .measure-guide-row p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  @media (max-width: 720px) {
+    .progress-stats { grid-template-columns: repeat(2, 1fr); }
+    .measure-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  }
+
+  /* ============ V5 ADDITIONS continued ============ */
+
   /* TRAINING DAY BANNER · auto-shift indicator */
   .td-banner {
     background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
@@ -1967,7 +2449,7 @@
       <button class="tab-btn active" data-tab="workout"><span class="num">01</span>Training</button>
       <button class="tab-btn" data-tab="diet"><span class="num">02</span>Diet</button>
       <button class="tab-btn" data-tab="tracker"><span class="num">03</span>Tracker</button>
-      <button class="tab-btn" data-tab="machines"><span class="num">04</span>Machines</button>
+      <button class="tab-btn" data-tab="progress"><span class="num">04</span>Progress</button>
       <button class="tab-btn" data-tab="notes"><span class="num">05</span>Coach's notes</button>
     </div>
   </div>
@@ -2562,14 +3044,21 @@
     <div class="r-time" id="reminderTime">—</div>
   </div>
 
-  <!-- Training day indicator · auto-shifts midnight-to-5AM to previous day -->
-  <div class="td-banner" id="tdBanner" style="display:none;">
-    <div class="td-icon">📅</div>
-    <div class="td-text">
-      <div class="td-label">Logging today's entries to</div>
-      <strong id="tdName">—</strong>
+  <!-- DATE PICKER · log to any of the last 7 days -->
+  <div class="date-picker-wrap">
+    <div class="date-picker-label">
+      <span>📅 Logging to · <span class="dp-active" id="dpActiveLabel">today</span></span>
+      <span style="font-size:10px; color:var(--muted);">Tap any day below to switch</span>
     </div>
-    <button class="td-switch" id="tdSwitch" onclick="toggleTrainingDayOverride()">Switch to today</button>
+    <div class="date-picker" id="datePicker"><!-- JS fills --></div>
+  </div>
+
+  <!-- COLLAPSE ALL TOGGLE -->
+  <div class="collapse-all-row">
+    <button class="collapse-all-btn all-open" id="collapseAllBtn" onclick="toggleAllCollapsibles()">
+      <span id="collapseAllText">Collapse all</span>
+      <span class="ca-chevron"></span>
+    </button>
   </div>
 
   <!-- SLEEP TRACKER (collapsible) -->
@@ -2812,6 +3301,10 @@
     <button class="food-cat-btn" data-cat="cheat">🍕 Cheat-day</button>
   </div>
 
+  <!-- MEAL PRESETS · one-tap to add the whole meal -->
+  <div class="sub-tag" style="margin: 18px 0 10px; font-size:10px;">⚡ QUICK ADD · ONE TAP TO LOG A WHOLE MEAL</div>
+  <div class="meal-presets-strip" id="mealPresets"><!-- JS fills --></div>
+
   <div class="food-grid" id="foodGrid"><!-- JS fills this --></div>
 
   <div class="food-log-day">
@@ -2944,14 +3437,101 @@
 
 </section>
 
-<!-- ========== MACHINES ========== -->
-<section class="panel" id="machines">
+<!-- ========== PROGRESS ========== -->
+<section class="panel" id="progress">
   <div class="panel-header">
-    <h2 class="panel-title">Machine <span class="accent">guide.</span></h2>
-    <p class="panel-intro">Every machine and movement in your split, with setup, form cues, common mistakes, and a coach's tip. As a beginner, machines beat free weights — fixed paths, fewer ways to hurt yourself. Read these once. Re-read when you're unsure.</p>
+    <h2 class="panel-title">Your <span class="accent">transformation.</span></h2>
+    <p class="panel-intro">Where you are versus where you started. Weight trend, body measurements, weekly photos. Watch the line move and trust the process — the scale is one signal, not the whole story.</p>
   </div>
 
-  <div class="machine-grid" id="machineGrid"><!-- JS fills this --></div>
+  <!-- HERO METRICS -->
+  <div class="progress-hero">
+    <h2>Day <span class="accent" id="phDayCount">—</span> of 78</h2>
+    <div class="ph-sub" id="phDates">25 Jun → 10 Sep · Operation 75</div>
+    <div class="progress-stats">
+      <div class="progress-stat">
+        <div class="ps-label">Kilos lost</div>
+        <div class="ps-val" id="phKgLost">—<span class="unit-sm">kg</span></div>
+        <div class="ps-sub" id="phKgLostSub">vs start (85 kg)</div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">% to goal</div>
+        <div class="ps-val" id="phPctGoal">—<span class="unit-sm">%</span></div>
+        <div class="ps-sub">75 kg = mission</div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">Projected finish</div>
+        <div class="ps-val" id="phProjected">—<span class="unit-sm">kg</span></div>
+        <div class="ps-sub" id="phProjectedSub">at current pace</div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">Current streak</div>
+        <div class="ps-val" id="phStreak">—<span class="unit-sm">d</span></div>
+        <div class="ps-sub">logging days</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEIGHT CHART -->
+  <div class="weight-chart-card">
+    <h3>Weight trend</h3>
+    <div class="wc-title">85 → 75 kg in 12 weeks</div>
+    <div id="weightChart"><div class="wc-empty">Log weights weekly on the Tracker tab. They'll plot here.</div></div>
+  </div>
+
+  <!-- PHOTOS -->
+  <div class="photos-card">
+    <div class="photos-head">
+      <div class="m-title">📷 Progress photos</div>
+    </div>
+    <input type="file" accept="image/*" capture="environment" id="photoInput" style="display:none">
+    <button class="photo-capture-btn" onclick="document.getElementById('photoInput').click()">📷 Add photo · today</button>
+    <div class="photo-grid" id="photoGrid">
+      <div class="photo-empty">No photos yet. Take one a week — front, side, back. The mirror lies, the photos don't.</div>
+    </div>
+  </div>
+
+  <!-- MEASUREMENTS -->
+  <div class="measure-card">
+    <div class="measure-head">
+      <div class="m-title">📏 Body measurements</div>
+      <button class="m-link" onclick="openMeasureGuideModal()">How to measure →</button>
+    </div>
+    <div class="measure-grid">
+      <div class="measure-field">
+        <label>Waist (cm)</label>
+        <input type="number" id="mWaist" min="40" max="200" step="0.5">
+        <div class="delta" id="mWaistDelta"></div>
+      </div>
+      <div class="measure-field">
+        <label>Chest (cm)</label>
+        <input type="number" id="mChest" min="60" max="200" step="0.5">
+        <div class="delta" id="mChestDelta"></div>
+      </div>
+      <div class="measure-field">
+        <label>Arms (cm)</label>
+        <input type="number" id="mArms" min="20" max="60" step="0.5">
+        <div class="delta" id="mArmsDelta"></div>
+      </div>
+      <div class="measure-field">
+        <label>Thighs (cm)</label>
+        <input type="number" id="mThighs" min="30" max="100" step="0.5">
+        <div class="delta" id="mThighsDelta"></div>
+      </div>
+      <div class="measure-field">
+        <label>Neck (cm)</label>
+        <input type="number" id="mNeck" min="25" max="60" step="0.5">
+        <div class="delta" id="mNeckDelta"></div>
+      </div>
+      <div class="measure-field">
+        <label>Hips (cm)</label>
+        <input type="number" id="mHips" min="60" max="200" step="0.5">
+        <div class="delta" id="mHipsDelta"></div>
+      </div>
+    </div>
+    <button class="measure-save" onclick="saveMeasurements()">Save measurements · today</button>
+    <div class="measure-history" id="measureHistory"></div>
+  </div>
 </section>
 
 <!-- ========== NOTES ========== -->
@@ -3043,7 +3623,7 @@
   <button class="bn-btn active" data-tab="workout"><span class="bn-icon">💪</span><span>Training</span></button>
   <button class="bn-btn" data-tab="diet"><span class="bn-icon">🍽️</span><span>Diet</span></button>
   <button class="bn-btn" data-tab="tracker"><span class="bn-icon">📊</span><span>Tracker</span></button>
-  <button class="bn-btn" data-tab="machines"><span class="bn-icon">🏋️</span><span>Machines</span></button>
+  <button class="bn-btn" data-tab="progress"><span class="bn-icon">📈</span><span>Progress</span></button>
   <button class="bn-btn" data-tab="notes"><span class="bn-icon">📝</span><span>Notes</span></button>
 </nav>
 
@@ -3490,22 +4070,99 @@ function dateKey(d) {
 
 // TRAINING day · auto-shift midnight-to-5AM to previous day
 // (Kashif's night-shift schedule: gym at 2 AM is still "yesterday's training day")
-// Also supports manual override via localStorage flag.
-const TRAINING_DAY_CUTOFF_HOUR = 5; // before 5 AM = previous training day
+// Also supports manual override via date picker (op75_active_date).
+const TRAINING_DAY_CUTOFF_HOUR = 5;
 function getTrainingDayKey() {
-  const now = new Date();
-  const overrideRaw = safeGet('op75_td_override');
-  // If override is set for the current calendar date, use that
-  if (overrideRaw && overrideRaw.calendarDate === todayKey()) {
-    return overrideRaw.trainingDay;
+  const cal = todayKey();
+  // Manual override from date picker (only valid for the current calendar day)
+  const override = safeGet('op75_active_date');
+  if (override && override.setOn === cal && override.date) {
+    return override.date;
   }
-  // Default rule: hours 0-4 = yesterday's training day
+  // Default: auto-shift if before 5 AM
+  const now = new Date();
+  if (now.getHours() < TRAINING_DAY_CUTOFF_HOUR) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - 1);
+    return dateKey(d);
+  }
+  return cal;
+}
+
+function setActiveDate(targetDate) {
+  const cal = todayKey();
+  if (targetDate === getDefaultTrainingDay()) {
+    // Clear override — back to auto behavior
+    localStorage.removeItem('op75_active_date');
+  } else {
+    safeSet('op75_active_date', { date: targetDate, setOn: cal });
+  }
+  renderDatePicker();
+  renderAllForActiveDate();
+}
+
+function getDefaultTrainingDay() {
+  const now = new Date();
   if (now.getHours() < TRAINING_DAY_CUTOFF_HOUR) {
     const d = new Date(now);
     d.setDate(d.getDate() - 1);
     return dateKey(d);
   }
   return todayKey();
+}
+
+function renderDatePicker() {
+  const wrap = document.getElementById('datePicker');
+  if (!wrap) return;
+  const active = getTrainingDayKey();
+  const cal = todayKey();
+  const defaultDay = getDefaultTrainingDay();
+  const today = new Date();
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    days.push(d);
+  }
+  wrap.innerHTML = days.map(d => {
+    const dk = dateKey(d);
+    const isActive = dk === active;
+    const isToday = dk === cal;
+    // Check if any data exists for this day
+    const hasData = safeGet('op75_food_' + dk) || safeGet('op75_water_' + dk) || safeGet('op75_ex_' + dk);
+    return `<button class="dp-chip ${isActive ? 'active' : ''} ${isToday ? 'today' : ''} ${hasData ? 'has-data' : ''}" onclick="setActiveDate('${dk}')">
+      <span class="dp-wk">${d.toLocaleDateString('en-GB', { weekday: 'short' })}</span>
+      <span class="dp-day">${d.getDate()}</span>
+    </button>`;
+  }).join('');
+
+  // Update active label
+  const lbl = document.getElementById('dpActiveLabel');
+  if (lbl) {
+    if (active === cal) {
+      lbl.textContent = 'today';
+      lbl.classList.remove('is-past');
+    } else if (active === defaultDay) {
+      lbl.textContent = 'auto · ' + getDayName(active);
+      lbl.classList.remove('is-past');
+    } else {
+      lbl.textContent = getDayName(active) + ' (past)';
+      lbl.classList.add('is-past');
+    }
+  }
+}
+
+function renderAllForActiveDate() {
+  // Refresh all UI that depends on training day
+  renderFoodGrid();
+  renderFoodLog();
+  renderWater();
+  renderWaterStatus();
+  loadMissedGym();
+  loadChecklist();
+  renderExLog();
+  updateSummaryPills();
+  renderDatePicker();
 }
 
 function fmtDate(iso) { return new Date(iso + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }); }
@@ -4414,6 +5071,7 @@ loadChecklist();
    ============================================================ */
 function renderMachines() {
   const grid = document.getElementById('machineGrid');
+  if (!grid) return; // machines tab removed in v7 — modal still uses MACHINES data
   grid.innerHTML = MACHINES.map((m, i) => `
     <div class="machine-card" id="machine-${m.id}">
       <div class="m-num">No. ${String(i+1).padStart(2,'0')}</div>
@@ -4783,7 +5441,7 @@ function toggleCollapse(id) {
   safeSet('op75_collapse_' + id, el.classList.contains('open'));
 }
 function loadCollapseStates() {
-  ['col-week', 'col-water', 'col-food', 'col-ex', 'col-weight'].forEach(id => {
+  ['col-week', 'col-sleep', 'col-water', 'col-food', 'col-ex', 'col-weight'].forEach(id => {
     const saved = safeGet('op75_collapse_' + id);
     if (saved === false) {
       const el = document.getElementById(id);
@@ -4977,8 +5635,486 @@ renderDailyQuote();
 renderEngagement();
 renderWaterStatus();
 renderSleep();
-renderTrainingDayBanner();
+renderDatePicker();
+renderMealPresets();
+renderProgressTab();
+renderPhotos();
+loadMeasurements();
 updateSummaryPills();
+
+/* ============================================================
+   MEAL PRESETS · one-tap to add a whole meal
+   ============================================================ */
+const MEAL_PRESETS = [
+  {
+    id: 'meal1', name: 'Meal 1 · Breakfast', time: '4:30 PM', icon: '🍳',
+    items: [
+      { foodId: 'egg-whole', count: 3 },
+      { foodId: 'egg-white', count: 2 },
+      { foodId: 'brown-bread', count: 2 },
+      { foodId: 'tomato-onion', count: 1 },
+      { foodId: 'kahwa', count: 1 }
+    ]
+  },
+  {
+    id: 'meal2', name: 'Meal 2 · Yogurt bowl', time: '8:30 PM', icon: '🥣',
+    items: [
+      { foodId: 'yogurt-strain', count: 1, qty: 250 },
+      { foodId: 'banana', count: 1 },
+      { foodId: 'almonds', count: 1, qty: 10 }
+    ]
+  },
+  {
+    id: 'meal3', name: 'Meal 3 · Dinner (chicken)', time: '12:00 AM', icon: '🍗',
+    items: [
+      { foodId: 'chicken', count: 1, qty: 150 },
+      { foodId: 'brown-bread', count: 2 },
+      { foodId: 'cucumber-salad', count: 1 },
+      { foodId: 'chai-sugar', count: 1 }
+    ]
+  },
+  {
+    id: 'meal3eggs', name: 'Meal 3 · Dinner (eggs)', time: '12:00 AM', icon: '🍳',
+    items: [
+      { foodId: 'egg-whole', count: 4 },
+      { foodId: 'brown-bread', count: 2 },
+      { foodId: 'cucumber-salad', count: 1 },
+      { foodId: 'chai-sugar', count: 1 }
+    ]
+  },
+  {
+    id: 'meal4', name: 'Meal 4 · Post-workout', time: '3:00 AM', icon: '💪',
+    items: [
+      { foodId: 'egg-boiled', count: 3 },
+      { foodId: 'milk', count: 1, qty: 250 },
+      { foodId: 'date', count: 1 }
+    ]
+  },
+  {
+    id: 'meal5', name: 'Meal 5 · Pre-sleep (opt)', time: '4:30 AM', icon: '🌙',
+    items: [
+      { foodId: 'milk', count: 1, qty: 200 }
+    ]
+  }
+];
+
+function computePresetTotals(preset) {
+  let k = 0, p = 0;
+  preset.items.forEach(it => {
+    const f = FOOD_DB.find(x => x.id === it.foodId);
+    if (!f) return;
+    const qty = it.qty || f.defaultQty || 1;
+    const scale = f.adjustable ? qty / f.defaultQty : 1;
+    k += f.kcal * scale * it.count;
+    p += f.protein * scale * it.count;
+  });
+  return { kcal: Math.round(k), protein: Math.round(p) };
+}
+
+function renderMealPresets() {
+  const wrap = document.getElementById('mealPresets');
+  if (!wrap) return;
+  const log = getFoodLog(getTrainingDayKey());
+  wrap.innerHTML = MEAL_PRESETS.map(preset => {
+    const t = computePresetTotals(preset);
+    // Detect if all items in this preset already meet/exceed the counts in today's log
+    const allAdded = preset.items.every(it => {
+      const entry = log[it.foodId];
+      return entry && entry.count >= it.count;
+    });
+    return `<div class="meal-preset-card ${allAdded ? 'added' : ''}">
+      <div class="mp-icon">${preset.icon}</div>
+      <div class="mp-body">
+        <div class="mp-name">${preset.name}</div>
+        <div class="mp-time">${preset.time}</div>
+        <div class="mp-totals">${t.kcal} kcal · ${t.protein}g protein · ${preset.items.length} items</div>
+      </div>
+      <button class="mp-add" onclick="addMealPreset('${preset.id}')">${allAdded ? '✓ Added' : '+ Add'}</button>
+    </div>`;
+  }).join('');
+}
+
+function addMealPreset(presetId) {
+  const preset = MEAL_PRESETS.find(p => p.id === presetId);
+  if (!preset) return;
+  const key = getTrainingDayKey();
+  const log = getFoodLog(key);
+  preset.items.forEach(it => {
+    if (!log[it.foodId]) log[it.foodId] = { count: 0 };
+    log[it.foodId].count = (log[it.foodId].count || 0) + it.count;
+    if (it.qty) log[it.foodId].qty = it.qty;
+  });
+  setFoodLog(key, log);
+  renderFoodGrid();
+  renderFoodLog();
+  renderMealPresets();
+}
+
+/* ============================================================
+   COLLAPSE ALL
+   ============================================================ */
+function toggleAllCollapsibles() {
+  const all = document.querySelectorAll('#tracker .collapsible');
+  const anyOpen = Array.from(all).some(c => c.classList.contains('open'));
+  all.forEach(c => {
+    if (anyOpen) c.classList.remove('open');
+    else c.classList.add('open');
+    safeSet('op75_collapse_' + c.id, !anyOpen);
+  });
+  const btn = document.getElementById('collapseAllBtn');
+  const txt = document.getElementById('collapseAllText');
+  if (anyOpen) {
+    btn.classList.remove('all-open');
+    txt.textContent = 'Expand all';
+  } else {
+    btn.classList.add('all-open');
+    txt.textContent = 'Collapse all';
+  }
+}
+
+/* ============================================================
+   PROGRESS TAB · weight chart, hero metrics
+   ============================================================ */
+const START_DATE = '2026-06-25';
+const FINAL_DATE = '2026-09-10';
+
+function daysBetween(a, b) {
+  const ms = new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00');
+  return Math.round(ms / (1000 * 60 * 60 * 24));
+}
+
+function renderProgressTab() {
+  // Hero metrics
+  const weights = (safeGet('op75_weights') || []).slice().sort((a, b) => a.date.localeCompare(b.date));
+  const today = todayKey();
+  const dayCount = Math.max(1, daysBetween(START_DATE, today) + 1);
+  document.getElementById('phDayCount').textContent = Math.min(dayCount, 78);
+
+  if (weights.length > 0) {
+    const latest = weights[weights.length - 1];
+    const lost = (START_WEIGHT - latest.weight);
+    document.getElementById('phKgLost').innerHTML = (lost >= 0 ? '−' : '+') + Math.abs(lost).toFixed(1) + '<span class="unit-sm">kg</span>';
+    const phKgEl = document.getElementById('phKgLost');
+    phKgEl.classList.remove('good', 'warn');
+    if (lost >= 1) phKgEl.classList.add('good');
+    else if (lost <= 0) phKgEl.classList.add('warn');
+
+    const pctGoal = Math.max(0, Math.min(100, (lost / (START_WEIGHT - TARGET_WEIGHT)) * 100));
+    document.getElementById('phPctGoal').innerHTML = pctGoal.toFixed(0) + '<span class="unit-sm">%</span>';
+
+    // Projected finish: linear from start to latest, projected to FINAL_DATE
+    const firstW = weights[0];
+    const daysElapsed = Math.max(1, daysBetween(firstW.date, latest.date));
+    const ratePerDay = (firstW.weight - latest.weight) / daysElapsed;
+    const totalDays = daysBetween(firstW.date, FINAL_DATE);
+    const projected = firstW.weight - ratePerDay * totalDays;
+    document.getElementById('phProjected').innerHTML = projected.toFixed(1) + '<span class="unit-sm">kg</span>';
+    const projEl = document.getElementById('phProjected');
+    projEl.classList.remove('good', 'warn');
+    if (projected <= TARGET_WEIGHT) projEl.classList.add('good');
+    else if (projected > TARGET_WEIGHT + 2) projEl.classList.add('warn');
+    document.getElementById('phProjectedSub').textContent = projected <= TARGET_WEIGHT ? 'on track or ahead' : `${(projected - TARGET_WEIGHT).toFixed(1)} kg short of goal`;
+  }
+
+  document.getElementById('phStreak').innerHTML = computeStreak() + '<span class="unit-sm">d</span>';
+
+  // Weight chart
+  renderWeightChart(weights);
+}
+
+function renderWeightChart(weights) {
+  const wrap = document.getElementById('weightChart');
+  if (!wrap) return;
+  if (!weights || weights.length === 0) {
+    wrap.innerHTML = '<div class="wc-empty">Log weights weekly on the Tracker tab. They\'ll plot here.</div>';
+    return;
+  }
+  const W = 700, H = 280, PAD_L = 40, PAD_R = 20, PAD_T = 30, PAD_B = 36;
+  const minW = Math.min(TARGET_WEIGHT - 1, ...weights.map(w => w.weight));
+  const maxW = Math.max(START_WEIGHT + 1, ...weights.map(w => w.weight));
+  const firstDate = weights[0].date;
+  const today = todayKey();
+  const xStart = new Date(firstDate + 'T00:00:00').getTime();
+  const xEnd = Math.max(new Date(FINAL_DATE + 'T00:00:00').getTime(), new Date(today + 'T00:00:00').getTime());
+
+  const scaleX = v => PAD_L + ((v - xStart) / (xEnd - xStart)) * (W - PAD_L - PAD_R);
+  const scaleY = v => PAD_T + (1 - (v - minW) / (maxW - minW)) * (H - PAD_T - PAD_B);
+
+  const points = weights.map(w => `${scaleX(new Date(w.date + 'T00:00:00').getTime())},${scaleY(w.weight)}`).join(' ');
+  const lastPoint = weights[weights.length - 1];
+  const lastX = scaleX(new Date(lastPoint.date + 'T00:00:00').getTime());
+  const lastY = scaleY(lastPoint.weight);
+
+  // Y-axis ticks
+  const yTicks = [Math.ceil(minW), Math.round((minW + maxW) / 2), Math.floor(maxW)];
+
+  const svg = `<svg class="weight-chart-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <!-- target line at 75 kg -->
+    <line x1="${PAD_L}" y1="${scaleY(TARGET_WEIGHT)}" x2="${W - PAD_R}" y2="${scaleY(TARGET_WEIGHT)}" stroke="#166534" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <text x="${W - PAD_R - 4}" y="${scaleY(TARGET_WEIGHT) - 5}" font-family="JetBrains Mono, monospace" font-size="10" fill="#166534" text-anchor="end">target 75 kg</text>
+    <!-- start line at 85 kg -->
+    <line x1="${PAD_L}" y1="${scaleY(START_WEIGHT)}" x2="${W - PAD_R}" y2="${scaleY(START_WEIGHT)}" stroke="#7A726A" stroke-width="1" stroke-dasharray="2,4" opacity="0.5"/>
+    <text x="${PAD_L + 4}" y="${scaleY(START_WEIGHT) - 5}" font-family="JetBrains Mono, monospace" font-size="10" fill="#7A726A">start 85 kg</text>
+    <!-- axis -->
+    <line x1="${PAD_L}" y1="${PAD_T}" x2="${PAD_L}" y2="${H - PAD_B}" stroke="#1C1917" stroke-width="1"/>
+    <line x1="${PAD_L}" y1="${H - PAD_B}" x2="${W - PAD_R}" y2="${H - PAD_B}" stroke="#1C1917" stroke-width="1"/>
+    ${yTicks.map(t => `<text x="${PAD_L - 6}" y="${scaleY(t) + 4}" font-family="JetBrains Mono, monospace" font-size="10" fill="#7A726A" text-anchor="end">${t}</text>`).join('')}
+    <!-- data line -->
+    <polyline points="${points}" stroke="#D97706" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- data points -->
+    ${weights.map(w => `<circle cx="${scaleX(new Date(w.date + 'T00:00:00').getTime())}" cy="${scaleY(w.weight)}" r="4" fill="#D97706"/>`).join('')}
+    <!-- latest label -->
+    <text x="${lastX + 8}" y="${lastY - 8}" font-family="Anton, sans-serif" font-size="14" fill="#D97706">${lastPoint.weight} kg</text>
+    <!-- start / today / target labels -->
+    <text x="${PAD_L}" y="${H - 12}" font-family="JetBrains Mono, monospace" font-size="10" fill="#7A726A">${fmtDateLong(firstDate)}</text>
+    <text x="${W - PAD_R}" y="${H - 12}" font-family="JetBrains Mono, monospace" font-size="10" fill="#7A726A" text-anchor="end">${fmtDateLong(FINAL_DATE)}</text>
+  </svg>`;
+  wrap.innerHTML = svg;
+}
+
+/* ============================================================
+   PHOTOS · capture from camera, compress, store in localStorage
+   ============================================================ */
+function compressImage(file, maxWidth, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error('read failed'));
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onerror = () => reject(new Error('image decode failed'));
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const scale = Math.min(1, maxWidth / img.width);
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('photoInput');
+  if (inp) inp.addEventListener('change', handlePhotoCapture);
+});
+// Backup wire (in case DOMContentLoaded already fired)
+setTimeout(() => {
+  const inp = document.getElementById('photoInput');
+  if (inp && !inp.dataset.wired) {
+    inp.dataset.wired = '1';
+    inp.addEventListener('change', handlePhotoCapture);
+  }
+}, 0);
+
+async function handlePhotoCapture(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const dataUrl = await compressImage(file, 800, 0.7);
+    const photos = safeGet('op75_photos') || [];
+    photos.push({ date: todayKey(), dataUrl, ts: Date.now() });
+    safeSet('op75_photos', photos);
+    renderPhotos();
+    e.target.value = '';
+  } catch (err) {
+    alert('Photo capture failed: ' + err.message);
+  }
+}
+
+function renderPhotos() {
+  const grid = document.getElementById('photoGrid');
+  if (!grid) return;
+  const photos = (safeGet('op75_photos') || []).slice().sort((a, b) => b.ts - a.ts);
+  if (photos.length === 0) {
+    grid.innerHTML = '<div class="photo-empty">No photos yet. Take one a week — front, side, back. The mirror lies, the photos don\'t.</div>';
+    return;
+  }
+  grid.innerHTML = photos.map((p, idx) => `
+    <div class="photo-item" onclick="openPhotoView(${idx})">
+      <img src="${p.dataUrl}" alt="Progress photo ${fmtDateLong(p.date)}">
+      <button class="photo-remove" onclick="event.stopPropagation(); removePhoto(${idx})" aria-label="Remove">×</button>
+      <div class="photo-date">${fmtDateLong(p.date)}</div>
+    </div>
+  `).join('');
+}
+
+function removePhoto(idx) {
+  if (!confirm('Delete this photo?')) return;
+  const photos = (safeGet('op75_photos') || []).slice().sort((a, b) => b.ts - a.ts);
+  photos.splice(idx, 1);
+  safeSet('op75_photos', photos);
+  renderPhotos();
+}
+
+function openPhotoView(idx) {
+  const photos = (safeGet('op75_photos') || []).slice().sort((a, b) => b.ts - a.ts);
+  const p = photos[idx];
+  if (!p) return;
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header">
+      <div class="mh-label">Progress photo</div>
+      <div class="mh-title">${fmtDateLong(p.date)}</div>
+    </div>
+    <div style="background:#000; padding:0;">
+      <img src="${p.dataUrl}" style="width:100%; display:block;">
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ============================================================
+   MEASUREMENTS
+   ============================================================ */
+const MEASURE_FIELDS = [
+  { id: 'mWaist', key: 'waist', label: 'Waist', icon: '⏺️' },
+  { id: 'mChest', key: 'chest', label: 'Chest', icon: '🫁' },
+  { id: 'mArms', key: 'arms', label: 'Arms', icon: '💪' },
+  { id: 'mThighs', key: 'thighs', label: 'Thighs', icon: '🦵' },
+  { id: 'mNeck', key: 'neck', label: 'Neck', icon: '🧣' },
+  { id: 'mHips', key: 'hips', label: 'Hips', icon: '🩲' }
+];
+
+function getAllMeasurements() {
+  const list = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('op75_measurements_')) {
+      const date = k.replace('op75_measurements_', '');
+      const data = safeGet(k);
+      if (data) list.push({ date, ...data });
+    }
+  }
+  return list.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+function saveMeasurements() {
+  const data = {};
+  let anyValue = false;
+  MEASURE_FIELDS.forEach(f => {
+    const v = parseFloat(document.getElementById(f.id).value);
+    if (!isNaN(v)) { data[f.key] = v; anyValue = true; }
+  });
+  if (!anyValue) { alert('Enter at least one measurement.'); return; }
+  safeSet('op75_measurements_' + todayKey(), data);
+  loadMeasurements();
+  alert('Measurements saved.');
+}
+
+function loadMeasurements() {
+  const all = getAllMeasurements();
+  if (all.length === 0) return;
+  const latest = all[all.length - 1];
+  const prev = all.length > 1 ? all[all.length - 2] : null;
+  MEASURE_FIELDS.forEach(f => {
+    const inp = document.getElementById(f.id);
+    if (!inp) return;
+    if (latest[f.key] !== undefined) inp.value = latest[f.key];
+    const deltaEl = document.getElementById(f.id + 'Delta');
+    if (deltaEl) {
+      if (prev && prev[f.key] !== undefined && latest[f.key] !== undefined) {
+        const d = (latest[f.key] - prev[f.key]).toFixed(1);
+        const sign = d > 0 ? '+' : '';
+        // Waist/hips: smaller is better; arms/chest/thighs: bigger usually fine. Color by direction relative to slimming goal.
+        const slimming = ['waist', 'hips', 'thighs', 'neck'].includes(f.key);
+        const cls = slimming ? (d < 0 ? 'good' : d > 0 ? 'bad' : '') : (d > 0 ? 'good' : d < 0 ? 'bad' : '');
+        deltaEl.className = 'delta ' + cls;
+        deltaEl.textContent = `${sign}${d} cm vs last`;
+      } else {
+        deltaEl.textContent = '';
+      }
+    }
+  });
+
+  // History list
+  const hist = document.getElementById('measureHistory');
+  if (hist && all.length > 1) {
+    hist.innerHTML = '<div style="font-family:JetBrains Mono,monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Past entries</div>' +
+      all.slice(0, -1).reverse().map(m => {
+        const summary = MEASURE_FIELDS.filter(f => m[f.key] !== undefined).map(f => `${f.label[0]}:${m[f.key]}`).join(' · ');
+        return `<div class="measure-history-row"><span class="date">${fmtDate(m.date)}</span><span>${summary}</span></div>`;
+      }).join('');
+  }
+}
+
+/* ============================================================
+   MEASUREMENT HOW-TO MODAL
+   ============================================================ */
+function openMeasureGuideModal() {
+  const q = encodeURIComponent('how to take body measurements at home');
+  const ytUrl = `https://www.youtube.com/results?search_query=${q}`;
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header">
+      <div class="mh-label">Body measurement guide</div>
+      <div class="mh-title">How to measure</div>
+      <div class="mh-works">Tape measure · same time of day · weekly</div>
+    </div>
+    <div class="modal-inner">
+      <p style="font-size:14px; color:var(--ink-soft); margin-bottom:14px; line-height:1.5;">
+        <strong>General rules:</strong> measure in the morning before food, in the same position, with the tape snug but not compressing skin. Once a week is enough.
+      </p>
+      <div class="measure-guide-row">
+        <div class="mgr-icon">⏺️</div>
+        <div>
+          <strong>Waist (most important for fat loss)</strong>
+          <p>Stand relaxed, exhale normally. Wrap tape around the narrowest part — usually 1 inch above the navel. Don't suck in.</p>
+        </div>
+      </div>
+      <div class="measure-guide-row">
+        <div class="mgr-icon">🫁</div>
+        <div>
+          <strong>Chest</strong>
+          <p>Tape around the fullest part of the chest, level under the armpits. Arms relaxed at sides, normal breathing.</p>
+        </div>
+      </div>
+      <div class="measure-guide-row">
+        <div class="mgr-icon">💪</div>
+        <div>
+          <strong>Arms (biceps)</strong>
+          <p>Around the largest part of the upper arm, midway between shoulder and elbow. Arm relaxed, hanging straight down. Measure both, log the bigger or average.</p>
+        </div>
+      </div>
+      <div class="measure-guide-row">
+        <div class="mgr-icon">🦵</div>
+        <div>
+          <strong>Thighs</strong>
+          <p>Stand with feet shoulder-width. Wrap around the fullest part of the upper thigh, about 6 inches below the crotch.</p>
+        </div>
+      </div>
+      <div class="measure-guide-row">
+        <div class="mgr-icon">🧣</div>
+        <div>
+          <strong>Neck</strong>
+          <p>Wrap below the Adam's apple, parallel to the ground. Snug, not tight. Useful proxy for body fat shifts.</p>
+        </div>
+      </div>
+      <div class="measure-guide-row">
+        <div class="mgr-icon">🩲</div>
+        <div>
+          <strong>Hips</strong>
+          <p>Stand with feet together. Tape around the widest part of the hips/glutes. Tape parallel to the floor.</p>
+        </div>
+      </div>
+      <a href="${ytUrl}" target="_blank" rel="noopener noreferrer" class="yt-btn">
+        <span class="yt-icon">▶</span> Watch tutorials on YouTube <span class="yt-sub">opens search</span>
+      </a>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ============================================================
+   HOOK: refresh progress + presets after weight/food updates
+   ============================================================ */
+const _origRenderWeightsV7 = renderWeights;
+renderWeights = function() { _origRenderWeightsV7.apply(this, arguments); renderProgressTab(); };
+const _origRenderFoodLogV7 = renderFoodLog;
+renderFoodLog = function() { _origRenderFoodLogV7.apply(this, arguments); renderMealPresets(); };
 
 /* ============================================================
    TRAINING DAY OVERRIDE · manual flip when auto-rule isn't enough
