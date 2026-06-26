@@ -7300,7 +7300,7 @@ renderEngagement();
 renderWaterStatus();
 renderSleep();
 renderDatePicker();
-renderMealPresets();
+// renderMealPresets() moved to after MEAL_PRESETS const is declared (fixed TDZ bug in v19)
 renderProgressTab();
 renderPhotos();
 loadMeasurements();
@@ -7378,6 +7378,8 @@ function computePresetTotals(preset) {
 function renderMealPresets() {
   const wrap = document.getElementById('mealPresets');
   if (!wrap) return;
+  // Defensive guard: if MEAL_PRESETS isn't initialized yet (TDZ from stale cache), bail safely
+  if (typeof MEAL_PRESETS === 'undefined') return;
   const log = getFoodLog(getTrainingDayKey());
 
   let totalChecked = 0;
@@ -7456,6 +7458,9 @@ function toggleMealCheckin(presetId) {
 
 // Keep addMealPreset as alias for backwards compat (any old onclick="addMealPreset(...)")
 function addMealPreset(presetId) { toggleMealCheckin(presetId); }
+
+// Initial render — now safe because MEAL_PRESETS const is initialized above (v19 fix)
+renderMealPresets();
 
 /* ============================================================
    COLLAPSE ALL
