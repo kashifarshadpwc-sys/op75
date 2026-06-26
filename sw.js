@@ -1,7 +1,7 @@
 // Operation 75 — Service Worker
 // Caches the app on first load so it works offline at the gym
 
-const CACHE_NAME = 'op75-v19';
+const CACHE_NAME = 'op75-v21';
 const ASSETS = [
   './',
   './index.html',
